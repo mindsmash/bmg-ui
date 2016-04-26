@@ -1,0 +1,47 @@
+.anchorjs-link, .anchorjs-link:hover { color: #DDD; text-decoration: none; }
+
+code { font-size: 12px; white-space: pre; }
+
+.hljs { background: transparent !important; padding: 0 !important; }
+
+.head { font-size: larger; font-weight: bolder; }
+
+.color-grid { margin: 10px 0; padding: 0 10px 0 0; }
+
+.visible-grid { color: #4c4c4c; background-color: #ededed; border: 1px solid #51d0ff; text-align: center; margin: 10px 0; }
+
+.color { width: 100%; min-width: 33%; display: block; text-align: center; border-radius: 30px; }
+
+.color.ec-white { color: #4c4c4c; background-color: #ffffff; border: 1px solid #4c4c4c; }
+
+.color.ec-black { color: #ffffff; background-color: #4c4c4c; }
+
+.color.ec-stack { color: #ffffff; background-color: #999; }
+
+.color.ec-light-grey { color: #4c4c4c; background-color: #dddddd; }
+
+.color.ec-primary { color: #ffffff; background-color: #51d0ff; }
+
+.color.ec-secondary { color: #ffffff; background-color: #4d4d4d; }
+
+.color.ec-success { color: #ffffff; background-color: #afce06; }
+
+.color.ec-info { color: #ffffff; background-color: #1CE0D0; }
+
+.color.ec-warning { color: #ffffff; background-color: #ffcc00; }
+
+.color.ec-error { color: #ffffff; background-color: #c80031; }
+
+.color.ec-celeste { color: #4c4c4c; background-color: #ededed; }
+
+.color.ec-spice { color: #ffffff; background-color: #a7572c; }
+
+.color.ec-pine-green { color: #ffffff; background-color: #319990; }
+
+.color.ec-light-crimson { color: #ffffff; background-color: #f66b8f; }
+
+.color.ec-jazzberry { color: #ffffff; background-color: #a11762; }
+
+.panel-example { vertical-align: middle; text-align: center; min-height: 160px; line-height: 160px; font-size: large; }
+
+.dependency-warning { display: inline-block; width: 100%; border: 1px solid #ffcc00; border-radius: 3px; padding: 6px 10px; background-color: rgba(255, 204, 0, 0.25); }

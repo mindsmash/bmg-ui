@@ -1,0 +1,294 @@
+$bmg-nav-height: 75px;
+$bmg-nav-round-icon-size: 1.8em;
+
+/**
+* Use with bootstrap's .navbar
+*/
+
+.navbar-brand {
+  min-width: 250px;
+  max-width: 250px;
+
+  > img {
+    height: 18px;
+    display: inline-block;
+  }
+}
+
+.navbar-brand-appname {
+  font-size: 12px;
+  font-weight: 200;
+  position: relative;
+  bottom: -1px;
+  margin-left: 4px;
+  color: $bmg-gray-dark;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $bmg-gray-dark;
+  }
+}
+
+.navbar-header {
+  i {
+    position: relative;
+    top: 17px;
+    font-size: 23px;
+    color: $bmg-gray-dark;
+    margin-right: 30px !important;
+  }
+}
+
+.navbar {
+  background-color: $bmg-navbar;
+  padding: 0;
+
+  .navbar-header {
+    line-height: $bmg-nav-height;
+    height: $bmg-nav-height;
+    padding: 8px 30px 0 0;
+  }
+  .navbar-nav {
+
+    li.active a {
+      color: $bmg-white;
+      background-color: transparent;
+    }
+
+    &.navbar-left {
+      margin-left: 20px;
+
+      > li {
+        width: 104px;
+        border-left: 1px solid $bmg-navbar-separator-color;
+
+        &:last-child {
+          border-right: 1px solid $bmg-navbar-separator-color;
+        }
+
+        a {
+          height: $bmg-nav-height;
+          text-align: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          color: $bmg-gray-dark;
+          line-height: 20px;
+          padding-top: 17px;
+
+          @include transition(color, .2s);
+          .fa {
+            display: inline;
+            font-size: 1.5em;
+            margin: 0;
+            &:after {
+              content: '\A';
+              white-space: pre;
+            }
+          }
+
+          span {
+            font-weight: 300;
+            font-size: 11px;
+          }
+          &:hover,
+          &:active,
+          &:focus {
+            color: $bmg-white;
+          }
+        }
+        &.active {
+          background-color: transparent;
+          a,
+          a:hover,
+          a:active,
+          a:focus {
+            color: $bmg-white;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    &.navbar-right {
+
+      > li {
+        height: $bmg-nav-height;
+        display: flex;
+        align-items: center;
+        text-align: center;
+
+        &:hover,
+        &:active,
+        &.active,
+        &:focus {
+          color: $bmg-white;
+          background-color: transparent;
+        }
+
+        > a {
+          color: $bmg-gray-dark;
+          //color: $bmg-white;
+          font-size: 20px; //$bmg-nav-round-icon-size;
+          &:hover,
+          &:active,
+          &.active,
+          &:focus {
+            color: $bmg-white;
+            background-color: transparent;
+          }
+        }
+      }
+
+      ul.dropdown-menu > li.active a {
+          color: $bmg-white;
+          background-color: #f3f3f3;
+      }
+
+      .dropdown.active {
+        > a {
+          color: $bmg-white;
+        }
+      }
+
+      .dropdown.open {
+        > a {
+          background-color: transparent;
+        }
+        .dropdown-menu {
+          li {
+            a {
+              color: $bmg-navbar;
+              &:hover,
+              &:active,
+              &.active,
+              &:focus {
+                color: $bmg-white;
+                background-color: $bmg-navbar;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.sidebar {
+  padding-right: 0;
+  @media #{screen} and (max-width: $screen-lg) {
+    min-width: 110px;
+    max-width: 110px;
+  }
+}
+
+.nav.nav-sidebar {
+
+  > li {
+    &:last-child > a {
+      border-bottom: 1px solid $bmg-btn-border;
+    }
+  }
+
+  > li > a {
+    font-size: 16px;
+    font-weight: 300;
+    color: $bmg-text;
+    background-color: $bmg-gray-light;
+    height: 80px;
+    padding: 20px;
+    padding-left: 32px;
+    border-bottom: 1px solid $bmg-btn-border;
+    border-right: 1px solid $bmg-btn-border;
+
+    @media #{screen} and (max-width: $screen-lg) {
+      .nav-text {
+        display: none;
+      }
+    }
+
+    &:hover:after,
+    &:hover:before {
+      left: 100%;
+      top: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &:hover:after {
+      border-left-color: $bmg-gray-light;
+      border-width: 12px;
+      margin-top: -12px;
+    }
+
+    &:hover:before {
+      border-left-color: $bmg-btn-border;
+      border-width: 13px;
+      margin-top: -13px;
+    }
+  }
+
+  > li.active > a {
+    background-color: $bmg-gray-light;
+
+    &:hover {
+      background-color: $bmg-gray-light;
+    }
+
+    &:after,
+    &:before {
+      left: 100%;
+      top: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    &:after {
+      border-left-color: $bmg-gray-light;
+      border-width: 12px;
+      margin-top: -12px;
+    }
+
+    &:before {
+      border-left-color: $bmg-btn-border;
+      border-width: 13px;
+      margin-top: -13px;
+    }
+
+  }
+
+  span.fa-stack {
+    position: relative;
+    top: -2px;
+    transform: scale(0.7, 0.7);
+  }
+}
+
+.sidebar {
+  background-color: #f3f3f3;
+}
+
+.row-with-sidebar {
+  display: flex;
+  margin: 0;
+}
+
+.sidebar,
+.sidebar-content {
+  flex-grow: 1;
+  border-top: 1px solid $bmg-btn-border;
+  border-bottom: 1px solid $bmg-btn-border;
+}
+
+.sidebar-content {
+  padding: 30px 45px 30px 50px;
+}

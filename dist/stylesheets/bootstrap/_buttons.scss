@@ -1,0 +1,137 @@
+.btn {
+  @include animate-easing(background-color, 0.2s);
+  font-weight: $font-weigth-default;
+}
+
+.btn {
+  min-width: 105px;
+  i { margin-right: 4px; }
+  .badge { margin-top: -2px; }
+
+  &.disabled {
+    color: $bmg-disabled;
+  }
+}
+
+.btn:active {
+    color: $bmg-white;
+    box-shadow: none;
+    border-color: $bmg-btn-border;
+  }
+
+.btn-default:hover,
+.btn-default:focus {
+  border-color: $bmg-btn-border;
+}
+
+.btn-default:active:focus {
+  border-color: $bmg-btn-border;
+}
+
+.btn-lg {
+  i { margin-right: 6px; }
+}
+
+.btn-sm {
+  line-height: 18px;
+  min-width: 90px;
+  i { margin-right: 3px; }
+  .badge { margin-top: -6px; top: 1px; }
+}
+
+.btn-xs {
+  line-height: 18px;
+
+  i { margin-right: 2px; }
+  .badge { margin-top: -6px; top: 1px; }
+}
+
+.btn-circle {
+    @include square(25px);
+    line-height: 25px;
+    @include circle();
+    min-width: 0;
+    padding: 0;
+    i {
+        margin: 0;
+    }
+    font-size: 13px
+}
+
+.btn-fa {
+    min-width: 0;
+    padding: 0;
+    i {
+        margin: 0;
+    }
+    
+    &.btn-lg { line-height: 48px; @include square(48px); }
+    &.btn { line-height: 30px; @include square(30px); }
+    &.btn-sm { line-height: 26px; @include square(26px); }
+    &.btn-xs { line-height: 24px; @include square(24px); }
+}
+
+.btn + .btn {
+    margin-left: 10px;
+}
+
+.btn-primary-invers {
+  @include button-variant($btn-primary-invers-color, $btn-primary-invers-bg, $btn-primary-invers-border);
+}
+
+.btn-secondary {
+  @include button-variant($btn-secondary-color, $btn-secondary-bg, $btn-secondary-border);
+}
+
+.btn-secondary-invers {
+  @include button-variant($btn-secondary-invers-color, $btn-secondary-invers-bg, $btn-secondary-invers-border);
+}
+
+.btn-disabled {
+  background: $bmg-btn-border;
+  color: $bmg-white;
+  border-color: $bmg-btn-border;
+  &:hover {
+    color: $bmg-white;
+    cursor: not-allowed;
+  }
+}
+
+.btn-group > .btn:active {
+  background: $bmg-btn-border;
+  color: $bmg-white;
+  border-color: $bmg-btn-border;
+}
+
+.btn-group > .btn:focus,
+.btn-group > .btn:hover {
+  border-color: $bmg-btn-border;
+}
+
+.btn-group > .btn {
+  min-width: 0;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 1000px;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.actions {
+  float: right;
+}

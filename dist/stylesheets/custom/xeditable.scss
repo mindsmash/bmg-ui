@@ -1,0 +1,68 @@
+a.editable-click.editable-empty {
+  min-width: 100%;
+  min-height: 30px;
+  display: block;
+}
+
+.editable-buttons {
+  .btn {
+    min-width: 30px;
+    padding: 3px 3px 3px 7px;
+    width: 30px;
+    margin-left: 10px;
+  }
+
+.btn + .btn {
+    margin-left: 5px;
+  }
+}
+
+.form-inline {
+  .editable-controls {
+    .editable-input {
+      width: 100%;
+    }
+  }
+}
+
+a.editable-click {
+  text-decoration: none;
+  color: $bmg-text;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 28px;
+  position: relative;
+  display: block;
+  margin-left: -15px;
+  padding: 0px 16px;
+  min-height: 30px;
+  max-height: 30px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a.editable-click:hover {
+  border: 1px solid $bmg-btn-border;
+  border-radius: 4px;
+  color: $bmg-text;
+  &:after {
+    position: absolute;
+    right: 8px;
+    top: 7px;
+    display: inline-block;
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f044";
+    color: #ccc;
+  }
+}
+
+.editable-read-only {
+
+}
