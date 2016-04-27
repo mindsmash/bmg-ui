@@ -1,6 +1,8 @@
 # bmg-ui
 A mindsmash-ui fork for bmg.
 
+See license notes below.
+
 ## Contents
 * [Install with bower](#install-with-bower-to-use-the-theme-css-or-scss-version)  
 * [Use in an SCSS project](#use-in-a-sass-scss-project)
@@ -59,3 +61,14 @@ Clone the project, then follow the instructions below.
 ### Contribute
 If you want to contribute to this project, simply fork it on Github, do your changes and create a pull request that
 describes your changes. If it's all nice and clean, it might get merged.
+
+### Talk to
+
+* Sascha Zuske (sascha dot zuske at mindsmash dot com)
+* Daniel Busch (daniel dot busch at mindsmash dot com)
+
+## License
+
+This project is made open source for documentation purposes only and must not be used without prior written approval of mindsmash GmbH.
+
+Copyright 2016 mindsmash GmbH - All rights reserved.
