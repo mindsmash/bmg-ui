@@ -95,7 +95,14 @@
     color: $bmg-white;
     cursor: not-allowed;
   }
+  &.btn-default {
+    filter: invert(100%);
+    &:hover {
+      background-color: $bmg-btn-border;
+    }
+  }
 }
+
 
 .btn-group > .btn:active {
   background: $bmg-btn-border;
@@ -134,4 +141,8 @@
 
 .actions {
   float: right;
+}
+
+.shrink {
+  min-width: 1px;
 }

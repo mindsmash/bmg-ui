@@ -67,7 +67,7 @@ gulp.task('bower:build', function () {
       onMainNotFound: gutil.log,
       onFileUpdated: gutil.log
     }))
-    .pipe(gulp.dest('dist/docs'));
+    .pipe(gulp.dest('docs'));
 });
 
 gulp.task('bower:dev', function () {

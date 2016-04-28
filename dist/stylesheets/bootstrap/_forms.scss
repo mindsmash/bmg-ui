@@ -206,6 +206,8 @@ input[type=checkbox] {
   position: relative;
 
   input[type=checkbox] {
+    -webkit-appearance: checkbox;
+
     & + label > div {
       border: 1px solid $bmg-malibu;
       border-radius: 4px;
@@ -216,22 +218,26 @@ input[type=checkbox] {
       left: -1px;
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
+      -moz-opacity: 0;
       opacity: 0;
     }
 
     & + label:hover > div {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
       filter: alpha(opacity=30);
+      -moz-opacity: 0.3;
       opacity: 0.3;
     }
     &:checked {
       & + label {
         & > div,
-        &:after,
-        &:after > div,
+        &::after,
+        &::after > div,
         &:hover::after > div {
+          zoom: 1;
           -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
           filter: alpha(opacity=100);
+          -moz-opacity: 1;
           opacity: 1;
         }
       }
@@ -248,9 +254,10 @@ input[type=checkbox] {
     top: 1px;
     background: $bmg-white;
 
-    &:after {
+    &::after {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
+      -moz-opacity: 0;
       opacity: 0;
       content: '';
       position: absolute;
@@ -265,6 +272,7 @@ input[type=checkbox] {
     &:hover::after {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
       filter: alpha(opacity=30);
+      -moz-opacity: 0.3;
       opacity: 0.3;
     }
   }

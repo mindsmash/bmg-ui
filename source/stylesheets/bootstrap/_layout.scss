@@ -177,11 +177,19 @@ body {
 
           &:hover {
             border: 1px solid $bmg-malibu;
-            //background-color: $bmg-malibu;
             border-radius: 24px;
 
             > a {
               color: $bmg-text;
+              .app-icon {
+                background-color: $bmg-malibu;
+                color: $bmg-white;
+              }
+            }
+          }
+
+          &.active {
+            > a {
               .app-icon {
                 background-color: $bmg-malibu;
                 color: $bmg-white;

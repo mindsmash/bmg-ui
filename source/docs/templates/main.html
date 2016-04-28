@@ -314,6 +314,7 @@
                 </div>
                 <div class="col-lg-3">
                     <button type="button" class="btn btn-default">Default</button>
+                    <button type="button" class="btn btn-default btn-disabled" disabled>Default (disabled)</button>
                 </div>
                 <div class="col-lg-3">
                     <button type="button" class="btn btn-default disabled">Disabled</button>
@@ -615,6 +616,17 @@
             <div class="page-header">
                 <h1 id="checkbox-slider">Checkbox / Slider</h1>
             </div>
+            <div class="form-group">
+                <div class="bmg-checkbox-with-label">
+                    <div class="bmg-checkbox">
+                        <input type="checkbox" id="squaredCheckbox5"
+                               data-ng-model="checkboxSliderCtrl.checked"/>
+                        <label for="squaredCheckbox5"><div></div></label>
+                    </div>
+                    Test!
+                </div>
+            </div>
+
             <div class="row" data-ng-controller="CheckboxSliderController as checkboxSliderCtrl">
                 <div class="col-lg-12">
                     <h2>Checkbox</h2>
@@ -687,7 +699,7 @@
                             <div class="progress-status">
                                 <div class="progress-display-status">
                                     <div class="status-line"></div>
-                                    <div class="status-finish"></div>
+                                    <div class="status-finished"></div>
                                     <div class="status-active">2</div>
                                     <div class="status-open"></div>
                                     <div class="status-open"></div>
@@ -703,8 +715,8 @@
                             <div class="progress-status">
                                 <div class="progress-display-status">
                                     <div class="status-line"></div>
-                                    <div class="status-finish"></div>
-                                    <div class="status-finish"></div>
+                                    <div class="status-finished"></div>
+                                    <div class="status-finished"></div>
                                     <div class="status-active">3</div>
                                     <div class="status-open"></div>
                                 </div>
@@ -717,9 +729,9 @@
                             <div class="progress-status">
                                 <div class="progress-display-status">
                                     <div class="status-line"></div>
-                                    <div class="status-finish"></div>
-                                    <div class="status-finish"></div>
-                                    <div class="status-finish"></div>
+                                    <div class="status-finished"></div>
+                                    <div class="status-finished"></div>
+                                    <div class="status-finished"></div>
                                     <div class="status-active">4</div>
                                 </div>
                                 <div class="status-percentage">75&#37;<span
@@ -737,13 +749,13 @@
                         <div class="progress-status">
                             <div class="progress-display-status">
                                 <div class="status-line"></div>
-                                <div class="status-finish"></div>
-                                <div class="status-finish"></div>
-                                <div class="status-finish"></div>
-                                <div class="status-finish"></div>
-                                <div class="status-finish"></div>
-                                <div class="status-finish"></div>
-                                <div class="status-finish"></div>
+                                <div class="status-finished"></div>
+                                <div class="status-finished"></div>
+                                <div class="status-finished"></div>
+                                <div class="status-finished"></div>
+                                <div class="status-finished"></div>
+                                <div class="status-finished"></div>
+                                <div class="status-finished"></div>
                                 <div class="status-active">8</div>
                                 <div class="status-open"></div>
                                 <div class="status-open"></div>
@@ -759,8 +771,8 @@
                     <pre><code class="html">&lt;div class="progress-status"&gt;
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="progress-display-status"&gt;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="status-line"&gt;&lt;/div&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="status-finish"&gt;&lt;/div&gt;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="status-finish"&gt;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="status-finished"&gt;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="status-finished"&gt;&lt;/div&gt;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="status-active"&gt;3&lt;/div&gt;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="status-open"&gt;&lt;/div&gt;
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
@@ -1077,6 +1089,61 @@
             </div>
         </div>
     </div>
+    <!-- Datepicker -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1 id="datepicker">Datepicker</h1>
+            </div>
+            <div class="row" data-ng-controller="DatepickerController as datepickerCtrl">
+                <div class="col-lg-12">
+                    <h4>Popup</h4>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup="{{datepickerCtrl.format}}"
+                                       ng-model="datepickerCtrl.dt" is-open="datepickerCtrl.popup1.opened"
+                                       datepicker-options="datepickerCtrl.dateOptions" ng-required="true"
+                                       close-text="Close" alt-input-formats="altInputFormats"
+                                       popup-placement="auto top bottom" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default shrink" ng-click="datepickerCtrl.open1()">
+                                        <i class="color-primary fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="col-md-3">
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup
+                                       ng-model="datepickerCtrl.dt" is-open="datepickerCtrl.popup2.opened"
+                                       datepicker-options="datepickerCtrl.dateOptions" ng-required="true"
+                                       close-text="Close" popup-placement="auto top bottom" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default shrink" ng-click="datepickerCtrl.open2()">
+                                        <i class="color-primary fa fa-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Format: <span class="muted-text">(manual alternate <em>{{datepickerCtrl.altInputFormats[0]}}</em>)</span></label>
+                            <select class="form-control" ng-model="datepickerCtrl.format" ng-options="f for f in datepickerCtrl.formats"><option></option></select>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-sm btn-info" ng-click="datepickerCtrl.today()">Today</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="datepickerCtrl.setDate(2009, 7, 24)">2009-08-24</button>
+                    <button type="button" class="btn btn-sm btn-danger" ng-click="datepickerCtrl.clear()">Clear</button>
+                    <button type="button" class="btn btn-sm btn-default" ng-click="datepickerCtrl.toggleMin()" uib-tooltip="After today restriction">Min date</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Activities -->
     <div class="panel panel-default">
         <div class="panel-body">
@@ -1181,6 +1248,7 @@
             </div>
         </div>
     </div>
+
 </div>
 <!-- /container -->
 
