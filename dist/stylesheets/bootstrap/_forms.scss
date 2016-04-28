@@ -42,10 +42,6 @@ label {
     font-weight: $font-weigth-default;
   }
 
-  div {
-    line-height: 30px;
-    min-height: 32px;
-  }
   @media #{screen} and (max-width: $screen-lg) {
     .text-right {
       float: left;

@@ -91,11 +91,19 @@ a.editable-click.editable-empty { min-width: 100%; min-height: 30px; display: bl
 
 .form-inline .editable-controls .editable-input { width: 100%; }
 
-a.editable-click { text-decoration: none; color: #4c4c4c; font-size: 15px; font-weight: bold; line-height: 28px; position: relative; display: block; margin-left: -15px; padding: 0px 16px; min-height: 30px; max-height: 30px; border: 1px solid transparent; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; }
+.editable-controls.form-group { position: relative; top: -1px; }
+
+a.editable-click { text-decoration: none; color: #4c4c4c; font-size: 15px; font-weight: bold; line-height: 28px; position: relative; display: block; margin-left: -15px; margin-right: 60px; padding: 0px 16px; min-height: 30px; max-height: 30px; border: 1px solid transparent; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; }
 
 a.editable-click:hover { border: 1px solid #ddd; border-radius: 4px; color: #4c4c4c; }
 
 a.editable-click:hover:after { position: absolute; right: 8px; top: 7px; display: inline-block; font-family: 'FontAwesome'; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: "\f044"; color: #ccc; }
+
+.form-inline.editable-wrap { width: 100%; }
+
+.form-inline.editable-wrap > .editable-controls.form-group { width: 100%; padding-right: 45px; }
+
+.x-editable-form div { line-height: 30px; min-height: 32px; }
 
 table.uib-daypicker > thead > tr:first-child { height: 60px; background-color: #4d4d4d; }
 
@@ -3700,21 +3708,23 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .nav.nav-sidebar > li > a { font-size: 16px; font-weight: 300; color: #4c4c4c; background-color: #f3f3f3; height: 80px; padding: 20px; padding-left: 32px; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; }
 
+.nav.nav-sidebar > li > a:hover { background-color: #e3e3e3; }
+
 @media screen and (max-width: 1200px) { .nav.nav-sidebar > li > a .nav-text { display: none; } }
 
 .nav.nav-sidebar > li > a:hover:after, .nav.nav-sidebar > li > a:hover:before { left: 100%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
 
-.nav.nav-sidebar > li > a:hover:after { border-left-color: #f3f3f3; border-width: 12px; margin-top: -12px; }
+.nav.nav-sidebar > li > a:hover:after { border-left-color: #e3e3e3; border-width: 12px; margin-top: -12px; }
 
 .nav.nav-sidebar > li > a:hover:before { border-left-color: #ddd; border-width: 13px; margin-top: -13px; }
 
-.nav.nav-sidebar > li.active > a { background-color: #f3f3f3; }
+.nav.nav-sidebar > li.active > a { background-color: #e3e3e3; }
 
-.nav.nav-sidebar > li.active > a:hover { background-color: #f3f3f3; }
+.nav.nav-sidebar > li.active > a:hover { background-color: #e3e3e3; }
 
 .nav.nav-sidebar > li.active > a:after, .nav.nav-sidebar > li.active > a:before { left: 100%; top: 50%; border: solid transparent; content: " "; height: 0; width: 0; position: absolute; pointer-events: none; }
 
-.nav.nav-sidebar > li.active > a:after { border-left-color: #f3f3f3; border-width: 12px; margin-top: -12px; }
+.nav.nav-sidebar > li.active > a:after { border-left-color: #e3e3e3; border-width: 12px; margin-top: -12px; }
 
 .nav.nav-sidebar > li.active > a:before { border-left-color: #ddd; border-width: 13px; margin-top: -13px; }
 
@@ -3806,6 +3816,8 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 700px; }
 
 .app-aside-left .modal-dialog .modal-content .app-nav ul li:hover > a .app-icon { background-color: #51d0ff; color: #ffffff; }
 
+.app-aside-left .modal-dialog .modal-content .app-nav ul li.active > a .app-icon { background-color: #51d0ff; color: #ffffff; }
+
 .ng-aside.horizontal .modal-dialog { height: auto; bottom: 0; }
 
 .ng-aside.horizontal .modal-dialog h3 > button { position: relative; top: 1px; }
@@ -3813,6 +3825,8 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 700px; }
 .app-icon { width: 46px; height: 46px; line-height: 42px; font-size: 18px; font-weight: 200; color: #51d0ff; display: inline-block; margin-right: 12px; border: 1px solid #51d0ff; border-radius: 50%; text-align: center; background-color: #ffffff; }
 
 footer { background-color: #F3F3F3; padding: 5px 40px; font-size: 10px; color: #4c4c4c; text-align: right; min-width: 1200px; }
+
+label { color: #999 !important; font-size: 14px  !important; font-weight: 500 !important; text-transform: uppercase !important; }
 
 .label { display: inline-block; line-height: 1.5; padding: 3px 8px; font-weight: normal; text-transform: uppercase; }
 
@@ -4148,8 +4162,6 @@ label { font-weight: normal; }
 .form-group .help-block { font-size: 14px; }
 
 .form-group label { font-weight: normal; }
-
-.form-group div { line-height: 30px; min-height: 32px; }
 
 @media screen and (max-width: 1200px) { .form-group .text-right { float: left; } }
 
