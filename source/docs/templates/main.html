@@ -1085,50 +1085,33 @@
                 <h1 id="datepicker">Datepicker</h1>
             </div>
             <div class="row" data-ng-controller="DatepickerController as datepickerCtrl">
+                <div class="col-lg-4">
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{datepickerCtrl.format}}"
+                               ng-model="datepickerCtrl.dt" is-open="datepickerCtrl.popup.opened"
+                               datepicker-options="datepickerCtrl.dateOptions" ng-required="true"
+                               close-text="Close"
+                               popup-placement="auto top bottom" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default shrink" ng-click="datepickerCtrl.open()">
+                                <i class="color-primary fa fa-calendar"></i>
+                            </button>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-12">
-                    <h4>Popup</h4>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup="{{datepickerCtrl.format}}"
-                                       ng-model="datepickerCtrl.dt" is-open="datepickerCtrl.popup1.opened"
-                                       datepicker-options="datepickerCtrl.dateOptions" ng-required="true"
-                                       close-text="Close" alt-input-formats="altInputFormats"
-                                       popup-placement="auto top bottom" />
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default shrink" ng-click="datepickerCtrl.open1()">
-                                        <i class="color-primary fa fa-calendar"></i>
-                                    </button>
-                                </span>
-                            </p>
-                        </div>
-
-                        <div class="col-md-3">
-                            <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup
-                                       ng-model="datepickerCtrl.dt" is-open="datepickerCtrl.popup2.opened"
-                                       datepicker-options="datepickerCtrl.dateOptions" ng-required="true"
-                                       close-text="Close" popup-placement="auto top bottom" />
-                                <span class="input-group-btn">
-                                    <button type="button" class="btn btn-default shrink" ng-click="datepickerCtrl.open2()">
-                                        <i class="color-primary fa fa-calendar"></i>
-                                    </button>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Format: <span class="muted-text">(manual alternate <em>{{datepickerCtrl.altInputFormats[0]}}</em>)</span></label>
-                            <select class="form-control" ng-model="datepickerCtrl.format" ng-options="f for f in datepickerCtrl.formats"><option></option></select>
-                        </div>
-                    </div>
-                    <br>
-                    <button type="button" class="btn btn-sm btn-info" ng-click="datepickerCtrl.today()">Today</button>
-                    <button type="button" class="btn btn-sm btn-default" ng-click="datepickerCtrl.setDate(2009, 7, 24)">2009-08-24</button>
-                    <button type="button" class="btn btn-sm btn-danger" ng-click="datepickerCtrl.clear()">Clear</button>
-                    <button type="button" class="btn btn-sm btn-default" ng-click="datepickerCtrl.toggleMin()" uib-tooltip="After today restriction">Min date</button>
+                    <pre><code class="html">&lt;p class="input-group"&gt;
+    &lt;input type="text" class="form-control" uib-datepicker-popup="&#123;&#123;datepickerCtrl.format&#125;&#125;" ng-model="datepickerCtrl.date" is-open="datepickerCtrl.popup.opened"
+           datepicker-options="datepickerCtrl.dateOptions" ng-required="true" close-text="Close" popup-placement="auto top bottom" /&gt;
+    &lt;span class="input-group-btn"&gt;
+        &lt;button type="button" class="btn btn-default shrink" ng-click="datepickerCtrl.open()"&gt;
+            &lt;i class="color-primary fa fa-calendar"&gt;&lt;/i&gt;
+        &lt;/button&gt;
+    &lt;/span&gt;
+&lt;/p&gt;</code></pre>
+                    <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://angular-ui.github.io/bootstrap/">angular-bootstrap</a></div>
                 </div>
             </div>
         </div>
