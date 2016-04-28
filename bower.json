@@ -29,7 +29,6 @@
     "jquery": "^2.2.2",
     "angular": "~1.5.3",
     "angular-bootstrap": "~1.3.1",
-    "css-spaces": "~0.3.5",
     "angular-toastr": "~1.7.0",
     "angularjs-slider": "^2.10.4",
     "ui-select": "angular-ui-select#^0.16.1",
