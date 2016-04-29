@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    angular.module('app', [
+    angular.module('bmg-ui.docs', [
         'ui.router',
         'bmg.components.ui',
         'ui.bootstrap',
@@ -45,22 +45,23 @@
     function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, $uiViewScrollProvider) {
         $uiViewScrollProvider.useAnchorScroll();
         $urlRouterProvider.otherwise("/");
+        $locationProvider.html5Mode(true);
         $stateProvider
             .state('index', {
                 url: "/",
-                templateUrl: "templates/main.html"
+                templateUrl: "app/templates/main.html"
             })
             .state('release-list', {
                 url: "/release-list",
-                templateUrl: "templates/examples/release-list.html"
+                templateUrl: "app/templates/examples/release-list.html"
             })
             .state('release-detailpage', {
                 url: "/release-detailpage",
-                templateUrl: "templates/examples/release-detailpage.html"
+                templateUrl: "app/templates/examples/release-detailpage.html"
             })
             .state('grid', {
                 url: "/grid",
-                templateUrl: "templates/examples/grid.html"
+                templateUrl: "app/templates/examples/grid.html"
             })
             //anchor
             .state('index.typography', {
@@ -164,7 +165,7 @@
         this.openModal = function () {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '../templates/mySimpleModal.html',
+                templateUrl: 'app/templates/mySimpleModal.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'lg'
             });
@@ -176,7 +177,7 @@
         this.openSlideModal1 = function () {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '../templates/myModalContent.html',
+                templateUrl: 'app/templates/myModalContent.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'lg'
             });
@@ -188,7 +189,7 @@
         this.openSlideModal2 = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: '../templates/myModalContentWithAForm.html',
+                templateUrl: 'app/templates/myModalContentWithAForm.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'lg'
             });

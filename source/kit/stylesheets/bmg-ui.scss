@@ -17,7 +17,7 @@
 @import 'custom/xeditable';
 @import 'custom/datepicker';
 
-@import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap'; // @@gulp-remove-line
+@import '../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap'; // @@gulp-remove-line
 
 // Note: import statements are order sensitive
 @import 'common/colors';
