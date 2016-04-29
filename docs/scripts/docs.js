@@ -142,7 +142,7 @@
     function AppController($aside) {
         this.openAside = function(position, backdrop) {
             var asideInstance = $aside.open({
-                templateUrl: '../templates/apps.html',
+                templateUrl: 'app/templates/apps.html',
                 placement: 'position',
                 size: 'sm',
                 backdrop: backdrop,

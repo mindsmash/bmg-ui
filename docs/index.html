@@ -2,7 +2,7 @@
 <html lang="en" ng-app="bmg-ui.docs">
 
 <head>
-    <base href="/bmg-ui/docs/" />
+    <base href="/" />
 
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="stylesheets/docs.css">
     <!-- endinject -->
 
-    <link rel="stylesheet" href="../../bower_components/highlightjs/styles/github.css" />
+    <!--<link rel="stylesheet" href="../../bower_components/highlightjs/styles/github.css" />-->
 </head>
 
 <body data-ng-controller="AppController as appCtrl">
@@ -92,13 +92,14 @@
     <div ui-view></div>
 
     <footer class="navbar-fixed-bottom">
-        <span> mindsmash GmbH – version 0.1.1</span>
+        <span> mindsmash GmbH – version 0.1.2</span>
     </footer>
 
     <!-- bower:js -->
     <!-- endbower -->
 
     <!-- vendor:js -->
+    <script src="scripts/vendor.js"></script>
     <!-- endinject -->
 
     <!-- kit:js -->

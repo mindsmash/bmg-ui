@@ -12,7 +12,7 @@
     "Sascha Zuske, mindsmash GmbH, <sascha.zuske@mindsmash.com>",
     "Tim Meißner, mindsmash GmbH, <tim.meissner@mindsmash.com>"
   ],
-  "homepage": "http://www.mindsmash.com",
+  "homepage": "https://github.com/mindsmash/bmg-ui#readme",
   "moduleType": [],
   "ignore": [
     "**/.*",
@@ -44,7 +44,8 @@
     "highlightjs": {
       "main": [
         "highlight.pack.js",
-        "styles/color-brewer.css"
+        "styles/color-brewer.css",
+        "styles/github.css"
       ]
     },
     "font-awesome": {

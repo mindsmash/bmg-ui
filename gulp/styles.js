@@ -90,7 +90,7 @@ gulp.task('styles:build:docs:app', function () {
  */
 gulp.task('styles:build:docs:vendor', function () {
   return gulp.src('bower.json')
-      .pipe(mainBowerFiles())
+      .pipe(mainBowerFiles({includeDev: true}))
       .pipe(filter('**/*.css'))
       .pipe(concat('vendor.css'))
       .pipe(gulp.dest('docs/stylesheets'));

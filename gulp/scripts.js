@@ -78,9 +78,9 @@ gulp.task('scripts:build:docs:app', function () {
  * Merges the JS of the bower_components and puts them to 'docs/vendor.js'.
  */
 gulp.task('scripts:build:docs:vendor', function () {
-  return gulp.src('bower.json')
-      .pipe(mainBowerFiles())
-      .pipe(filter('**/*.js'))
-      .pipe(concat('vendor.js'))
-      .pipe(gulp.dest('docs/scripts'));
+    return gulp.src('bower.json')
+        .pipe(mainBowerFiles({includeDev: true}))
+        .pipe(filter('**/*.js'))
+        .pipe(concat('vendor.js'))
+        .pipe(gulp.dest('docs/scripts'));
 });

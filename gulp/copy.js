@@ -37,3 +37,13 @@ gulp.task('copy:fonts', function(){
       .pipe(flatten())
       .pipe(gulp.dest('docs/fonts'));
 });
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
+ * Copies images
+ */
+gulp.task('copy:images', function(){
+    return gulp.src('source/kit/images/*')
+        .pipe(gulp.dest('docs/images'));
+});

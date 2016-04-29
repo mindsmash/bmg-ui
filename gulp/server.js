@@ -37,7 +37,8 @@ gulp.task('docs:dev', function () {
         '/bower_components': 'bower_components',
         '/source': 'source',
         '/components': 'source/kit/components',
-        '/app': 'source/docs/app'
+        '/app': 'source/docs/app',
+        '/images': 'source/kit/images'
       }
     }
   });
