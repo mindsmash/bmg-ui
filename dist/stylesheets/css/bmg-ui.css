@@ -3155,7 +3155,7 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 700px; }
 
 footer { background-color: #F3F3F3; padding: 5px 40px; font-size: 10px; color: #4c4c4c; text-align: right; min-width: 1200px; }
 
-label { color: #999 !important; font-size: 14px  !important; font-weight: 500 !important; text-transform: uppercase !important; }
+.form-group label, .input-group label { color: #999; font-size: 14px; font-weight: 500; text-transform: uppercase; }
 
 .label { display: inline-block; line-height: 1.5; padding: 3px 8px; font-weight: normal; text-transform: uppercase; }
 
@@ -3534,8 +3534,6 @@ form .form-control::-webkit-input-placeholder, .form-group .form-control::-webki
 
 textarea { resize: vertical; }
 
-input[type=checkbox] { visibility: hidden; display: none; }
-
 [uib-typeahead-popup].dropdown-menu { max-height: 146px; overflow-y: auto; }
 
 .with-page-number-input.pagination > li:last-child > a, .with-page-number-input.pagination > li:last-child > span { -moz-border-radius-bottomright: 0; -moz-border-radius-topright: 0; border-bottom-right-radius: 0; border-top-right-radius: 0; }
@@ -3544,25 +3542,27 @@ input[type=checkbox] { visibility: hidden; display: none; }
 
 .pagination-page-number-input:focus, .pagination-page-number-input:active { border-color: rgba(76, 76, 76, 0.3); }
 
-.bmg-checkbox { float: left; width: 18px; height: 18px; background: rgba(76, 76, 76, 0.15); border-radius: 4px; margin: 2px 8px 2px 0; position: relative; }
+input[type=checkbox] { visibility: hidden; display: none; }
 
-.bmg-checkbox input[type=checkbox] { -webkit-appearance: checkbox; }
+.bmg-checkbox { float: left; width: 18px; height: 18px; background: rgba(76, 76, 76, 0.15); border-radius: 4px; margin: 2px 8px 2px 0; position: relative; }
 
 .bmg-checkbox input[type=checkbox] + label > div { border: 1px solid #51d0ff; border-radius: 4px; width: 18px; height: 18px; position: absolute; top: -1px; left: -1px; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -moz-opacity: 0; opacity: 0; }
 
 .bmg-checkbox input[type=checkbox] + label:hover > div { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; filter: alpha(opacity=30); -moz-opacity: 0.3; opacity: 0.3; }
 
-.bmg-checkbox input[type=checkbox]:checked + label > div, .bmg-checkbox input[type=checkbox]:checked + label::after, .bmg-checkbox input[type=checkbox]:checked + label::after > div, .bmg-checkbox input[type=checkbox]:checked + label:hover::after > div { zoom: 1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; filter: alpha(opacity=100); -moz-opacity: 1; opacity: 1; }
+.bmg-checkbox input[type=checkbox]:checked + label:after, .bmg-checkbox input[type=checkbox]:checked + label > div { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; filter: alpha(opacity=100); -moz-opacity: 1; opacity: 1; }
 
 .bmg-checkbox label { cursor: pointer; position: absolute; border-radius: 3px; width: 16px; height: 16px; left: 1px; top: 1px; background: #ffffff; }
 
-.bmg-checkbox label::after { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -moz-opacity: 0; opacity: 0; content: ''; position: absolute; width: 8px; height: 8px; background: #51d0ff; border-radius: 2px; top: 4px; left: 4px; }
+.bmg-checkbox label:after { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -moz-opacity: 0; opacity: 0; content: ''; position: absolute; width: 8px; height: 8px; background: #51d0ff; border-radius: 2px; top: 4px; left: 4px; }
 
-.bmg-checkbox label:hover::after { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; filter: alpha(opacity=30); -moz-opacity: 0.3; opacity: 0.3; }
+.bmg-checkbox label:after:hover { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; filter: alpha(opacity=30); -moz-opacity: 0.3; opacity: 0.3; }
 
 .bmg-checkbox-with-label { display: block; margin: 8px auto; }
 
 .table, .table-condensed { background-color: #ffffff; }
+
+.table i.fa-sort, .table i.fa-caret-up, .table i.fa-caret-down, .table-condensed i.fa-sort, .table-condensed i.fa-caret-up, .table-condensed i.fa-caret-down { color: #4c4c4c; }
 
 .table tr, .table-condensed tr { border-collapse: collapse; border-bottom: 1px solid rgba(76, 76, 76, 0.05); }
 

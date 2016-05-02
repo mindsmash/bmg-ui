@@ -579,11 +579,12 @@
 
                     <br/>
                     <h2>Input Group</h2>
-
+                    <div class="form-group">
                     <label>Seperate Units</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Value" data-ng-model="value">
-                        <span class="input-group-addon">$</span>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Value" data-ng-model="value">
+                            <span class="input-group-addon">$</span>
+                        </div>
                     </div>
                     <br>
                     <pre><code class="html">&lt;label&gt;Seperate Units&lt;/label&gt;
@@ -622,7 +623,7 @@
                     <div class="bmg-checkbox-with-label">
                         <div class="bmg-checkbox">
                             <input type="checkbox" id="squaredCheckbox1"
-                                   data-ng-model="checkboxSliderCtrl.checked"/>
+                                   data-ng-model="checkboxSliderCtrl.checkbox.checked"/>
                             <label for="squaredCheckbox1"><div></div></label>
                         </div>
                         Check me out!
@@ -631,7 +632,7 @@
                     <div class="bmg-checkbox-with-label">
                         <div class="bmg-checkbox">
                             <input type="checkbox" id="squaredCheckbox2"
-                                   data-ng-model="checkboxSliderCtrl.notChecked"/>
+                                   data-ng-model="checkboxSliderCtrl.checkbox.notChecked"/>
                             <label for="squaredCheckbox2"><div></div></label>
                         </div>
                         Check me out too!
@@ -1220,7 +1221,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- /container -->
 

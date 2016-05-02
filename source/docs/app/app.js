@@ -290,8 +290,11 @@
     FormController.$inject = ['$scope', '$http'];
 
     function CheckboxSliderController() {
-        this.notChecked = false;
-        this.checked = true;
+
+        this.checkbox = {
+            notChecked: false,
+            checked: true
+        };
 
         // Slider
         this.slider = {
@@ -307,19 +310,83 @@
     CheckboxSliderController.$inject = [];
 
     function TableController() {
-        this.data = [
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'},
-            {'a': 'Content A', 'b': 'Content B', 'c': 'Content C'}
-        ];
+
+        var randomValue = function(data) {
+            return data[Math.floor(Math.random() * data.length)];
+        };
+
+        this.data = [];
+
+        var fillData = function() {
+            var a = [];
+            for (var i = 0; i < 10; i++) {
+                a.push({'a': 'Content A', 'b': 'Content B', 'c': 'Content C'});
+            }
+            return a;
+        };
+
+        this.data = fillData();
+
+        this.sortType = '';
+        this.sortReverse = false;
+
+        var bigDataStatus = function () {
+            return randomValue([true, false]);
+        };
+        var bigDataSong = function () {
+            return randomValue(['1234567890', '2345678901', '836585635', '7542235656']);
+        };
+        var bigDataStatusKey = function () {
+            return randomValue(['LCD123456789A', 'LCD123456789B', 'LCD123456789C', 'LCD123456789S']);
+        };
+        var bigDataArtist = function () {
+            return randomValue(['artist a', 'artist b', 'artist c', 'artist d']);
+        };
+        var bigDataTitle = function () {
+            return randomValue(['title a', 'title b', 'title c', 'title d']);
+        };
+        var bigDataVerionTitle = function () {
+            return randomValue(['verionTitle a', 'verionTitle b', 'verionTitle c', 'verionTitle d']);
+        };
+        var bigDataPubisher = function () {
+            return randomValue(['pubisher a', 'pubisher b', 'pubisher c', 'pubisher d']);
+        };
+        var bigDataFormat = function () {
+            return randomValue(['format a', 'format b', 'format c', 'format d']);
+        };
+        var bigDataReleaseDate = function () {
+            return randomValue(['1-Jul-2012', '12-Jul-2012', '24-Jul-2012', '30-Jul-2012']);
+        };
+
+        var fillBigData = function() {
+            var a = [];
+            for (var i = 0; i < 50; i++) {
+                a.push({
+                    'id': i,
+                    'status': bigDataStatus(),
+                    'song': bigDataSong(),
+                    'statusKey': bigDataStatusKey(),
+                    'artist': bigDataArtist(),
+                    'title': bigDataTitle(),
+                    'versionTitle': bigDataVerionTitle(),
+                    'publisher': bigDataPubisher(),
+                    'format': bigDataFormat(),
+                    'releaseDate': bigDataReleaseDate()
+                });
+            }
+            return a;
+        };
+
+        this.bigData = fillBigData();
+
+        this.sort = function(row_name) {
+            return this.sortType == row_name;
+        };
+
+        this.tSortDir = function() {
+            this.sortReverse = !this.sortReverse;
+        };
+        
     }
 
     TableController.$inject = [];

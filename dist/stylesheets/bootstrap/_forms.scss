@@ -150,11 +150,6 @@ form .form-control::-webkit-input-placeholder,
 
 textarea { resize: vertical; }
 
-input[type=checkbox] {
-  visibility: hidden;
-  display: none;
-}
-
 [uib-typeahead-popup].dropdown-menu {
   max-height: 146px;
   overflow-y: auto;
@@ -192,6 +187,11 @@ input[type=checkbox] {
   }
 }
 
+input[type=checkbox] {
+  visibility: hidden;
+  display: none;
+}
+
 .bmg-checkbox {
   float: left;
   width: 18px;
@@ -202,7 +202,6 @@ input[type=checkbox] {
   position: relative;
 
   input[type=checkbox] {
-    -webkit-appearance: checkbox;
 
     & + label > div {
       border: 1px solid $bmg-malibu;
@@ -224,18 +223,14 @@ input[type=checkbox] {
       -moz-opacity: 0.3;
       opacity: 0.3;
     }
-    &:checked {
-      & + label {
-        & > div,
-        &::after,
-        &::after > div,
-        &:hover::after > div {
-          zoom: 1;
-          -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-          filter: alpha(opacity=100);
-          -moz-opacity: 1;
-          opacity: 1;
-        }
+
+    &:checked + label {
+      &:after,
+      & > div {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        filter: alpha(opacity=100);
+        -moz-opacity: 1;
+        opacity: 1;
       }
     }
   }
@@ -250,7 +245,7 @@ input[type=checkbox] {
     top: 1px;
     background: $bmg-white;
 
-    &::after {
+    &:after {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
       -moz-opacity: 0;
@@ -265,7 +260,7 @@ input[type=checkbox] {
       left: 4px;
     }
 
-    &:hover::after {
+    &:after:hover {
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
       filter: alpha(opacity=30);
       -moz-opacity: 0.3;

@@ -16,453 +16,108 @@
         </div>
     </div>
 </div>
-<div class="panel" data-ng-controller="TableController as tableCtrl" >
+<div class="panel" data-ng-controller="TableController as tableCtrl">
     <table id="table1" class="table table-hover">
         <thead>
             <tr>
-                <th>Status</th>
-                <th>Song <i class="fa fa-sort"></i></th>
-                <th>Status <i class="fa fa-sort"></i></th>
-                <th>Artist <i class="fa fa-sort"></i></th>
-                <th>Title <i class="fa fa-sort"></i></th>
-                <th>Version Title <i class="fa fa-sort"></i></th>
-                <th>Publisher <i class="fa fa-sort"></i></th>
-                <th>Format <i class="fa fa-sort"></i></th>
-                <th>Release Date <i class="fa fa-sort"></i></th>
+                <th>
+                    Status
+                    <a ng-click="tableCtrl.sortType = 'status'">
+                        <i ng-if="!tableCtrl.sort('status')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('status')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Song
+                    <a ng-click="tableCtrl.sortType = 'song'">
+                        <i ng-if="!tableCtrl.sort('song')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('song')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Status
+                    <a ng-click="tableCtrl.sortType = 'status'">
+                        <i ng-if="!tableCtrl.sort('status')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('status')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Artist
+                    <a ng-click="tableCtrl.sortType = 'artist'">
+                        <i ng-if="!tableCtrl.sort('artist')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('artist')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Title
+                    <a ng-click="tableCtrl.sortType = 'title'">
+                        <i ng-if="!tableCtrl.sort('title')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('title')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Version Title
+                    <a ng-click="tableCtrl.sortType = 'versionTitle'">
+                        <i ng-if="!tableCtrl.sort('versionTitle')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('versionTitle')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Publisher
+                    <a ng-click="tableCtrl.sortType = 'publisher'">
+                        <i ng-if="!tableCtrl.sort('publisher')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('publisher')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Format
+                    <a ng-click="tableCtrl.sortType = 'format'">
+                        <i ng-if="!tableCtrl.sort('format')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('format')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th>
+                    Release Date
+                    <a ng-click="tableCtrl.sortType = 'releaseDate'">
+                        <i ng-if="!tableCtrl.sort('releaseDate')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('releaseDate')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr ng-repeat="content in tableCtrl.bigData | orderBy:tableCtrl.sortType:tableCtrl.sortReverse">
                 <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
+                    <span ng-if="content.status">
+                        <span class="fa-stack fa-lg scale-6">
+                            <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
+                            <i class="fa fa-check fa-stack-1x color-success"></i>
+                        </span>
+                    </span>
+                    <span ng-if="!content.status">
+                        <span class="fa-stack fa-lg scale-6">
+                            <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
+                            <i class="fa fa-exclamation fa-stack-1x color-error"></i>
+                        </span>
                     </span>
                 </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
-                      <i class="fa fa-exclamation fa-stack-1x color-error"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
-            </tr>
-            <tr>
-                <td>
-                    <span class="fa-stack fa-lg scale-6">
-                      <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
-                      <i class="fa fa-check fa-stack-1x color-success"></i>
-                    </span>
-                </td>
-                <td>1234567890</td>
-                <td>LCD123456789S</td>
-                <td>Moby</td>
-                <td>Beatiful</td>
-                <td>Live Tour</td>
-                <td>version #2</td>
-                <td>Vinyl Album Standard 12"</td>
-                <td>30-Jul-2012</td>
+                <td>{{content.song}}</td>
+                <td>{{content.statusKey}}</td>
+                <td>{{content.artist}}</td>
+                <td>{{content.title}}</td>
+                <td>{{content.versionTitle}}</td>
+                <td>{{content.publisher}}</td>
+                <td>{{content.format}}</td>
+                <td>{{content.releaseDate}}</td>
             </tr>
         </tbody>
     </table>

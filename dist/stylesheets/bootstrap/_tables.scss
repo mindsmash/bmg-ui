@@ -2,6 +2,15 @@
 .table-condensed {
 
   background-color: $bmg-white;
+
+  i {
+    &.fa-sort,
+    &.fa-caret-up,
+    &.fa-caret-down {
+      color: $bmg-black;
+    }
+  }
+
   tr {
     border-collapse: collapse;
     border-bottom: 1px solid rgba(76, 76, 76, 0.05);
