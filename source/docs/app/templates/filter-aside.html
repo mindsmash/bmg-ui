@@ -1,0 +1,78 @@
+<div>
+    <h3>
+        Search / Edit Filters
+        <button type="button" class="btn btn-secondary-invers btn-circle pull-right" data-ng-click="asideCtrl.cancel()"><i class="fa fa-chevron-right"></i></button>
+    </h3>
+    <div class="aside-content">
+        <!--<button class="btn btn-primary">Edit filters</button>-->
+        <div class="form-group filter-form-group">
+            <label for="song">Song</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="song" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.song">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.song = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group filter-form-group">
+            <label for="status">Status</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="status" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.status">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.status = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group filter-form-group">
+            <label for="artist">Artist</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="artist" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.artist">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.artist = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+
+        <div class="form-group filter-form-group">
+            <label for="title">Title</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="title" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.title">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.title = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group filter-form-group">
+            <label for="versionTitle">Version Title</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="versionTitle" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.versionTitle">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.versionTitle = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group filter-form-group">
+            <label for="publisher">Publisher</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="publisher" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.publisher">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.publisher = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group filter-form-group">
+            <label for="format">Format</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="format" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.format">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.format = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group filter-form-group">
+            <label for="releaseDate">Release Date</label>
+            <div class="inline-form-group has-feedback">
+                <input type="text" id="releaseDate" class="form-control" placeholder="" data-ng-model="asideCtrl.filter.releaseDate">
+                <button class="btn btn-fa btn-secondary" ng-click="asideCtrl.filter.releaseDate = ''"><i class="fa fa-trash-o"></i></button>
+                <span class="fa fa-search form-control-feedback"></span>
+            </div>
+        </div>
+        <div class="form-group filter-form-group">
+            <span style="height: 26px; display: block;"></span>
+            <button class="btn btn-primary full-width" data-ng-click="asideCtrl.applyFilter()">Apply Filter</button>
+        </div>
+    </div>
+</div>

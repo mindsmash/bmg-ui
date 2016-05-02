@@ -21,6 +21,10 @@ body {
   }
 }
 
+.full-width {
+  width: 100%;
+}
+
 .container {
   width: 100%;
   margin: 0;
@@ -155,7 +159,7 @@ body {
   margin-top: $bmg-nav-height !important;
 
   .modal-content {
-    padding: 10px 40px;
+    padding: 14px 40px;
     width: 378px;
 
     .app-nav {
@@ -200,6 +204,25 @@ body {
       }
     }
   }
+}
+
+.app-aside-right .modal-dialog {
+  margin-top: $bmg-nav-height !important;
+
+  .modal-content {
+    padding: 14px 40px;
+    width: 378px;
+    position: absolute;
+    right: 0;
+
+    .aside-content {
+      margin-top: 24px;
+    }
+  }
+}
+
+.app-aside-right.table-aside .modal-dialog {
+  margin-top: $bmg-nav-height + 25px !important;
 }
 
 .ng-aside.horizontal .modal-dialog {

@@ -14,6 +14,7 @@
     ]).run(runConfig)
         .config(routesConfig)
         .config(toastrConfig)
+        .service('TableDataService', TableDataService)
         .controller('AppController', AppController)
         .controller('ModalController', ModalController)
         .controller('ModalInstanceCtrl', ModalInstanceCtrl)
@@ -24,6 +25,7 @@
         .controller('TableController', TableController)
         .controller('XEditableController', XEditableController)
         .controller('DatepickerController', DatepickerController);
+
 
     // run
     function runConfig(editableOptions, editableThemes, $rootScope, $location, $anchorScroll, $state) {
@@ -138,12 +140,81 @@
         });
     }
 
+    //service
+    function TableDataService($filter) {
+
+        var init = function() {
+            var randomValue = function(data) {
+                return data[Math.floor(Math.random() * data.length)];
+            };
+            var bigDataStatus = function() {
+                return randomValue([true, false]);
+            };
+            var bigDataSong = function() {
+                return randomValue(['1234567890', '2345678901', '836585635', '7542235656']);
+            };
+            var bigDataStatusKey = function() {
+                return randomValue(['LCD123456789A', 'LCD123456789B', 'LCD123456789C', 'LCD123456789S']);
+            };
+            var bigDataArtist = function() {
+                return randomValue(['artist a', 'artist b', 'artist c', 'artist d']);
+            };
+            var bigDataTitle = function() {
+                return randomValue(['title a', 'title b', 'title c', 'title d']);
+            };
+            var bigDataVerionTitle = function() {
+                return randomValue(['verionTitle a', 'verionTitle b', 'verionTitle c', 'verionTitle d']);
+            };
+            var bigDataPubisher = function() {
+                return randomValue(['pubisher a', 'pubisher b', 'pubisher c', 'pubisher d']);
+            };
+            var bigDataFormat = function() {
+                return randomValue(['format a', 'format b', 'format c', 'format d']);
+            };
+            var bigDataReleaseDate = function() {
+                return randomValue(['1-Jul-2012', '12-Jul-2012', '24-Jul-2012', '30-Jul-2012']);
+            };
+
+            var fillData = function() {
+                var a = [];
+                for (var i = 0; i < 50; i++) {
+                    a.push({
+                        'id': i,
+                        'status': bigDataStatus(),
+                        'song': bigDataSong(),
+                        'statusKey': bigDataStatusKey(),
+                        'artist': bigDataArtist(),
+                        'title': bigDataTitle(),
+                        'versionTitle': bigDataVerionTitle(),
+                        'publisher': bigDataPubisher(),
+                        'format': bigDataFormat(),
+                        'releaseDate': bigDataReleaseDate()
+                    });
+                }
+                return a;
+            };
+            return fillData();
+        };
+        this.data = init();
+
+        this.resetData = function() {
+            this.data = init();
+        };
+
+        this.applyFilter = function(filterData) {
+            this.data = init();
+            this.data = $filter('filter')(this.data, filterData, true);
+        };
+    }
+
+    TableDataService.$inject = ['$filter'];
+
     // controller
     function AppController($aside) {
         this.openAside = function(position, backdrop) {
             var asideInstance = $aside.open({
                 templateUrl: 'app/templates/apps.html',
-                placement: 'position',
+                placement: position,
                 size: 'sm',
                 backdrop: backdrop,
                 windowClass: 'app-aside-left',
@@ -309,13 +380,34 @@
 
     CheckboxSliderController.$inject = [];
 
-    function TableController() {
+    function TableController($scope, $aside, TableDataService) {
 
-        var randomValue = function(data) {
-            return data[Math.floor(Math.random() * data.length)];
+        var tableCtrl = this;
+
+        tableCtrl.openFilterAside = function(position, backdrop) {
+            var asideInstance = $aside.open({
+                templateUrl: 'app/templates/filter-aside.html',
+                placement: position,
+                size: 'sm',
+                backdrop: backdrop,
+                windowClass: 'app-aside-right table-aside',
+                controller: function($uibModalInstance, TableDataService) {
+                    var asideCtrl = this;
+
+                    asideCtrl.ok = function() {
+                        $uibModalInstance.close();
+                    };
+                    asideCtrl.cancel = function() {
+                        $uibModalInstance.dismiss();
+                    };
+
+                    asideCtrl.applyFilter = function() {
+                        TableDataService.applyFilter(asideCtrl.filter);
+                    }
+                },
+                controllerAs: 'asideCtrl'
+            });
         };
-
-        this.data = [];
 
         var fillData = function() {
             var a = [];
@@ -324,72 +416,28 @@
             }
             return a;
         };
+        tableCtrl.data = fillData();
 
-        this.data = fillData();
+        tableCtrl.sortType = '';
+        tableCtrl.sortReverse = false;
 
-        this.sortType = '';
-        this.sortReverse = false;
-
-        var bigDataStatus = function () {
-            return randomValue([true, false]);
-        };
-        var bigDataSong = function () {
-            return randomValue(['1234567890', '2345678901', '836585635', '7542235656']);
-        };
-        var bigDataStatusKey = function () {
-            return randomValue(['LCD123456789A', 'LCD123456789B', 'LCD123456789C', 'LCD123456789S']);
-        };
-        var bigDataArtist = function () {
-            return randomValue(['artist a', 'artist b', 'artist c', 'artist d']);
-        };
-        var bigDataTitle = function () {
-            return randomValue(['title a', 'title b', 'title c', 'title d']);
-        };
-        var bigDataVerionTitle = function () {
-            return randomValue(['verionTitle a', 'verionTitle b', 'verionTitle c', 'verionTitle d']);
-        };
-        var bigDataPubisher = function () {
-            return randomValue(['pubisher a', 'pubisher b', 'pubisher c', 'pubisher d']);
-        };
-        var bigDataFormat = function () {
-            return randomValue(['format a', 'format b', 'format c', 'format d']);
-        };
-        var bigDataReleaseDate = function () {
-            return randomValue(['1-Jul-2012', '12-Jul-2012', '24-Jul-2012', '30-Jul-2012']);
+        tableCtrl.sort = function(row_name) {
+            return tableCtrl.sortType == row_name;
         };
 
-        var fillBigData = function() {
-            var a = [];
-            for (var i = 0; i < 50; i++) {
-                a.push({
-                    'id': i,
-                    'status': bigDataStatus(),
-                    'song': bigDataSong(),
-                    'statusKey': bigDataStatusKey(),
-                    'artist': bigDataArtist(),
-                    'title': bigDataTitle(),
-                    'versionTitle': bigDataVerionTitle(),
-                    'publisher': bigDataPubisher(),
-                    'format': bigDataFormat(),
-                    'releaseDate': bigDataReleaseDate()
-                });
-            }
-            return a;
+        tableCtrl.tSortDir = function() {
+            tableCtrl.sortReverse = !tableCtrl.sortReverse;
         };
 
-        this.bigData = fillBigData();
-
-        this.sort = function(row_name) {
-            return this.sortType == row_name;
-        };
-
-        this.tSortDir = function() {
-            this.sortReverse = !this.sortReverse;
-        };
-        
+        $scope.$watch(angular.bind(tableCtrl, function () {
+            return TableDataService.data;
+        }), function(newData) {
+            tableCtrl.bigData = newData;
+        });
     }
 
-    TableController.$inject = [];
+
+    TableController.$inject = ['$scope', '$aside', 'TableDataService'];
 
     function XEditableController($filter) {
 

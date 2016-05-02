@@ -3075,6 +3075,8 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 700px; }
 
 .body-header .row { display: flex; }
 
+.full-width { width: 100%; }
+
 .container { width: 100%; margin: 0; padding: 0 40px; }
 
 .container-fluid { width: 100%; margin: 0; padding: 0 40px; }
@@ -3129,7 +3131,7 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 700px; }
 
 .app-aside-left .modal-dialog { margin-top: 75px !important; }
 
-.app-aside-left .modal-dialog .modal-content { padding: 10px 40px; width: 378px; }
+.app-aside-left .modal-dialog .modal-content { padding: 14px 40px; width: 378px; }
 
 .app-aside-left .modal-dialog .modal-content .app-nav h3 { font-weight: 300; }
 
@@ -3146,6 +3148,14 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 700px; }
 .app-aside-left .modal-dialog .modal-content .app-nav ul li:hover > a .app-icon { background-color: #51d0ff; color: #ffffff; }
 
 .app-aside-left .modal-dialog .modal-content .app-nav ul li.active > a .app-icon { background-color: #51d0ff; color: #ffffff; }
+
+.app-aside-right .modal-dialog { margin-top: 75px !important; }
+
+.app-aside-right .modal-dialog .modal-content { padding: 14px 40px; width: 378px; position: absolute; right: 0; }
+
+.app-aside-right .modal-dialog .modal-content .aside-content { margin-top: 24px; }
+
+.app-aside-right.table-aside .modal-dialog { margin-top: 100px !important; }
 
 .ng-aside.horizontal .modal-dialog { height: auto; bottom: 0; }
 
@@ -3486,7 +3496,15 @@ dl dd { margin-bottom: 12px; }
 
 label { font-weight: normal; }
 
+.search-input-icon { position: relative; pointer-events: none; color: #ddd; }
+
 .form-group { clear: both; }
+
+.form-group.filter-form-group { padding-top: 36px; }
+
+.form-group .inline-form-group > input { float: left; width: auto; width: calc(100% - 60px); max-width: 100%; }
+
+.form-group .inline-form-group .btn { margin-left: 30px; float: right; }
 
 .form-group .help-block { font-size: 14px; }
 
@@ -3538,7 +3556,7 @@ textarea { resize: vertical; }
 
 .with-page-number-input.pagination > li:last-child > a, .with-page-number-input.pagination > li:last-child > span { -moz-border-radius-bottomright: 0; -moz-border-radius-topright: 0; border-bottom-right-radius: 0; border-top-right-radius: 0; }
 
-.pagination-page-number-input { color: #4c4c4c; background-color: #fff; border: 1px solid #ddd; border-radius: 3px; -moz-border-radius-bottomleft: 0; -moz-border-radius-topleft: 0; border-bottom-left-radius: 0; border-top-left-radius: 0; position: relative; left: -1px; margin: 22px 0; padding: 3px 8px; width: 60px; display: inline-block; }
+.pagination-page-number-input { color: #4c4c4c; background-color: #fff; border: 1px solid #ddd; border-radius: 0 3px 3px 0; position: relative; left: -1px; margin: 22px 0; padding: 3px 8px; width: 60px; display: inline-block; }
 
 .pagination-page-number-input:focus, .pagination-page-number-input:active { border-color: rgba(76, 76, 76, 0.3); }
 
