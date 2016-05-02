@@ -46,7 +46,6 @@ gulp.task('inject:dev', function () {
       }))
       .pipe(inject(kitSources, {name: 'kit', relative: true}))
       .pipe(inject(docsSources, {name: 'docs', relative: true}))
-      // .pipe(injectString.replace('    <base href="/" />', '    <base href="/bmg-ui/docs/" />'))
       .pipe(gulp.dest('.tmp'));
 });
 
@@ -65,6 +64,6 @@ gulp.task('inject:build', function () {
       .pipe(inject(gulp.src('docs/**/bmg-ui.*', {read: false}), {name: 'kit', relative: true}))
       .pipe(inject(gulp.src('docs/**/vendor.*', {read: false}), {name: 'vendor', relative: true}))
       .pipe(inject(gulp.src('docs/**/docs.*', {read: false}), {name: 'docs', relative: true}))
-      // .pipe(injectString.replace('    <base href="/" />', '    <base href="/bmg-ui/docs/" />'))
+      .pipe(injectString.replace('    <base href="/" />', '    <base href="/bmg-ui/docs/" />'))
       .pipe(gulp.dest('docs'));
 });
