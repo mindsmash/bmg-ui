@@ -8,7 +8,7 @@
                 <span class="navbar-brand-appname">UI-Kit</span>
             </a>
             <!-- Collapsed: Menu button -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bmg-navbar-collapsed">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bmg-navbar-collapsed" ng-click="appCtrl.isCollapsed = !appCtrl.isCollapsed">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bmg-navbar-collapsed">
+        <div class="collapse navbar-collapse" id="bmg-navbar-collapsed" uib-collapse="appCtrl.isCollapsed">
             <ul class="nav navbar-nav navbar-left">
                 <li ui-sref-active="active"><a ui-sref="index"><i class="fa fa-map-o"></i><span>Overview</span></a></li>
                 <li ui-sref-active="active"><a ui-sref="release-detailpage"><i class="fa fa-search"></i><span>Detail</span></a></li>
@@ -56,3 +56,4 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
+

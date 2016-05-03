@@ -211,6 +211,9 @@
 
     // controller
     function AppController($aside) {
+
+        this.isCollapsed = true;
+
         this.openAside = function(position, backdrop) {
             var asideInstance = $aside.open({
                 templateUrl: 'app/templates/apps.html',
