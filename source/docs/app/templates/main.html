@@ -1230,7 +1230,9 @@
 
 <script>
     jQuery(document).ready(function() {
+        console.log('init bootstrapFileInput');
         $('input[type=file]').bootstrapFileInput();
+        console.log('init bootstrapFileInput. Done... ');
 
         $('pre code').each(function(i, block) {
             hljs.highlightBlock(block);

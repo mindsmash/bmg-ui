@@ -3051,11 +3051,13 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu { position: absolute; }
 
-.navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li a { color: #ffffff; }
+.navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li { margin-left: 14px; border-left: 2px solid #ffffff; }
 
-.navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li.active, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li:active, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li:focus { background-color: #ffffff; }
+.navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li:hover, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li.active, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li:active, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li:focus { color: #ffffff; background-color: transparent; }
 
-.navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li.active a, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li:active a, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li:focus a { color: #4c4c4c; }
+.navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li a { color: #999; }
+
+.navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li a:hover, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li a:active, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li a.active, .navbar .navbar-collapse.in.collapse .nav.navbar-nav.navbar-right .dropdown.open .dropdown-menu li a:focus { color: #ffffff; background-color: transparent; }
 
 .sidebar { padding-right: 0; }
 

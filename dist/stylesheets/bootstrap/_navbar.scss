@@ -235,16 +235,27 @@ $bmg-nav-round-icon-size: 1.8em;
           .dropdown-menu {
             position: absolute;
             li {
-              a {
-                color: $bmg-white;
-              }
+              &:hover,
               &.active,
               &:active,
               &:focus {
-                a {
-                  color: $bmg-text;
+                color: $bmg-white;
+                background-color: transparent;
+              }
+
+              margin-left: 14px;
+              border-left: 2px solid $bmg-white;
+
+              a {
+                color: $bmg-gray-dark;
+
+                &:hover,
+                &:active,
+                &.active,
+                &:focus {
+                  color: $bmg-white;
+                  background-color: transparent;
                 }
-                background-color: $bmg-white;
               }
             }
           }
