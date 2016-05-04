@@ -44,6 +44,10 @@
   .row {
     display: flex;
   }
+
+  .btn {
+    margin: 5px 0 5px 8px;
+  }
 }
 
 .panel-body-fluid {
@@ -67,9 +71,7 @@
       padding: $panel-heading-padding;
 
       .btn {
-        @include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $btn-border-radius-small);
         line-height: 18px;
-        margin-left: 8px;
       }
     }
 

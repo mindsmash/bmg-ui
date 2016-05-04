@@ -1,7 +1,7 @@
 body {
   padding-top: $bmg-nav-height + 25px;
   background-color: #f3f3f3;
-  //min-width: 700px;
+  min-width: $screen-sm;
 }
 
 .body-header {
@@ -104,12 +104,19 @@ body {
 :target:before {
   content: "";
   display: block;
-  height: 120px; /* fixed header height*/
-  margin: -120px 0 0; /* negative fixed header height */
+  height: 120px;
+  margin: -120px 0 0;
 }
 
-.vertical-center > div {
-  margin: auto 0;
+.vertical-center {
+  > div {
+    vertical-align: middle;
+    margin: auto 0;
+    > h1, h2, h3, h4, h5, h6 {
+      position: relative;
+      top: 4px;
+    }
+  }
 }
 
 .button-with-headline {
@@ -187,6 +194,7 @@ body {
               color: $bmg-text;
               .app-icon {
                 background-color: $bmg-malibu;
+                @include transition(background-color, .2s);
                 color: $bmg-white;
               }
             }
@@ -256,5 +264,5 @@ footer {
   font-size: 10px;
   color: $bmg-text;
   text-align: right;
-  min-width: 1200px;
+  min-width: $screen-sm;
 }

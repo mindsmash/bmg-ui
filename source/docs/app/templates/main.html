@@ -305,7 +305,7 @@
             <div class="page-header">
                 <h1 id="buttons">Buttons</h1>
             </div>
-            <div class="row" style="margin-top: 50px;">
+            <div class="row" style="margin-top: 20px;">
                 <div class="col-lg-3">
                     <button type="button" class="btn btn-primary">Primary</button>
                 </div>
@@ -320,7 +320,7 @@
                     <button type="button" class="btn btn-default disabled">Disabled</button>
                 </div>
             </div>
-            <div class="row" style="margin-top: 50px;">
+            <div class="row" style="margin-top: 20px;">
                 <div class="col-lg-3">
                     <button type="button" class="btn btn-success">Success</button>
                 </div>
@@ -340,7 +340,7 @@
                     <pre><code class="html">&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;</code></pre>
                 </div>
             </div>
-            <div class="row" style="margin-top: 50px;">
+            <div class="row" style="margin-top: 10px;">
                 <div class="col-lg-4">
                     <button type="button" class="btn btn-default"><i class="fa fa-star-o"></i> Text</button>
                     <br>
@@ -1230,9 +1230,7 @@
 
 <script>
     jQuery(document).ready(function() {
-        console.log('init bootstrapFileInput');
         $('input[type=file]').bootstrapFileInput();
-        console.log('init bootstrapFileInput. Done... ');
 
         $('pre code').each(function(i, block) {
             hljs.highlightBlock(block);

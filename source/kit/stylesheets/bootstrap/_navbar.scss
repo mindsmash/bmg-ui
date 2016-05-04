@@ -266,7 +266,11 @@ $bmg-nav-round-icon-size: 1.8em;
 }
 
 .sidebar {
+  background-color: #f3f3f3;
   padding-right: 0;
+  min-width: 300px;
+  max-width: 380px;
+
   @media #{screen} and (max-width: $screen-lg) {
     min-width: 110px;
     max-width: 110px;
@@ -365,10 +369,6 @@ $bmg-nav-round-icon-size: 1.8em;
     top: -2px;
     transform: scale(0.7, 0.7);
   }
-}
-
-.sidebar {
-  background-color: #f3f3f3;
 }
 
 .row-with-sidebar {
