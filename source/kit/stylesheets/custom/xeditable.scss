@@ -80,6 +80,12 @@ a.editable-click {
       width: 50%;
     }
   }
+
+  @media screen and (max-width: $screen-sm) {
+    &.editable-hide + .form-inline.editable-wrap {
+      width: 100%;
+    }
+  }
 }
 
 .editable-read-only {

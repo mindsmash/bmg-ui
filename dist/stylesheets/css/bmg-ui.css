@@ -103,6 +103,8 @@ a.editable-click.editable-empty { min-width: 0; }
 
 @media screen and (max-width: 1200px) { a.editable-click.editable-hide + .form-inline.editable-wrap { position: relative; left: 15px; display: block; width: 50%; } }
 
+@media screen and (max-width: 768px) { a.editable-click.editable-hide + .form-inline.editable-wrap { width: 100%; } }
+
 .form-inline.editable-wrap { width: 100%; }
 
 .form-inline.editable-wrap > .editable-controls.form-group { width: 100%; padding-right: 45px; }
@@ -234,6 +236,12 @@ table.uib-yearpicker > tbody > tr > td > button.btn.active > span { color: #ffff
 .uib-datepicker-popup .btn-group .btn { width: 100px; }
 
 .uib-datepicker-popup .uib-button-bar { display: flex; padding: 12px 20px 20px 20px; border-top: 0; }
+
+.btn > i.fa.fa-chevron-right { position: relative; right: -1px; }
+
+.btn > i.fa.fa-chevron-left { position: relative; left: -1px; }
+
+.btn > i.fa.fa-remove { position: relative; top: -0.8px; right: -0.5px; }
 
 /*! Bootstrap v3.3.6 (http://getbootstrap.com) Copyright 2011-2015 Twitter, Inc. Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -2979,7 +2987,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .inline-block { display: inline-block !important; }
 
 /** Use with bootstrap's .navbar */
-.navbar-brand { min-width: 250px; max-width: 250px; }
+.navbar-brand { min-width: 250px; max-width: 250px; font-size: 22px; }
 
 .navbar-brand > img { height: 18px; display: inline-block; }
 

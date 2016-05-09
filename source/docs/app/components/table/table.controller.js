@@ -4,9 +4,9 @@
     angular.module('bmg-ui.docs')
         .controller('TableController', TableController);
 
-    TableController.$inject = ['$scope', '$aside', 'TableDataService'];
+    TableController.$inject = ['$scope', '$aside', 'TableDataService', 'TableColFilterService'];
 
-    function TableController($scope, $aside, TableDataService) {
+    function TableController($scope, $aside, TableDataService, TableColFilterService) {
 
         var tableCtrl = this;
 
@@ -30,6 +30,34 @@
                     asideCtrl.applyFilter = function() {
                         TableDataService.applyFilter(asideCtrl.filter);
                     }
+                },
+                controllerAs: 'asideCtrl'
+            });
+        };
+
+        tableCtrl.openFilterColAside = function(position, backdrop) {
+            var asideInstance = $aside.open({
+                templateUrl: 'app/templates/filter-col-aside.html',
+                placement: position,
+                size: 'sm',
+                backdrop: backdrop,
+                windowClass: 'app-aside-right table-aside',
+                controller: function($uibModalInstance, TableColFilterService) {
+                    var asideCtrl = this;
+
+                    asideCtrl.ok = function() {
+                        $uibModalInstance.close();
+                    };
+                    asideCtrl.cancel = function() {
+                        $uibModalInstance.dismiss();
+                    };
+                    
+                    asideCtrl.colFilter = TableColFilterService.colFilter;
+                    
+                    asideCtrl.resetColFilter = function() {
+                        TableColFilterService.resetColFilter();
+                        asideCtrl.colFilter = TableColFilterService.colFilter;
+                    };
                 },
                 controllerAs: 'asideCtrl'
             });
@@ -59,6 +87,12 @@
             return TableDataService.data;
         }), function(newData) {
             tableCtrl.bigData = newData;
+        });
+
+        $scope.$watch(angular.bind(tableCtrl, function () {
+            return TableColFilterService.colFilter;
+        }), function(newData) {
+            tableCtrl.filterCol = newData;
         });
     }
 

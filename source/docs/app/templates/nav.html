@@ -19,11 +19,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bmg-navbar-collapsed" uib-collapse="appCtrl.isCollapsed">
             <ul class="nav navbar-nav navbar-left">
-                <li ui-sref-active="active"><a ui-sref="index"><i class="fa fa-map-o"></i><span>Overview</span></a></li>
-                <li ui-sref-active="active"><a ui-sref="release-detailpage"><i class="fa fa-search"></i><span>Detail</span></a></li>
-                <li ui-sref-active="active"><a ui-sref="release-list"><i class="fa fa-list"></i><span>List</span></a></li>
+                <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index"><i class="fa fa-map-o"></i><span>Overview</span></a></li>
+                <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="release-detailpage"><i class="fa fa-search"></i><span>Detail</span></a></li>
+                <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="release-list"><i class="fa fa-list"></i><span>List</span></a></li>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" uib-dropdown>
                     <a href="#" uib-dropdown-toggle>
@@ -31,23 +30,23 @@
                         <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active"><a ui-sref="index.grid">Grid</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.typography">Typography</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.colors">Colors</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.buttons">Buttons</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.button-group">Button Group</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.button-dropdown">Button Dropdown</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.pagination">Pagination</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.form">Form / Input Group</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.checkbox-slider">Checkbox / Slider</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.status">Status</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.modal">Modal</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.slide">Slide Navigation</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.alerts">Alerts</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.table">Table</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.datepicker">Datepicker</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.activities">Activities</a></li>
-                        <li ui-sref-active="active"><a ui-sref="index.filter">Filter</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.grid">Grid</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.typography">Typography</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.colors">Colors</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.buttons">Buttons</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.button-group">Button Group</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.button-dropdown">Button Dropdown</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.pagination">Pagination</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.form">Form / Input Group</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.checkbox-slider">Checkbox / Slider</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.status">Status</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.modal">Modal</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.slide">Slide Navigation</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.alerts">Alerts</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.table">Table</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.datepicker">Datepicker</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.activities">Activities</a></li>
+                        <li ui-sref-active="active" ng-click="appCtrl.isCollapsed = true"><a ui-sref="index.filter">Filter</a></li>
                     </ul>
                 </li>
             </ul>
