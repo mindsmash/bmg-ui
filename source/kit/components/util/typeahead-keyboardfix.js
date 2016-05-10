@@ -1,4 +1,4 @@
-angular.module('bmg.components.ui', [])
+angular.module('bmg.components.ui')
     .directive('typeahead', function () {
         return {
             restrict: 'A',

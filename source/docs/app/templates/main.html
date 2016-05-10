@@ -22,6 +22,7 @@
             <li><a href="https://vitalets.github.io/angular-xeditable/">angular-xeditable</a></li>
             <li><a href="https://github.com/dbtek/angular-aside">angular-aside</a></li>
             <li><a href="http://mkoryak.github.io/floatThead/">floatThead</a></li>
+            <li><a href="https://github.com/d-oliveros/ngSticky">ngSticky</a></li>
         </ul>
         <p>To use some of these features you must include the required dependencies in your <strong>own bower.json</strong>.</p>
     </div>
@@ -314,10 +315,9 @@
                 </div>
                 <div class="col-lg-3">
                     <button type="button" class="btn btn-default">Default</button>
-                    <button type="button" class="btn btn-default btn-disabled" disabled>Default (disabled)</button>
                 </div>
                 <div class="col-lg-3">
-                    <button type="button" class="btn btn-default disabled">Disabled</button>
+                    <button type="button" class="btn btn-success disabled" disabled>Disabled</button>
                 </div>
             </div>
             <div class="row" style="margin-top: 20px;">
@@ -337,7 +337,9 @@
             <br>
             <div class="row">
                 <div class="col-lg-12">
-                    <pre><code class="html">&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;</code></pre>
+                    <pre><code class="html">&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;!-- to disable any button use the disabled attribute and the .disabled class --&gt;
+&lt;button type="button" class="btn btn-success disabled" disabled&gt;Save&lt;/button&gt;</code></pre>
                 </div>
             </div>
             <div class="row" style="margin-top: 10px;">
@@ -539,7 +541,7 @@
 &lt;/div&gt;</code></pre>
                         <h2>File input</h2>
                         <div class="form-group">
-                            <input type="file" title="Search for a file to add">
+                            <input type="file" title="Search for a file to add" ng-cloak="">
                             <p class="help-block">Select a file to upload.</p>
                         </div>
                         <pre><code class="html">&lt;div class="form-group"&gt;
@@ -932,7 +934,8 @@
                 <div class="col-lg-12">
                     <div data-ng-controller="TableController as tableCtrl">
                         <h2>Table</h2>
-                        <table id="tableStandard" class="table table-hover table-fluid table-fixed-header">
+                        <div class="tableStandard-responsive">
+                            <table id="tableStandard" class="table table-hover table-fluid table-fixed-header">
                             <thead>
                             <tr>
                                 <th class="shrink">
@@ -977,9 +980,10 @@
                             </tr>
                             </tbody>
                         </table>
-                        
+                        </div>
                         <h2>Table condensed</h2>
-                        <table id="tableCondensed" class="table-condensed table-hover table-fluid">
+                        <div class="tableCondensed-responsive">
+                            <table id="tableCondensed" class="table-condensed table-hover table-fluid">
                             <thead>
                             <tr>
                                 <th class="shrink">
@@ -1024,6 +1028,7 @@
                             </tr>
                             </tbody>
                         </table>
+                        </div>
                         <br>
                         <pre><code class="html" ng-non-bindable>&lt;table class="table table-hover table-fluid"&gt; &lt;!-- use css class "table-condensed" for small size table --&gt;
 &lt;thead&gt;
@@ -1239,12 +1244,18 @@
         $('table#tableStandard').floatThead({
             top: function($table) {
                 return $table.top = 75;
+            },
+            responsiveContainer: function($table){
+                return $table.closest('.tableStandard-responsive');
             }
         });
 
         $('table#tableCondensed').floatThead({
             top: function($table) {
                 return $table.top = 75;
+            },
+            responsiveContainer: function($table){
+                return $table.closest('.tableCondensed-responsive');
             }
         });
     });

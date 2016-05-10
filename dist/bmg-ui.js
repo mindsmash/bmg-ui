@@ -1,6 +1,6 @@
-angular.module('bmg.components.ui', []);
-
 angular.module('bmg.components.util', []);
+
+angular.module('bmg.components.ui', []);
 
 (function (angular) {
     angular.module("uib/template/datepicker/datepicker.html", []).run(["$templateCache", function($templateCache) {
@@ -164,7 +164,7 @@ angular.module('bmg.components.util', []);
 
                 // Now we're going to wrap that input field with a Bootstrap button.
                 // The input will actually still be there, it will just be float above and transparent (done with the CSS).
-                $elem.wrap('<a class="file-input-wrapper btn btn-default ' + className + '"></a>').parent().prepend($('<span></span>').html(buttonWord));
+                $elem.wrap('<span class="file-input-wrapper btn btn-default ' + className + '"></span>').parent().prepend($('<span></span>').html(buttonWord));
             })
 
             // After we have found all of the file inputs let's apply a listener for tracking the mouse movement.
@@ -253,7 +253,7 @@ angular.module('bmg.components.util', []);
     $('link[rel=stylesheet]').eq(0).before(cssHtml);
 })(jQuery);
 
-angular.module('bmg.components.ui', [])
+angular.module('bmg.components.ui')
     .directive('typeahead', function () {
         return {
             restrict: 'A',

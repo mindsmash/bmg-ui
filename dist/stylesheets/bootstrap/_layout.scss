@@ -8,8 +8,16 @@ body {
   padding-top: 30px;
   padding-bottom: 30px;
   display: block;
-  width: 100%;
+  width: 100% !important; // important to override the sticky directive settings
   background-color: #fff;
+
+  &.sticky {
+    // override the sticky directive settings
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+  }
 
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
@@ -194,7 +202,7 @@ body {
               color: $bmg-text;
               .app-icon {
                 background-color: $bmg-malibu;
-                @include transition(background-color, .2s);
+                @include transition(background-color .2s);
                 color: $bmg-white;
               }
             }
@@ -265,4 +273,7 @@ footer {
   color: $bmg-text;
   text-align: right;
   min-width: $screen-sm;
+  -webkit-box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
+  -moz-box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
+  box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
 }

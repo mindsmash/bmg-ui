@@ -9,7 +9,17 @@
   .badge { margin-top: -2px; }
 
   &.disabled {
-    color: $bmg-disabled;
+    background: $bmg-btn-border;
+    border-color: $bmg-btn-border;
+    color: $bmg-white;
+    &:hover,
+    &:focus,
+    &:active {
+      background: $bmg-btn-border;
+      border-color: $bmg-btn-border;
+      color: $bmg-white;
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -86,23 +96,6 @@
 .btn-secondary-invers {
   @include button-variant($btn-secondary-invers-color, $btn-secondary-invers-bg, $btn-secondary-invers-border);
 }
-
-.btn-disabled {
-  background: $bmg-btn-border;
-  color: $bmg-white;
-  border-color: $bmg-btn-border;
-  &:hover {
-    color: $bmg-white;
-    cursor: not-allowed;
-  }
-  &.btn-default {
-    filter: invert(100%);
-    &:hover {
-      background-color: $bmg-btn-border;
-    }
-  }
-}
-
 
 .btn-group > .btn:active {
   background: $bmg-btn-border;

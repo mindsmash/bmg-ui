@@ -34,7 +34,17 @@
   margin: 0 30px 0;
 }
 
-.panel-heading.panel-heading-with-actions {
+.panel-heading {
+  width: 100% !important; // important to override the sticky directive settings
+  background-color: $bmg-white;
+
+  &.sticky {
+    // override the sticky directive settings
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+  }
 
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0;

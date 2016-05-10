@@ -2,7 +2,7 @@
   > li {
     > a {
       color: $bmg-gray-darker;
-      transition: background-color linear 0.1s;
+      @include transition(background-color linear .1s);
 
       i {
         margin-right: 8px;

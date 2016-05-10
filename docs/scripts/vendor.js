@@ -80661,3 +80661,700 @@ return /******/ (function(modules) { // webpackBootstrap
 // @preserve jQuery.floatThead 1.4.0 - http://mkoryak.github.io/floatThead/ - Copyright (c) 2012 - 2016 Misha Koryak
 // @license MIT
 !function(a){function b(a,b){if(8==k){var c=p.width(),d=i.debounce(function(){var a=p.width();c!=a&&(c=a,b())},1);p.on(a,d)}else p.on(a,i.debounce(b,1))}function c(b){var c=b[0],d=c.offsetParent;if(!d){d=c.parentElement;do{var e=window.getComputedStyle(d).getPropertyValue("position");if("static"!=e)break;if(d.offsetParent){d=d.offsetParent;break}}while(d=d.parentElement)}return a(d==document.body?[]:d)}function d(a){window&&window.console&&window.console.error&&window.console.error("jQuery.floatThead: "+a)}function e(a){var b=a.getBoundingClientRect();return b.width||b.right-b.left}function f(){var b=a('<div style="width:50px;height:50px;overflow-y:scroll;position:absolute;top:-200px;left:-200px;"><div style="height:100px;width:100%"></div>');a("body").append(b);var c=b.innerWidth(),d=a("div",b).innerWidth();return b.remove(),c-d}function g(a){if(a.dataTableSettings)for(var b=0;b<a.dataTableSettings.length;b++){var c=a.dataTableSettings[b].nTable;if(a[0]==c)return!0}return!1}function h(a,b,c){var d=c?"outerWidth":"width";if(n&&a.css("max-width")){var e=0;c&&(e+=parseInt(a.css("borderLeft"),10),e+=parseInt(a.css("borderRight"),10));for(var f=0;f<b.length;f++)e+=b.get(f).offsetWidth;return e}return a[d]()}a.floatThead=a.floatThead||{},a.floatThead.defaults={headerCellSelector:"tr:visible:first>*:visible",zIndex:1001,position:"auto",top:0,bottom:0,scrollContainer:function(){return a([])},responsiveContainer:function(){return a([])},getSizingRow:function(a){return a.find("tbody tr:visible:first>*:visible")},floatTableClass:"floatThead-table",floatWrapperClass:"floatThead-wrapper",floatContainerClass:"floatThead-container",copyTableClass:!0,enableAria:!1,autoReflow:!1,debug:!1};var i=window._,j="undefined"!=typeof MutationObserver,k=function(){for(var a=3,b=document.createElement("b"),c=b.all||[];a=1+a,b.innerHTML="<!--[if gt IE "+a+"]><i><![endif]-->",c[0];);return a>4?a:document.documentMode}(),l=/Gecko\//.test(navigator.userAgent),m=/WebKit\//.test(navigator.userAgent);k||l||m||(k=11);var n=function(){if(m){var b=a('<div style="width:0px"><table style="max-width:100%"><tr><th><div style="min-width:100px;">X</div></th></tr></table></div>');a("body").append(b);var c=0==b.find("table").width();return b.remove(),c}return!1},o=!l&&!k,p=a(window);if(!window.matchMedia){var q=window.onbeforeprint,r=window.onafterprint;window.onbeforeprint=function(){q&&q(),p.triggerHandler("beforeprint")},window.onafterprint=function(){r&&r(),p.triggerHandler("afterprint")}}a.fn.floatThead=function(l){if(l=l||{},!i&&(i=window._||a.floatThead._,!i))throw new Error("jquery.floatThead-slim.js requires underscore. You should use the non-lite version since you do not have underscore.");if(8>k)return this;var q=null;if(i.isFunction(n)&&(n=n()),i.isString(l)){var r=l,s=this;return this.filter("table").each(function(){var b=a(this),c=b.data("floatThead-lazy");c&&b.floatThead(c);var d=b.data("floatThead-attached");if(d&&i.isFunction(d[r])){var e=d[r]();"undefined"!=typeof e&&(s=e)}}),s}var t=a.extend({},a.floatThead.defaults||{},l);if(a.each(l,function(b){b in a.floatThead.defaults||!t.debug||d("Used ["+b+"] key to init plugin, but that param is not an option for the plugin. Valid options are: "+i.keys(a.floatThead.defaults).join(", "))}),t.debug){var u=a.fn.jquery.split(".");1==parseInt(u[0],10)&&parseInt(u[1],10)<=7&&d("jQuery version "+a.fn.jquery+" detected! This plugin supports 1.8 or better, or 1.7.x with jQuery UI 1.8.24 -> http://jqueryui.com/resources/download/jquery-ui-1.8.24.zip")}return this.filter(":not(."+t.floatTableClass+")").each(function(){function l(a){return a+".fth-"+G+".floatTHead"}function n(){var b=0;if(I.children("tr:visible").each(function(){b+=a(this).outerHeight(!0)}),"collapse"==H.css("border-collapse")){var c=parseInt(H.css("border-top-width"),10),d=parseInt(H.find("thead tr:first").find(">*:first").css("border-top-width"),10);c>d&&(b-=c/2)}ib.outerHeight(b),jb.outerHeight(b)}function r(){var a=h(H,mb,!0),b=T?S:Q,c=b.width()||a,d="hidden"!=b.css("overflow-y")?c-N.vertical:c;if(fb.width(d),R){var e=100*a/d;ab.css("width",e+"%")}else ab.outerWidth(a)}function s(){K=(i.isFunction(t.top)?t.top(H):t.top)||0,L=(i.isFunction(t.bottom)?t.bottom(H):t.bottom)||0}function u(){var b,c=I.find(t.headerCellSelector);if(db?b=cb.find("col").length:(b=0,c.each(function(){b+=parseInt(a(this).attr("colspan")||1,10)})),b!=P){P=b;for(var d,e=[],f=[],g=[],h=0;b>h;h++)e.push(t.enableAria&&(d=c.eq(h).text())?'<th scope="col" class="floatThead-col">'+d+"</th>":'<th class="floatThead-col"/>'),f.push("<col/>"),g.push("<fthtd style='display:table-cell;height:0;width:auto;'/>");f=f.join(""),e=e.join(""),o&&(g=g.join(""),eb.html(g),mb=eb.find("fthtd")),ib.html(e),jb=ib.find("th"),db||cb.html(f),kb=cb.find("col"),bb.html(f),lb=bb.find("col")}return b}function v(){if(!M){if(M=!0,U){var a=h(H,mb,!0),b=$.width();a>b&&H.css("minWidth",a)}H.css(pb),ab.css(pb),ab.append(I),J.before(hb),n()}}function w(){M&&(M=!1,U&&H.width(rb),hb.detach(),H.prepend(I),H.css(qb),ab.css(qb),H.css("minWidth",sb),H.css("minWidth",h(H,mb)))}function x(a){tb!=a&&(tb=a,H.triggerHandler("floatThead",[a,fb]))}function y(a){U!=a&&(U=a,fb.css({position:U?"absolute":"fixed"}))}function z(a,b,c,d){return o?c:d?t.getSizingRow(a,b,c):b}function A(){var a,b=u();return function(){kb=cb.find("col");var c=z(H,kb,mb,k);if(c.length==b&&b>0){if(!db)for(a=0;b>a;a++)kb.eq(a).css("width","");w();var d=[];for(a=0;b>a;a++)d[a]=e(c.get(a));for(a=0;b>a;a++)lb.eq(a).width(d[a]),kb.eq(a).width(d[a]);v()}else ab.append(I),H.css(qb),ab.css(qb),n();H.triggerHandler("reflowed",[fb])}}function B(a){var b=Q.css("border-"+a+"-width"),c=0;return b&&~b.indexOf("px")&&(c=parseInt(b,10)),c}function C(){return"auto"==S.css("overflow-x")}function D(){var a,b=Q.scrollTop(),c=0,d=W?V.outerHeight(!0):0,e=X?d:-d,f=fb.height(),g=H.offset(),h=0,i=0;if(R){var j=Q.offset();c=g.top-j.top+b,W&&X&&(c+=d),h=B("left"),i=B("top"),c-=i}else a=g.top-K-f+L+N.horizontal;var k=p.scrollTop(),l=p.scrollLeft(),n=(C()?S:Q).scrollLeft();return function(j){T=C();var o=H[0].offsetWidth<=0&&H[0].offsetHeight<=0;if(!o&&gb)return gb=!1,setTimeout(function(){H.triggerHandler("reflow")},1),null;if(o&&(gb=!0,!U))return null;if("windowScroll"==j)k=p.scrollTop(),l=p.scrollLeft();else if("containerScroll"==j)if(S.length){if(!T)return;n=S.scrollLeft()}else b=Q.scrollTop(),n=Q.scrollLeft();else"init"!=j&&(k=p.scrollTop(),l=p.scrollLeft(),b=Q.scrollTop(),n=(T?S:Q).scrollLeft());if(!m||!(0>k||0>l)){if(_)y("windowScrollDone"==j?!0:!1);else if("windowScrollDone"==j)return null;g=H.offset(),W&&X&&(g.top+=d);var q,r,s=H.outerHeight();if(R&&U){if(c>=b){var t=c-b+i;q=t>0?t:0,x(!1)}else q=Z?i:b,x(!0);r=h}else!R&&U?(k>a+s+e?q=s-f+e:g.top>=k+K?(q=0,w(),x(!1)):(q=K+k-g.top+c+(X?d:0),v(),x(!0)),r=n):R&&!U?(c>b||b-c>s?(q=g.top-k,w(),x(!1)):(q=g.top+b-k-c,v(),x(!0)),r=g.left+n-l):R||U||(k>a+s+e?q=s+K-k+a+e:g.top>k+K?(q=g.top-k,v(),x(!1)):(q=K,x(!0)),r=g.left+n-l);return{top:q,left:r}}}}function E(){var a=null,b=null,c=null;return function(d,e,f){null==d||a==d.top&&b==d.left||(fb.css({top:d.top,left:d.left}),a=d.top,b=d.left),e&&r(),f&&n();var g=(T?S:Q).scrollLeft();U&&c==g||(fb.scrollLeft(g),c=g)}}function F(){if(Q.length)if(Q.data().perfectScrollbar)N={horizontal:0,vertical:0};else{var a=Q.width(),b=Q.height(),c=H.height(),d=h(H,mb),e=d>a?O:0,f=c>b?O:0;N.horizontal=d>a-f?O:0,N.vertical=c>b-e?O:0}}var G=i.uniqueId(),H=a(this);if(H.data("floatThead-attached"))return!0;if(!H.is("table"))throw new Error('jQuery.floatThead must be run on a table element. ex: $("table").floatThead();');j=t.autoReflow&&j;var I=H.children("thead:first"),J=H.children("tbody:first");if(0==I.length||0==J.length)return H.data("floatThead-lazy",t),void H.unbind("reflow").one("reflow",function(){H.floatThead(t)});H.data("floatThead-lazy")&&H.unbind("reflow"),H.data("floatThead-lazy",!1);var K,L,M=!0,N={vertical:0,horizontal:0},O=f(),P=0;t.scrollContainer===!0&&(t.scrollContainer=c);var Q=t.scrollContainer(H)||a([]),R=Q.length>0,S=R?a([]):t.responsiveContainer(H)||a([]),T=C(),U=null;"undefined"!=typeof t.useAbsolutePositioning&&(t.position="auto",t.useAbsolutePositioning&&(t.position=t.useAbsolutePositioning?"absolute":"fixed"),d("option 'useAbsolutePositioning' has been removed in v1.3.0, use `position:'"+t.position+"'` instead. See docs for more info: http://mkoryak.github.io/floatThead/#options")),"undefined"!=typeof t.scrollingTop&&(t.top=t.scrollingTop,d("option 'scrollingTop' has been renamed to 'top' in v1.3.0. See docs for more info: http://mkoryak.github.io/floatThead/#options")),"undefined"!=typeof t.scrollingBottom&&(t.bottom=t.scrollingBottom,d("option 'scrollingBottom' has been renamed to 'bottom' in v1.3.0. See docs for more info: http://mkoryak.github.io/floatThead/#options")),"auto"==t.position?U=null:"fixed"==t.position?U=!1:"absolute"==t.position?U=!0:t.debug&&d('Invalid value given to "position" option, valid is "fixed", "absolute" and "auto". You passed: ',t.position),null==U&&(U=R);var V=H.find("caption"),W=1==V.length;if(W)var X="top"===(V.css("caption-side")||V.attr("align")||"top");var Y=a('<fthfoot style="display:table-footer-group;border-spacing:0;height:0;border-collapse:collapse;visibility:hidden"/>'),Z=!1,$=a([]),_=9>=k&&!R&&U,ab=a("<table/>"),bb=a("<colgroup/>"),cb=H.children("colgroup:first"),db=!0;0==cb.length&&(cb=a("<colgroup/>"),db=!1);var eb=a('<fthtr style="display:table-row;border-spacing:0;height:0;border-collapse:collapse"/>'),fb=a('<div style="overflow: hidden;" aria-hidden="true"></div>'),gb=!1,hb=a("<thead/>"),ib=a('<tr class="size-row"/>'),jb=a([]),kb=a([]),lb=a([]),mb=a([]);hb.append(ib),H.prepend(cb),o&&(Y.append(eb),H.append(Y)),ab.append(bb),fb.append(ab),t.copyTableClass&&ab.attr("class",H.attr("class")),ab.attr({cellpadding:H.attr("cellpadding"),cellspacing:H.attr("cellspacing"),border:H.attr("border")});var nb=H.css("display");if(ab.css({borderCollapse:H.css("borderCollapse"),border:H.css("border"),display:nb}),"none"==nb&&(gb=!0),ab.addClass(t.floatTableClass).css({margin:0,"border-bottom-width":0}),U){var ob=function(a,b){var c=a.css("position"),d="relative"==c||"absolute"==c,e=a;if(!d||b){var f={paddingLeft:a.css("paddingLeft"),paddingRight:a.css("paddingRight")};fb.css(f),e=a.data("floatThead-containerWrap")||a.wrap("<div class='"+t.floatWrapperClass+"' style='position: relative; clear:both;'></div>").parent(),a.data("floatThead-containerWrap",e),Z=!0}return e};R?($=ob(Q,!0),$.prepend(fb)):($=ob(H),H.before(fb))}else H.before(fb);fb.css({position:U?"absolute":"fixed",marginTop:0,top:U?0:"auto",zIndex:t.zIndex}),fb.addClass(t.floatContainerClass),s();var pb={"table-layout":"fixed"},qb={"table-layout":H.css("tableLayout")||"auto"},rb=H[0].style.width||"",sb=H.css("minWidth")||"",tb=!1;F();var ub,vb=function(){(ub=A())()};vb();var wb=D(),xb=E();xb(wb("init"),!0);var yb=i.debounce(function(){xb(wb("windowScrollDone"),!1)},1),zb=function(){xb(wb("windowScroll"),!1),_&&yb()},Ab=function(){xb(wb("containerScroll"),!1)},Bb=function(){H.is(":hidden")||(s(),F(),vb(),wb=D(),(xb=E())(wb("resize"),!0,!0))},Cb=i.debounce(function(){H.is(":hidden")||(F(),s(),vb(),wb=D(),xb(wb("reflow"),!0))},1),Db=function(){H.floatThead("destroy",[!0])},Eb=function(){H.floatThead(t)},Fb=function(a){a.matches?Db():Eb()};if(window.matchMedia?window.matchMedia("print").addListener(Fb):(p.on("beforeprint",Db),p.on("afterprint",Eb)),R?U?Q.on(l("scroll"),Ab):(Q.on(l("scroll"),Ab),p.on(l("scroll"),zb)):(S.on(l("scroll"),Ab),p.on(l("scroll"),zb)),p.on(l("load"),Cb),b(l("resize"),Bb),H.on("reflow",Cb),g(H)&&H.on("filter",Cb).on("sort",Cb).on("page",Cb),p.on(l("shown.bs.tab"),Cb),p.on(l("tabsactivate"),Cb),j){var Gb=null;i.isFunction(t.autoReflow)&&(Gb=t.autoReflow(H,Q)),Gb||(Gb=Q.length?Q[0]:H[0]),q=new MutationObserver(function(a){for(var b=function(a){return a&&a[0]&&("THEAD"==a[0].nodeName||"TD"==a[0].nodeName||"TH"==a[0].nodeName)},c=0;c<a.length;c++)if(!b(a[c].addedNodes)&&!b(a[c].removedNodes)){Cb();break}}),q.observe(Gb,{childList:!0,subtree:!0})}H.data("floatThead-attached",{destroy:function(a,b){var c=".fth-"+G;w(),H.css(qb),cb.remove(),o&&Y.remove(),hb.parent().length&&hb.replaceWith(I),x(!1),j&&(q.disconnect(),q=null),H.off("reflow reflowed"),Q.off(c),S.off(c),Z&&(Q.length?Q.unwrap():H.unwrap()),R?Q.data("floatThead-containerWrap",!1):H.data("floatThead-containerWrap",!1),H.css("minWidth",sb),fb.remove(),H.data("floatThead-attached",!1),p.off(c),b||(window.matchMedia&&window.matchMedia("print").removeListener(Fb),Db=Eb=function(){})},reflow:function(){Cb()},setHeaderHeight:function(){n()},getFloatContainer:function(){return fb},getRowGroups:function(){return M?fb.find(">table>thead").add(H.children("tbody,tfoot")):H.children("thead,tbody,tfoot")}})}),this}}(jQuery),function(a){a.floatThead=a.floatThead||{},a.floatThead._=window._||function(){var b={},c=Object.prototype.hasOwnProperty,d=["Arguments","Function","String","Number","Date","RegExp"];b.has=function(a,b){return c.call(a,b)},b.keys=function(a){if(a!==Object(a))throw new TypeError("Invalid object");var c=[];for(var d in a)b.has(a,d)&&c.push(d);return c};var e=0;return b.uniqueId=function(a){var b=++e+"";return a?a+b:b},a.each(d,function(){var a=this;b["is"+a]=function(b){return Object.prototype.toString.call(b)=="[object "+a+"]"}}),b.debounce=function(a,b,c){var d,e,f,g,h;return function(){f=this,e=arguments,g=new Date;var i=function(){var j=new Date-g;b>j?d=setTimeout(i,b-j):(d=null,c||(h=a.apply(f,e)))},j=c&&!d;return d||(d=setTimeout(i,b)),j&&(h=a.apply(f,e)),h}},b}()}(jQuery);
+/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas, David Knight. Dual MIT/BSD license */
+
+window.matchMedia || (window.matchMedia = function() {
+    "use strict";
+
+    // For browsers that support matchMedium api such as IE 9 and webkit
+    var styleMedia = (window.styleMedia || window.media);
+
+    // For those that don't support matchMedium
+    if (!styleMedia) {
+        var style       = document.createElement('style'),
+            script      = document.getElementsByTagName('script')[0],
+            info        = null;
+
+        style.type  = 'text/css';
+        style.id    = 'matchmediajs-test';
+
+        script.parentNode.insertBefore(style, script);
+
+        // 'style.currentStyle' is used by IE <= 8 and 'window.getComputedStyle' for all other browsers
+        info = ('getComputedStyle' in window) && window.getComputedStyle(style, null) || style.currentStyle;
+
+        styleMedia = {
+            matchMedium: function(media) {
+                var text = '@media ' + media + '{ #matchmediajs-test { width: 1px; } }';
+
+                // 'style.styleSheet' is used by IE <= 8 and 'style.textContent' for all other browsers
+                if (style.styleSheet) {
+                    style.styleSheet.cssText = text;
+                } else {
+                    style.textContent = text;
+                }
+
+                // Test if media query is true or false
+                return info.width === '1px';
+            }
+        };
+    }
+
+    return function(media) {
+        return {
+            matches: styleMedia.matchMedium(media || 'all'),
+            media: media || 'all'
+        };
+    };
+}());
+
+/**
+ * ngSticky - https://github.com/d-oliveros/ngSticky
+ *
+ * A simple, pure javascript (No jQuery required!) AngularJS directive
+ * to make elements stick when scrolling down.
+ *
+ * Credits: https://github.com/d-oliveros/ngSticky/graphs/contributors
+ */
+(function() {
+  'use strict';
+
+  var module = angular.module('sticky', []);
+
+  /**
+   * Directive: sticky
+   */
+  module.directive('sticky', ['$window', '$timeout', function($window, $timeout) {
+      return {
+        restrict: 'A', // this directive can only be used as an attribute.
+        scope: {
+          disabled: '=disabledSticky'
+        },
+        link: function linkFn($scope, $elem, $attrs) {
+
+          // Initial scope
+          var scrollableNodeTagName = 'sticky-scroll';
+          var initialPosition = $elem.css('position');
+          var initialStyle = $elem.attr('style') || '';
+          var stickyBottomLine = 0;
+          var isSticking = false;
+          var onStickyHeighUnbind;
+          var originalInitialCSS;
+          var originalOffset;
+          var placeholder;
+          var stickyLine;
+          var initialCSS;
+
+          // Optional Classes
+          var stickyClass = $attrs.stickyClass || '';
+          var unstickyClass = $attrs.unstickyClass || '';
+          var bodyClass = $attrs.bodyClass || '';
+          var bottomClass = $attrs.bottomClass || '';
+
+          // Find scrollbar
+          var scrollbar = deriveScrollingViewport ($elem);
+
+          // Define elements
+          var windowElement = angular.element($window);
+          var scrollbarElement = angular.element(scrollbar);
+          var $body = angular.element(document.body);
+
+          // Resize callback
+          var $onResize = $scope.$apply.bind($scope, onResize);
+
+          // Define options
+          var usePlaceholder = ($attrs.usePlaceholder !== 'false');
+          var anchor = $attrs.anchor === 'bottom' ? 'bottom' : 'top';
+          var confine = ($attrs.confine === 'true');
+
+          // flag: can react to recalculating the initial CSS dimensions later
+          // as link executes prematurely. defaults to immediate checking
+          var isStickyLayoutDeferred = $attrs.isStickyLayoutDeferred !== undefined
+            ? ($attrs.isStickyLayoutDeferred === 'true')
+            : false;
+
+          // flag: is sticky content constantly observed for changes.
+          // Should be true if content uses ngBind to show text
+          // that may vary in size over time
+          var isStickyLayoutWatched = $attrs.isStickyLayoutWatched !== undefined
+          ? ($attrs.isStickyLayoutWatched === 'true')
+          : true;
+
+
+          var offset = $attrs.offset
+            ? parseInt ($attrs.offset.replace(/px;?/, ''))
+            : 0;
+
+          /**
+           * Trigger to initialize the sticky
+           * Because of the `timeout()` method for the call of
+           * @type {Boolean}
+           */
+          var shouldInitialize = true;
+
+          /**
+           * Initialize Sticky
+           */
+          function initSticky() {
+
+            if (shouldInitialize) {
+
+              // Listeners
+              scrollbarElement.on('scroll', checkIfShouldStick);
+              windowElement.on('resize', $scope.$apply.bind($scope, onResize));
+
+              memorizeDimensions(); // remember sticky's layout dimensions
+
+              // Setup watcher on digest and change
+              $scope.$watch(onDigest, onChange);
+
+              // Clean up
+              $scope.$on('$destroy', onDestroy);
+              shouldInitialize = false;
+            }
+          };
+
+          /**
+           * need to recall sticky's DOM attributes (make sure layout has occured)
+           */
+          function memorizeDimensions() {
+            // immediate assignment, but there is the potential for wrong values if content not ready
+            initialCSS = $scope.getInitialDimensions();
+
+            // option to calculate the dimensions when layout is 'ready'
+            if (isStickyLayoutDeferred) {
+
+              // logic: when this directive link() runs before the content has had a chance to layout on browser, height could be 0
+              if (!$elem[0].getBoundingClientRect().height) {
+
+                onStickyHeighUnbind = $scope.$watch(
+                    function() {
+                      return $elem.height();
+                    },
+
+                    // state change: sticky content's height set
+                    function onStickyContentLayoutInitialHeightSet(newValue, oldValue) {
+                      if (newValue > 0) {
+                        // now can memorize
+                        initialCSS = $scope.getInitialDimensions();
+
+                        if (!isStickyLayoutWatched) {
+                          // preference was to do just a one-time async watch on the sticky's content; now stop watching
+                          onStickyHeighUnbind();
+                        }
+                      }
+                    }
+               );
+              }
+            }
+          }
+
+          /**
+           * Determine if the element should be sticking or not.
+           */
+          var checkIfShouldStick = function() {
+            if ($scope.disabled === true || mediaQueryMatches()) {
+              if (isSticking) unStickElement();
+              return false;
+            }
+
+            // What's the document client top for?
+            var scrollbarPosition = scrollbarYPos();
+            var shouldStick;
+
+            if (anchor === 'top') {
+              if (confine === true) {
+                shouldStick = scrollbarPosition > stickyLine && scrollbarPosition <= stickyBottomLine;
+              } else {
+                shouldStick = scrollbarPosition > stickyLine;
+              }
+            } else {
+              shouldStick = scrollbarPosition <= stickyLine;
+            }
+
+            // Switch the sticky mode if the element crosses the sticky line
+            // $attrs.stickLimit - when it's equal to true it enables the user
+            // to turn off the sticky function when the elem height is
+            // bigger then the viewport
+            var closestLine = getClosest (scrollbarPosition, stickyLine, stickyBottomLine);
+
+            if (shouldStick && !shouldStickWithLimit ($attrs.stickLimit) && !isSticking) {
+              stickElement (closestLine);
+            } else if (!shouldStick && isSticking) {
+              unStickElement(closestLine, scrollbarPosition);
+            } else if (confine && !shouldStick) {
+              // If we are confined to the parent, refresh, and past the stickyBottomLine
+              // We should 'remember' the original offset and unstick the element which places it at the stickyBottomLine
+              originalOffset = elementsOffsetFromTop ($elem[0]);
+              unStickElement (closestLine, scrollbarPosition);
+            }
+          };
+
+          /**
+           * determine the respective node that handles scrolling, defaulting to browser window
+           */
+          function deriveScrollingViewport(stickyNode) {
+            // derive relevant scrolling by ascending the DOM tree
+            var match =findAncestorTag (scrollableNodeTagName, stickyNode);
+            return (match.length === 1) ? match[0] : $window;
+          }
+
+          /**
+           * since jqLite lacks closest(), this is a pseudo emulator (by tag name)
+           */
+          function findAncestorTag(tag, context) {
+            var m = []; // nodelist container
+            var n = context.parent(); // starting point
+            var p;
+
+            do {
+              var node = n[0]; // break out of jqLite
+              // limit DOM territory
+              if (node.nodeType !== 1) {
+                break;
+              }
+
+              // success
+              if (node.tagName.toUpperCase() === tag.toUpperCase()) {
+                return n;
+              }
+
+              p = n.parent();
+              n = p; // set to parent
+            } while (p.length !== 0);
+
+            return m; // empty set
+          }
+
+          /**
+           * Seems to be undocumented functionality
+           */
+          function shouldStickWithLimit(shouldApplyWithLimit) {
+            return shouldApplyWithLimit === 'true'
+              ? ($window.innerHeight - ($elem[0].offsetHeight + parseInt(offset)) < 0)
+              : false;
+          }
+
+          /**
+           * Finds the closest value from a set of numbers in an array.
+           */
+          function getClosest(scrollTop, stickyLine, stickyBottomLine) {
+            var closest = 'top';
+            var topDistance = Math.abs(scrollTop - stickyLine);
+            var bottomDistance = Math.abs(scrollTop - stickyBottomLine);
+
+            if (topDistance > bottomDistance) {
+              closest = 'bottom';
+            }
+
+            return closest;
+          }
+
+          /**
+           * Unsticks the element
+           */
+          function unStickElement(fromDirection) {
+            $elem.attr('style', initialStyle);
+            isSticking = false;
+
+            $body.removeClass(bodyClass);
+            $elem.removeClass(stickyClass);
+            $elem.addClass(unstickyClass);
+
+            if (fromDirection === 'top') {
+              $elem.removeClass(bottomClass);
+
+              $elem
+                .css('z-index', 10)
+                .css('width', initialCSS.width)
+                .css('top', initialCSS.top)
+                .css('position', initialCSS.position)
+                .css('left', initialCSS.cssLeft)
+                .css('margin-top', initialCSS.marginTop)
+                .css('height', initialCSS.height);
+            } else if (fromDirection === 'bottom' && confine === true) {
+              $elem.addClass(bottomClass);
+
+              // It's possible to page down page and skip the 'stickElement'.
+              // In that case we should create a placeholder so the offsets don't get off.
+              createPlaceholder();
+
+              $elem
+                .css('z-index', 10)
+                .css('width', initialCSS.width)
+                .css('top', '')
+                .css('bottom', 0)
+                .css('position', 'absolute')
+                .css('left', initialCSS.cssLeft)
+                .css('margin-top', initialCSS.marginTop)
+                .css('margin-bottom', initialCSS.marginBottom)
+                .css('height', initialCSS.height);
+            }
+
+            if (placeholder && fromDirection === anchor) {
+              placeholder.remove();
+            }
+          }
+
+          /**
+           * Sticks the element
+           */
+          function stickElement(closestLine) {
+            // Set sticky state
+            isSticking = true;
+            $timeout(function() {
+              initialCSS.offsetWidth = $elem[0].offsetWidth;
+            }, 0);
+            $body.addClass(bodyClass);
+            $elem.removeClass(unstickyClass);
+            $elem.removeClass(bottomClass);
+            $elem.addClass(stickyClass);
+
+            createPlaceholder();
+
+            $elem
+              .css('z-index', '10')
+              .css('width', $elem[0].offsetWidth + 'px')
+              .css('position', 'fixed')
+              .css('left', $elem.css('left').replace('px', '') + 'px')
+              .css(anchor, (offset + elementsOffsetFromTop (scrollbar)) + 'px')
+              .css('margin-top', 0);
+
+            if (anchor === 'bottom') {
+              $elem.css('margin-bottom', 0);
+            }
+          }
+
+          /**
+           * Clean up directive
+           */
+          var onDestroy = function() {
+            scrollbarElement.off('scroll', checkIfShouldStick);
+            windowElement.off('resize', $onResize);
+
+            $onResize = null;
+
+            $body.removeClass(bodyClass);
+
+            if (placeholder) {
+              placeholder.remove();
+            }
+          };
+
+          /**
+           * Updates on resize.
+           */
+          function onResize() {
+            unStickElement (anchor);
+            checkIfShouldStick();
+          }
+
+          /**
+           * Triggered on load / digest cycle
+           * return `0` if the DOM element is hidden
+           */
+          var onDigest = function() {
+            if ($scope.disabled === true) {
+              return unStickElement();
+            }
+            var offsetFromTop = elementsOffsetFromTop ($elem[0]);
+            if (offsetFromTop === 0) {
+              return offsetFromTop;
+            }
+            if (anchor === 'top') {
+              return (originalOffset || offsetFromTop) - elementsOffsetFromTop (scrollbar) + scrollbarYPos();
+            } else {
+              return offsetFromTop - scrollbarHeight() + $elem[0].offsetHeight + scrollbarYPos();
+            }
+          };
+
+          /**
+           * Triggered on change
+           */
+          var onChange = function (newVal, oldVal) {
+
+            /**
+             * Indicate if the DOM element is showed, or not
+             * @type {boolean}
+             */
+            var elemIsShowed = !!newVal;
+
+            /**
+             * Indicate if the DOM element was showed, or not
+             * @type {boolean}
+             */
+            var elemWasHidden = !oldVal;
+            var valChange = (newVal !== oldVal || typeof stickyLine === 'undefined');
+            var notSticking = (!isSticking && !isBottomedOut());
+
+            if (valChange && notSticking && newVal !== 0 && elemIsShowed) {
+              stickyLine = newVal - offset;
+              //Update dimensions of sticky element when is showed
+              if (elemIsShowed && elemWasHidden) {
+                $scope.updateStickyContentUpdateDimensions($elem[0].offsetWidth, $elem[0].offsetHeight);
+              }
+              // IF the sticky is confined, we want to make sure the parent is relatively positioned,
+              // otherwise it won't bottom out properly
+              if (confine) {
+                $elem.parent().css({
+                  'position': 'relative'
+                });
+              }
+
+              // Get Parent height, so we know when to bottom out for confined stickies
+              var parent = $elem.parent()[0];
+
+              // Offset parent height by the elements height, if we're not using a placeholder
+              var parentHeight = parseInt (parent.offsetHeight) - (usePlaceholder ? 0 : $elem[0].offsetHeight);
+
+              // and now lets ensure we adhere to the bottom margins
+              // TODO: make this an attribute? Maybe like ignore-margin?
+              var marginBottom = parseInt ($elem.css('margin-bottom').replace(/px;?/, '')) || 0;
+
+              // specify the bottom out line for the sticky to unstick
+              var elementsDistanceFromTop = elementsOffsetFromTop ($elem[0]);
+              var parentsDistanceFromTop = elementsOffsetFromTop (parent)
+              var scrollbarDistanceFromTop = elementsOffsetFromTop (scrollbar);
+
+              var elementsDistanceFromScrollbarStart = elementsDistanceFromTop - scrollbarDistanceFromTop;
+              var elementsDistanceFromBottom = parentsDistanceFromTop + parentHeight - elementsDistanceFromTop;
+
+              stickyBottomLine = elementsDistanceFromScrollbarStart
+                + elementsDistanceFromBottom
+                - $elem[0].offsetHeight
+                - marginBottom
+                - offset
+                + +scrollbarYPos();
+
+              checkIfShouldStick();
+            }
+          };
+
+          /**
+           * Helper Functions
+           */
+
+          /**
+           * Create a placeholder
+           */
+          function createPlaceholder() {
+            if (usePlaceholder) {
+              // Remove the previous placeholder
+              if (placeholder) {
+                placeholder.remove();
+              }
+
+              placeholder = angular.element('<div>');
+              var elementsHeight = $elem[0].offsetHeight;
+              var computedStyle = $elem[0].currentStyle || window.getComputedStyle($elem[0]);
+              elementsHeight += parseInt(computedStyle.marginTop, 10);
+              elementsHeight += parseInt(computedStyle.marginBottom, 10);
+              elementsHeight += parseInt(computedStyle.borderTopWidth, 10);
+              elementsHeight += parseInt(computedStyle.borderBottomWidth, 10);
+              placeholder.css('height', $elem[0].offsetHeight + 'px');
+
+              $elem.after(placeholder);
+            }
+          }
+
+          /**
+           * Are we bottomed out of the parent element?
+           */
+          function isBottomedOut() {
+            if (confine && scrollbarYPos() > stickyBottomLine) {
+              return true;
+            }
+
+            return false;
+          }
+
+          /**
+           * Fetch top offset of element
+           */
+          function elementsOffsetFromTop(element) {
+            var offset = 0;
+
+            if (element.getBoundingClientRect) {
+              offset = element.getBoundingClientRect().top;
+            }
+
+            return offset;
+          }
+
+          /**
+           * Retrieves top scroll distance
+           */
+          function scrollbarYPos() {
+            var position;
+
+            if (typeof scrollbar.scrollTop !== 'undefined') {
+              position = scrollbar.scrollTop;
+            } else if (typeof scrollbar.pageYOffset !== 'undefined') {
+              position = scrollbar.pageYOffset;
+            } else {
+              position = document.documentElement.scrollTop;
+            }
+
+            return position;
+          }
+
+          /**
+           * Determine scrollbar's height
+           */
+          function scrollbarHeight() {
+            var height;
+
+            if (scrollbarElement[0] instanceof HTMLElement) {
+              // isn't bounding client rect cleaner than insane regex mess?
+              height = $window.getComputedStyle(scrollbarElement[0], null)
+                  .getPropertyValue('height')
+                  .replace(/px;?/, '');
+            } else {
+              height = $window.innerHeight;
+            }
+
+            return parseInt (height) || 0;
+          }
+
+          /**
+           * Checks if the media matches
+           */
+          function mediaQueryMatches() {
+            var mediaQuery = $attrs.mediaQuery || false;
+            var matchMedia = $window.matchMedia;
+
+            return mediaQuery && !(matchMedia ('(' + mediaQuery + ')').matches || matchMedia (mediaQuery).matches);
+          }
+
+          // public accessors for the controller to hitch into. Helps with external API access
+          $scope.getElement = function() { return $elem; };
+          $scope.getScrollbar = function() { return scrollbar; };
+          $scope.getInitialCSS = function() { return initialCSS; };
+          $scope.getAnchor = function() { return anchor; };
+          $scope.isSticking = function() { return isSticking; };
+          $scope.getOriginalInitialCSS = function() { return originalInitialCSS; };
+          // pass through aliases
+          $scope.processUnStickElement = function(anchor) { unStickElement(anchor)};
+          $scope.processCheckIfShouldStick =function() { checkIfShouldStick(); };
+
+          /**
+           * set the dimensions for the defaults of the content block occupied by the sticky element
+           */
+          $scope.getInitialDimensions = function() {
+            return {
+              zIndex: $elem.css('z-index'),
+              top: $elem.css('top'),
+              position: initialPosition, // revert to true initial state
+              marginTop: $elem.css('margin-top'),
+              marginBottom: $elem.css('margin-bottom'),
+              cssLeft: $elem.css('left'),
+              width: $elem[0].offsetWidth,
+              height: $elem.css('height')
+            };
+          };
+
+          /**
+           * only change content box dimensions
+           */
+          $scope.updateStickyContentUpdateDimensions = function(width, height) {
+            if (width && height) {
+              initSticky();
+              initialCSS.width = width + 'px';
+              initialCSS.height = height + 'px';
+            }
+          };
+
+          // ----------- configuration -----------
+
+          $timeout(function() {
+            originalInitialCSS = $scope.getInitialDimensions(); // preserve a copy
+            // Init the directive
+            initSticky();
+          },0);
+        },
+
+        /**
+         * +++++++++ public APIs+++++++++++++
+         */
+        controller: ['$scope', '$window', function($scope, $window) {
+
+          /**
+           * integration method allows for an outside client to reset the pinned state back to unpinned.
+           * Useful for when refreshing the scrollable DIV content completely
+           * if newWidth and newHeight integer values are not supplied then function will make a best guess
+           */
+          this.resetLayout = function(newWidth, newHeight) {
+
+            var scrollbar = $scope.getScrollbar(),
+                initialCSS = $scope.getInitialCSS(),
+                anchor = $scope.getAnchor();
+
+            function _resetScrollPosition() {
+
+              // reset means content is scrolled to anchor position
+              if (anchor === 'top') {
+                // window based scroller
+                if (scrollbar === $window) {
+                  $window.scrollTo(0, 0);
+                  // DIV based sticky scroller
+                } else {
+                  if (scrollbar.scrollTop > 0) {
+                    scrollbar.scrollTop = 0;
+                  }
+                }
+              }
+              // todo: need bottom use case
+            }
+
+            // only if pinned, force unpinning, otherwise height is inadvertently reset to 0
+            if ($scope.isSticking()) {
+              $scope.processUnStickElement (anchor);
+              $scope.processCheckIfShouldStick();
+            }
+            // remove layout-affecting attribures that were modified by this sticky
+            $scope.getElement().css({ 'width': '', 'height': '', 'position': '', 'top': '', zIndex: '' });
+            // model resets
+            initialCSS.position = $scope.getOriginalInitialCSS().position; // revert to original state
+            delete initialCSS.offsetWidth; // stickElement affected
+
+            // use this directive element's as default, if no measurements passed in
+            if (newWidth === undefined && newHeight === undefined) {
+              var e_bcr = $scope.getElement()[0].getBoundingClientRect();
+              newWidth = e_bcr.width;
+              newHeight = e_bcr.height;
+            }
+
+            // update model with new dimensions (if supplied from client's own measurement)
+            $scope.updateStickyContentUpdateDimensions(newWidth, newHeight); // update layout dimensions only
+
+            _resetScrollPosition();
+          };
+
+          /**
+           * return a reference to the scrolling element (window or DIV with overflow)
+           */
+          this.getScrollbar = function() {
+            return $scope.getScrollbar();
+          };
+        }]
+      };
+    }]
+ );
+
+  // Shiv: matchMedia
+  window.matchMedia = window.matchMedia || (function() {
+      var warning = 'angular-sticky: This browser does not support ' +
+        'matchMedia, therefore the minWidth option will not work on ' +
+        'this browser. Polyfill matchMedia to fix this issue.';
+
+      if (window.console && console.warn) {
+        console.warn(warning);
+      }
+
+      return function() {
+        return {
+          matches: true
+        };
+      };
+    }());
+}());

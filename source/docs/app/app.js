@@ -10,7 +10,8 @@
         'ngSanitize',
         'ui.select',
         'xeditable',
-        'ngAside'
+        'ngAside',
+        'sticky'
     ]);
     
 })(angular);

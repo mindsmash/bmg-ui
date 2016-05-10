@@ -36,6 +36,8 @@ $bmg-nav-round-icon-size: 1.8em;
   background-color: $bmg-navbar;
   padding: 0;
 
+  border-bottom: 0;
+
   .navbar-header {
     line-height: $bmg-nav-height;
     height: $bmg-nav-height;
@@ -203,7 +205,7 @@ $bmg-nav-round-icon-size: 1.8em;
           text-overflow: ellipsis;
           overflow: hidden;
           color: #999;
-          -webkit-transition: color, 0.2s;
+          @include transition(color .2s);
           padding-top: 12px;
           padding-bottom: 10px;
 
@@ -264,18 +266,6 @@ $bmg-nav-round-icon-size: 1.8em;
         }
       }
     }
-  }
-}
-
-.sidebar {
-  background-color: #f3f3f3;
-  padding-right: 0;
-  min-width: 300px;
-  max-width: 380px;
-
-  @media #{screen} and (max-width: $screen-lg) {
-    min-width: 110px;
-    max-width: 110px;
   }
 }
 
@@ -376,6 +366,18 @@ $bmg-nav-round-icon-size: 1.8em;
 .row-with-sidebar {
   display: flex;
   margin: 0;
+}
+
+.sidebar {
+  background-color: #f3f3f3;
+  padding-right: 0;
+  min-width: 300px;
+  max-width: 380px;
+
+  @media #{screen} and (max-width: $screen-lg) {
+    min-width: 110px;
+    max-width: 110px;
+  }
 }
 
 .sidebar,
