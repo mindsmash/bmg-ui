@@ -1,0 +1,174 @@
+.panel {
+  border: 0;
+  box-shadow: none;
+}
+
+.panel-first {
+  &:first-child {
+    margin-top: 22px;
+  }
+}
+
+.panel .panel-actions {
+  border-top: 1px solid $bmg-gray-lighter;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.panel .panel-title {
+  font-size: $font-size-h3;
+  line-height: floor($font-size-h3 * $headings-line-height);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  small {
+    color: $bmg-gray;
+    font-size: percentage(2/3);
+    margin-left: .5em;
+  }
+}
+
+.panel .panel-footer {
+  border-top: 1px solid $bmg-gray-lighter;
+  margin: 0 30px 0;
+}
+
+.panel-heading {
+  width: 100% !important; // important to override the sticky directive settings
+  background-color: $bmg-white;
+
+  &.sticky {
+    // override the sticky directive settings
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .btn {
+    margin: 5px 0 5px 8px;
+  }
+}
+
+.panel-body-fluid {
+  .sidebar {
+    padding-left: 0;
+  }
+}
+
+@include xs {
+  .panel {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    margin-bottom: 12px;
+    &:first-child {
+      margin-top: 12px;
+    }
+
+    .panel-heading {
+      margin: $panel-xs-heading-margin;
+      padding: $panel-heading-padding;
+
+      .btn {
+        line-height: 18px;
+      }
+    }
+
+    .panel-body {
+      padding: $panel-xs-body-padding;
+    }
+
+    .panel-footer {
+      margin: $panel-xs-footer-margin;
+      padding: $panel-xs-footer-padding;
+    }
+
+    .panel-actions {
+      padding-top: 24px;
+      padding-bottom: 24px;
+
+      .btn {
+        display: block;
+        width: 100%;
+
+        &:first-child {
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+}
+
+@include sm-and-up {
+  .panel {
+    .panel-heading {
+      margin: 0;
+
+      .close {
+        line-height: floor($font-size-h2 * $headings-line-height);
+      }
+    }
+
+    .panel-title {
+      font-size: $font-size-h1;
+      line-height: floor($font-size-h2 * $headings-line-height);
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .panel-sm {
+    .panel-heading {
+      margin: $panel-sm-heading-margin;
+    }
+
+    .panel-title {
+      font-size: $font-size-h3;
+      line-height: floor($font-size-h3 * $headings-line-height);
+    }
+
+    .panel-body {
+      padding: $panel-sm-body-padding;
+    }
+
+    .panel-footer {
+      margin: $panel-sm-footer-margin;
+      padding: $panel-sm-footer-padding;
+    }
+  }
+
+  .panel-xs {
+    .panel-heading {
+      margin: $panel-xs-heading-margin;
+    }
+
+    .panel-title {
+      font-size: $font-size-h4;
+      line-height: floor($font-size-h4 * $headings-line-height);
+
+      small {
+        font-size: percentage(14/18);
+      }
+    }
+
+    .panel-body {
+      padding: $panel-xs-body-padding;
+    }
+
+    .panel-footer {
+      margin: $panel-xs-footer-margin;
+      padding: $panel-xs-footer-padding;
+    }
+  }
+}

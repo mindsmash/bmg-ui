@@ -1,0 +1,65 @@
+{
+  "name": "bmg-ui",
+  "description": "A bmg ui kit by mindsmash",
+  "main": [
+    "dist/bmg-ui.js",
+    "dist/stylesheets/_variables.scss",
+    "dist/stylesheets/bmg-ui.scss"
+  ],
+  "authors": [
+    "Jeremias Erbs, mindsmash GmbH, <jerry.erbs@mindsmash.com>",
+    "Stephan Baune, mindsmash GmbH, <stephan.baune@mindsmash.com>",
+    "Sascha Zuske, mindsmash GmbH, <sascha.zuske@mindsmash.com>",
+    "Tim Meißner, mindsmash GmbH, <tim.meissner@mindsmash.com>"
+  ],
+  "homepage": "https://github.com/mindsmash/bmg-ui#readme",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.6.1",
+    "mindsmash-source-sans-pro": "~1.1.0"
+  },
+  "devDependencies": {
+    "jquery": "^2.2.2",
+    "angular": "~1.5.3",
+    "angular-bootstrap": "~1.3.2",
+    "angular-toastr": "~1.7.0",
+    "angularjs-slider": "^2.10.4",
+    "ui-select": "angular-ui-select#^0.16.1",
+    "angular-sanitize": "^1.5.3",
+    "angular-ui-router": "^0.2.18",
+    "angular-xeditable": "0.1.8",
+    "angular-aside": "^1.3.2",
+    "highlightjs": "~9.2.0",
+    "holderjs": "~2.9.0",
+    "jquery.floatThead": "floatThead#^1.4.0",
+    "ngSticky": "^1.8.10"
+  },
+  "overrides": {
+    "highlightjs": {
+      "main": [
+        "highlight.pack.js",
+        "styles/color-brewer.css",
+        "styles/github.css"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.svg"
+      ]
+    }
+  },
+  "resolutions": {
+    "angular": ">=1.4.0"
+  }
+}

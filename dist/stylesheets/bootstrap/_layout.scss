@@ -1,0 +1,279 @@
+body {
+  padding-top: $bmg-nav-height + 25px;
+  background-color: #f3f3f3;
+  min-width: $screen-sm;
+}
+
+.body-header {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: block;
+  width: 100% !important; // important to override the sticky directive settings
+  background-color: #fff;
+
+  &.sticky {
+    // override the sticky directive settings
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .row {
+    display: flex;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.container {
+  width: 100%;
+  margin: 0;
+  padding: 0 40px;
+}
+
+.container-fluid {
+  width: 100%;
+  margin: 0;
+  padding: 0 40px;
+}
+
+.number-circle {
+  display: inline-block;
+  color: $bmg-gray-dark;
+  background: #fff;
+  height: 29px;
+  width: 29px;
+  line-height: 28px;
+  margin-right: 8px;
+  border: 1px solid $bmg-gray-dark;
+  border-radius: 50%;
+}
+
+.color-default {
+  color: $bmg-gray-dark;
+}
+
+.color-primary {
+  color: $bmg-primary;
+}
+
+.color-secondary {
+  color: $bmg-secondary;
+}
+
+.color-success {
+  color: $bmg-success;
+}
+
+.color-info {
+  color: $bmg-info;
+}
+
+.color-warning {
+  color: $bmg-warning;
+}
+
+.color-error {
+  color: $bmg-error;
+}
+
+.has-success {
+  > .help-block {
+    color: $bmg-success;
+  }
+}
+
+.has-warning {
+  > .help-block {
+    color: $bmg-warning;
+  }
+}
+
+.has-error {
+  > .help-block {
+    color: $bmg-error;
+  }
+}
+
+.meta-info-time {
+  width: inherit;
+  color: $bmg-gray-dark;
+  text-align: right;
+}
+
+:target:before {
+  content: "";
+  display: block;
+  height: 120px;
+  margin: -120px 0 0;
+}
+
+.vertical-center {
+  > div {
+    vertical-align: middle;
+    margin: auto 0;
+    > h1, h2, h3, h4, h5, h6 {
+      position: relative;
+      top: 4px;
+    }
+  }
+}
+
+.button-with-headline {
+  h5 {
+    margin-left: 45px;
+    line-height: 24px;
+  }
+}
+
+.scale-1 {
+  transform: scale(0.1, 0.1);
+}
+
+.scale-2 {
+  transform: scale(0.2, 0.2);
+}
+
+.scale-3 {
+  transform: scale(0.3, 0.3);
+}
+
+.scale-4 {
+  transform: scale(0.4, 0.4);
+}
+
+.scale-5 {
+  transform: scale(0.5, 0.5);
+}
+
+.scale-6 {
+  transform: scale(0.6, 0.6);
+}
+
+.scale-7 {
+  transform: scale(0.7, 0.7);
+}
+
+.scale-8 {
+  transform: scale(0.8, 0.8);
+}
+
+.scale-9 {
+  transform: scale(0.9, 0.9);
+}
+
+.app-aside-left .modal-dialog {
+  margin-top: $bmg-nav-height !important;
+
+  .modal-content {
+    padding: 14px 40px;
+    width: 378px;
+
+    .app-nav {
+      h3 {
+        font-weight: 300;
+      }
+      ul {
+        padding-left: 0;
+
+        li {
+          list-style: none;
+          margin: 24px 0;
+          border: 1px solid transparent;
+          > a {
+            width: 100%;
+            display: block;
+            color: $bmg-text;
+          }
+
+          &:hover {
+            border: 1px solid $bmg-malibu;
+            border-radius: 24px;
+
+            > a {
+              color: $bmg-text;
+              .app-icon {
+                background-color: $bmg-malibu;
+                @include transition(background-color .2s);
+                color: $bmg-white;
+              }
+            }
+          }
+
+          &.active {
+            > a {
+              .app-icon {
+                background-color: $bmg-malibu;
+                color: $bmg-white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.app-aside-right .modal-dialog {
+  margin-top: $bmg-nav-height !important;
+
+  .modal-content {
+    padding: 14px 40px;
+    width: 378px;
+    position: absolute;
+    right: 0;
+
+    .aside-content {
+      margin-top: 24px;
+    }
+  }
+}
+
+.app-aside-right.table-aside .modal-dialog {
+  margin-top: $bmg-nav-height + 25px !important;
+}
+
+.ng-aside.horizontal .modal-dialog {
+  height: auto;
+  bottom: 0;
+
+  h3 > button {
+    position: relative;
+    top: 1px;
+  }
+}
+
+.app-icon {
+  width: 46px;
+  height: 46px;
+  line-height: 42px;
+  font-size: 18px;
+  font-weight: 200;
+  color: $bmg-malibu;
+  display: inline-block;
+  margin-right: 12px;
+  border: 1px solid $bmg-malibu;
+  border-radius: 50%;
+  text-align: center;
+  background-color: $bmg-white;
+}
+
+footer {
+  background-color: #F3F3F3;
+  padding: 5px 40px;
+  font-size: 10px;
+  color: $bmg-text;
+  text-align: right;
+  min-width: $screen-sm;
+  -webkit-box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
+  -moz-box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
+  box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
+}

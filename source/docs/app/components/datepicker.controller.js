@@ -1,0 +1,45 @@
+(function(angular) {
+    'use strict';
+
+    angular.module('bmg-ui.docs')
+        .controller('DatepickerController', DatepickerController);
+
+    DatepickerController.$inject = [];
+
+    function DatepickerController() {
+        this.today = function() {
+            this.dt = new Date();
+        };
+        this.today();
+
+        this.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yy',
+            startingDay: 1,
+            showWeeks: false
+        };
+
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+
+        this.open = function() {
+            this.popup.opened = true;
+        };
+
+        this.setDate = function(year, month, day) {
+            this.dt = new Date(year, month, day);
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[0];
+
+        this.popup = {
+            opened: false
+        };
+    }
+
+})(angular);

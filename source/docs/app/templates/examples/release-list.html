@@ -1,0 +1,141 @@
+<div class="body-header">
+    <div class="container">
+        <div class="row vertical-center">
+            <div class="col-lg-6">
+                <h1>Products</h1>
+            </div>
+            <div class="col-lg-6">
+                <div class="pull-right" data-ng-controller="TableController as tableCtrl">
+                    <button type="button" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-secondary btn-fa" ng-click="tableCtrl.openFilterColAside('right', false)"><i class="fa fa-list"></i></button>
+                    <button type="button" class="btn btn-secondary btn-fa"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn btn-secondary btn-fa"><i class="fa fa-file-pdf-o"></i></button>
+                    <button type="button" class="btn btn-secondary btn-fa" ng-click="tableCtrl.openFilterAside('right', false)"><i class="fa fa-filter"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel" data-ng-controller="TableController as tableCtrl">
+    <div class="table-responsive">
+        <table id="table1" class="table table-hover">
+            <thead>
+            <tr>
+                <th ng-show="tableCtrl.filterCol.status">
+                    Status
+                    <a ng-click="tableCtrl.sortType = 'status'">
+                        <i ng-if="!tableCtrl.sort('status')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('status')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.song">
+                    Song
+                    <a ng-click="tableCtrl.sortType = 'song'">
+                        <i ng-if="!tableCtrl.sort('song')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('song')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.statusKey">
+                    Status Key
+                    <a ng-click="tableCtrl.sortType = 'statusKey'">
+                        <i ng-if="!tableCtrl.sort('statusKey')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('statusKey')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.artist">
+                    Artist
+                    <a ng-click="tableCtrl.sortType = 'artist'">
+                        <i ng-if="!tableCtrl.sort('artist')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('artist')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.title">
+                    Title
+                    <a ng-click="tableCtrl.sortType = 'title'">
+                        <i ng-if="!tableCtrl.sort('title')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('title')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.versionTitle">
+                    Version Title
+                    <a ng-click="tableCtrl.sortType = 'versionTitle'">
+                        <i ng-if="!tableCtrl.sort('versionTitle')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('versionTitle')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.publisher">
+                    Publisher
+                    <a ng-click="tableCtrl.sortType = 'publisher'">
+                        <i ng-if="!tableCtrl.sort('publisher')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('publisher')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.format">
+                    Format
+                    <a ng-click="tableCtrl.sortType = 'format'">
+                        <i ng-if="!tableCtrl.sort('format')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('format')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+                <th ng-show="tableCtrl.filterCol.releaseDate">
+                    Release Date
+                    <a ng-click="tableCtrl.sortType = 'releaseDate'">
+                        <i ng-if="!tableCtrl.sort('releaseDate')" class="fa fa-sort"></i>
+                        <i ng-if="tableCtrl.sort('releaseDate')" ng-click="tableCtrl.tSortDir()"
+                           class="fa" ng-class="tableCtrl.sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></i>
+                    </a>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="content in tableCtrl.bigData | orderBy:tableCtrl.sortType:tableCtrl.sortReverse">
+                <td ng-show="tableCtrl.filterCol.status">
+                    <span ng-if="content.status">
+                        <span class="fa-stack fa-lg scale-6">
+                            <i class="fa fa-circle-thin fa-stack-2x color-success"></i>
+                            <i class="fa fa-check fa-stack-1x color-success"></i>
+                        </span>
+                    </span>
+                    <span ng-if="!content.status">
+                        <span class="fa-stack fa-lg scale-6">
+                            <i class="fa fa-circle-thin fa-stack-2x color-error"></i>
+                            <i class="fa fa-exclamation fa-stack-1x color-error"></i>
+                        </span>
+                    </span>
+                </td>
+                <td ng-show="tableCtrl.filterCol.song">{{content.song}}</td>
+                <td ng-show="tableCtrl.filterCol.statusKey">{{content.statusKey}}</td>
+                <td ng-show="tableCtrl.filterCol.artist">{{content.artist}}</td>
+                <td ng-show="tableCtrl.filterCol.title">{{content.title}}</td>
+                <td ng-show="tableCtrl.filterCol.versionTitle">{{content.versionTitle}}</td>
+                <td ng-show="tableCtrl.filterCol.publisher">{{content.publisher}}</td>
+                <td ng-show="tableCtrl.filterCol.format">{{content.format}}</td>
+                <td ng-show="tableCtrl.filterCol.releaseDate">{{content.releaseDate}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    jQuery(document).ready(function() {
+        var $table = $('table#table1');
+        $table.floatThead({
+            top: function($table) {
+                return $table.top = 75;
+            },
+            responsiveContainer: function($table){
+                return $table.closest('.table-responsive');
+            }
+        });
+    });
+</script>

@@ -1,0 +1,26 @@
+.form-group,
+.input-group {
+  label {
+    color: $bmg-gray-dark;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+}
+
+.label {
+  display: inline-block;
+  line-height: $line-height-base;
+  padding: $padding-xs-vertical + 1 $padding-xs-horizontal;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.label.label-muted {
+  background-color: $bmg-gray-lighter;
+  color: $bmg-gray;
+}
+
+a.label.label-muted:hover {
+  color: $bmg-gray;
+}

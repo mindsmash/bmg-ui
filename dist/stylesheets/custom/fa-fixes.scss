@@ -1,0 +1,21 @@
+// fontawesome icon adjustment
+.btn {
+  > i.fa {
+
+    &.fa-chevron-right {
+      position: relative;
+      right: -1px;
+    }
+
+    &.fa-chevron-left {
+      position: relative;
+      left: -1px;
+    }
+
+    &.fa-remove {
+      position: relative;
+      top: -0.8px;
+      right: -0.5px;
+    }
+  }
+}
