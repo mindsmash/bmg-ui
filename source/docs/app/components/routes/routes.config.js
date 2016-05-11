@@ -79,6 +79,9 @@
             .state('index.filter', {
                 url: "#filter"
             })
+            .state('index.sticky', {
+                url: "#sticky"
+            })
     }
 
 })(angular);

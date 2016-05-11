@@ -313,10 +313,7 @@
                 <div class="col-lg-3">
                     <button type="button" class="btn btn-secondary">Secondary</button>
                 </div>
-                <div class="col-lg-3">
-                    <button type="button" class="btn btn-default">Default</button>
-                </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-lg-offset-3">
                     <button type="button" class="btn btn-success disabled" disabled>Disabled</button>
                 </div>
             </div>
@@ -343,20 +340,14 @@
                 </div>
             </div>
             <div class="row" style="margin-top: 10px;">
-                <div class="col-lg-4">
-                    <button type="button" class="btn btn-default"><i class="fa fa-star-o"></i> Text</button>
-                    <br>
-                    <br>
-                    <pre><code class="html">&lt;button type="button" class="btn btn-default"&gt;&lt;i class="fa fa-star-o"&gt;&lt;/i&gt; Text&lt;/button&gt;</code></pre>
-                </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <button type="button" class="btn btn-primary btn-fa"><i class="fa fa-star-o"></i></button>
                     <button type="button" class="btn btn-secondary btn-fa"><i class="fa fa-star"></i></button>
                     <br>
                     <br>
                     <pre><code class="html">&lt;button type="button" class="btn btn-primary btn-fa"&gt;&lt;i class="fa fa-star-o"&gt;&lt;/i&gt;&lt;/button&gt;</code></pre>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <button type="button" class="btn btn-primary-invers btn-circle"><i class="fa fa-chevron-right"></i>
                     </button>
                     <button type="button" class="btn btn-primary btn-circle"><i class="fa fa-check"></i></button>
@@ -1030,57 +1021,62 @@
                         </table>
                         </div>
                         <br>
-                        <pre><code class="html" ng-non-bindable>&lt;table class="table table-hover table-fluid"&gt; &lt;!-- use css class "table-condensed" for small size table --&gt;
-&lt;thead&gt;
-    &lt;tr&gt;
-        &lt;th class="shrink"&gt;
-            &lt;div class="bmg-checkbox"&gt;
-                &lt;input type="checkbox" id="checkAll"/&gt;
-                &lt;label for="checkAll"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
-            &lt;/div&gt;
-        &lt;/th&gt;
-        &lt;th&gt;Header A &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
-        &lt;th&gt;Header B &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
-        &lt;th&gt;Header C &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
-        &lt;th class="shrink"&gt;
-            &lt;div class="pull-right"&gt;
-                &lt;button type="button" class="btn btn-secondary btn-fa"&gt;
-                    &lt;i class="fa fa-columns"&gt;&lt;/i&gt;
-                &lt;/button&gt;
-                &lt;button type="button" class="btn btn-secondary btn-fa"&gt;
-                    &lt;i class="fa fa-filter"&gt;&lt;/i&gt;
-                &lt;/button&gt;
-            &lt;/div&gt;
-        &lt;/th&gt;
-    &lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-    &lt;tr ng-repeat="content in data"&gt;
-        &lt;td&gt;
-            &lt;div class="bmg-checkbox"&gt;
-                &lt;input type="checkbox" id="row-&#123;&#123;$index&#125;&#125;"/&gt;
-                &lt;label for="row-&#123;&#123;$index&#125;&#125;"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
-            &lt;/div&gt;
-        &lt;/td&gt;
-        &lt;td&gt;&#123;&#123; content.a &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
-        &lt;td&gt;&#123;&#123; content.b &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
-        &lt;td&gt;&#123;&#123; content.c &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
-        &lt;td&gt;
-            &lt;div class="pull-right"&gt;
-                &lt;button type="button" class="btn btn-primary btn-fa"&gt;
-                    &lt;i class="fa fa-pencil"&gt;&lt;/i&gt;
-                &lt;/button&gt;
-            &lt;/div&gt;
-        &lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
+                        <pre><code class="html" ng-non-bindable>&lt;div class="table-id-responsive"&gt;
+    &lt;table class="table table-hover table-fluid"&gt; &lt;!-- use css class "table-condensed" for small size table --&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th class="shrink"&gt;
+                &lt;div class="bmg-checkbox"&gt;
+                    &lt;input type="checkbox" id="checkAll"/&gt;
+                    &lt;label for="checkAll"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/th&gt;
+            &lt;th&gt;Header A &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
+            &lt;th&gt;Header B &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
+            &lt;th&gt;Header C &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
+            &lt;th class="shrink"&gt;
+                &lt;div class="pull-right"&gt;
+                    &lt;button type="button" class="btn btn-secondary btn-fa"&gt;
+                        &lt;i class="fa fa-columns"&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                    &lt;button type="button" class="btn btn-secondary btn-fa"&gt;
+                        &lt;i class="fa fa-filter"&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr ng-repeat="content in data"&gt;
+            &lt;td&gt;
+                &lt;div class="bmg-checkbox"&gt;
+                    &lt;input type="checkbox" id="row-&#123;&#123;$index&#125;&#125;"/&gt;
+                    &lt;label for="row-&#123;&#123;$index&#125;&#125;"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+            &lt;td&gt;&#123;&#123; content.a &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
+            &lt;td&gt;&#123;&#123; content.b &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
+            &lt;td&gt;&#123;&#123; content.c &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
+            &lt;td&gt;
+                &lt;div class="pull-right"&gt;
+                    &lt;button type="button" class="btn btn-primary btn-fa"&gt;
+                        &lt;i class="fa fa-pencil"&gt;&lt;/i&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;</code></pre>
                     </div>
                     <hr>
                     For fixed table header:
                     <pre><code class="JavaScript">&#36;('table#table-id').floatThead({
-    scrollingTop: function(&#36;table) {
+    top: function(&#36;table) {
         return &#36;table.top = 75;
+    },
+    responsiveContainer: function($table){
+        return $table.closest('.table-id-responsive');
     }
 });</code></pre>
                     <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="http://mkoryak.github.io/floatThead/">floatThead</a></div>
@@ -1226,6 +1222,25 @@
     &lt;i class="fa fa-plus-circle color-info"&gt;&lt;/i&gt; Filter text
     &lt;button type="button" class="close"&gt;&lt;span&gt;&#38;times;&lt;/span&gt;&lt;/button&gt;
 &lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sticky -->
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1 id="sticky">Sticky header</h1>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>For a sticky panel-header or body-header add the "sticky"-directive.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <pre><code class="html">&lt;div class="panel-heading" sticky offset="75" sticky-class="sticky"&gt;&lt;/div&gt;</code></pre>
+                    <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://github.com/d-oliveros/ngSticky">ngSticky</a></div>
                 </div>
             </div>
         </div>

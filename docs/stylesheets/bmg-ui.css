@@ -3111,7 +3111,7 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 
 .body-header { padding-top: 30px; padding-bottom: 30px; display: block; width: 100% !important; background-color: #fff; }
 
-.body-header.sticky { padding-top: 0 !important; padding-bottom: 0 !important; height: auto !important; width: 100% !important; }
+.body-header.sticky { padding-top: 0 !important; padding-bottom: 0 !important; height: auto !important; width: 100% !important; border-bottom: 1px solid #ddd; }
 
 .body-header h1, .body-header h2, .body-header h3, .body-header h4, .body-header h5, .body-header h6 { margin-top: 0; padding-top: 0; }
 
@@ -3493,7 +3493,7 @@ dl dd { margin-bottom: 12px; }
 
 .panel-heading { width: 100% !important; background-color: #ffffff; }
 
-.panel-heading.sticky { padding-top: 0 !important; padding-bottom: 0 !important; height: auto !important; width: 100% !important; }
+.panel-heading.sticky { padding-top: 0 !important; padding-bottom: 0 !important; height: auto !important; width: 100% !important; border-bottom: 1px solid #ddd; }
 
 .panel-heading h1, .panel-heading h2, .panel-heading h3, .panel-heading h4, .panel-heading h5, .panel-heading h6 { margin-top: 0; padding-top: 0; }
 
