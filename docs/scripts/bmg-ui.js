@@ -1,6 +1,6 @@
-angular.module('bmg.components.util', []);
-
 angular.module('bmg.components.ui', []);
+
+angular.module('bmg.components.util', []);
 
 (function (angular) {
     angular.module("uib/template/datepicker/datepicker.html", []).run(["$templateCache", function($templateCache) {

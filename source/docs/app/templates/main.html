@@ -1070,15 +1070,21 @@
 &lt;/div&gt;</code></pre>
                     </div>
                     <hr>
-                    For fixed table header:
-                    <pre><code class="JavaScript">&#36;('table#table-id').floatThead({
-    top: function(&#36;table) {
-        return &#36;table.top = 75;
-    },
-    responsiveContainer: function($table){
-        return $table.closest('.table-id-responsive');
-    }
-});</code></pre>
+                    Add this to your html file(s) for a fixed table header:
+                    <pre><code class="html">&lt;!-- Add this meta tag into your header to placate IE --&gt;
+&lt;meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" /&gt;</code></pre>
+                    <pre><code class="JavaScript">&lt;script&gt;
+jQuery(document).ready(function() {
+    &#36;('table#table-id').floatThead({
+        top: function(&#36;table) {
+            return &#36;table.top = 75;
+        },
+        responsiveContainer: function($table){
+            return $table.closest('.table-id-responsive');
+        }
+    });
+});
+&lt;/script&gt;</code></pre>
                     <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="http://mkoryak.github.io/floatThead/">floatThead</a></div>
                 </div>
             </div>
