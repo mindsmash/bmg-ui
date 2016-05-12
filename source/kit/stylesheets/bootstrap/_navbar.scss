@@ -379,7 +379,6 @@ $bmg-nav-round-icon-size: 1.8em;
 }
 
 .sidebar {
-  position: fixed;
   background-color: #f3f3f3;
   padding-right: 0;
 
@@ -397,8 +396,6 @@ $bmg-nav-round-icon-size: 1.8em;
 }
 
 .sidebar-content {
-  overflow: auto;
-  margin-left: 16.66666667%;
   background-color: $bmg-white;
   border-left: 1px solid $bmg-btn-border;
   padding: 30px 45px 30px 50px;
