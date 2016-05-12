@@ -274,7 +274,5 @@ footer {
   color: $bmg-text;
   text-align: right;
   min-width: $screen-sm;
-  -webkit-box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
-  -moz-box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
-  box-shadow: 0px -2px 4px 0px rgba(224,224,224,1);
+  border-top: 1px solid $bmg-btn-border;
 }
