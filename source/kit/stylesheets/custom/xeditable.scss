@@ -28,6 +28,12 @@ a.editable-click.editable-empty {
 .editable-controls.form-group {
   position: relative;
   top: -1px;
+
+  @media screen and (max-width: $screen-sm) {
+    .editable-buttons {
+      line-height: 28px;
+    }
+  }
 }
 
 a.editable-click {

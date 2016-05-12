@@ -93,6 +93,8 @@ a.editable-click.editable-empty { min-width: 100%; min-height: 30px; display: bl
 
 .editable-controls.form-group { position: relative; top: -1px; }
 
+@media screen and (max-width: 768px) { .editable-controls.form-group .editable-buttons { line-height: 28px; } }
+
 a.editable-click { text-decoration: none; color: #4c4c4c; font-size: 15px; font-weight: bold; line-height: 28px; position: relative; display: block; margin-left: -15px; margin-right: 60px; padding: 0px 16px; min-height: 30px; max-height: 30px; border: 1px solid transparent; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; }
 
 a.editable-click:hover { border: 1px solid #ddd; border-radius: 4px; color: #4c4c4c; }
@@ -3073,7 +3075,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .nav.nav-sidebar > li:last-child > a { border-bottom: 1px solid #ddd; }
 
-.nav.nav-sidebar > li > a { font-size: 16px; font-weight: 300; color: #4c4c4c; background-color: #f3f3f3; height: 80px; padding: 20px; padding-left: 32px; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; }
+.nav.nav-sidebar > li > a { font-size: 16px; font-weight: 300; color: #4c4c4c; background-color: #f3f3f3; height: 80px; padding: 20px; padding-left: 32px; border-bottom: 1px solid #ddd; border-right: 1px solid #ddd; z-index: 1; }
 
 .nav.nav-sidebar > li > a:hover { background-color: #e3e3e3; }
 
@@ -3097,15 +3099,19 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .nav.nav-sidebar span.fa-stack { position: relative; top: -2px; transform: scale(0.7, 0.7); }
 
-.row-with-sidebar { display: flex; margin: 0; }
+.row-with-sidebar { margin: 0; background-color: #f3f3f3; position: relative; top: 0; bottom: 0; right: 0; left: 0; }
 
-.sidebar { background-color: #f3f3f3; padding-right: 0; min-width: 300px; max-width: 380px; }
+.sidebar, .sidebar-content { border-top: 1px solid #ddd; }
 
-@media screen and (max-width: 1200px) { .sidebar { min-width: 110px; max-width: 110px; } }
+.sidebar { position: fixed; background-color: #f3f3f3; padding-right: 0; }
 
-.sidebar, .sidebar-content { flex-grow: 1; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+.sidebar .nav.nav-sidebar > li > a { border-right: 0; }
 
-.sidebar-content { padding: 30px 45px 30px 50px; }
+@media screen and (max-width: 1200px) { .sidebar { float: left; min-width: 110px; max-width: 110px; } }
+
+.sidebar-content { overflow: auto; margin-left: 16.66666667%; background-color: #ffffff; border-left: 1px solid #ddd; padding: 30px 45px 30px 50px; z-index: 0; }
+
+@media screen and (max-width: 1200px) { .sidebar-content { display: -webkit-box; margin-left: 110px; } }
 
 body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 
@@ -3207,7 +3213,7 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 
 .app-icon { width: 46px; height: 46px; line-height: 42px; font-size: 18px; font-weight: 200; color: #51d0ff; display: inline-block; margin-right: 12px; border: 1px solid #51d0ff; border-radius: 50%; text-align: center; background-color: #ffffff; }
 
-footer { background-color: #F3F3F3; padding: 5px 40px; font-size: 10px; color: #4c4c4c; text-align: right; min-width: 768px; -webkit-box-shadow: 0px -2px 4px 0px #e0e0e0; -moz-box-shadow: 0px -2px 4px 0px #e0e0e0; box-shadow: 0px -2px 4px 0px #e0e0e0; }
+footer { background-color: #F3F3F3; padding: 5px 40px; font-size: 10px; color: #4c4c4c; text-align: right; min-width: 768px; border-top: 1px solid #ddd; }
 
 .form-group label, .input-group label { color: #999; font-size: 14px; font-weight: 500; text-transform: uppercase; }
 
