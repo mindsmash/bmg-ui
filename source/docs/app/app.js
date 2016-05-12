@@ -2,8 +2,9 @@
     'use strict';
 
     angular.module('bmg-ui.docs', [
-        'ui.router',
         'bmg.components.ui',
+        'bmg.components.util',
+        'ui.router',
         'ui.bootstrap',
         'toastr',
         'rzModule',
