@@ -38,6 +38,12 @@
   width: 100% !important; // important to override the sticky directive settings
   background-color: $bmg-white;
 
+  &.panel-heading-line {
+    > h1, h2, h3, h4, h5, h6 {
+      border-bottom: 1px solid rgba(76, 76, 76, 0.15);
+    }
+  }
+
   &.sticky {
     // override the sticky directive settings
     padding-top: 0 !important;

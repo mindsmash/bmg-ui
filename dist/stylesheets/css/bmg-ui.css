@@ -2472,7 +2472,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 .panel-body:after { clear: both; }
 
-.panel-heading { padding: 30px 40px; border-bottom: 1px solid transparent; border-top-right-radius: 2px; border-top-left-radius: 2px; }
+.panel-heading { padding: 20px 30px; border-bottom: 1px solid transparent; border-top-right-radius: 2px; border-top-left-radius: 2px; }
 
 .panel-heading > .dropdown .dropdown-toggle { color: inherit; }
 
@@ -3547,6 +3547,8 @@ dl dd { margin-bottom: 12px; }
 
 .panel-heading { width: 100% !important; background-color: #ffffff; }
 
+.panel-heading.panel-heading-line > h1, .panel-heading.panel-heading-line h2, .panel-heading.panel-heading-line h3, .panel-heading.panel-heading-line h4, .panel-heading.panel-heading-line h5, .panel-heading.panel-heading-line h6 { border-bottom: 1px solid rgba(76, 76, 76, 0.15); }
+
 .panel-heading.sticky { padding-top: 0 !important; padding-bottom: 0 !important; height: auto !important; width: 100% !important; border-bottom: 1px solid #ddd; }
 
 .panel-heading h1, .panel-heading h2, .panel-heading h3, .panel-heading h4, .panel-heading h5, .panel-heading h6 { margin-top: 0; padding-top: 0; }
@@ -3559,7 +3561,7 @@ dl dd { margin-bottom: 12px; }
 
 @media screen and (max-width: 767px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
   .panel:first-child { margin-top: 12px; }
-  .panel .panel-heading { margin: 0 18px 0; padding: 30px 40px; }
+  .panel .panel-heading { margin: 0 18px 0; padding: 20px 30px; }
   .panel .panel-heading .btn { line-height: 18px; }
   .panel .panel-body { padding: 10px 18px; }
   .panel .panel-footer { margin: 0 18px 0; padding: 8px 18px 10px; }
