@@ -251,6 +251,22 @@ body {
   @include set-width(100%);
 }
 
+.h25 {
+  @include set-height(25%);
+}
+
+.h50 {
+  @include set-height(50%);
+}
+
+.h75 {
+  @include set-height(75%);
+}
+
+.h100 {
+  @include set-height(100%);
+}
+
 .app-aside-left .modal-dialog {
   margin-top: $bmg-nav-height !important;
 
