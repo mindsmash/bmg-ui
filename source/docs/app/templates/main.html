@@ -556,7 +556,7 @@
                                        theme="bootstrap"
                                        ng-disabled="disabled"
                                        reset-search-input="false">
-                                <ui-select-match placeholder="Enter an address...">
+                                <ui-select-match allow-clear="true" placeholder="Enter an address...">
                                     {{$select.selected.formatted_address}}
                                 </ui-select-match>
                                 <ui-select-choices repeat="address in addresses track by $index"

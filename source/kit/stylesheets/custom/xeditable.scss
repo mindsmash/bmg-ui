@@ -25,6 +25,10 @@ a.editable-click.editable-empty {
   }
 }
 
+.form-horizontal.x-editable-form {
+  width: 100%;
+}
+
 .editable-controls.form-group {
   position: relative;
   top: -1px;
@@ -53,6 +57,7 @@ a.editable-click {
   border-radius: 3px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:hover {
     border: 1px solid $bmg-btn-border;
@@ -83,13 +88,20 @@ a.editable-click {
       position: relative;
       left: 15px;
       display: block;
-      width: 50%;
+      width: 100%;
     }
   }
 
   @media screen and (max-width: $screen-sm) {
     &.editable-hide + .form-inline.editable-wrap {
       width: 100%;
+      white-space: nowrap;
+      > .editable-controls.form-group {
+        position: relative;
+        left: -15px;
+        display: block;
+        min-height: 30px;
+      }
     }
   }
 }
@@ -104,6 +116,10 @@ a.editable-click {
   > .editable-controls.form-group {
     width: 100%;
     padding-right: 45px;
+    position: relative;
+    @media screen and (max-width: $screen-lg) {
+      left: -15px;
+    }
   }
 }
 
