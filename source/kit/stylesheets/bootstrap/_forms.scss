@@ -292,3 +292,8 @@ input[type=checkbox] {
   display: block;
   margin: 8px auto;
 }
+
+// ui-select fix
+.ui-select-search {
+  width: 100% !important;
+}

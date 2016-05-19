@@ -85,6 +85,9 @@
             .state('index.xedit', {
                 url: "#xedit"
             })
+            .state('index.css', {
+                url: "#css"
+            })
     }
 
 })(angular);
