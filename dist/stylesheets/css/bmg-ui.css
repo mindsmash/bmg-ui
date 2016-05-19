@@ -3179,6 +3179,54 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 
 .scale-9 { transform: scale(0.9, 0.9); }
 
+.w5 { min-width: 5%; width: 5%; }
+
+.w10 { min-width: 10%; width: 10%; }
+
+.w15 { min-width: 15%; width: 15%; }
+
+.w20 { min-width: 20%; width: 20%; }
+
+.w25 { min-width: 25%; width: 25%; }
+
+.w30 { min-width: 30%; width: 30%; }
+
+.w35 { min-width: 35%; width: 35%; }
+
+.w40 { min-width: 40%; width: 40%; }
+
+.w45 { min-width: 45%; width: 45%; }
+
+.w50 { min-width: 50%; width: 50%; }
+
+.w55 { min-width: 55%; width: 55%; }
+
+.w60 { min-width: 60%; width: 60%; }
+
+.w65 { min-width: 65%; width: 65%; }
+
+.w70 { min-width: 70%; width: 70%; }
+
+.w75 { min-width: 75%; width: 75%; }
+
+.w80 { min-width: 80%; width: 80%; }
+
+.w85 { min-width: 85%; width: 85%; }
+
+.w90 { min-width: 90%; width: 90%; }
+
+.w95 { min-width: 95%; width: 95%; }
+
+.w100 { min-width: 100%; width: 100%; }
+
+.h25 { min-height: 25%; height: 25%; }
+
+.h50 { min-height: 50%; height: 50%; }
+
+.h75 { min-height: 75%; height: 75%; }
+
+.h100 { min-height: 100%; height: 100%; }
+
 .app-aside-left .modal-dialog { margin-top: 75px !important; }
 
 .app-aside-left .modal-dialog .modal-content { padding: 14px 40px; width: 378px; }
@@ -3627,6 +3675,8 @@ input[type=checkbox] { visibility: hidden; display: none; }
 .bmg-checkbox label:after { -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; filter: alpha(opacity=0); -moz-opacity: 0; opacity: 0; content: ''; position: absolute; width: 8px; height: 8px; background: #51d0ff; border-radius: 2px; top: 4px; left: 4px; }
 
 .bmg-checkbox-with-label { display: block; margin: 8px auto; }
+
+.ui-select-search { width: 100% !important; }
 
 .table, .table-condensed { background-color: #ffffff; }
 

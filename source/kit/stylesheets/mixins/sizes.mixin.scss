@@ -1,0 +1,9 @@
+@mixin set-width($width: auto) {
+  min-width: $width;
+  width: $width;
+}
+
+@mixin set-height($height: auto) {
+  min-height: $height;
+  height: $height;
+}
