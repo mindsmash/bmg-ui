@@ -1,0 +1,27 @@
+$modal-padding-left-right: 80px;
+$model-padding-inner: 12px;
+$model-padding-top-bottom: 66px;
+
+.modal-content {
+  .close:hover {
+    opacity: 1;
+  }
+
+  > .modal-close {
+    position: absolute;
+    top: 42px;
+    right: 42px;
+  }
+
+  > .modal-header {
+    padding: $model-padding-top-bottom $modal-padding-left-right $model-padding-inner $modal-padding-left-right;
+  }
+
+  > .modal-body {
+    padding: $model-padding-inner $modal-padding-left-right;
+  }
+
+  > .modal-footer {
+    padding: $model-padding-inner $modal-padding-left-right $model-padding-top-bottom $modal-padding-left-right;
+  }
+}

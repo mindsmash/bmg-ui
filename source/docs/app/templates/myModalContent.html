@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h2 class="modal-title">Create Deal</h2>
+</div>
+<div class="modal-body">
+    <uib-tabset active="activeJustified" justified="true" template-url="">
+        <uib-tab index="0" heading="Common">
+            <uib-tab-heading>
+                <div class="number-circle">1</div> Common</h5>
+            </uib-tab-heading>
+            <div class="form-group has-success has-feedback">
+                <label for="deal">Deal</label>
+                <input type="text" class="form-control" id="deal" placeholder="Deal">
+                <span class="fa fa-check form-control-feedback"></span>
+            </div>
+        </uib-tab>
+        <uib-tab index="1">
+            <uib-tab-heading>
+                <span class="number-circle">2</span> Financial
+            </uib-tab-heading>
+            Financial data...
+        </uib-tab>
+        <uib-tab index="2" heading="People">
+            <uib-tab-heading>
+                <span class="number-circle">3</span> People
+            </uib-tab-heading>
+            People data...
+        </uib-tab>
+    </uib-tabset>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">Create</button>
+    <button class="btn btn-secondary" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,34 @@
+.btn-group.open .dropdown-toggle {
+  box-shadow: none;
+  border-bottom-right-radius: 0;
+}
+
+.open > .btn-default.dropdown-toggle,
+.open > .btn-default.dropdown-toggle:active,
+.open > .btn-default.dropdown-toggle:focus, 
+.open > .btn-default.dropdown-toggle:hover {
+  border-color: $bmg-btn-border;
+}
+
+.dropdown-menu {
+  border-top-color: $bmg-btn-border;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin: -1px 0 0;
+  min-width: 100%;
+}
+
+.dropdown-menu > li > a {
+  font-weight: 300;
+}
+
+.btn-group.open > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.dropdown-menu ul li {
+  position: relative;
+  width: 100%;
+}
+
