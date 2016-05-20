@@ -107,16 +107,16 @@ a.editable-click:hover:after { position: absolute; right: 8px; top: 7px; display
 
 a.editable-click.editable-empty { min-width: 0; }
 
-@media screen and (max-width: 1200px) { a.editable-click.editable-hide + .form-inline.editable-wrap { position: relative; left: 15px; display: block; width: 100%; } }
+@media screen and (min-width: 768px) and (max-width: 992px) { a.editable-click.editable-hide + .form-inline.editable-wrap { width: 100%; white-space: nowrap; }
+  a.editable-click.editable-hide + .form-inline.editable-wrap > .editable-controls.form-group { position: relative; width: 100%; display: block; min-height: 30px; } }
 
-@media screen and (max-width: 768px) { a.editable-click.editable-hide + .form-inline.editable-wrap { width: 100%; white-space: nowrap; }
-  a.editable-click.editable-hide + .form-inline.editable-wrap > .editable-controls.form-group { position: relative; left: -15px; display: block; min-height: 30px; } }
+@media screen and (min-width: 992px) and (max-width: 1200px) { a.editable-click.editable-hide + .form-inline.editable-wrap { position: relative; display: block; width: 100%; } }
+
+@media screen and (min-width: 1200px) { a.editable-click.editable-hide + .form-inline.editable-wrap { position: relative; display: block; width: 100%; } }
 
 .form-inline.editable-wrap { width: 100%; }
 
-.form-inline.editable-wrap > .editable-controls.form-group { width: 100%; padding-right: 45px; position: relative; }
-
-@media screen and (max-width: 1200px) { .form-inline.editable-wrap > .editable-controls.form-group { left: -15px; } }
+.form-inline.editable-wrap > .editable-controls.form-group { width: 100%; position: relative; padding-right: 45px; }
 
 .x-editable-form div { line-height: 30px; min-height: 32px; }
 
