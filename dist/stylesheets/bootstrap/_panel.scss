@@ -85,7 +85,7 @@
 
     .panel-heading {
       margin: $panel-xs-heading-margin;
-      padding: $panel-heading-padding;
+      padding: $panel-xs-heading-padding;
 
       .btn {
         line-height: 18px;
@@ -138,6 +138,7 @@
   .panel-sm {
     .panel-heading {
       margin: $panel-sm-heading-margin;
+      padding: $panel-sm-heading-padding;
     }
 
     .panel-title {
@@ -158,6 +159,7 @@
   .panel-xs {
     .panel-heading {
       margin: $panel-xs-heading-margin;
+      padding: $panel-xs-heading-padding;
     }
 
     .panel-title {

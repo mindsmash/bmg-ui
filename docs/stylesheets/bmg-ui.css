@@ -3568,7 +3568,7 @@ dl dd { margin-bottom: 12px; }
 
 @media screen and (max-width: 767px) { .panel { border-left: 0; border-right: 0; border-radius: 0; margin-bottom: 12px; }
   .panel:first-child { margin-top: 12px; }
-  .panel .panel-heading { margin: 0 18px 0; padding: 20px 30px; }
+  .panel .panel-heading { margin: 0; padding: 10px 18px 8px; }
   .panel .panel-heading .btn { line-height: 18px; }
   .panel .panel-body { padding: 10px 18px; }
   .panel .panel-footer { margin: 0 18px 0; padding: 8px 18px 10px; }
@@ -3579,11 +3579,11 @@ dl dd { margin-bottom: 12px; }
 @media screen and (min-width: 768px) { .panel .panel-heading { margin: 0; }
   .panel .panel-heading .close { line-height: 33px; }
   .panel .panel-title { font-size: 35px; line-height: 33px; padding: 0; margin: 0; }
-  .panel-sm .panel-heading { margin: 0 24px 0; }
+  .panel-sm .panel-heading { margin: 0 24px 0; padding: 18px 0 12px; }
   .panel-sm .panel-title { font-size: 21px; line-height: 28px; }
   .panel-sm .panel-body { padding: 16px 24px; }
   .panel-sm .panel-footer { margin: 0 24px 0; padding: 12px 24px 16px; }
-  .panel-xs .panel-heading { margin: 0 18px 0; }
+  .panel-xs .panel-heading { margin: 0; padding: 10px 18px 8px; }
   .panel-xs .panel-title { font-size: 18px; line-height: 24px; }
   .panel-xs .panel-title small { font-size: 77.77778%; }
   .panel-xs .panel-body { padding: 10px 18px; }
