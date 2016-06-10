@@ -148,7 +148,8 @@
                         <div class="col-sm-4">
                             <a
                                 href="#"
-                                data-editable-bmg-date="xEditableCtrl.data.date">{{ (xEditableCtrl.data.date | date: 'dd-MM-yyyy') || '' }}</a>
+                                data-editable-bmg-date="xEditableCtrl.data.date"
+                                onbeforesave="xEditableCtrl.updateDate($data)">{{ (xEditableCtrl.data.date | date: 'dd-MM-yyyy') || '' }}</a>
                         </div>
                         <div class="col-sm-2 text-right">Release date is tentative</div>
                         <div class="col-sm-4">No</div>

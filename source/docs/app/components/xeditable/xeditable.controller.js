@@ -38,6 +38,11 @@
 
             this.opened[elementOpened] = !this.opened[elementOpened];
         }
+
+        this.updateDate = function(newDate) {
+            console.log('save: ', newDate);
+            this.data.date = newDate;
+        };
     }
 
 })(angular);

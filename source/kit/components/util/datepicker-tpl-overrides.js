@@ -127,7 +127,8 @@
         '        type="text"' +
         '        class="form-control"' +
         '        uib-datepicker-popup=""' +
-        '        ng-model="bmgDatepickerCtrl.date"' +
+        '        ng-model="selectedDate.value"' +
+        '        ng-change="updateDate()"' +
         '        is-open="bmgDatepickerCtrl.popup.opened"' +
         '        datepicker-options="bmgDatepickerCtrl.dateOptions"' +
         '        ng-required="true"' +

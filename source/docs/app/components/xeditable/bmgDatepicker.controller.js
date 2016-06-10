@@ -34,7 +34,7 @@
         };
 
         this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        this.format = this.formats[0];
+        this.format = this.formats[2];
 
         this.popup = {
             opened: false
