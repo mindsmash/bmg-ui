@@ -40,7 +40,6 @@
         }
 
         this.updateDate = function(newDate) {
-            console.log('save: ', newDate);
             this.data.date = newDate;
         };
     }

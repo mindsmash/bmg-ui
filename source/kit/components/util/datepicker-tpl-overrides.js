@@ -126,7 +126,7 @@
         '    <input' +
         '        type="text"' +
         '        class="form-control"' +
-        '        uib-datepicker-popup=""' +
+        '        uib-datepicker-popup="dd.MM.yyyy"' +
         '        ng-model="selectedDate.value"' +
         '        ng-change="updateDate()"' +
         '        is-open="bmgDatepickerCtrl.popup.opened"' +

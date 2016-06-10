@@ -13,7 +13,9 @@
 
         this.dateOptions = {
             dateDisabled: disabled,
-            formatYear: 'yy',
+            formatYear: 'yyyy',
+            formatMonth: 'MM',
+            formatDate: 'dd',
             startingDay: 1,
             showWeeks: false
         };
