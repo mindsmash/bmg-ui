@@ -118,4 +118,29 @@
             "</div>\n" +
             "");
     }]);
+
+    angular.module('bmg/template/datepicker/control.html', []).run(['$templateCache', function($templateCache) {
+        $templateCache.put('bmg/template/datepicker/control.html',
+        '<p' +
+        '    class="input-group">' +
+        '    <input' +
+        '        type="text"' +
+        '        class="form-control"' +
+        '        uib-datepicker-popup=""' +
+        '        ng-model="bmgDatepickerCtrl.date"' +
+        '        is-open="bmgDatepickerCtrl.popup.opened"' +
+        '        datepicker-options="bmgDatepickerCtrl.dateOptions"' +
+        '        ng-required="true"' +
+        '        close-text="Close"' +
+        '        popup-placement="auto top bottom" />' +
+        '    <span class="input-group-btn">' +
+        '        <button' +
+        '            type="button"' +
+        '            class="btn btn-default shrink"' +
+        '            ng-click="bmgDatepickerCtrl.open()">' +
+        '            <i class="color-primary fa fa-calendar"></i>' +
+        '        </button>' +
+        '    </span>' +
+        '</p>');
+    }]);
 })(angular);
