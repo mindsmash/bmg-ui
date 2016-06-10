@@ -5,13 +5,15 @@
         .module('bmg-ui.docs')
         .controller('BmgDatepickerController', BmgDatepickerController);
 
-    function BmgDatepickerController() {
+    BmgDatepickerController.$inject = ['$scope'];
+
+    function BmgDatepickerController($scope) {
         this.today = function() {
             this.dt = new Date();
         };
         this.today();
 
-        this.dateOptions = {
+        $scope.dateOptions = {
             dateDisabled: disabled,
             formatYear: 'yyyy',
             formatMonth: 'MMMM',
