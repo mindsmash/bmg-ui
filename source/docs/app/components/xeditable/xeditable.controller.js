@@ -42,6 +42,12 @@
         this.updateDate = function(newDate) {
             this.data.date = newDate;
         };
+
+        this.datepickerOptions = {
+            maxDate: new Date(),
+            minMode: 'day',
+            datepickerMode: 'month'
+        };
     }
 
 })(angular);

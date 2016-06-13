@@ -130,7 +130,7 @@
         '        ng-model="selectedDate.value"' +
         '        ng-change="updateDate()"' +
         '        is-open="bmgDatepickerCtrl.popup.opened"' +
-        '        datepicker-options="dateOptions"' +
+        '        datepicker-options="datepickerOptions"' +
         '        ng-required="true"' +
         '        close-text="Close"' +
         '        popup-placement="auto top bottom" />' +
