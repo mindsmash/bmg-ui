@@ -126,13 +126,14 @@
         '    <input' +
         '        type="text"' +
         '        class="form-control"' +
-        '        uib-datepicker-popup="dd.MM.yyyy"' +
+        '        uib-datepicker-popup="{{ uibDatepickerPopup }}"' +
         '        ng-model="selectedDate.value"' +
         '        ng-change="updateDate()"' +
         '        is-open="bmgDatepickerCtrl.popup.opened"' +
         '        datepicker-options="datepickerOptions"' +
         '        ng-required="true"' +
         '        close-text="Close"' +
+        '        placeholder="{{ placeholder }}"' +
         '        popup-placement="auto top bottom" />' +
         '    <span class="input-group-btn">' +
         '        <button' +
