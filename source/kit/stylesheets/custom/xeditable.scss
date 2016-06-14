@@ -134,6 +134,17 @@ a.editable-click {
   }
 }
 
-p.editable-has-buttons {
+p.datepicker-group {
     margin-bottom: 0px;
+    line-height: 28px;
+
+    input {
+        position: relative;
+        top: 1px; // 1px is perfect for safari and chrome, 0px is perfect for firefox
+    }
+
+    button {
+        position: relative;
+        top: 0px; // 0px is perfect for chrome, 1px is prefect for safari and firefox
+    }
 }

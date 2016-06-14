@@ -122,7 +122,7 @@
     angular.module('bmg/template/datepicker/control.html', []).run(['$templateCache', function($templateCache) {
         $templateCache.put('bmg/template/datepicker/control.html',
         '<p' +
-        '    class="input-group">' +
+        '    class="input-group datepicker-group">' +
         '    <input' +
         '        type="text"' +
         '        class="form-control"' +
