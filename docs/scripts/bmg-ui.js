@@ -1,13 +1,6 @@
 (function(angular) {
     'use strict';
 
-    angular.module('bmg.components.util', []);
-
-})(angular);
-
-(function(angular) {
-    'use strict';
-
     angular.module('bmg.components.ui', [])
         .run(xeditableRun);
 
@@ -20,6 +13,135 @@
     }
 
 })(angular);
+(function(angular) {
+    'use strict';
+
+    angular.module('bmg.components.util', []);
+
+})(angular);
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .controller('BmgDatepickerController', BmgDatepickerController);
+
+    BmgDatepickerController.$inject = ['$scope'];
+
+    function BmgDatepickerController($scope) {
+        this.today = function() {
+            this.dt = new Date();
+        };
+        this.today();
+
+        $scope.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yyyy',
+            formatMonth: 'MMMM',
+            formatDate: 'dd',
+            startingDay: 1,
+            showWeeks: false
+        };
+
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+
+        this.open = function() {
+            this.popup.opened = true;
+        };
+
+        this.setDate = function(year, month, day) {
+            this.dt = new Date(year, month, day);
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[2];
+
+        this.popup = {
+            opened: false
+        };
+    }
+
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('bmgDatepicker', bmgDatepicker);
+
+    function bmgDatepicker() {
+        return {
+            replace: true,
+            require: 'ngModel',
+            templateUrl: 'bmg/template/datepicker/control.html',
+            controller: 'BmgDatepickerController as bmgDatepickerCtrl',
+            link: function(scope, elem, attrs, ngModelCtrl) {
+                scope.selectedDate = {
+                    value: scope.$eval(attrs.ngModel)
+                };
+
+                scope.updateDate = function() {
+                    ngModelCtrl.$setViewValue(scope.selectedDate.value);
+                };
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('editableBmgDate', editableBmgDate);
+
+    function editableBmgDate(editableDirectiveFactory) {
+        return editableDirectiveFactory({
+            directiveName: 'editableBmgDate',
+            inputTpl: '<data-bmg-datepicker />',
+            render: function() {
+                this.parent.render.call(this);
+
+                var options = this.scope.$eval(this.attrs.datepickerOptions);
+
+                this.scope.datepickerOptions = {
+                    minMode: options.minMode || 'day',
+                    maxMode: options.maxMode || 'year',
+                    formatDay: options.formatDay || 'dd',
+                    formatMonth: options.formatMonth || 'MMMM',
+                    formatYear: options.formatYear || 'yyyy',
+                    formatDayHeader: options.formatDayHeader || 'EEE',
+                    formatDayTitle: options.formatDayTitle || 'MMMM yyyy',
+                    formatMonthTitle: options.formatMonthTitle || 'yyyy',
+                    showWeeks: options.showWeeks,
+                    startingDay: options.startingDay || 0,
+                    initDate: options.initDate || new Date(),
+                    datepickerMode: options.datepickerMode || 'day',
+                    maxDate: options.maxDate || null,
+                    minDate: options.minDate || null
+                };
+
+                this.scope.placeholder = this.attrs.placeholder || '';
+                this.scope.uibDatepickerPopup = this.attrs.popup || 'dd.MM.yyyy';
+                this.scope.popupPlacement = this.attrs.popupPlacement || 'auto top bottom';
+                this.scope.closeText = this.attrs.closeText || 'Close';
+                this.scope.required = this.attrs.required || true;
+                this.scope.modelOptions = this.scope.$eval(this.attrs.modelOptions) || {};
+            }
+        });
+    }
+
+    editableBmgDate.$inject = ['editableDirectiveFactory'];
+
+})();
+
 (function (angular) {
     angular.module("uib/template/datepicker/datepicker.html", []).run(["$templateCache", function($templateCache) {
         $templateCache.put("uib/template/datepicker/datepicker.html",
@@ -144,7 +266,7 @@
     angular.module('bmg/template/datepicker/control.html', []).run(['$templateCache', function($templateCache) {
         $templateCache.put('bmg/template/datepicker/control.html',
         '<p' +
-        '    class="input-group">' +
+        '    class="input-group datepicker-group">' +
         '    <input' +
         '        type="text"' +
         '        class="form-control"' +
@@ -356,124 +478,3 @@ angular.module('bmg.components.ui')
         $templateCache.put("selectize/select.tpl.html","<div class=\"ui-select-container selectize-control single\" ng-class=\"{\'open\': $select.open}\"><div class=\"selectize-input\" ng-class=\"{\'focus\': $select.open, \'disabled\': $select.disabled, \'selectize-focus\' : $select.focus}\" ng-click=\"$select.open && !$select.searchEnabled ? $select.toggle($event) : $select.activate()\"><div class=\"ui-select-match\"></div><input type=\"text\" autocomplete=\"off\" tabindex=\"-1\" class=\"ui-select-search ui-select-toggle\" ng-click=\"$select.toggle($event)\" placeholder=\"{{$select.placeholder}}\" ng-model=\"$select.search\" ng-hide=\"!$select.searchEnabled || ($select.selected && !$select.open)\" ng-disabled=\"$select.disabled\" aria-label=\"{{ $select.baseTitle }}\"></div><div class=\"ui-select-choices\"></div></div>");
     }]);
 })(angular);
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .controller('BmgDatepickerController', BmgDatepickerController);
-
-    BmgDatepickerController.$inject = ['$scope'];
-
-    function BmgDatepickerController($scope) {
-        this.today = function() {
-            this.dt = new Date();
-        };
-        this.today();
-
-        $scope.dateOptions = {
-            dateDisabled: disabled,
-            formatYear: 'yyyy',
-            formatMonth: 'MMMM',
-            formatDate: 'dd',
-            startingDay: 1,
-            showWeeks: false
-        };
-
-        // Disable weekend selection
-        function disabled(data) {
-            var date = data.date,
-                mode = data.mode;
-            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-        }
-
-        this.open = function() {
-            this.popup.opened = true;
-        };
-
-        this.setDate = function(year, month, day) {
-            this.dt = new Date(year, month, day);
-        };
-
-        this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        this.format = this.formats[2];
-
-        this.popup = {
-            opened: false
-        };
-    }
-
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('bmgDatepicker', bmgDatepicker);
-
-    function bmgDatepicker() {
-        return {
-            replace: true,
-            require: 'ngModel',
-            templateUrl: 'bmg/template/datepicker/control.html',
-            controller: 'BmgDatepickerController as bmgDatepickerCtrl',
-            link: function(scope, elem, attrs, ngModelCtrl) {
-                scope.selectedDate = {
-                    value: scope.$eval(attrs.ngModel)
-                };
-
-                scope.updateDate = function() {
-                    ngModelCtrl.$setViewValue(scope.selectedDate.value);
-                };
-            }
-        };
-    }
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('editableBmgDate', editableBmgDate);
-
-    function editableBmgDate(editableDirectiveFactory) {
-        return editableDirectiveFactory({
-            directiveName: 'editableBmgDate',
-            inputTpl: '<data-bmg-datepicker />',
-            render: function() {
-                this.parent.render.call(this);
-
-                var options = this.scope.$eval(this.attrs.datepickerOptions);
-
-                this.scope.datepickerOptions = {
-                    minMode: options.minMode || 'day',
-                    maxMode: options.maxMode || 'year',
-                    formatDay: options.formatDay || 'dd',
-                    formatMonth: options.formatMonth || 'MMMM',
-                    formatYear: options.formatYear || 'yyyy',
-                    formatDayHeader: options.formatDayHeader || 'EEE',
-                    formatDayTitle: options.formatDayTitle || 'MMMM yyyy',
-                    formatMonthTitle: options.formatMonthTitle || 'yyyy',
-                    showWeeks: options.showWeeks,
-                    startingDay: options.startingDay || 0,
-                    initDate: options.initDate || new Date(),
-                    datepickerMode: options.datepickerMode || 'day',
-                    maxDate: options.maxDate || null,
-                    minDate: options.minDate || null
-                };
-
-                this.scope.placeholder = this.attrs.placeholder || '';
-                this.scope.uibDatepickerPopup = this.attrs.popup || 'dd.MM.yyyy';
-                this.scope.popupPlacement = this.attrs.popupPlacement || 'auto top bottom';
-                this.scope.closeText = this.attrs.closeText || 'Close';
-                this.scope.required = this.attrs.required || true;
-                this.scope.modelOptions = this.scope.$eval(this.attrs.modelOptions) || {};
-            }
-        });
-    }
-
-    editableBmgDate.$inject = ['editableDirectiveFactory'];
-
-})();

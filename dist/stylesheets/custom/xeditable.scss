@@ -132,8 +132,45 @@ a.editable-click {
     line-height: 30px;
     min-height: 32px;
   }
+	//firefox only
+	@-moz-document url-prefix() {
+		.datepicker-group {
+			div {
+				line-height: 28px;
+				min-height: 30px;
+		}	
+	}
+  }
 }
 
-p.editable-has-buttons {
+p.datepicker-group {
     margin-bottom: 0px;
+    line-height: 28px;
+
+    input {
+        position: relative;
+        top: 1px; // 1px is perfect for safari and chrome, 0px is perfect for firefox
+    }
+
+    button {
+        position: relative;
+        top: 0; // 0px is perfect for chrome, 1px is prefect for safari and firefox
+    }
+
+	//safari only hack
+	_:-webkit-full-screen:not(:root:root), 	button {
+		position: relative;
+		top: 1px;
+	}
+
+	//firefox only
+	@-moz-document url-prefix() {
+		input {
+			position: relative;
+			top: 0;
+		}
+		button {
+			height: 30px;
+		}
+	}
 }
