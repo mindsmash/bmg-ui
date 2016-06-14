@@ -120,6 +120,8 @@ a.editable-click.editable-empty { min-width: 0; }
 
 .x-editable-form div { line-height: 30px; min-height: 32px; }
 
+p.editable-has-buttons { margin-bottom: 0px; }
+
 table.uib-daypicker > thead > tr:first-child { height: 60px; background-color: #4d4d4d; }
 
 table.uib-daypicker > thead > tr:first-child > th:first-child { border-top-left-radius: 4px; }
