@@ -12,7 +12,8 @@
         'ui.select',
         'xeditable',
         'ngAside',
-        'sticky'
+        'sticky',
+        'bmg/template/datepicker/control.html'
     ]);
-    
+
 })(angular);
