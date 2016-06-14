@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('bmg-ui.docs')
+        .module('bmg.components.ui')
         .directive('bmgDatepicker', bmgDatepicker);
 
     function bmgDatepicker() {

@@ -152,6 +152,10 @@
                                 datepicker-options="xEditableCtrl.datepickerOptions"
                                 placeholder="MMM yyyy"
                                 popup="dd.MM.yyyy"
+                                popup-placement="auto top bottom"
+                                close-text="Close"
+                                required="true"
+                                model-options="xEditableCtrl.datepickerModelOptions"
                                 onbeforesave="xEditableCtrl.updateDate($data)">{{ (xEditableCtrl.data.date | date: 'dd.MM.yyyy') || '' }}</a>
                         </div>
                         <div class="col-sm-2 text-right">Release date is tentative</div>

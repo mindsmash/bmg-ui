@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('bmg-ui.docs')
+        .module('bmg.components.ui')
         .directive('editableBmgDate', editableBmgDate);
 
     function editableBmgDate(editableDirectiveFactory) {
@@ -23,16 +23,20 @@
                     formatDayHeader: options.formatDayHeader || 'EEE',
                     formatDayTitle: options.formatDayTitle || 'MMMM yyyy',
                     formatMonthTitle: options.formatMonthTitle || 'yyyy',
-                    showWeeks: options.showWeeks ? options.showWeeks.toLowerCase() === 'true' : true,
+                    showWeeks: options.showWeeks,
                     startingDay: options.startingDay || 0,
-                    initDate: this.scope.$eval(options.initDate) || new Date(),
+                    initDate: options.initDate || new Date(),
                     datepickerMode: options.datepickerMode || 'day',
-                    maxDate: this.scope.$eval(options.maxDate) || null,
-                    minDate: this.scope.$eval(options.minDate) || null
+                    maxDate: options.maxDate || null,
+                    minDate: options.minDate || null
                 };
 
                 this.scope.placeholder = this.attrs.placeholder || '';
                 this.scope.uibDatepickerPopup = this.attrs.popup || 'dd.MM.yyyy';
+                this.scope.popupPlacement = this.attrs.popupPlacement || 'auto top bottom';
+                this.scope.closeText = this.attrs.closeText || 'Close';
+                this.scope.required = this.attrs.required || true;
+                this.scope.modelOptions = this.scope.$eval(this.attrs.modelOptions) || {};
             }
         });
     }

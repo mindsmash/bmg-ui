@@ -128,13 +128,14 @@
         '        class="form-control"' +
         '        uib-datepicker-popup="{{ uibDatepickerPopup }}"' +
         '        ng-model="selectedDate.value"' +
+        '        ng-model-options="modelOptions"' +
         '        ng-change="updateDate()"' +
         '        is-open="bmgDatepickerCtrl.popup.opened"' +
         '        datepicker-options="datepickerOptions"' +
-        '        ng-required="true"' +
-        '        close-text="Close"' +
+        '        ng-required="{{ required }}"' +
+        '        close-text="{{ closeText }}"' +
         '        placeholder="{{ placeholder }}"' +
-        '        popup-placement="auto top bottom" />' +
+        '        popup-placement="{{ popupPlacement }}" />' +
         '    <span class="input-group-btn">' +
         '        <button' +
         '            type="button"' +

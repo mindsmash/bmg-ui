@@ -22,7 +22,7 @@
             'altProductCode' : '',
             'artistName': 'The Merry Pranksters',
             'title': 'Peggy the Pistol/Hogs Are a Coming',
-            'date': null//new Date(1999, 4, 15)
+            'date': new Date(1999, 4, 15)
         };
 
         this.showSites = function() {
@@ -46,7 +46,13 @@
         this.datepickerOptions = {
             maxDate: new Date(),
             minMode: 'day',
-            datepickerMode: 'month'
+            datepickerMode: 'month',
+            showWeeks: false,
+            startingDay: 1
+        };
+
+        this.datepickerModelOptions = {
+            //timezone: '+0000'
         };
     }
 
