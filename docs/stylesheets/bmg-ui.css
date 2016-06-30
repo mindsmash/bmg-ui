@@ -3700,17 +3700,21 @@ input[type=checkbox] { visibility: hidden; display: none; }
 
 .ui-select-search { width: 100% !important; }
 
+.bmg-checkbox-inline { position: relative; display: inline-block; }
+
+.bmg-checkbox-inline + .bmg-checkbox-inline { margin-left: 15px; }
+
 .table, .table-condensed { background-color: #ffffff; }
 
 .table i.fa-sort, .table i.fa-caret-up, .table i.fa-caret-down, .table-condensed i.fa-sort, .table-condensed i.fa-caret-up, .table-condensed i.fa-caret-down { color: #4c4c4c; }
 
 .table tr, .table-condensed tr { border-collapse: collapse; border-bottom: 1px solid rgba(76, 76, 76, 0.05); }
 
-.table > thead > tr > th, .table-condensed > thead > tr > th { vertical-align: middle; color: #4d4d4d; border-width: 1px; font-weight: bold; letter-spacing: .025em; padding: 32px 40px; white-space: nowrap; }
+.table > thead > tr > th, .table-condensed > thead > tr > th { vertical-align: middle; color: #4d4d4d; border-width: 1px; font-weight: bold; letter-spacing: .025em; padding: 24px 40px; white-space: nowrap; }
 
 .table > thead > tr > th.shrink, .table-condensed > thead > tr > th.shrink { white-space: nowrap; width: 1px; }
 
-.table > tbody > tr > td, .table-condensed > tbody > tr > td { vertical-align: middle; padding: 32px 40px; }
+.table > tbody > tr > td, .table-condensed > tbody > tr > td { vertical-align: middle; padding: 24px 40px; }
 
 .table-condensed { width: 100%; }
 
@@ -3720,9 +3724,9 @@ input[type=checkbox] { visibility: hidden; display: none; }
 
 .table-condensed > tbody > tr > td { padding: 6px 40px; }
 
-.table.table-fluid > thead > tr > th { padding: 32px 4px; }
+.table.table-fluid > thead > tr > th { padding: 24px 4px; }
 
-.table.table-fluid > tbody > tr > td { padding: 32px 4px; }
+.table.table-fluid > tbody > tr > td { padding: 24px 4px; }
 
 .table-condensed.table-fluid > thead > tr > th { padding: 6px 4px; }
 
