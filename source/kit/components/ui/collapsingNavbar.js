@@ -7,6 +7,7 @@
 
     function collapsingNavbar() {
         return {
+            restrict: 'A',
             link: function(scope, elem) {
                 window.setInterval(checkScrollStatus, 200);
 
@@ -23,6 +24,8 @@
 
     // saves the previous 10 scroll positions
     var lastKnownScrollPositions = [];
+    // current floatThead status
+    var isCollapsed = false;
 
     function checkScrollStatus() {
         // check scroll status every 200ms
@@ -44,8 +47,7 @@
                     collapseNavbar();
                 }
 
-                if ((earliestKnownScrollTop - scrollTop) > 200 ||
-                    (scrollTop <= 50 && previousScrollTop !== scrollTop)) {
+                if ((earliestKnownScrollTop - scrollTop) > 200 || scrollTop <= 50) {
                     // at the top of the page or more than 200px
                     // scrolled up? -> expand
                     expandNavbar();
@@ -56,9 +58,57 @@
 
     function collapseNavbar() {
         $('nav.navbar').addClass('smaller');
+        isCollapsed = true;
+        rearrangeStickyBars(true);
     }
 
     function expandNavbar() {
         $('nav.navbar').removeClass('smaller');
+        isCollapsed = false;
+        rearrangeStickyBars(false);
+    }
+
+    function rearrangeStickyBars(up) {
+        var stickyBars = $('*[sticky]');
+
+        if (up) {
+            stickyBars.attr('offset', 20);
+            stickyBars.css('top', '20px');
+        } else {
+            stickyBars.attr('offset', 75);
+            stickyBars.css('top', '75px');
+        }
+
+        changefloatTheadTop();
+    }
+
+    function changefloatTheadTop() {
+        var tableSelector = '.tableStandard-responsive table';
+
+        /*$(tableSelector).floatThead('reflow');
+        $(tableSelector).on('reflowed', function() {
+            $(tableSelector).floatThead('destroy');
+            $(tableSelector).floatThead({
+                top: function($table) {
+                    return newValue;
+                },
+                // responsiveContainer: function($table){
+                //     return $table.closest('.tableStandard-responsive');
+                // }
+            });
+        });*/
+
+        $(tableSelector).trigger('reflow');
+        $(tableSelector).on('reflowed', function() {
+            $(tableSelector).floatThead('destroy');
+
+            $(tableSelector).floatThead({
+                top: function($table) {
+                    return isCollapsed ? 20 : 75;
+                }
+            });
+
+            isCollapsed = !isCollapsed;
+        });
     }
 })();
