@@ -83,7 +83,7 @@
     }
 
     function changefloatTheadTop() {
-        var tableSelector = '.tableStandard-responsive table';
+        var tableSelector = '.table-responsive table';
 
         /*$(tableSelector).floatThead('reflow');
         $(tableSelector).on('reflowed', function() {
