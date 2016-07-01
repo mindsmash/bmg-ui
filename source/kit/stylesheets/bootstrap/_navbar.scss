@@ -1,6 +1,6 @@
 $bmg-nav-height: 75px;
 $bmg-nav-round-icon-size: 1.8em;
-$bmg-nav-animation-duration: 0.2s;
+$bmg-nav-animation-duration: 0.3s;
 $bmg-nav-collapse-height: 20px;
 
 /**
@@ -427,6 +427,8 @@ $bmg-nav-collapse-height: 20px;
         display: none;
     }
 
+    /* Had to be disabled because icons take a long time to reappear -
+    maybe find a way to make it work? */
     /*& .navbar-header,
     & .navbar-collapse,
     & .navbar-brand,
@@ -437,6 +439,7 @@ $bmg-nav-collapse-height: 20px;
 
     &.smaller {
         min-height: $bmg-nav-collapse-height;
+        cursor: pointer;
 
         & .navbar-header,
         & .navbar-collapse,

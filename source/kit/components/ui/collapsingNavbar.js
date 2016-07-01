@@ -36,16 +36,20 @@
             var earliestKnownScrollTop = lastKnownScrollPositions[0];
             var previousScrollTop = lastKnownScrollPositions[lastKnownScrollPositions.length - 2];
 
-            if ((scrollTop - earliestKnownScrollTop) > 200) {
-                // more than 200px scrolled down? -> collapse
-                collapseNavbar();
-            }
+            if (scrollTop !== previousScrollTop) {
+                // do not do anything if we're not scrolling anymore
 
-            if ((earliestKnownScrollTop - scrollTop) > 200 ||
-                (scrollTop <= 50 && previousScrollTop !== scrollTop)) {
-                // at the top of the page or more than 200px
-                // scrolled up? -> expand
-                expandNavbar();
+                if ((scrollTop - earliestKnownScrollTop) > 200) {
+                    // more than 200px scrolled down? -> collapse
+                    collapseNavbar();
+                }
+
+                if ((earliestKnownScrollTop - scrollTop) > 200 ||
+                    (scrollTop <= 50 && previousScrollTop !== scrollTop)) {
+                    // at the top of the page or more than 200px
+                    // scrolled up? -> expand
+                    expandNavbar();
+                }
             }
         }
     }
