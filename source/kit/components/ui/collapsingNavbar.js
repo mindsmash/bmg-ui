@@ -24,7 +24,6 @@
 
     // saves the previous 10 scroll positions
     var lastKnownScrollPositions = [];
-    // current floatThead status
     var isCollapsed = false;
 
     function checkScrollStatus() {
@@ -42,14 +41,15 @@
             if (scrollTop !== previousScrollTop) {
                 // do not do anything if we're not scrolling anymore
 
-                if ((scrollTop - earliestKnownScrollTop) > 200) {
+                if ((scrollTop - earliestKnownScrollTop) > 200 && !isCollapsed) {
                     // more than 200px scrolled down? -> collapse
                     collapseNavbar();
                 }
 
-                if ((earliestKnownScrollTop - scrollTop) > 200 || scrollTop <= 50) {
-                    // at the top of the page or more than 200px
-                    // scrolled up? -> expand
+                // at the top of the page or more than 200px
+                // scrolled up? -> expand
+                if (((earliestKnownScrollTop - scrollTop) > 200 || scrollTop <= 50) &&
+                    isCollapsed) {
                     expandNavbar();
                 }
             }
@@ -57,15 +57,18 @@
     }
 
     function collapseNavbar() {
+        console.log('collapse');
         $('nav.navbar').addClass('smaller');
+        rearrangeStickyBars(false);
         isCollapsed = true;
-        rearrangeStickyBars(true);
     }
 
     function expandNavbar() {
+        console.log('expand');
         $('nav.navbar').removeClass('smaller');
+
+        rearrangeStickyBars(true);
         isCollapsed = false;
-        rearrangeStickyBars(false);
     }
 
     function rearrangeStickyBars(up) {
@@ -79,24 +82,13 @@
             stickyBars.css('top', '75px');
         }
 
-        changefloatTheadTop();
+        changefloatTheadTop(up);
     }
 
-    function changefloatTheadTop() {
-        var tableSelector = '.table-responsive table';
-
-        /*$(tableSelector).floatThead('reflow');
-        $(tableSelector).on('reflowed', function() {
-            $(tableSelector).floatThead('destroy');
-            $(tableSelector).floatThead({
-                top: function($table) {
-                    return newValue;
-                },
-                // responsiveContainer: function($table){
-                //     return $table.closest('.tableStandard-responsive');
-                // }
-            });
-        });*/
+    function changefloatTheadTop(up) {
+        var tableSelector = '.table-responsive table, ' +
+            '.tableStandard-responsive table, ' +
+            '.tableCondensed-responsive table';
 
         $(tableSelector).trigger('reflow');
         $(tableSelector).on('reflowed', function() {
@@ -104,11 +96,14 @@
 
             $(tableSelector).floatThead({
                 top: function($table) {
-                    return isCollapsed ? 20 : 75;
+                    return up ? 75 : 20;
+                },
+                responsiveContainer: function($table){
+                    return $table.closest('.table-responsive, ' +
+                        '.tableStandard-responsive, ' +
+                        '.tableCondensed-responsive');
                 }
             });
-
-            isCollapsed = !isCollapsed;
         });
     }
 })();
