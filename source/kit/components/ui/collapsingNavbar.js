@@ -93,7 +93,7 @@
 
         $(tableSelector).floatThead({
             top: function($table) {
-                return up ? 75 : 20;
+                return up ? 20 : 75;
             },
             responsiveContainer: function($table){
                 return $table.closest('.table-responsive, ' +
