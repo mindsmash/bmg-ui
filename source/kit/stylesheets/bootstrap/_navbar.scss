@@ -37,6 +37,7 @@ $bmg-nav-collapse-height: 20px;
 .navbar {
   background-color: $bmg-navbar;
   padding: 0;
+  min-width: $screen-sm;
 
   border-bottom: 0;
 
@@ -426,16 +427,6 @@ $bmg-nav-collapse-height: 20px;
     &:not(.smaller) .bmg-nav-expand-hint {
         display: none;
     }
-
-    /* Had to be disabled because icons take a long time to reappear -
-    maybe find a way to make it work? */
-    /*& .navbar-header,
-    & .navbar-collapse,
-    & .navbar-brand,
-    & .navbar-brand .navbar-brand-appname,
-    & ul, & li, & a, & ul i {
-        transition: font-size $bmg-nav-animation-duration ease-in-out;
-    }*/
 
     &.smaller {
         min-height: $bmg-nav-collapse-height;
