@@ -64,7 +64,6 @@
 
     function expandNavbar() {
         $('nav.navbar').removeClass('smaller');
-
         rearrangeStickyBars(false);
         isCollapsed = false;
     }
