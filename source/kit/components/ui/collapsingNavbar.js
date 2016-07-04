@@ -58,14 +58,14 @@
 
     function collapseNavbar() {
         $('nav.navbar').addClass('smaller');
-        rearrangeStickyBars(false);
+        rearrangeStickyBars(true);
         isCollapsed = true;
     }
 
     function expandNavbar() {
         $('nav.navbar').removeClass('smaller');
 
-        rearrangeStickyBars(true);
+        rearrangeStickyBars(false);
         isCollapsed = false;
     }
 
