@@ -1,5 +1,7 @@
 $bmg-nav-height: 75px;
 $bmg-nav-round-icon-size: 1.8em;
+$bmg-nav-animation-duration: 0.3s;
+$bmg-nav-collapse-height: 20px;
 
 /**
 * Use with bootstrap's .navbar
@@ -35,6 +37,7 @@ $bmg-nav-round-icon-size: 1.8em;
 .navbar {
   background-color: $bmg-navbar;
   padding: 0;
+  min-width: $screen-sm;
 
   border-bottom: 0;
 
@@ -405,4 +408,41 @@ $bmg-nav-round-icon-size: 1.8em;
     display: -webkit-box;
     margin-left: 110px;
   }
+}
+
+// Collapse and expand effects
+.navbar {
+    transition: min-height $bmg-nav-animation-duration ease-in-out;
+
+    & .bmg-nav-expand-hint {
+        font-size: 12px;
+        line-height: 12px;
+        height: 12px;
+        position: relative;
+        top: -4px;
+        color: $bmg-white;
+        text-align: center;
+    }
+
+    &:not(.smaller) .bmg-nav-expand-hint {
+        display: none;
+    }
+
+    &.smaller {
+        min-height: $bmg-nav-collapse-height;
+        cursor: pointer;
+
+        & .navbar-header,
+        & .navbar-collapse,
+        & .navbar-brand,
+        & .navbar-brand .navbar-brand-appname,
+        & ul, & li, & a, & ul i {
+            line-height: 0px;
+            font-size: 0px;
+            height: 0px;
+            position: relative;
+            top: -200px; // avoids glitch
+            visibility: hidden;
+        }
+    }
 }
