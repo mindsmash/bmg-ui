@@ -372,3 +372,12 @@ footer {
   min-width: $screen-sm;
   border-top: 1px solid $bmg-btn-border;
 }
+
+.popover-anchor {
+    border: 1px solid $bmg-gray-lighter;
+    background-color: $bmg-gray-light;
+    padding: 7px;
+    border-radius: 2px;
+    cursor: pointer;
+    display: inline-block;
+}
