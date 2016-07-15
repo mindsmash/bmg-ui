@@ -22,7 +22,8 @@
             'altProductCode' : '',
             'artistName': 'The Merry Pranksters',
             'title': 'Peggy the Pistol/Hogs Are a Coming',
-            'date': new Date(1999, 4, 15)
+            'date': new Date(1999, 4, 15),
+            'stateOfBirth': 'Arkansas'
         };
 
         this.showSites = function() {
@@ -37,7 +38,7 @@
             $event.stopPropagation();
 
             this.opened[elementOpened] = !this.opened[elementOpened];
-        }
+        };
 
         this.updateDate = function(newDate) {
             this.data.date = newDate;
@@ -54,6 +55,8 @@
         this.datepickerModelOptions = {
             //timezone: '+0000'
         };
+
+        this.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
     }
 
 })(angular);

@@ -111,8 +111,18 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2 text-right">Display Artist Name</div>
-                        <div class="col-sm-10"><a href="#" editable-text="xEditableCtrl.data.artistName">{{
+                        <div class="col-sm-4"><a href="#" editable-text="xEditableCtrl.data.artistName">{{
                             xEditableCtrl.data.artistName}}</a></div>
+                        <div class="col-sm-2 text-right">State of birth</div>
+                        <div class="col-sm-4">
+                            <a
+                                href="#"
+                                editable-typeahead="xEditableCtrl.data.stateOfBirth"
+                                items="xEditableCtrl.states"
+                                placeholder="Search states …"
+                                data-ng-model="ngModelOptionsSelected"
+                                >{{ xEditableCtrl.data.stateOfBirth}}</a>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2 text-right">Product Title</div>
