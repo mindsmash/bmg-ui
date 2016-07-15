@@ -17,14 +17,14 @@
         $scope.address = {};
         $scope.refreshAddresses = function(address) {
             if (!address) {
-                address = 'Große Elbstraße 145E'
+                address = 'Große Elbstraße 145E';
             }
             var params = {address: address, sensor: false};
             return $http.get(
                 'http://maps.googleapis.com/maps/api/geocode/json',
                 {params: params}
             ).then(function(response) {
-                $scope.addresses = response.data.results
+                $scope.addresses = response.data.results;
             });
         };
 

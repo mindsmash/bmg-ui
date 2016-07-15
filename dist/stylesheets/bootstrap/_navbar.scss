@@ -11,6 +11,10 @@ $bmg-nav-collapse-height: 20px;
   min-width: 250px;
   max-width: 250px;
 
+  @media #{screen} and (max-width: $screen-md) {
+      min-width: 100px;
+  }
+
   font-size: 22px;
 
   > img {
@@ -37,7 +41,6 @@ $bmg-nav-collapse-height: 20px;
 .navbar {
   background-color: $bmg-navbar;
   padding: 0;
-  min-width: $screen-sm;
 
   border-bottom: 0;
 
@@ -430,13 +433,15 @@ $bmg-nav-collapse-height: 20px;
 
     &.smaller {
         min-height: $bmg-nav-collapse-height;
+        max-height: $bmg-nav-collapse-height;
         cursor: pointer;
 
         & .navbar-header,
         & .navbar-collapse,
         & .navbar-brand,
         & .navbar-brand .navbar-brand-appname,
-        & ul, & li, & a, & ul i {
+        & ul, & li, & a, & ul i,
+        & .navbar-toggle {
             line-height: 0px;
             font-size: 0px;
             height: 0px;

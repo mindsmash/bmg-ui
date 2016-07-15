@@ -13,6 +13,7 @@
     }
 
 })(angular);
+
 (function(angular) {
     'use strict';
 
@@ -133,6 +134,29 @@
     }
 
     bmgOneClickSelect.$inject = ['$timeout'];
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('bmgTypeahead', bmgTypeahead);
+
+    function bmgTypeahead() {
+        return {
+            replace: true,
+            require: 'ngModel',
+            templateUrl: 'bmg/template/typeahead/control.html',
+            link: function(scope, elem, attrs, ngModelCtrl) {
+                scope.selectedValue = scope.$eval(attrs.ngModel);
+
+                scope.updateModel = function() {
+                    ngModelCtrl.$setViewValue(scope.selectedValue);
+                };
+            }
+        };
+    }
 })();
 
 (function(undefined) {
@@ -307,6 +331,29 @@
     editableOneClickSelect.$inject = ['editableDirectiveFactory'];
 })();
 
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('editableTypeahead', editableTypeahead);
+
+    function editableTypeahead(editableDirectiveFactory) {
+        return editableDirectiveFactory({
+            directiveName: 'editableTypeahead',
+            inputTpl: '<data-bmg-typeahead />',
+            render: function() {
+                this.parent.render.call(this);
+
+                this.scope.items = this.scope.$eval(this.attrs.items) || [];
+                this.scope.placeholder = this.attrs.placeholder || 'Type to search …';
+            }
+        });
+    }
+
+    editableTypeahead.$inject = ['editableDirectiveFactory'];
+})();
+
 (function (angular) {
     angular.module("uib/template/datepicker/datepicker.html", []).run(["$templateCache", function($templateCache) {
         $templateCache.put("uib/template/datepicker/datepicker.html",
@@ -426,34 +473,6 @@
             "  </ul>\n" +
             "</div>\n" +
             "");
-    }]);
-
-    angular.module('bmg/template/datepicker/control.html', []).run(['$templateCache', function($templateCache) {
-        $templateCache.put('bmg/template/datepicker/control.html',
-        '<p' +
-        '    class="input-group datepicker-group">' +
-        '    <input' +
-        '        type="text"' +
-        '        class="form-control"' +
-        '        uib-datepicker-popup="{{ uibDatepickerPopup }}"' +
-        '        ng-model="selectedDate.value"' +
-        '        ng-model-options="modelOptions"' +
-        '        ng-change="updateDate()"' +
-        '        is-open="bmgDatepickerCtrl.popup.opened"' +
-        '        datepicker-options="datepickerOptions"' +
-        '        ng-required="{{ required }}"' +
-        '        close-text="{{ closeText }}"' +
-        '        placeholder="{{ placeholder }}"' +
-        '        popup-placement="{{ popupPlacement }}" />' +
-        '    <span class="input-group-btn">' +
-        '        <button' +
-        '            type="button"' +
-        '            class="btn btn-default shrink"' +
-        '            ng-click="bmgDatepickerCtrl.open()">' +
-        '            <i class="color-primary fa fa-calendar"></i>' +
-        '        </button>' +
-        '    </span>' +
-        '</p>');
     }]);
 })(angular);
 
@@ -643,3 +662,55 @@ angular.module('bmg.components.ui')
         $templateCache.put("selectize/select.tpl.html","<div class=\"ui-select-container selectize-control single\" ng-class=\"{\'open\': $select.open}\"><div class=\"selectize-input\" ng-class=\"{\'focus\': $select.open, \'disabled\': $select.disabled, \'selectize-focus\' : $select.focus}\" ng-click=\"$select.open && !$select.searchEnabled ? $select.toggle($event) : $select.activate()\"><div class=\"ui-select-match\"></div><input type=\"text\" autocomplete=\"off\" tabindex=\"-1\" class=\"ui-select-search ui-select-toggle\" ng-click=\"$select.toggle($event)\" placeholder=\"{{$select.placeholder}}\" ng-model=\"$select.search\" ng-hide=\"!$select.searchEnabled || ($select.selected && !$select.open)\" ng-disabled=\"$select.disabled\" aria-label=\"{{ $select.baseTitle }}\"></div><div class=\"ui-select-choices\"></div></div>");
     }]);
 })(angular);
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg/template/typeahead/control.html', [])
+        .run(['$templateCache', function($templateCache) {
+            $templateCache.put('bmg/template/typeahead/control.html',
+            '<p class="input-group typeahead-wrapper">' +
+            '<input' +
+            '    type="text"' +
+            '    class="form-control"' +
+            '    uib-typeahead="item for item in items | filter:$viewValue"' +
+            '    data-ng-model="selectedValue"' +
+            '    data-ng-model-options="{}"' +
+            '    data-ng-change="updateModel()"' +
+            '    data-ng-selected="updateModel()"' +
+            '    placeholder="{{ placeholder }}">' +
+            '<span class="fa fa-search form-control-feedback"></span>' +
+            '</p>');
+        }]);
+
+    angular
+        .module('bmg/template/datepicker/control.html', [])
+        .run(['$templateCache', function($templateCache) {
+            $templateCache.put('bmg/template/datepicker/control.html',
+            '<p' +
+            '    class="input-group datepicker-group">' +
+            '    <input' +
+            '        type="text"' +
+            '        class="form-control"' +
+            '        uib-datepicker-popup="{{ uibDatepickerPopup }}"' +
+            '        data-ng-model="selectedDate.value"' +
+            '        data-ng-model-options="modelOptions"' +
+            '        data-ng-change="updateDate()"' +
+            '        is-open="bmgDatepickerCtrl.popup.opened"' +
+            '        datepicker-options="datepickerOptions"' +
+            '        data-ng-required="{{ required }}"' +
+            '        close-text="{{ closeText }}"' +
+            '        placeholder="{{ placeholder }}"' +
+            '        popup-placement="{{ popupPlacement }}" />' +
+            '    <span class="input-group-btn">' +
+            '        <button' +
+            '            type="button"' +
+            '            class="btn btn-default shrink"' +
+            '            ng-click="bmgDatepickerCtrl.open()">' +
+            '            <i class="color-primary fa fa-calendar"></i>' +
+            '        </button>' +
+            '    </span>' +
+            '</p>');
+    }]);
+})();

@@ -33,6 +33,19 @@ a.editable-click.editable-empty {
   position: relative;
   top: -1px;
 
+  .typeahead-wrapper {
+      margin-bottom: 0;
+
+      .form-control {
+          border-bottom-right-radius: 3px;
+          border-top-right-radius: 3px;
+      }
+
+      .fa-search {
+          z-index: 3;
+      }
+  }
+
   @media screen and (max-width: $screen-sm) {
     .editable-buttons {
       line-height: 28px;

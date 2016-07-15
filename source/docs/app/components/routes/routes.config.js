@@ -79,6 +79,9 @@
             .state('index.filter', {
                 url: "#filter"
             })
+            .state('index.popover', {
+                url: '#popover'
+            })
             .state('index.sticky', {
                 url: "#sticky"
             })
@@ -87,7 +90,7 @@
             })
             .state('index.css', {
                 url: "#css"
-            })
+            });
     }
 
 })(angular);

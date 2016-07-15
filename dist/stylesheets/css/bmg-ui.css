@@ -97,6 +97,12 @@ a.editable-click.editable-empty { min-width: 100%; min-height: 30px; display: bl
 
 .editable-controls.form-group { position: relative; top: -1px; }
 
+.editable-controls.form-group .typeahead-wrapper { margin-bottom: 0; }
+
+.editable-controls.form-group .typeahead-wrapper .form-control { border-bottom-right-radius: 3px; border-top-right-radius: 3px; }
+
+.editable-controls.form-group .typeahead-wrapper .fa-search { z-index: 3; }
+
 @media screen and (max-width: 768px) { .editable-controls.form-group .editable-buttons { line-height: 28px; } }
 
 a.editable-click { text-decoration: none; color: #4c4c4c; font-size: 15px; font-weight: bold; line-height: 28px; position: relative; display: block; margin-left: -15px; margin-right: 60px; padding: 0px 16px; min-height: 30px; max-height: 30px; border: 1px solid transparent; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -264,6 +270,18 @@ table.uib-yearpicker > tbody > tr > td > button.btn.active > span { color: #ffff
 .btn > i.fa.fa-chevron-left { position: relative; left: -1px; }
 
 .btn > i.fa.fa-remove { position: relative; top: -0.8px; right: -0.5px; }
+
+.popover { padding: 0 !important; border-radius: 2px !important; border-color: #ededed !important; }
+
+.popover .popover-title { background-color: #ffffff !important; color: #c80031; }
+
+.popover.bottom .arrow { border-bottom-color: #ededed !important; }
+
+.popover.top .arrow { border-top-color: #ededed !important; }
+
+.popover.right .arrow { border-right-color: #ededed !important; }
+
+.popover.left .arrow { border-left-color: #ededed !important; }
 
 /*! Bootstrap v3.3.6 (http://getbootstrap.com) Copyright 2011-2015 Twitter, Inc. Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -3011,13 +3029,15 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 /** Use with bootstrap's .navbar */
 .navbar-brand { min-width: 250px; max-width: 250px; font-size: 22px; }
 
+@media screen and (max-width: 992px) { .navbar-brand { min-width: 100px; } }
+
 .navbar-brand > img { height: 18px; display: inline-block; }
 
 .navbar-brand-appname { font-size: 12px; font-weight: 200; position: relative; bottom: -1px; margin-left: 4px; color: #999; }
 
 .navbar-brand-appname:hover, .navbar-brand-appname:active, .navbar-brand-appname:focus { color: #999; }
 
-.navbar { background-color: #333; padding: 0; min-width: 768px; border-bottom: 0; }
+.navbar { background-color: #333; padding: 0; border-bottom: 0; }
 
 .navbar .navbar-header { line-height: 75px; height: 75px; padding: 8px 30px 0 0; }
 
@@ -3139,9 +3159,9 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .navbar:not(.smaller) .bmg-nav-expand-hint { display: none; }
 
-.navbar.smaller { min-height: 20px; cursor: pointer; }
+.navbar.smaller { min-height: 20px; max-height: 20px; cursor: pointer; }
 
-.navbar.smaller .navbar-header, .navbar.smaller .navbar-collapse, .navbar.smaller .navbar-brand, .navbar.smaller .navbar-brand .navbar-brand-appname, .navbar.smaller ul, .navbar.smaller li, .navbar.smaller a, .navbar.smaller ul i { line-height: 0px; font-size: 0px; height: 0px; position: relative; top: -200px; visibility: hidden; }
+.navbar.smaller .navbar-header, .navbar.smaller .navbar-collapse, .navbar.smaller .navbar-brand, .navbar.smaller .navbar-brand .navbar-brand-appname, .navbar.smaller ul, .navbar.smaller li, .navbar.smaller a, .navbar.smaller ul i, .navbar.smaller .navbar-toggle { line-height: 0px; font-size: 0px; height: 0px; position: relative; top: -200px; visibility: hidden; }
 
 body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 
@@ -3292,6 +3312,8 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 .app-icon { width: 46px; height: 46px; line-height: 42px; font-size: 18px; font-weight: 200; color: #51d0ff; display: inline-block; margin-right: 12px; border: 1px solid #51d0ff; border-radius: 50%; text-align: center; background-color: #ffffff; }
 
 footer { background-color: #F3F3F3; padding: 5px 40px; font-size: 10px; color: #4c4c4c; text-align: right; min-width: 768px; border-top: 1px solid #ddd; }
+
+.popover-anchor { border: 1px solid #dadada; background-color: #f3f3f3; padding: 7px; border-radius: 2px; cursor: pointer; display: inline-block; }
 
 .form-group label, .input-group label { color: #999; font-size: 14px; font-weight: 500; text-transform: uppercase; }
 

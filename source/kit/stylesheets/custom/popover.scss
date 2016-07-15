@@ -1,0 +1,26 @@
+.popover {
+    padding: 0 !important;
+    border-radius: 2px !important;
+    border-color: $bmg-celeste !important;
+
+    .popover-title {
+        background-color: $bmg-white !important;
+        color: $bmg-monza;
+    }
+
+    &.bottom .arrow {
+        border-bottom-color: $bmg-celeste !important;
+    }
+
+    &.top .arrow {
+        border-top-color: $bmg-celeste !important;
+    }
+
+    &.right .arrow {
+        border-right-color: $bmg-celeste !important;
+    }
+
+    &.left .arrow {
+        border-left-color: $bmg-celeste !important;
+    }
+}
