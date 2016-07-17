@@ -1,13 +1,6 @@
 (function(angular) {
     'use strict';
 
-    angular.module('bmg.components.util', []);
-
-})(angular);
-
-(function(angular) {
-    'use strict';
-
     angular.module('bmg.components.ui', [])
         .run(xeditableRun);
 
@@ -20,6 +13,346 @@
     }
 
 })(angular);
+
+(function(angular) {
+    'use strict';
+
+    angular.module('bmg.components.util', []);
+
+})(angular);
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .controller('BmgDatepickerController', BmgDatepickerController);
+
+    BmgDatepickerController.$inject = ['$scope'];
+
+    function BmgDatepickerController($scope) {
+        this.today = function() {
+            this.dt = new Date();
+        };
+        this.today();
+
+        $scope.dateOptions = {
+            dateDisabled: disabled,
+            formatYear: 'yyyy',
+            formatMonth: 'MMMM',
+            formatDate: 'dd',
+            startingDay: 1,
+            showWeeks: false
+        };
+
+        // Disable weekend selection
+        function disabled(data) {
+            var date = data.date,
+                mode = data.mode;
+            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+        }
+
+        this.open = function() {
+            this.popup.opened = true;
+        };
+
+        this.setDate = function(year, month, day) {
+            this.dt = new Date(year, month, day);
+        };
+
+        this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        this.format = this.formats[2];
+
+        this.popup = {
+            opened: false
+        };
+    }
+
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('bmgDatepicker', bmgDatepicker);
+
+    function bmgDatepicker() {
+        return {
+            replace: true,
+            require: 'ngModel',
+            templateUrl: 'bmg/template/datepicker/control.html',
+            controller: 'BmgDatepickerController as bmgDatepickerCtrl',
+            link: function(scope, elem, attrs, ngModelCtrl) {
+                scope.selectedDate = {
+                    value: scope.$eval(attrs.ngModel)
+                };
+
+                scope.updateDate = function() {
+                    ngModelCtrl.$setViewValue(scope.selectedDate.value);
+                };
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('bmgOneClickSelect', bmgOneClickSelect);
+
+    function bmgOneClickSelect($timeout) {
+        return {
+            replace: true,
+            template: '<select class="form-control"></select>',
+            link: function(scope, elem, attrs) {
+                var visible = false;
+
+                scope.$watch(function() {
+                    return elem.is(':visible') && elem.is(':focus');
+                }, function() {
+                    if (!visible) {
+                        $timeout(function() {
+                            openSelect(elem);
+                            visible = true;
+                        });
+                    }
+                });
+            }
+        };
+    }
+
+    function openSelect(elem) {
+        var e = document.createEvent("MouseEvents");
+        e.initMouseEvent(
+            "mousedown", true, true, window, 0, 0, 0, 0, 0,
+            false, false, false, false, 0, null
+        );
+        elem[0].dispatchEvent(e);
+    }
+
+    bmgOneClickSelect.$inject = ['$timeout'];
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('bmgTypeahead', bmgTypeahead);
+
+    function bmgTypeahead() {
+        return {
+            replace: true,
+            require: 'ngModel',
+            templateUrl: 'bmg/template/typeahead/control.html',
+            link: function(scope, elem, attrs, ngModelCtrl) {
+                scope.selectedValue = scope.$eval(attrs.ngModel);
+
+                scope.updateModel = function() {
+                    ngModelCtrl.$setViewValue(scope.selectedValue);
+                };
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('collapsingNavbar', collapsingNavbar);
+
+    function collapsingNavbar() {
+        return {
+            restrict: 'A',
+            link: function(scope, elem) {
+                window.setInterval(checkScrollStatus, 200);
+
+                $('nav.navbar').click(expandNavbar);
+
+                // add expand hint
+                var expandHint = angular.element(
+                    '<div class="bmg-nav-expand-hint"><i class="fa fa-bars"></i></div>');
+
+                elem.find('.container-fluid').append(expandHint);
+            }
+        };
+    }
+
+    // saves the previous 10 scroll positions
+    var lastKnownScrollPositions = [];
+    var isCollapsed = false;
+
+    function checkScrollStatus() {
+        // check scroll status every 200ms
+        var scrollTop = $(document).scrollTop();
+        lastKnownScrollPositions.push(scrollTop);
+
+        if (lastKnownScrollPositions.length > 10) {
+            // only the last 10 positions should be saved
+            lastKnownScrollPositions.shift();
+
+            var earliestKnownScrollTop = lastKnownScrollPositions[0];
+            var previousScrollTop = lastKnownScrollPositions[lastKnownScrollPositions.length - 2];
+
+            if (scrollTop !== previousScrollTop) {
+                // do not do anything if we're not scrolling anymore
+
+                if ((scrollTop - earliestKnownScrollTop) > 200 && !isCollapsed) {
+                    // more than 200px scrolled down? -> collapse
+                    collapseNavbar();
+                }
+
+                // at the top of the page or more than 200px
+                // scrolled up? -> expand
+                if (((earliestKnownScrollTop - scrollTop) > 200 || scrollTop <= 50) &&
+                    isCollapsed) {
+                    expandNavbar();
+                }
+            }
+        }
+    }
+
+    function collapseNavbar() {
+        $('nav.navbar').addClass('smaller');
+        rearrangeStickyBars(true);
+        isCollapsed = true;
+    }
+
+    function expandNavbar() {
+        $('nav.navbar').removeClass('smaller');
+        rearrangeStickyBars(false);
+        isCollapsed = false;
+    }
+
+    function rearrangeStickyBars(up) {
+        var stickyBars = $('*[sticky]');
+
+        if (up) {
+            stickyBars.attr('offset', 20);
+            stickyBars.css('top', '20px');
+        } else {
+            stickyBars.attr('offset', 75);
+            stickyBars.css('top', '75px');
+        }
+
+        changefloatTheadTop(up);
+    }
+
+    function changefloatTheadTop(up) {
+        var tableSelector = '.table-responsive table, ' +
+            '.tableStandard-responsive table, ' +
+            '.tableCondensed-responsive table';
+
+        // reinitialize floating table headers
+        $(tableSelector).floatThead('destroy');
+
+        $(tableSelector).floatThead({
+            top: function($table) {
+                return up ? 20 : 75;
+            },
+            responsiveContainer: function($table){
+                return $table.closest('.table-responsive, ' +
+                    '.tableStandard-responsive, ' +
+                    '.tableCondensed-responsive');
+            }
+        });
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('editableBmgDate', editableBmgDate);
+
+    function editableBmgDate(editableDirectiveFactory) {
+        return editableDirectiveFactory({
+            directiveName: 'editableBmgDate',
+            inputTpl: '<data-bmg-datepicker />',
+            render: function() {
+                this.parent.render.call(this);
+
+                var options = this.scope.$eval(this.attrs.datepickerOptions);
+
+                this.scope.datepickerOptions = {
+                    minMode: options.minMode || 'day',
+                    maxMode: options.maxMode || 'year',
+                    formatDay: options.formatDay || 'dd',
+                    formatMonth: options.formatMonth || 'MMMM',
+                    formatYear: options.formatYear || 'yyyy',
+                    formatDayHeader: options.formatDayHeader || 'EEE',
+                    formatDayTitle: options.formatDayTitle || 'MMMM yyyy',
+                    formatMonthTitle: options.formatMonthTitle || 'yyyy',
+                    showWeeks: options.showWeeks,
+                    startingDay: options.startingDay || 0,
+                    initDate: options.initDate || new Date(),
+                    datepickerMode: options.datepickerMode || 'day',
+                    maxDate: options.maxDate || null,
+                    minDate: options.minDate || null
+                };
+
+                this.scope.placeholder = this.attrs.placeholder || '';
+                this.scope.uibDatepickerPopup = this.attrs.popup || 'dd.MM.yyyy';
+                this.scope.popupPlacement = this.attrs.popupPlacement || 'auto top bottom';
+                this.scope.closeText = this.attrs.closeText || 'Close';
+                this.scope.required = this.attrs.required || true;
+                this.scope.modelOptions = this.scope.$eval(this.attrs.modelOptions) || {};
+            }
+        });
+    }
+
+    editableBmgDate.$inject = ['editableDirectiveFactory'];
+
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('editableOneClickSelect', editableOneClickSelect);
+
+    function editableOneClickSelect(editableDirectiveFactory) {
+        return editableDirectiveFactory({
+            directiveName: 'editableOneClickSelect',
+            inputTpl: '<data-bmg-one-click-select />',
+            render: function() {
+                this.parent.render.call(this);
+            }
+        });
+    }
+
+    editableOneClickSelect.$inject = ['editableDirectiveFactory'];
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('editableTypeahead', editableTypeahead);
+
+    function editableTypeahead(editableDirectiveFactory) {
+        return editableDirectiveFactory({
+            directiveName: 'editableTypeahead',
+            inputTpl: '<data-bmg-typeahead />',
+            render: function() {
+                this.parent.render.call(this);
+
+                this.scope.items = this.scope.$eval(this.attrs.items) || [];
+                this.scope.placeholder = this.attrs.placeholder || 'Type to search …';
+            }
+        });
+    }
+
+    editableTypeahead.$inject = ['editableDirectiveFactory'];
+})();
 
 (function (angular) {
     angular.module("uib/template/datepicker/datepicker.html", []).run(["$templateCache", function($templateCache) {
@@ -380,337 +713,4 @@ angular.module('bmg.components.ui')
             '    </span>' +
             '</p>');
     }]);
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .controller('BmgDatepickerController', BmgDatepickerController);
-
-    BmgDatepickerController.$inject = ['$scope'];
-
-    function BmgDatepickerController($scope) {
-        this.today = function() {
-            this.dt = new Date();
-        };
-        this.today();
-
-        $scope.dateOptions = {
-            dateDisabled: disabled,
-            formatYear: 'yyyy',
-            formatMonth: 'MMMM',
-            formatDate: 'dd',
-            startingDay: 1,
-            showWeeks: false
-        };
-
-        // Disable weekend selection
-        function disabled(data) {
-            var date = data.date,
-                mode = data.mode;
-            return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-        }
-
-        this.open = function() {
-            this.popup.opened = true;
-        };
-
-        this.setDate = function(year, month, day) {
-            this.dt = new Date(year, month, day);
-        };
-
-        this.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        this.format = this.formats[2];
-
-        this.popup = {
-            opened: false
-        };
-    }
-
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('bmgDatepicker', bmgDatepicker);
-
-    function bmgDatepicker() {
-        return {
-            replace: true,
-            require: 'ngModel',
-            templateUrl: 'bmg/template/datepicker/control.html',
-            controller: 'BmgDatepickerController as bmgDatepickerCtrl',
-            link: function(scope, elem, attrs, ngModelCtrl) {
-                scope.selectedDate = {
-                    value: scope.$eval(attrs.ngModel)
-                };
-
-                scope.updateDate = function() {
-                    ngModelCtrl.$setViewValue(scope.selectedDate.value);
-                };
-            }
-        };
-    }
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('bmgOneClickSelect', bmgOneClickSelect);
-
-    function bmgOneClickSelect($timeout) {
-        return {
-            replace: true,
-            template: '<select class="form-control"></select>',
-            link: function(scope, elem, attrs) {
-                var visible = false;
-
-                scope.$watch(function() {
-                    return elem.is(':visible') && elem.is(':focus');
-                }, function() {
-                    if (!visible) {
-                        $timeout(function() {
-                            openSelect(elem);
-                            visible = true;
-                        });
-                    }
-                });
-            }
-        };
-    }
-
-    function openSelect(elem) {
-        var e = document.createEvent("MouseEvents");
-        e.initMouseEvent(
-            "mousedown", true, true, window, 0, 0, 0, 0, 0,
-            false, false, false, false, 0, null
-        );
-        elem[0].dispatchEvent(e);
-    }
-
-    bmgOneClickSelect.$inject = ['$timeout'];
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('bmgTypeahead', bmgTypeahead);
-
-    function bmgTypeahead() {
-        return {
-            replace: true,
-            require: 'ngModel',
-            templateUrl: 'bmg/template/typeahead/control.html',
-            link: function(scope, elem, attrs, ngModelCtrl) {
-                scope.selectedValue = scope.$eval(attrs.ngModel);
-
-                scope.updateModel = function() {
-                    ngModelCtrl.$setViewValue(scope.selectedValue);
-                };
-            }
-        };
-    }
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('collapsingNavbar', collapsingNavbar);
-
-    function collapsingNavbar() {
-        return {
-            restrict: 'A',
-            link: function(scope, elem) {
-                window.setInterval(checkScrollStatus, 200);
-
-                $('nav.navbar').click(expandNavbar);
-
-                // add expand hint
-                var expandHint = angular.element(
-                    '<div class="bmg-nav-expand-hint"><i class="fa fa-bars"></i></div>');
-
-                elem.find('.container-fluid').append(expandHint);
-            }
-        };
-    }
-
-    // saves the previous 10 scroll positions
-    var lastKnownScrollPositions = [];
-    var isCollapsed = false;
-
-    function checkScrollStatus() {
-        // check scroll status every 200ms
-        var scrollTop = $(document).scrollTop();
-        lastKnownScrollPositions.push(scrollTop);
-
-        if (lastKnownScrollPositions.length > 10) {
-            // only the last 10 positions should be saved
-            lastKnownScrollPositions.shift();
-
-            var earliestKnownScrollTop = lastKnownScrollPositions[0];
-            var previousScrollTop = lastKnownScrollPositions[lastKnownScrollPositions.length - 2];
-
-            if (scrollTop !== previousScrollTop) {
-                // do not do anything if we're not scrolling anymore
-
-                if ((scrollTop - earliestKnownScrollTop) > 200 && !isCollapsed) {
-                    // more than 200px scrolled down? -> collapse
-                    collapseNavbar();
-                }
-
-                // at the top of the page or more than 200px
-                // scrolled up? -> expand
-                if (((earliestKnownScrollTop - scrollTop) > 200 || scrollTop <= 50) &&
-                    isCollapsed) {
-                    expandNavbar();
-                }
-            }
-        }
-    }
-
-    function collapseNavbar() {
-        $('nav.navbar').addClass('smaller');
-        rearrangeStickyBars(true);
-        isCollapsed = true;
-    }
-
-    function expandNavbar() {
-        $('nav.navbar').removeClass('smaller');
-        rearrangeStickyBars(false);
-        isCollapsed = false;
-    }
-
-    function rearrangeStickyBars(up) {
-        var stickyBars = $('*[sticky]');
-
-        if (up) {
-            stickyBars.attr('offset', 20);
-            stickyBars.css('top', '20px');
-        } else {
-            stickyBars.attr('offset', 75);
-            stickyBars.css('top', '75px');
-        }
-
-        changefloatTheadTop(up);
-    }
-
-    function changefloatTheadTop(up) {
-        var tableSelector = '.table-responsive table, ' +
-            '.tableStandard-responsive table, ' +
-            '.tableCondensed-responsive table';
-
-        // reinitialize floating table headers
-        $(tableSelector).floatThead('destroy');
-
-        $(tableSelector).floatThead({
-            top: function($table) {
-                return up ? 20 : 75;
-            },
-            responsiveContainer: function($table){
-                return $table.closest('.table-responsive, ' +
-                    '.tableStandard-responsive, ' +
-                    '.tableCondensed-responsive');
-            }
-        });
-    }
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('editableBmgDate', editableBmgDate);
-
-    function editableBmgDate(editableDirectiveFactory) {
-        return editableDirectiveFactory({
-            directiveName: 'editableBmgDate',
-            inputTpl: '<data-bmg-datepicker />',
-            render: function() {
-                this.parent.render.call(this);
-
-                var options = this.scope.$eval(this.attrs.datepickerOptions);
-
-                this.scope.datepickerOptions = {
-                    minMode: options.minMode || 'day',
-                    maxMode: options.maxMode || 'year',
-                    formatDay: options.formatDay || 'dd',
-                    formatMonth: options.formatMonth || 'MMMM',
-                    formatYear: options.formatYear || 'yyyy',
-                    formatDayHeader: options.formatDayHeader || 'EEE',
-                    formatDayTitle: options.formatDayTitle || 'MMMM yyyy',
-                    formatMonthTitle: options.formatMonthTitle || 'yyyy',
-                    showWeeks: options.showWeeks,
-                    startingDay: options.startingDay || 0,
-                    initDate: options.initDate || new Date(),
-                    datepickerMode: options.datepickerMode || 'day',
-                    maxDate: options.maxDate || null,
-                    minDate: options.minDate || null
-                };
-
-                this.scope.placeholder = this.attrs.placeholder || '';
-                this.scope.uibDatepickerPopup = this.attrs.popup || 'dd.MM.yyyy';
-                this.scope.popupPlacement = this.attrs.popupPlacement || 'auto top bottom';
-                this.scope.closeText = this.attrs.closeText || 'Close';
-                this.scope.required = this.attrs.required || true;
-                this.scope.modelOptions = this.scope.$eval(this.attrs.modelOptions) || {};
-            }
-        });
-    }
-
-    editableBmgDate.$inject = ['editableDirectiveFactory'];
-
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('editableOneClickSelect', editableOneClickSelect);
-
-    function editableOneClickSelect(editableDirectiveFactory) {
-        return editableDirectiveFactory({
-            directiveName: 'editableOneClickSelect',
-            inputTpl: '<data-bmg-one-click-select />',
-            render: function() {
-                this.parent.render.call(this);
-            }
-        });
-    }
-
-    editableOneClickSelect.$inject = ['editableDirectiveFactory'];
-})();
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg.components.ui')
-        .directive('editableTypeahead', editableTypeahead);
-
-    function editableTypeahead(editableDirectiveFactory) {
-        return editableDirectiveFactory({
-            directiveName: 'editableTypeahead',
-            inputTpl: '<data-bmg-typeahead />',
-            render: function() {
-                this.parent.render.call(this);
-
-                this.scope.items = this.scope.$eval(this.attrs.items) || [];
-                this.scope.placeholder = this.attrs.placeholder || 'Type to search …';
-            }
-        });
-    }
-
-    editableTypeahead.$inject = ['editableDirectiveFactory'];
 })();
