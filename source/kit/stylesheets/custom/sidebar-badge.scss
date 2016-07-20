@@ -1,0 +1,33 @@
+$tab-status-height: 25px;
+$link-height: 80px;
+
+.tab-status {
+    display: inline-block;
+    position: absolute;
+    top: ($link-height - $tab-status-height) / 2;
+    right: 20px;
+    height: $tab-status-height;
+    width: $tab-status-height;
+    border-radius: $tab-status-height / 2;
+    text-align: center;
+    font-weight: 400;
+    line-height: $tab-status-height;
+    color: $bmg-white;
+
+    .fa {
+        margin-right: 0;
+        font-weight: 400;
+    }
+}
+
+.status-error {
+    background-color: $bmg-error;
+}
+
+.status-warning {
+    background-color: $bmg-warning;
+}
+
+.status-success {
+    background-color: $bmg-success;
+}

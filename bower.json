@@ -23,7 +23,8 @@
   ],
   "dependencies": {
     "font-awesome": "~4.6.1",
-    "mindsmash-source-sans-pro": "~1.1.0"
+    "mindsmash-source-sans-pro": "~1.1.0",
+    "lodash": "^4.13.1"
   },
   "devDependencies": {
     "jquery": "^2.2.2",

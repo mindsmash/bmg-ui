@@ -17,12 +17,17 @@
                 size: 'sm',
                 backdrop: backdrop,
                 windowClass: 'app-aside-left',
+                animation: true,
                 controller: function($scope, $uibModalInstance) {
                     $scope.ok = function() {
                         $uibModalInstance.close();
                     };
                     $scope.cancel = function() {
-                        $uibModalInstance.dismiss();
+                        $('.app-aside-left .modal-content').animate({
+                            left: '-378px'
+                        }, 200, function() {
+                            $uibModalInstance.dismiss();
+                        });
                     };
                 }
             });

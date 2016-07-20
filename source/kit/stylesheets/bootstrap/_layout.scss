@@ -271,47 +271,46 @@ body {
   margin-top: $bmg-nav-height !important;
 
   .modal-content {
-    padding: 14px 40px;
+    padding: 14px 0px;
     width: 378px;
 
     .app-nav {
+        font-weight: 200;
+
       h3 {
-        font-weight: 300;
+        font-weight: 200;
+        padding: 0px 32px;
+        margin: 40px 0;
       }
       ul {
         padding-left: 0;
 
         li {
           list-style: none;
-          margin: 24px 0;
+          margin: 0;
           border: 1px solid transparent;
-          > a {
+          border-top-color: $bmg-celeste;
+          border-left-width: 5px;
+
+          & > a {
             width: 100%;
             display: block;
             color: $bmg-text;
-          }
+            padding: 24px 40px;
 
-          &:hover {
-            border: 1px solid $bmg-malibu;
-            border-radius: 24px;
-
-            > a {
-              color: $bmg-text;
-              .app-icon {
-                background-color: $bmg-malibu;
-                @include transition(background-color .2s);
-                color: $bmg-white;
-              }
+            img {
+                width: 40px;
+                height: 40px;
+                margin-right: 20px;
             }
           }
 
           &.active {
-            > a {
-              .app-icon {
-                background-color: $bmg-malibu;
-                color: $bmg-white;
-              }
-            }
+              border-left: 5px solid $bmg-monza;
+          }
+
+          &:last-child {
+              border-bottom-color: $bmg-celeste;
           }
         }
       }
