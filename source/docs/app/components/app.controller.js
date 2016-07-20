@@ -17,6 +17,7 @@
                 size: 'sm',
                 backdrop: backdrop,
                 windowClass: 'app-aside-left',
+                animation: false,
                 controller: function($scope, $uibModalInstance) {
                     $scope.ok = function() {
                         $uibModalInstance.close();
