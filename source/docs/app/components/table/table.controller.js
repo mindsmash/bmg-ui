@@ -24,7 +24,11 @@
                         $uibModalInstance.close();
                     };
                     asideCtrl.cancel = function() {
-                        $uibModalInstance.dismiss();
+						$('.app-aside-right .modal-content').animate({
+							right: '-378px'
+						}, 200, function() {
+							$uibModalInstance.dismiss();
+						});
                     };
 
                     asideCtrl.applyFilter = function() {
@@ -49,7 +53,11 @@
                         $uibModalInstance.close();
                     };
                     asideCtrl.cancel = function() {
-                        $uibModalInstance.dismiss();
+						$('.app-aside-right .modal-content').animate({
+							right: '-378px'
+						}, 200, function() {
+							$uibModalInstance.dismiss();
+						});
                     };
                     
                     asideCtrl.colFilter = TableColFilterService.colFilter;
