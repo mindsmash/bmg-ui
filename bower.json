@@ -39,7 +39,8 @@
     "highlightjs": "~9.2.0",
     "holderjs": "~2.9.0",
     "jquery.floatThead": "floatThead#^1.4.0",
-    "ngSticky": "^1.8.10"
+    "ngSticky": "^1.8.10",
+	"lodash": "^4.13.1"
   },
   "overrides": {
     "highlightjs": {

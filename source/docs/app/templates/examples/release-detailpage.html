@@ -36,10 +36,15 @@
         <div class="row row-with-sidebar">
             <div class="col-lg-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active"><a href=""><span class="fa-stack fa-lg">
-                                  <i class="fa fa-circle fa-stack-2x"></i>
-                                  <i class="fa fa-home fa-stack-1x fa-inverse"></i>
-                                </span><span class="nav-text">General</span></a></li>
+                    <li class="active">
+                        <a href="">
+                            <span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-home fa-stack-1x fa-inverse"></i></span>
+                            <span class="nav-text">General</span>
+                            <data-sidebar-badge
+                                data-status="success"
+                                id="generalStatus"></data-sidebar-badge>
+                        </a>
+                    </li>
                     <li><a href=""><span class="fa-stack fa-lg">
                                   <i class="fa fa-circle fa-stack-2x"></i>
                                   <i class="fa fa-sitemap fa-stack-1x fa-inverse"></i>
@@ -88,9 +93,13 @@
                     <h5>Header</h5>
                     <div class="form-group">
                         <div class="col-sm-2 text-right">Site</div>
-                        <div class="col-sm-4"><a href="#" editable-one-click-select="xEditableCtrl.site.value"
-                                                 e-ng-options="s.value as s.text for s in xEditableCtrl.data.sites">{{
-                            xEditableCtrl.showSites() }}</a></div>
+                        <div class="col-sm-4">
+                            <a
+                                href="#"
+                                editable-one-click-select="xEditableCtrl.site.value"
+                                e-ng-options="s.value as s.text for s in xEditableCtrl.data.sites">{{
+                                    xEditableCtrl.showSites() }}</a>
+                        </div>
                         <div class="col-sm-2 text-right">Barcode</div>
                         <div class="col-sm-4"><a href="#" editable-text="xEditableCtrl.data.barcode">{{
                             xEditableCtrl.data.barcode }}</a></div>
@@ -126,7 +135,16 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2 text-right">Product Title</div>
-                        <div class="col-sm-10">Peggy the Pistol/Hogs Are a Coming</div>
+                        <div class="col-sm-4">Peggy the Pistol/Hogs Are a Coming</div>
+                        <div class="col-sm-2 text-right">Sidebar badge status</div>
+                        <div class="col-sm-4">
+                            <a
+                                href="#"
+                                editable-one-click-select="xEditableCtrl.badgeStatus.value"
+                                e-ng-options="s.value as s.text for s in xEditableCtrl.data.badgeStatii"
+                                data-onbeforesave="xEditableCtrl.updateBadge($data)">{{
+                                    xEditableCtrl.getSelectedBadgeStatus() }}</a>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2 text-right">Title</div>

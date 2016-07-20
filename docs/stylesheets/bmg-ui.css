@@ -283,6 +283,16 @@ table.uib-yearpicker > tbody > tr > td > button.btn.active > span { color: #ffff
 
 .popover.left .arrow { border-left-color: #ededed !important; }
 
+.tab-status { display: inline-block; position: absolute; top: 27.5px; right: 20px; height: 25px; width: 25px; border-radius: 12.5px; text-align: center; font-weight: 400; line-height: 25px; color: #ffffff; }
+
+.tab-status .fa { margin-right: 0; font-weight: 400; }
+
+.status-error { background-color: #c80031; }
+
+.status-warning { background-color: #ffcc00; }
+
+.status-success { background-color: #afce06; }
+
 /*! Bootstrap v3.3.6 (http://getbootstrap.com) Copyright 2011-2015 Twitter, Inc. Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
@@ -3279,23 +3289,23 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 
 .app-aside-left .modal-dialog { margin-top: 75px !important; }
 
-.app-aside-left .modal-dialog .modal-content { padding: 14px 40px; width: 378px; }
+.app-aside-left .modal-dialog .modal-content { padding: 14px 0px; width: 378px; }
 
-.app-aside-left .modal-dialog .modal-content .app-nav h3 { font-weight: 300; }
+.app-aside-left .modal-dialog .modal-content .app-nav { font-weight: 200; }
+
+.app-aside-left .modal-dialog .modal-content .app-nav h3 { font-weight: 200; padding: 0px 32px; margin: 40px 0; }
 
 .app-aside-left .modal-dialog .modal-content .app-nav ul { padding-left: 0; }
 
-.app-aside-left .modal-dialog .modal-content .app-nav ul li { list-style: none; margin: 24px 0; border: 1px solid transparent; }
+.app-aside-left .modal-dialog .modal-content .app-nav ul li { list-style: none; margin: 0; border: 1px solid transparent; border-top-color: #ededed; border-left-width: 5px; }
 
-.app-aside-left .modal-dialog .modal-content .app-nav ul li > a { width: 100%; display: block; color: #4c4c4c; }
+.app-aside-left .modal-dialog .modal-content .app-nav ul li > a { width: 100%; display: block; color: #4c4c4c; padding: 24px 40px; }
 
-.app-aside-left .modal-dialog .modal-content .app-nav ul li:hover { border: 1px solid #51d0ff; border-radius: 24px; }
+.app-aside-left .modal-dialog .modal-content .app-nav ul li > a img { width: 40px; height: 40px; margin-right: 20px; }
 
-.app-aside-left .modal-dialog .modal-content .app-nav ul li:hover > a { color: #4c4c4c; }
+.app-aside-left .modal-dialog .modal-content .app-nav ul li.active { border-left: 5px solid #c80031; }
 
-.app-aside-left .modal-dialog .modal-content .app-nav ul li:hover > a .app-icon { background-color: #51d0ff; -webkit-transition: background-color 0.2s; -o-transition: background-color 0.2s; transition: background-color 0.2s; color: #ffffff; }
-
-.app-aside-left .modal-dialog .modal-content .app-nav ul li.active > a .app-icon { background-color: #51d0ff; color: #ffffff; }
+.app-aside-left .modal-dialog .modal-content .app-nav ul li:last-child { border-bottom-color: #ededed; }
 
 .app-aside-right .modal-dialog { margin-top: 75px !important; }
 
