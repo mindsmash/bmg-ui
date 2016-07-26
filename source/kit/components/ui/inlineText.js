@@ -12,7 +12,10 @@
                 ngModel: '=',
                 placeholder: '@'
             },
-            template: '<div class="inline-edit-container"><input type="text" data-ng-model="ngModel" placeholder="{{placeholder}}" class="inline-text" /><button type="button" class="revert-button"><i class="fa fa-undo"></i></button></div>',
+            template: '<div class="inline-edit-container">' +
+                '<input type="text" data-ng-model="ngModel" placeholder="{{placeholder}}" ' +
+                'class="inline-text" /><button type="button" class="revert-button">' +
+                '<i class="fa fa-undo"></i></button></div>',
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
                 // timeout necessary, otherview $viewValue is still NaN

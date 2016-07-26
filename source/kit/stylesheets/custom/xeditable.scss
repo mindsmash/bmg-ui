@@ -1,7 +1,7 @@
 // new inline edits
 .inline-edit-container {
     line-height: 32px;
-    height: 32px;
+    max-height: 32px;
     padding: 0;
     margin: 0;
 
@@ -9,14 +9,17 @@
         border-top: none;
         border-left: none;
         border-right: none;
-        border-bottom: 1px solid $bmg-gray-dark;
-        padding: 0px 20px 0px 4px;
+        border-bottom: 1px solid $bmg-gray-lighter;
+        border-top: 1px solid transparent;
+        padding: 0px 20px 4px 4px;
+        position: relative;
+        top: -2px;
         display: inline-block;
         width: 100%;
-        height: 31px;
+        max-height: 30px;
 
         &:focus {
-            border-color: $bmg-malibu;
+            border-bottom-color: $bmg-malibu;
         }
     }
 
