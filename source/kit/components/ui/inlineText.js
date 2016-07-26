@@ -9,9 +9,10 @@
         return {
             replace: true,
             scope: {
-                ngModel: '='
+                ngModel: '=',
+                placeholder: '@'
             },
-            template: '<div class="inline-edit-container"><input type="text" data-ng-model="ngModel" class="inline-text" /><button type="button" class="revert-button"><i class="fa fa-undo"></i></button></div>',
+            template: '<div class="inline-edit-container"><input type="text" data-ng-model="ngModel" placeholder="{{placeholder}}" class="inline-text" /><button type="button" class="revert-button"><i class="fa fa-undo"></i></button></div>',
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
                 // timeout necessary, otherview $viewValue is still NaN
@@ -27,23 +28,32 @@
                     });
 
                     inputElem.blur(function() {
-
+                        hideUndoBtn();
                     });
 
                     inputElem.on('keyup change', function() {
                         var newValue = inputElem.val();
 
                         if (newValue != initialValue) {
-                            undoBtn.css('opacity', '1');
+                            showUndoBtn();
                         } else {
-                            undoBtn.css('opacity', '0');
+                            hideUndoBtn();
                         }
                     });
 
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
-                        $(this).css('opacity', '0');
+                        hideUndoBtn();
+                        inputElem.focus();
                     });
+
+                    function hideUndoBtn() {
+                        undoBtn.css('opacity', '0');
+                    }
+
+                    function showUndoBtn() {
+                        undoBtn.css('opacity', '1');
+                    }
                 });
             }
         };
