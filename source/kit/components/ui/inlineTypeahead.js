@@ -3,37 +3,51 @@
 
     angular
         .module('bmg.components.ui')
-        .directive('inlineText', inlineText);
+        .directive('inlineTypeahead', inlineTypeahead);
 
-    function inlineText($timeout) {
+    function inlineTypeahead($timeout) {
         return {
             replace: true,
             scope: {
                 ngModel: '=',
                 placeholder: '@',
-                oncommit: '&'
+                oncommit: '&',
+                items: '='
             },
-            templateUrl: 'bmg/template/inline/text.html',
+            templateUrl: 'bmg/template/inline/typeahead.html',
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
-                // timeout necessary, otherview $viewValue is still NaN
                 $timeout(function() {
                     // save original input value for undo
                     var initialValue = ngModel.$viewValue;
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-text');
 
-                    inputElem.focus(function() {
+                    scope.handleUndoBtnVisibility = function() {
+                        $timeout(function() {
+                            // timeout necessary because $viewValue would lag
+                            // one character behind otherwise
+                            var newValue = ngModel.$viewValue;
+
+                            if (newValue != initialValue) {
+                                showUndoBtn();
+                            } else {
+                                hideUndoBtn();
+                            }
+                        });
+                    };
+
+                    scope.focusHandler = function() {
                         // update initial value on new focus
                         initialValue = ngModel.$viewValue;
-                    });
+                    };
 
-                    inputElem.blur(function() {
+                    scope.blurHandler = function() {
                         hideUndoBtn();
 
                         // call the callback function with the new input value
                         scope.oncommit({
-                            $data: inputElem.val()
+                            $data: ngModel.$viewValue
                         });
 
                         // show visual indicator of possible change
@@ -42,22 +56,12 @@
                                 animateSuccessIndicator();
                             }
                         }, 10); // to make sure this happens after undo button click
-                    });
-
-                    inputElem.on('keyup change', function() {
-                        var newValue = inputElem.val();
-
-                        if (newValue != initialValue) {
-                            showUndoBtn();
-                        } else {
-                            hideUndoBtn();
-                        }
-                    });
+                    };
 
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
                         hideUndoBtn();
-                        inputElem.focus();
+                        inputElem.focus(); // TODO find a way to make this work with uib-typeahead
                     });
 
                     function hideUndoBtn() {

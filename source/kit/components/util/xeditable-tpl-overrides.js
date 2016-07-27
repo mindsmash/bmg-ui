@@ -20,6 +20,43 @@
         }]);
 
     angular
+        .module('bmg/template/inlineEdits', [])
+        .run(['$templateCache', function($templateCache) {
+            $templateCache.put('bmg/template/inline/text.html',
+                '<div class="inline-edit-container">' +
+                '   <input' +
+                '       type="text"' +
+                '       data-ng-model="ngModel"' +
+                '       placeholder="{{placeholder}}"' +
+                '       class="inline-text" /><button' + // sic! no whitespace between elements
+                '       type="button"' +
+                '       class="revert-button">' +
+                '       <i class="fa fa-undo"></i>' +
+                '   </button>' +
+                '</div>');
+
+            $templateCache.put('bmg/template/inline/typeahead.html',
+                '<div class="inline-edit-container">' +
+                '   <input' +
+                '       type="text"' +
+                '       data-ng-model="ngModel"' +
+                '       data-ng-model-options="{}"' +
+                '       uib-typeahead="item for item in items | filter:$viewValue"' +
+                '       typeahead-on-select="handleUndoBtnVisibility()"' +
+                '       data-ng-change="handleUndoBtnVisibility()"' +
+                '       data-ng-blur="blurHandler()"' +
+                '       data-ng-focus="focusHandler()"' +
+                '       placeholder="{{placeholder}}"' +
+                '       class="inline-typeahead" /><button' + // sic! no whitespace between elements
+                '       type="button"' +
+                '       class="revert-button">' +
+                '       <i class="fa fa-undo"></i>' +
+                '   </button><span' +
+                '       class="fa fa-search typeahead-hint"></span>' +
+                '</div>');
+        }]);
+
+    angular
         .module('bmg/template/datepicker/control.html', [])
         .run(['$templateCache', function($templateCache) {
             $templateCache.put('bmg/template/datepicker/control.html',

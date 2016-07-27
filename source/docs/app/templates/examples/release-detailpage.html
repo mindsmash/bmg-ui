@@ -156,13 +156,18 @@
                         </div>
                         <div class="col-sm-2">State of birth</div>
                         <div class="col-sm-4">
-                            <a
+                            <!--<a
                                 href="#"
                                 editable-typeahead="xEditableCtrl.data.stateOfBirth"
                                 items="xEditableCtrl.states"
                                 placeholder="Search states …"
                                 data-ng-model="ngModelOptionsSelected"
-                                >{{ xEditableCtrl.data.stateOfBirth}}</a>
+                                >{{ xEditableCtrl.data.stateOfBirth}}</a>-->
+                            <inline-typeahead
+                                data-ng-model="xEditableCtrl.data.stateOfBirth"
+                                placeholder="Search states …"
+                                items="xEditableCtrl.states"
+                                oncommit="xEditableCtrl.saveValue($data)"></inline-text>
                         </div>
                     </div>
                     <div class="form-group">
