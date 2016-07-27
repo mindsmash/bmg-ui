@@ -10,7 +10,8 @@
             replace: true,
             scope: {
                 ngModel: '=',
-                placeholder: '@'
+                placeholder: '@',
+                oncommit: '&'
             },
             template: '<div class="inline-edit-container">' +
                 '<input type="text" data-ng-model="ngModel" placeholder="{{placeholder}}" ' +
@@ -32,6 +33,14 @@
 
                     inputElem.blur(function() {
                         hideUndoBtn();
+
+                        // call the callback function with the new input value
+                        scope.oncommit({
+                            $data: inputElem.val()
+                        });
+
+                        // show visual indicator of change
+                        animateSuccessIndicator();
                     });
 
                     inputElem.on('keyup change', function() {
@@ -51,11 +60,26 @@
                     });
 
                     function hideUndoBtn() {
-                        undoBtn.css('opacity', '0');
+                        undoBtn.removeClass('active');
                     }
 
                     function showUndoBtn() {
-                        undoBtn.css('opacity', '1');
+                        undoBtn.addClass('active');
+                    }
+
+                    function animateSuccessIndicator() {
+                        undoBtn.find('i').removeClass('fa-undo').addClass('fa-check');
+                        undoBtn.addClass('success');
+                        showUndoBtn();
+
+                        $timeout(function() {
+                            hideUndoBtn();
+                        }, 500);
+
+                        $timeout(function() {
+                            undoBtn.removeClass('success');
+                            undoBtn.find('i').removeClass('fa-check').addClass('fa-undo');
+                        }, 600);
                     }
                 });
             }

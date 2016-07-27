@@ -127,7 +127,8 @@
                                 data-ng-bind="xEditableCtrl.data.artistName"></a>-->
                             <inline-text
                                 data-ng-model="xEditableCtrl.data.artistName"
-                                placeholder="Display Artist Name"></inline-text>
+                                placeholder="Display Artist Name"
+                                oncommit="xEditableCtrl.saveArtistName($data)"></inline-text>
                         </div>
                         <div class="col-sm-2 text-right">State of birth</div>
                         <div class="col-sm-4">

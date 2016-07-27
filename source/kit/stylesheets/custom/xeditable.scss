@@ -24,6 +24,8 @@
     }
 
     .revert-button {
+        position: relative;
+        top: -2px;
         opacity: 0;
         transition: opacity 0.1s ease-in-out;
         margin-left: -20px;
@@ -31,6 +33,14 @@
         width: 20px;
         background-color: transparent;
         border: none;
+
+        &.active {
+            opacity: 1;
+        }
+
+        &.success {
+            color: $bmg-success;
+        }
     }
 }
 
