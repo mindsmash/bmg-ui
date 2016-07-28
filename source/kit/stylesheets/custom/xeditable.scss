@@ -50,7 +50,7 @@
 .inline-edit-container .inline-text,
 .inline-edit-container .inline-typeahead,
 .inline-edit-container .ui-select-match,
-.selectize-input input {
+.inline-select .selectize-input input {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -70,6 +70,10 @@
 }
 
 .inline-select {
+    input {
+        height: 30px;
+    }
+
     .dropdown-hint {
         position: relative;
         top: -2px;
