@@ -9,7 +9,8 @@
     function XEditableController($filter, $rootScope) {
 
         this.site = {
-            value: 2
+            value: 2,
+            text: 'BMG Rights Management GE'
         };
 
         this.badgeStatus = {

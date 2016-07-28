@@ -54,6 +54,25 @@
                 '   </button><span' +
                 '       class="fa fa-search typeahead-hint"></span>' +
                 '</div>');
+
+            $templateCache.put('bmg/template/inline/select.html',
+                '<div class="inline-edit-container">' +
+                '    <ui-select' +
+                '        append-to-body="true"' +
+                '        class="inline-select"' +
+                '        data-ng-model="ngModel"' +
+                '        theme="selectize"' +
+                '        data-ng-disabled="false">' +
+                '        <ui-select-match' +
+                '            placeholder="{{placeholder}}"' +
+                '            data-ng-bind="$select.selected.text"></ui-select-match>' +
+                '        <ui-select-choices' +
+                '            repeat="item in items | filter: $select.search">' +
+                '            <span' +
+                '                data-ng-bind-html="item.text | highlight: $select.search"></span>' +
+                '        </ui-select-choices>' +
+                '    </ui-select>' +
+                '</div>');
         }]);
 
     angular

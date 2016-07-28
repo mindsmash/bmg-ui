@@ -94,11 +94,40 @@
                     <div class="form-group">
                         <div class="col-sm-2">Site</div>
                         <div class="col-sm-4">
-                            <a
+                            <!--<a
                                 href="#"
                                 editable-one-click-select="xEditableCtrl.site.value"
                                 e-ng-options="s.value as s.text for s in xEditableCtrl.data.sites">{{
-                                    xEditableCtrl.showSites() }}</a>
+                                    xEditableCtrl.showSites() }}</a>-->
+                            <!--<inline-select
+                                data-ng-model="xEditableCtrl.site.value"
+                                display-value="xEditableCtrl.site.text"
+                                placeholder="Enter a site name …"
+                                oncommit="xEditableCtrl.saveValue($data)"
+                                items="xEditableCtrl.data.sites"></inline-select>-->
+                            <!--<div class="inline-edit-container">
+                                <ui-select
+                                    class="inline-select"
+                                    data-ng-model="xEditableCtrl.site.selected"
+                                    theme="selectize"
+                                    data-ng-disabled="false"
+                                    title="Choose a site">
+                                    <ui-select-match
+                                        placeholder="Select or search a site in the list..."
+                                        data-ng-bind="$select.selected.text"></ui-select-match>
+                                    <ui-select-choices
+                                        repeat="site in xEditableCtrl.data.sites | filter: $select.search">
+                                        <span
+                                            data-ng-bind-html="site.text | highlight: $select.search"></span>
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>-->
+
+                            <inline-select
+                                data-ng-model="xEditableCtrl.site.selected"
+                                placeholder="Select or search a site in the list …"
+                                items="xEditableCtrl.data.sites"
+                                oncommit="xEditableCtrl.saveValue($data)"></inline-select>
                         </div>
                         <div class="col-sm-2">Barcode</div>
                         <div class="col-sm-4">
