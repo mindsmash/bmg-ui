@@ -123,11 +123,13 @@
                                 </ui-select>
                             </div>-->
 
-                            <inline-select
+                            <data-inline-select
                                 data-ng-model="xEditableCtrl.site"
                                 placeholder="Select or search a site in the list …"
                                 items="xEditableCtrl.data.sites"
-                                oncommit="xEditableCtrl.saveValue($data)"></inline-select>
+                                oncommit="xEditableCtrl.saveValue($data)">
+                                <span data-ng-bind-html="item.text | highlight: $select.search"></span>
+                            </data-inline-select>
                         </div>
                         <div class="col-sm-2">Barcode</div>
                         <div class="col-sm-4">

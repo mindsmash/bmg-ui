@@ -68,9 +68,8 @@
                 '            placeholder="{{placeholder}}"' +
                 '            data-ng-bind="$select.selected.text"></ui-select-match>' +
                 '        <ui-select-choices' +
+                '            class="ui-select-choices"' +
                 '            repeat="item in items | filter: $select.search">' +
-                '            <span' +
-                '                data-ng-bind-html="item.text | highlight: $select.search"></span>' +
                 '        </ui-select-choices>' +
                 '    </ui-select>' +
                 '</div>');
