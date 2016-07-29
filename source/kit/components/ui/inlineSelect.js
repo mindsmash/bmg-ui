@@ -25,6 +25,14 @@
                     var inputWrapper = $(elem).find('div.selectize-input');
 
                     inputWrapper.append(dropdownHint);
+
+                    scope.$on('uiSelect:open', function(e, opened) {
+                        if (opened) {
+                            dropdownHint.hide();
+                        } else {
+                            dropdownHint.show();
+                        }
+                    });
                 });
             }
         };
