@@ -94,35 +94,6 @@
                     <div class="form-group">
                         <div class="col-sm-2">Site</div>
                         <div class="col-sm-4">
-                            <!--<a
-                                href="#"
-                                editable-one-click-select="xEditableCtrl.site.value"
-                                e-ng-options="s.value as s.text for s in xEditableCtrl.data.sites">{{
-                                    xEditableCtrl.showSites() }}</a>-->
-                            <!--<inline-select
-                                data-ng-model="xEditableCtrl.site.value"
-                                display-value="xEditableCtrl.site.text"
-                                placeholder="Enter a site name …"
-                                oncommit="xEditableCtrl.saveValue($data)"
-                                items="xEditableCtrl.data.sites"></inline-select>-->
-                            <!--<div class="inline-edit-container">
-                                <ui-select
-                                    class="inline-select"
-                                    data-ng-model="xEditableCtrl.site.selected"
-                                    theme="selectize"
-                                    data-ng-disabled="false"
-                                    title="Choose a site">
-                                    <ui-select-match
-                                        placeholder="Select or search a site in the list..."
-                                        data-ng-bind="$select.selected.text"></ui-select-match>
-                                    <ui-select-choices
-                                        repeat="site in xEditableCtrl.data.sites | filter: $select.search">
-                                        <span
-                                            data-ng-bind-html="site.text | highlight: $select.search"></span>
-                                    </ui-select-choices>
-                                </ui-select>
-                            </div>-->
-
                             <data-inline-select
                                 data-ng-model="xEditableCtrl.site"
                                 placeholder="Select or search a site in the list …"
@@ -133,10 +104,6 @@
                         </div>
                         <div class="col-sm-2">Barcode</div>
                         <div class="col-sm-4">
-                            <!--<a
-                                href="#"
-                                editable-text="xEditableCtrl.data.barcode"
-                                data-ng-bind="xEditableCtrl.data.barcode"></a>-->
                             <inline-text
                                 data-ng-model="xEditableCtrl.data.barcode"
                                 placeholder="Barcode"
@@ -152,10 +119,6 @@
                     <div class="form-group">
                         <div class="col-sm-2">Product Code</div>
                         <div class="col-sm-4">
-                            <!--<a
-                                href="#"
-                                editable-text="xEditableCtrl.data.productCode"
-                                data-ng-bind="xEditableCtrl.data.productCode"></a>-->
                             <inline-text
                                 data-ng-model="xEditableCtrl.data.productCode"
                                 placeholder="Product Code"
@@ -163,10 +126,6 @@
                         </div>
                         <div class="col-sm-2">Alt. Product Codes</div>
                         <div class="col-sm-4">
-                            <!--<a
-                                href="#"
-                                editable-text="xEditableCtrl.data.altProductCode"
-                                data-ng-bind="xEditableCtrl.data.altProductCode"></a>-->
                             <inline-text
                                 data-ng-model="xEditableCtrl.data.altProductCode"
                                 placeholder="Alt. Product Code"
@@ -176,10 +135,6 @@
                     <div class="form-group">
                         <div class="col-sm-2">Display Artist Name</div>
                         <div class="col-sm-4">
-                            <!--<a
-                                href="#"
-                                editable-text="xEditableCtrl.data.artistName"
-                                data-ng-bind="xEditableCtrl.data.artistName"></a>-->
                             <inline-text
                                 data-ng-model="xEditableCtrl.data.artistName"
                                 placeholder="Display Artist Name"
@@ -187,13 +142,6 @@
                         </div>
                         <div class="col-sm-2">State of birth</div>
                         <div class="col-sm-4">
-                            <!--<a
-                                href="#"
-                                editable-typeahead="xEditableCtrl.data.stateOfBirth"
-                                items="xEditableCtrl.states"
-                                placeholder="Search states …"
-                                data-ng-model="ngModelOptionsSelected"
-                                >{{ xEditableCtrl.data.stateOfBirth}}</a>-->
                             <inline-typeahead
                                 data-ng-model="xEditableCtrl.data.stateOfBirth"
                                 placeholder="Search states …"
@@ -217,10 +165,6 @@
                     <div class="form-group">
                         <div class="col-sm-2">Title</div>
                         <div class="col-sm-4">
-                            <!--<a
-                                href="#"
-                                editable-text="xEditableCtrl.data.title"
-                                data-ng-bind="xEditableCtrl.data.title"></a>-->
                             <inline-text
                                 data-ng-model="xEditableCtrl.data.title"
                                 placeholder="Title"

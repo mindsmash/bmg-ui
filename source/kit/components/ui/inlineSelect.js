@@ -10,15 +10,13 @@
             replace: true,
             scope: {
                 ngModel: '=',
-                //displayValue: '=',
                 placeholder: '@',
                 oncommit: '&',
                 items: '='
             },
-            //templateUrl: 'bmg/template/inline/select.html',
             require: 'ngModel',
-            //transclude: true,
             link: function(scope, elem, attrs, ngModel, transclude) {
+                // like ngTransclude, but manual …
                 var children = elem.children();
                 var template = angular.element($templateCache.get('bmg/template/inline/select.html'));
 
