@@ -10,13 +10,13 @@
             replace: true,
             scope: {
                 ngModel: '=',
-                placeholder: '@',
-                oncommit: '&',
+                placeholder: '@?',
+                oncommit: '&?',
                 items: '=',
                 displayProperty: '@?'
             },
             require: 'ngModel',
-            link: function(scope, elem, attrs, ngModel, transclude) {
+            link: function(scope, elem, attrs, ngModel) {
                 // like ngTransclude, but manual …
                 var children = elem.children();
                 var template = angular.element($templateCache.get('bmg/template/inline/select.html'));
@@ -45,10 +45,18 @@
                 $compile(uiSelect)(scope);
 
                 $timeout(function() {
+                    // save initial value for later comparison
+                    var initialValue = ngModel.$viewValue;
+
                     var dropdownHint = angular.element('<span class="dropdown-hint fa fa-angle-down"></span>');
+                    var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
                     var inputWrapper = $(elem).find('div.selectize-input');
 
+                    inputWrapper.append(successIndicator);
                     inputWrapper.append(dropdownHint);
+
+                    // hide success indicator by default unless needed
+                    successIndicator.css('opacity', '0');
 
                     scope.$on('uiSelect:open', function(e, opened) {
                         if (opened) {
@@ -57,6 +65,23 @@
                             dropdownHint.show();
                         }
                     });
+
+                    scope.onSelect = function(newValue) {
+                        if (initialValue !== newValue) {
+                            successIndicator.css('opacity', '1');
+
+                            $timeout(function() {
+                                successIndicator.css('opacity', '0');
+                            }, 500);
+                        }
+
+                        if (scope.oncommit) {
+                            scope.oncommit({ $data: newValue });
+                        }
+
+                        // update initial value
+                        initialValue = newValue;
+                    };
                 });
             }
         };

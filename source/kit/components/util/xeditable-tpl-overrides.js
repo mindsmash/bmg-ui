@@ -61,7 +61,7 @@
                 '        append-to-body="true"' +
                 '        class="inline-select"' +
                 '        data-ng-model="ngModel"' +
-                '        on-select="oncommit({ $data: $item })"' +
+                '        on-select="onSelect($item)"' +
                 '        theme="selectize"' +
                 '        data-ng-disabled="false">' +
                 '        <ui-select-match' +

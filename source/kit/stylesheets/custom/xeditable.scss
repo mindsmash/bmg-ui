@@ -81,11 +81,17 @@
 }
 
 .inline-select {
-    /*input {
+    .success-indicator {
         position: relative;
         top: -2px;
-        max-height: 30px;
-    }*/
+        margin-left: 0;
+        width: 20px;
+        height: 20px;
+        margin-left: -40px;
+        cursor: pointer;
+        color: $bmg-success;
+        transition: opacity 0.1s ease-in-out;
+    }
 
     .dropdown-hint {
         position: relative;
@@ -95,7 +101,7 @@
         padding-right: 5px;
         width: 20px;
         height: 20px;
-        margin-left: -20px;
+        margin-left: 0px;
         cursor: pointer;
     }
 
