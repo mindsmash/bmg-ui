@@ -25,7 +25,7 @@
                 elem.html('');
                 elem.append(template);
 
-                var uiSelect = $('body').find('.inline-select');
+                var uiSelect = elem.find('.inline-select');
                 $compile(uiSelect)(scope);
 
                 $timeout(function() {
