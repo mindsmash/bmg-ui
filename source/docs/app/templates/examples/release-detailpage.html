@@ -96,6 +96,7 @@
                         <div class="col-sm-4">
                             <data-inline-select
                                 data-ng-model="xEditableCtrl.site"
+                                display-property="text"
                                 placeholder="Select or search a site in the list …"
                                 items="xEditableCtrl.data.sites"
                                 oncommit="xEditableCtrl.saveValue($data)">
@@ -154,12 +155,17 @@
                         <div class="col-sm-4">Peggy the Pistol/Hogs Are a Coming</div>
                         <div class="col-sm-2">Sidebar badge status</div>
                         <div class="col-sm-4">
-                            <a
+                            <!-- <a
                                 href="#"
                                 editable-one-click-select="xEditableCtrl.badgeStatus.value"
                                 e-ng-options="s.value as s.text for s in xEditableCtrl.data.badgeStatii"
                                 data-onbeforesave="xEditableCtrl.updateBadge($data)">{{
-                                    xEditableCtrl.getSelectedBadgeStatus() }}</a>
+                                    xEditableCtrl.getSelectedBadgeStatus() }}</a> -->
+                            <data-inline-select
+                                data-ng-model="xEditableCtrl.badgeStatus"
+                                placeholder="Select or search a status in the list …"
+                                items="xEditableCtrl.data.badgeStatii"
+                                oncommit="xEditableCtrl.updateBadge($data)"></data-inline-select>
                         </div>
                     </div>
                     <div class="form-group">

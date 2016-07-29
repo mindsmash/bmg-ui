@@ -65,8 +65,9 @@
                 '        theme="selectize"' +
                 '        data-ng-disabled="false">' +
                 '        <ui-select-match' +
+                '            class="ui-select-match"' +
                 '            placeholder="{{placeholder}}"' +
-                '            data-ng-bind="$select.selected.text"></ui-select-match>' +
+                '            data-ng-bind="$select.selected"></ui-select-match>' +
                 '        <ui-select-choices' +
                 '            class="ui-select-choices"' +
                 '            repeat="item in items | filter: $select.search">' +

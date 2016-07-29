@@ -13,9 +13,7 @@
             text: 'BMG Rights Management GE'
         };
 
-        this.badgeStatus = {
-            value: 1
-        };
+        this.badgeStatus = 'Success';
 
         this.data = {
             'sites' : [
@@ -24,9 +22,7 @@
                 { value: 3, text: 'BMG Rights Management US' }
             ],
             'badgeStatii': [
-                { value: 1, text: 'Success' },
-                { value: 2, text: 'Warning' },
-                { value: 3, text: 'Error' }
+                'Success', 'Warning', 'Error'
             ],
             'barcode' : '5016027101519',
             'productCode' : 'BFFP151',
@@ -42,13 +38,13 @@
             return (this.site.value && selected.length) ? selected[0].text : 'Not set';
         };
 
-        this.getSelectedBadgeStatus = function() {
-            var selected = _.filter(
-                this.data.badgeStatii, { value: this.badgeStatus.value }
-            )[0].text;
-
-            return selected;
-        };
+        // this.getSelectedBadgeStatus = function() {
+        //     var selected = _.filter(
+        //         this.data.badgeStatii, { value: this.badgeStatus.value }
+        //     )[0].text;
+        //
+        //     return selected;
+        // };
 
         this.opened = {};
 
@@ -77,9 +73,8 @@
 
         this.updateBadge = function(newStatus) {
             var eventName = 'sidebarBadge.generalStatus.';
-            var statusText = _.filter(this.data.badgeStatii, { value: newStatus })[0].text;
 
-            $rootScope.$broadcast(eventName + statusText.toLowerCase());
+            $rootScope.$broadcast(eventName + newStatus.toLowerCase());
         };
 
         this.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];

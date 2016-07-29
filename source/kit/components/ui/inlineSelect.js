@@ -12,7 +12,8 @@
                 ngModel: '=',
                 placeholder: '@',
                 oncommit: '&',
-                items: '='
+                items: '=',
+                displayProperty: '@?'
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel, transclude) {
@@ -20,7 +21,22 @@
                 var children = elem.children();
                 var template = angular.element($templateCache.get('bmg/template/inline/select.html'));
 
-                template.find('.ui-select-choices').append(children);
+                if (children.length > 0) {
+                    // copy 'transcluded' html into our template
+                    template.find('.ui-select-choices').append(children);
+                } else {
+                    // no transcluded html given -> default to item, assuming it's a string
+                    template.find('.ui-select-choices').append(
+                        angular.element('<span data-ng-bind-html="item | highlight:$select.search"></span>')
+                    );
+                }
+
+                // if necessary, bind the ui-select-match to the correct property
+                // on the selected item
+                if (scope.displayProperty) {
+                    template.find('.ui-select-match').attr(
+                        'data-ng-bind', '$select.selected.' + scope.displayProperty);
+                }
 
                 elem.html('');
                 elem.append(template);
