@@ -87,7 +87,7 @@
                     '    <input',
                     '        type="text"',
                     '        class="inline-datepicker"',
-                    '        uib-datepicker-popup="{{ uibDatepickerPopup }}"',
+                    '        uib-datepicker-popup="{{ dateFormat || \'yyyy-MM-dd\' }}"',
                     '        datepicker-append-to-body="true"',
                     '        data-ng-model="ngModel"',
                     '        data-ng-model-options="{}"',

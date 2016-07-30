@@ -13,7 +13,8 @@
                 placeholder: '@?',
                 oncommit: '&?',
                 datepickerOptions: '=?',
-                popupPlacement: '@?'
+                popupPlacement: '@?',
+                dateFormat: '@?'
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',
