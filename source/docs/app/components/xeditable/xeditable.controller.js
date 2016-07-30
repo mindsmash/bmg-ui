@@ -81,7 +81,6 @@
 
         this.saveValue = function(value) {
             // Do something with the value
-            console.log('selected: ', value);
         };
     }
 

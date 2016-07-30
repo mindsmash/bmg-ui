@@ -3,8 +3,7 @@
 
     angular
         .module('bmg.components.ui')
-        .directive('inlineDatepicker', inlineDatepicker)
-        .controller('InlineDatepickerCtrl', InlineDatepickerCtrl);
+        .directive('inlineDatepicker', inlineDatepicker);
 
     function inlineDatepicker($timeout) {
         return {
@@ -12,15 +11,24 @@
             scope: {
                 ngModel: '=',
                 placeholder: '@?',
-                oncommit: '&?'
+                oncommit: '&?',
+                datepickerOptions: '=?',
+                popupPlacement: '@?'
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',
-            controller: 'InlineDatepickerCtrl',
-            controllerAs: 'ctrl',
             link: function(scope, elem, attrs, ngModel) {
                 $timeout(function() {
                     var successIndicator = elem.find('.success-indicator');
+                    var inputElem = elem.find('.inline-datepicker');
+
+                    scope.popup = {
+                        opened: false
+                    };
+
+                    scope.open = function() {
+                        this.popup.opened = true;
+                    };
 
                     scope.updateDate = function() {
                         $timeout(function() {
@@ -44,16 +52,6 @@
                     };
                 });
             }
-        };
-    }
-
-    function InlineDatepickerCtrl() {
-        this.popup = {
-            opened: false
-        };
-
-        this.open = function() {
-            this.popup.opened = true;
         };
     }
 })();
