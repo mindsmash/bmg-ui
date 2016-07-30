@@ -49,6 +49,7 @@
 
 .inline-edit-container .inline-text,
 .inline-edit-container .inline-typeahead,
+.inline-edit-container .inline-datepicker,
 .inline-edit-container .ui-select-match,
 .inline-select input {
     border-top: none;
@@ -68,6 +69,29 @@
 
     &:focus {
         border-bottom-color: $bmg-malibu;
+    }
+}
+
+.inline-edit-container .inline-datepicker {
+    & ~ .calendar-button {
+        padding: 0px;
+        width: 20px;
+        height: 20px;
+        margin-left: 0px;
+        position: relative;
+        top: -2px;
+        background-color: transparent;
+        border: none;
+    }
+
+    & ~ .success-indicator {
+        width: 20px;
+        height: 20px;
+        margin-left: -40px;
+        position: relative;
+        top: -2px;
+        color: $bmg-success;
+        transition: opacity 0.1s ease-in-out;
     }
 }
 
@@ -282,34 +306,34 @@ a.editable-click {
   }
 }
 
-p.datepicker-group {
-    margin-bottom: 0px;
-    line-height: 28px;
-
-    input {
-        position: relative;
-        top: 1px; // 1px is perfect for safari and chrome, 0px is perfect for firefox
-    }
-
-    button {
-        position: relative;
-        top: 0; // 0px is perfect for chrome, 1px is prefect for safari and firefox
-    }
-
-	//safari only hack
-	_:-webkit-full-screen:not(:root:root), 	button {
-		position: relative;
-		top: 1px;
-	}
-
-	//firefox only
-	@-moz-document url-prefix() {
-		input {
-			position: relative;
-			top: 0;
-		}
-		button {
-			height: 30px;
-		}
-	}
-}
+// p.datepicker-group {
+//     margin-bottom: 0px;
+//     line-height: 28px;
+//
+//     input {
+//         position: relative;
+//         top: 1px; // 1px is perfect for safari and chrome, 0px is perfect for firefox
+//     }
+//
+//     button {
+//         position: relative;
+//         top: 0; // 0px is perfect for chrome, 1px is prefect for safari and firefox
+//     }
+//
+// 	//safari only hack
+// 	_:-webkit-full-screen:not(:root:root), 	button {
+// 		position: relative;
+// 		top: 1px;
+// 	}
+//
+// 	//firefox only
+// 	@-moz-document url-prefix() {
+// 		input {
+// 			position: relative;
+// 			top: 0;
+// 		}
+// 		button {
+// 			height: 30px;
+// 		}
+// 	}
+// }
