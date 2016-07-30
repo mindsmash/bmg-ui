@@ -97,7 +97,7 @@
                     '        placeholder="{{ placeholder }}"',
                     '        is-open="ctrl.popup.opened"',
                     '        popup-placement="{{ popupPlacement }}" /><span',
-                    '            class="fa fa-check success-indicator"></span><button',
+                    '            class="fa fa-check success-indicator color-success"></span><button',
                     '            type="button"',
                     '            data-ng-click="ctrl.open()"',
                     '            class="calendar-button">',

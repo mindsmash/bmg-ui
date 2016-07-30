@@ -17,7 +17,12 @@
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
-                // like ngTransclude, but manual …
+                /* like ngTransclude, but manual …
+                 * ngTransclude does not work in this case because
+                 * the transcluded html uses the 'item' variable which
+                 * is only made available inside an ng-repeat inside
+                 * ui-select, where it doesn't get evaluated for some reason
+                 */
                 var children = elem.children();
                 var template = angular.element($templateCache.get('bmg/template/inline/select.html'));
 

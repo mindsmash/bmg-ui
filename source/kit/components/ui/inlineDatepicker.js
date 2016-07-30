@@ -20,7 +20,28 @@
             controllerAs: 'ctrl',
             link: function(scope, elem, attrs, ngModel) {
                 $timeout(function() {
-                    scope.updateDate = function() {};
+                    var successIndicator = elem.find('.success-indicator');
+
+                    scope.updateDate = function() {
+                        $timeout(function() {
+                            // timeout necessary because $viewValue
+                            // lags one step behind otherwise
+                            if (angular.isDefined(scope.oncommit) &&
+                                angular.isDefined(ngModel.$viewValue)) {
+                                // show success indication
+                                successIndicator.css('opacity', '1');
+
+                                $timeout(function() {
+                                    successIndicator.css('opacity', '0');
+                                }, 500);
+
+                                // publish new value
+                                scope.oncommit({
+                                    $data: ngModel.$viewValue
+                                });
+                            }
+                        });
+                    };
                 });
             }
         };
