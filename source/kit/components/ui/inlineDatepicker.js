@@ -41,9 +41,6 @@
                                 if (inputElem.is(':focus')) {
                                     // change was typed in the text field
                                     showActionBtn();
-                                } else {
-                                    // date was selected by clicking in the popup
-                                    publish();
                                 }
                             } else {
                                 hideActionBtn();
@@ -74,9 +71,15 @@
                     });
 
                     function hasActuallyChanged() {
-                        return (!angular.isDefined(ngModel.$viewValue) && angular.isDefined(initialValue)) ||
-                            (angular.isDefined(ngModel.$viewValue) && !angular.isDefined(initialValue)) ||
-                            initialValue.getTime() !== ngModel.$viewValue.getTime();
+                        if (!ngModel.$viewValue && initialValue) {
+                            return true;
+                        }
+
+                        if (ngModel.$viewValue && !initialValue) {
+                            return true;
+                        }
+
+                        return initialValue.getTime() !== ngModel.$viewValue.getTime();
                     }
 
                     function publish() {
