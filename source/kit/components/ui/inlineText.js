@@ -31,14 +31,14 @@
                     inputElem.blur(function() {
                         hideUndoBtn();
 
-                        // call the callback function with the new input value
-                        scope.oncommit({
-                            $data: inputElem.val()
-                        });
-
                         // show visual indicator of possible change
                         $timeout(function() {
                             if (ngModel.$viewValue !== initialValue) {
+                                // call the callback function with the new input value
+                                scope.oncommit({
+                                    $data: inputElem.val()
+                                });
+
                                 animateSuccessIndicator();
                             }
                         }, 10); // to make sure this happens after undo button click

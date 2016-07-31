@@ -104,10 +104,10 @@
         border: none;
     }
 
-    & ~ .success-indicator {
+    & ~ .revert-button {
         width: 20px;
         height: 20px;
-        margin-left: -40px;
+        margin-left: -45px;
         position: relative;
         top: -2px;
         opacity: 0;
