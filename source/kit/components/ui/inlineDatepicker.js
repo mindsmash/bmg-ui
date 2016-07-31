@@ -51,6 +51,15 @@
                             }
                         });
                     };
+
+                    // label support
+                    if (attrs.id) {
+                        var labels = $('body').find('label[for=' + attrs.id + ']');
+
+                        labels.on('click', function() {
+                            inputElem.trigger('focus');
+                        });
+                    }
                 });
             }
         };

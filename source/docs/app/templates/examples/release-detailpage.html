@@ -88,13 +88,16 @@
                 </ul>
             </div>
             <div class="col-lg-10 sidebar-content" data-ng-controller="XEditableController as xEditableCtrl">
-                <div class="form-horizontal x-editable-form">
+                <div class="form-horizontal inline-form">
 
                     <h5>Header</h5>
                     <div class="form-group">
-                        <div class="col-sm-2">Site</div>
+                        <div class="col-sm-2">
+                            <label for="site-select">Site</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-select
+                                id="site-select"
                                 data-ng-model="xEditableCtrl.site"
                                 display-property="text"
                                 placeholder="Select or search a site in the list …"
@@ -103,9 +106,12 @@
                                 <span data-ng-bind-html="item.text | highlight: $select.search"></span>
                             </data-inline-select>
                         </div>
-                        <div class="col-sm-2">Barcode</div>
+                        <div class="col-sm-2">
+                            <label for="barcode-text">Barcode</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-text
+                                id="barcode-text"
                                 data-ng-model="xEditableCtrl.data.barcode"
                                 placeholder="Barcode"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
@@ -118,32 +124,44 @@
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Product Code</div>
+                        <div class="col-sm-2">
+                            <label for="product-code-text">Product Code</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-text
+                                id="product-code-text"
                                 data-ng-model="xEditableCtrl.data.productCode"
                                 placeholder="Product Code"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
                         </div>
-                        <div class="col-sm-2">Alt. Product Codes</div>
+                        <div class="col-sm-2">
+                            <label for="alt-product-code-text">Alt. Product Codes</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-text
+                                id="alt-product-code-text"
                                 data-ng-model="xEditableCtrl.data.altProductCode"
                                 placeholder="Alt. Product Code"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Display Artist Name</div>
+                        <div class="col-sm-2">
+                            <label for="artist-name-text">Display Artist Name</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-text
+                                id="artist-name-text"
                                 data-ng-model="xEditableCtrl.data.artistName"
                                 placeholder="Display Artist Name"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
                         </div>
-                        <div class="col-sm-2">State of birth</div>
+                        <div class="col-sm-2">
+                            <label for="state-of-birth-typeahead">State of birth</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-typeahead
+                                id="state-of-birth-typeahead"
                                 data-ng-model="xEditableCtrl.data.stateOfBirth"
                                 placeholder="Search states …"
                                 items="xEditableCtrl.states"
@@ -153,9 +171,12 @@
                     <div class="form-group">
                         <div class="col-sm-2">Product Title</div>
                         <div class="col-sm-4">Peggy the Pistol/Hogs Are a Coming</div>
-                        <div class="col-sm-2">Sidebar badge status</div>
+                        <div class="col-sm-2">
+                            <label for="sidebar-badge-status-select">Sidebar badge status</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-select
+                                id="sidebar-badge-status-select"
                                 data-ng-model="xEditableCtrl.badgeStatus"
                                 placeholder="Select or search a status in the list …"
                                 items="xEditableCtrl.data.badgeStatii"
@@ -163,9 +184,12 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Title</div>
+                        <div class="col-sm-2">
+                            <label for="title-text">Title</label>
+                        </div>
                         <div class="col-sm-4">
                             <data-inline-text
+                                id="title-text"
                                 data-ng-model="xEditableCtrl.data.title"
                                 placeholder="Title"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
@@ -192,9 +216,12 @@
                         <div class="col-sm-4">0</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Release Date</div>
+                        <div class="col-sm-2">
+                            <label for="release-date-datepicker">Release Date</label>
+                        </div>
                         <div class="col-sm-4">
                             <inline-datepicker
+                                id="release-date-datepicker"
                                 data-ng-model="xEditableCtrl.data.date"
                                 datepicker-options="xEditableCtrl.datepickerOptions"
                                 placeholder="Pick a release date"

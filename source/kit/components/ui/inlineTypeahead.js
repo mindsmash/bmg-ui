@@ -21,7 +21,7 @@
                     // save original input value for undo
                     var initialValue = ngModel.$viewValue;
                     var undoBtn = $(elem).find('.revert-button');
-                    var inputElem = $(elem).find('.inline-text');
+                    var inputElem = $(elem).find('.inline-typeahead');
 
                     scope.handleUndoBtnVisibility = function() {
                         $timeout(function() {
@@ -61,7 +61,7 @@
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
                         hideUndoBtn();
-                        inputElem.focus(); // TODO find a way to make this work with uib-typeahead
+                        inputElem.trigger('focus');
                     });
 
                     function hideUndoBtn() {
@@ -85,6 +85,15 @@
                             undoBtn.removeClass('success');
                             undoBtn.find('i').removeClass('fa-check').addClass('fa-undo');
                         }, 600);
+                    }
+
+                    // label support
+                    if (attrs.id) {
+                        var labels = $('body').find('label[for=' + attrs.id + ']');
+
+                        labels.on('click', function() {
+                            inputElem.trigger('focus');
+                        });
                     }
                 });
             }

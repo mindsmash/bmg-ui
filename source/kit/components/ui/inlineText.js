@@ -82,6 +82,15 @@
                             undoBtn.find('i').removeClass('fa-check').addClass('fa-undo');
                         }, 600);
                     }
+
+                    // label support
+                    if (attrs.id) {
+                        var labels = $('body').find('label[for=' + attrs.id + ']');
+
+                        labels.on('click', function() {
+                            inputElem.trigger('focus');
+                        });
+                    }
                 });
             }
         };
