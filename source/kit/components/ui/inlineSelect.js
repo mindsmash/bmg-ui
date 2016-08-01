@@ -21,7 +21,8 @@
                  * ngTransclude does not work in this case because
                  * the transcluded html uses the 'item' variable which
                  * is only made available inside an ng-repeat inside
-                 * ui-select, where it doesn't get evaluated for some reason
+                 * ui-select, where it doesn't have access to the ng-repeat scope
+                 * see: https://github.com/angular/angular.js/issues/8182
                  */
                 var children = elem.children();
                 var template = angular.element($templateCache.get('bmg/template/inline/select.html'));
