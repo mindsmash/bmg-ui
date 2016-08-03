@@ -19,21 +19,21 @@
                 windowClass: 'app-aside-left',
                 animation: true,
                 controller: function($scope, $uibModalInstance) {
+                    var backdropElem;
+
                     $scope.ok = function() {
                         $uibModalInstance.close();
                     };
 
                     $scope.cancel = function() {
-                        fadeOut($uibModalInstance);
+                        fadeOut($uibModalInstance, backdropElem);
                     };
 
-
-                    var backdropElem;
                     $timeout(function () {
                         backdropElem = $('.modal-backdrop').parent();
                         backdropElem.click(function(e) {
                             if ($(e.target).hasClass('modal')) {
-                                fadeOut($uibModalInstance);
+                                fadeOut($uibModalInstance, backdropElem);
                             }
                         });
                     });
@@ -44,7 +44,11 @@
                 }
             });
 
-            function fadeOut($uibModalInstance) {
+            function fadeOut($uibModalInstance, backdropElem) {
+                backdropElem.find('.modal-backdrop').animate({
+                    opacity: 0
+                }, 200);
+
                 $('.app-aside-left .modal-content').animate({
                     left: '-378px'
                 }, 200, function() {
