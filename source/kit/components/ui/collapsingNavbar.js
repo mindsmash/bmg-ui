@@ -5,10 +5,19 @@
         .module('bmg.components.ui')
         .directive('collapsingNavbar', collapsingNavbar);
 
+    // saves the previous 10 scroll positions
+    var lastKnownScrollPositions = [];
+    var isCollapsed = false;
+    var mindFloatThead = false;
+
     function collapsingNavbar() {
         return {
             restrict: 'A',
+            scope: {
+                floatThead: '=collapsingNavbar'
+            },
             link: function(scope, elem) {
+                mindFloatThead = scope.floatThead;
                 window.setInterval(checkScrollStatus, 200);
 
                 $('nav.navbar').click(expandNavbar);
@@ -21,10 +30,6 @@
             }
         };
     }
-
-    // saves the previous 10 scroll positions
-    var lastKnownScrollPositions = [];
-    var isCollapsed = false;
 
     function checkScrollStatus() {
         // check scroll status every 200ms
@@ -79,7 +84,9 @@
             stickyBars.css('top', '75px');
         }
 
-        changefloatTheadTop(up);
+        if (mindFloatThead) {
+            changefloatTheadTop(up);
+        }
     }
 
     function changefloatTheadTop(up) {
@@ -94,7 +101,7 @@
             top: function($table) {
                 return up ? 20 : 75;
             },
-            responsiveContainer: function($table){
+            responsiveContainer: function($table) {
                 return $table.closest('.table-responsive, ' +
                     '.tableStandard-responsive, ' +
                     '.tableCondensed-responsive');
