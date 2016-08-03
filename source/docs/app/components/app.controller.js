@@ -27,12 +27,19 @@
                         fadeOut($uibModalInstance);
                     };
 
+
+                    var backdropElem;
                     $timeout(function () {
-                        $('.modal-backdrop').parent().click(function(e) {
+                        backdropElem = $('.modal-backdrop').parent();
+                        backdropElem.click(function(e) {
                             if ($(e.target).hasClass('modal')) {
                                 fadeOut($uibModalInstance);
                             }
                         });
+                    });
+
+                    $scope.$on('$destroy', function() {
+                        backdropElem.unbind('click');
                     });
                 }
             });
