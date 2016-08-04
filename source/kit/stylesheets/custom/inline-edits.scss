@@ -124,6 +124,21 @@
     cursor: pointer;
 }
 
+.inline-edit-container .bmg-checkbox-with-label {
+    line-height: 18px !important;
+    padding-top: 5px;
+    margin: 0;
+
+    .bmg-checkbox {
+        line-height: 18px !important;
+        min-height: 18px;
+
+        label > div {
+            min-height: 18px;
+        }
+    }
+}
+
 .inline-select {
     .success-indicator {
         position: relative;

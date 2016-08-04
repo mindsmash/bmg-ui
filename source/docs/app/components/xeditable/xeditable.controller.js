@@ -30,7 +30,8 @@
             'artistName': 'The Merry Pranksters',
             'title': 'Peggy the Pistol/Hogs Are a Coming',
             'date': new Date(1999, 4, 15),
-            'stateOfBirth': 'Arkansas'
+            'stateOfBirth': 'Arkansas',
+            'releaseDateTentative': true
         };
 
         this.showSites = function() {

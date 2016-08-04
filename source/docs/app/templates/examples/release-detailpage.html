@@ -229,8 +229,15 @@
                                 popup-placement="auto top bottom"
                                 oncommit="xEditableCtrl.saveValue($data)"></inline-datepicker>
                         </div>
-                        <div class="col-sm-2">Release date is tentative</div>
-                        <div class="col-sm-4">No</div>
+                        <div class="col-sm-2">
+                            <label for="release-date-tentative-checkbox">Release date is tentative</label>
+                        </div>
+                        <div class="col-sm-4">
+                            <data-inline-checkbox
+                                id="release-date-tentative-checkbox"
+                                data-ng-model="xEditableCtrl.data.releaseDateTentative"
+                                oncommit="xEditableCtrl.saveValue($data)"></data-inline-checkbox>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-2">Repertoire Owner</div>
