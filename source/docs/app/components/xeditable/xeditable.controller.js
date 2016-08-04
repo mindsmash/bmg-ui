@@ -4,9 +4,9 @@
     angular.module('bmg-ui.docs')
         .controller('XEditableController', XEditableController);
 
-    XEditableController.$inject = ['$filter', '$rootScope'];
+    XEditableController.$inject = ['$filter', '$rootScope', '$q', '$timeout'];
 
-    function XEditableController($filter, $rootScope) {
+    function XEditableController($filter, $rootScope, $q, $timeout) {
 
         this.site = {
             value: 2,
@@ -82,6 +82,20 @@
 
         this.saveValue = function(value) {
             // Do something with the value
+        };
+
+        this.promiseValue = function(value) {
+            var deferred = $q.defer();
+
+            $timeout(function() {
+                if (Math.random() > 0.5) {
+                    deferred.reject();
+                } else {
+                    deferred.resolve();
+                }
+            }, 1000);
+
+            return deferred.promise;
         };
     }
 

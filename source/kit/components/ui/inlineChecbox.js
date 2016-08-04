@@ -18,6 +18,7 @@
                 $timeout(function() {
                     var labelElem = $(elem).find('label');
                     var checkboxElem = $(elem).find('input');
+                    var successIndicator = $(elem).find('.success-indicator');
 
                     // internal label support
                     labelElem.on('click', function() {
@@ -31,6 +32,22 @@
 
                     function toggleModel() {
                         ngModel.$setViewValue(!ngModel.$viewValue);
+
+                        if (scope.oncommit) {
+                            scope.oncommit({
+                                $data: ngModel.$viewValue
+                            });
+                        }
+
+                        animateSuccessIndicator();
+                    }
+
+                    function animateSuccessIndicator() {
+                        successIndicator.addClass('active');
+
+                        $timeout(function() {
+                            successIndicator.removeClass('active');
+                        }, 500);
                     }
                 });
             }

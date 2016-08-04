@@ -43,6 +43,10 @@
         &.success {
             color: $bmg-success;
         }
+
+        &.error {
+            color: $bmg-error;
+        }
     }
 
     .inline-typeahead {
@@ -97,7 +101,7 @@
         padding: 0px;
         width: 20px;
         height: 20px;
-        margin-left: 0px;
+        margin-left: 5px;
         position: relative;
         top: -2px;
         background-color: transparent;
@@ -126,8 +130,11 @@
 
 .inline-edit-container .bmg-checkbox-with-label {
     line-height: 18px !important;
-    padding-top: 5px;
+    padding: 5px 20px 0 0;
     margin: 0;
+    position: relative;
+    top: -2px;
+    display: inline-block;
 
     .bmg-checkbox {
         line-height: 18px !important;
@@ -135,6 +142,21 @@
 
         label > div {
             min-height: 18px;
+        }
+    }
+
+    & ~ .success-indicator {
+        float: right;
+        padding-top: 5px;
+        opacity: 0;
+        transition: opacity 0.1s ease-in-out;
+
+        &.active {
+            opacity: 1;
+        }
+
+        &.success {
+            color: $bmg-success;
         }
     }
 }

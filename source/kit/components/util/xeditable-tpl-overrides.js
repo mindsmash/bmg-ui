@@ -48,6 +48,7 @@
                     '            <label><div></div></label>',
                     '        </div>',
                     '    </div>',
+                    '    <span class="fa fa-check success success-indicator"></span>',
                     '</div>'
                 ].join(''));
 

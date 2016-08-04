@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineText', inlineText);
 
-    function inlineText($timeout) {
+    function inlineText($timeout, miscService) {
         return {
             replace: true,
             scope: {
@@ -35,11 +35,16 @@
                         $timeout(function() {
                             if (ngModel.$viewValue !== initialValue) {
                                 // call the callback function with the new input value
-                                scope.oncommit({
+                                var commitPromise = scope.oncommit({
                                     $data: inputElem.val()
                                 });
 
-                                animateSuccessIndicator();
+                                if (miscService.isPromise(commitPromise)) {
+                                    // if it looks like a promise and walks like a promise …
+                                    animateSuccessIndicator(commitPromise);
+                                } else {
+                                    animateSuccessIndicator();
+                                }
                             }
                         }, 10); // to make sure this happens after undo button click
                     });
@@ -68,18 +73,56 @@
                         undoBtn.addClass('active');
                     }
 
-                    function animateSuccessIndicator() {
-                        undoBtn.find('i').removeClass('fa-undo').addClass('fa-check');
-                        undoBtn.addClass('success');
-                        showUndoBtn();
+                    function animateSuccessIndicator(commitPromise) {
+                        if (commitPromise) {
+                            // animate spinner first until promise resolves
+                            showUndoBtn();
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-spin fa-spinner');
 
+                            commitPromise.then(function() {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-undo fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                undoBtn.addClass('success');
+
+                                endAnimation();
+                            }, function() {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-undo fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                undoBtn.addClass('error');
+
+                                endAnimation();
+                            });
+                        } else {
+                            // switch to success
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-check');
+                            undoBtn.addClass('success');
+                            showUndoBtn();
+
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
                         $timeout(function() {
                             hideUndoBtn();
                         }, 500);
 
                         $timeout(function() {
-                            undoBtn.removeClass('success');
-                            undoBtn.find('i').removeClass('fa-check').addClass('fa-undo');
+                            undoBtn.removeClass('success error');
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-undo');
                         }, 600);
                     }
 
