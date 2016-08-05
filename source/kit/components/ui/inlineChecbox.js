@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineCheckbox', inlineCheckbox);
 
-    function inlineCheckbox($timeout) {
+    function inlineCheckbox($timeout, miscService) {
         return {
             replace: true,
             scope: {
@@ -33,18 +33,50 @@
                     function toggleModel() {
                         ngModel.$setViewValue(!ngModel.$viewValue);
 
-                        if (scope.oncommit) {
+                        var commitPromise = angular.isDefined(scope.oncommit) ?
                             scope.oncommit({
                                 $data: ngModel.$viewValue
-                            });
-                        }
+                            }) : undefined;
 
-                        animateSuccessIndicator();
+                        if (miscService.isPromise(commitPromise)) {
+                            animateSuccessIndicator(commitPromise);
+                        } else {
+                            animateSuccessIndicator();
+                        }
                     }
 
-                    function animateSuccessIndicator() {
+                    function animateSuccessIndicator(commitPromise) {
                         successIndicator.addClass('active');
 
+                        if (commitPromise) {
+                            successIndicator
+                                .find('i')
+                                .removeClass('fa-remove fa-check')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                successIndicator
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function() {
+                                successIndicator
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                endAnimation();
+                            });
+                        } else {
+                            successIndicator
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
                         $timeout(function() {
                             successIndicator.removeClass('active');
                         }, 500);

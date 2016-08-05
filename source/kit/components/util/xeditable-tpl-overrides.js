@@ -47,8 +47,10 @@
                     '                data-ng-model="ngModel"/>',
                     '            <label><div></div></label>',
                     '        </div>',
-                    '    </div>',
-                    '    <span class="fa fa-check success success-indicator"></span>',
+                    '    </div><button',
+                    '        class="success-indicator">',
+                    '        <i class="fa fa-check"></i>',
+                    '    </button>',
                     '</div>'
                 ].join(''));
 

@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineDatepicker', inlineDatepicker);
 
-    function inlineDatepicker($timeout) {
+    function inlineDatepicker($timeout, miscService) {
         return {
             replace: true,
             scope: {
@@ -83,13 +83,18 @@
                     }
 
                     function publish() {
-                        animateSuccessIndicator();
-
                         if (angular.isDefined(scope.oncommit)) {
                             // publish new value
-                            scope.oncommit({
-                                $data: ngModel.$viewValue
-                            });
+                            var commitPromise = angular.isDefined(scope.oncommit) ?
+                                scope.oncommit({
+                                    $data: ngModel.$viewValue
+                                }) : undefined;
+
+                            if (miscService.isPromise(commitPromise)) {
+                                animateSuccessIndicator(commitPromise);
+                            } else {
+                                animateSuccessIndicator();
+                            }
                         }
                     }
 
@@ -101,18 +106,47 @@
                         actionBtn.css('opacity', '0');
                     }
 
-                    function animateSuccessIndicator() {
-                        actionBtn.find('i').removeClass('fa-undo').addClass('fa-check');
-                        actionBtn.addClass('success');
+                    function animateSuccessIndicator(commitPromise) {
                         showActionBtn();
 
+                        if (commitPromise) {
+                            actionBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                actionBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function() {
+                                actionBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                endAnimation();
+                            });
+                        } else {
+                            actionBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
                         $timeout(function() {
                             hideActionBtn();
                         }, 500);
 
                         $timeout(function() {
-                            actionBtn.removeClass('success');
-                            actionBtn.find('i').removeClass('fa-check').addClass('fa-undo');
+                            actionBtn
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-undo');
                         }, 600);
                     }
 

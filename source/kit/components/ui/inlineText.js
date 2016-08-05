@@ -35,9 +35,10 @@
                         $timeout(function() {
                             if (ngModel.$viewValue !== initialValue) {
                                 // call the callback function with the new input value
-                                var commitPromise = scope.oncommit({
-                                    $data: inputElem.val()
-                                });
+                                var commitPromise = angular.isDefined(scope.oncommit) ?
+                                    scope.oncommit({
+                                        $data: inputElem.val()
+                                    }) : undefined;
 
                                 if (miscService.isPromise(commitPromise)) {
                                     animateSuccessIndicator(commitPromise);

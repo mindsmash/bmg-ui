@@ -53,9 +53,10 @@
 
                             if (newNgModel !== oldInitialValue) {
                                 // call the callback function with the new input value
-                                var commitPromise = scope.oncommit({
-                                    $data: newNgModel
-                                });
+                                var commitPromise = angular.isDefined(scope.oncommit) ?
+                                    scope.oncommit({
+                                        $data: newNgModel
+                                    }) : undefined;
 
                                 if (miscService.isPromise(commitPromise)) {
                                     animateSuccessIndicator(commitPromise);

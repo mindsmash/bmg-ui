@@ -76,14 +76,13 @@
 
                     scope.onSelect = function(newValue) {
                         if (initialValue !== newValue) {
-                            if (scope.oncommit) {
-                                var commitPromise = scope.oncommit({ $data: newValue });
+                            var commitPromise = angular.isDefined(scope.oncommit) ?
+                                scope.oncommit({ $data: newValue }) : undefined;
 
-                                if (miscService.isPromise(commitPromise)) {
-                                    animateSuccessIndicator(commitPromise);
-                                } else {
-                                    animateSuccessIndicator();
-                                }
+                            if (miscService.isPromise(commitPromise)) {
+                                animateSuccessIndicator(commitPromise);
+                            } else {
+                                animateSuccessIndicator();
                             }
                         }
 

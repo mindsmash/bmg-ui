@@ -92,7 +92,7 @@
 
                     <h5>Header</h5>
                     <div class="form-group">
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="site-select">Site</label>
                         </div>
                         <div class="col-sm-4">
@@ -109,7 +109,7 @@
                                 </div>
                             </data-inline-select>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="barcode-text">Barcode</label>
                         </div>
                         <div class="col-sm-4">
@@ -121,13 +121,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Package</div>
+                        <div class="col-sm-2 text-right">Package</div>
                         <div class="col-sm-4">N/a</div>
-                        <div class="col-sm-2">GRID</div>
+                        <div class="col-sm-2 text-right">GRID</div>
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="product-code-text">Product Code</label>
                         </div>
                         <div class="col-sm-4">
@@ -137,7 +137,7 @@
                                 placeholder="Product Code"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="alt-product-code-text">Alt. Product Codes</label>
                         </div>
                         <div class="col-sm-4">
@@ -149,7 +149,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="artist-name-text">Display Artist Name</label>
                         </div>
                         <div class="col-sm-4">
@@ -159,7 +159,7 @@
                                 placeholder="Display Artist Name"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="state-of-birth-typeahead">State of birth</label>
                         </div>
                         <div class="col-sm-4">
@@ -172,9 +172,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Product Title</div>
+                        <div class="col-sm-2 text-right">Product Title</div>
                         <div class="col-sm-4">Peggy the Pistol/Hogs Are a Coming</div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="sidebar-badge-status-select">Sidebar badge status</label>
                         </div>
                         <div class="col-sm-4">
@@ -187,7 +187,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="title-text">Title</label>
                         </div>
                         <div class="col-sm-4">
@@ -199,27 +199,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Version Title</div>
+                        <div class="col-sm-2 text-right">Version Title</div>
                         <div class="col-sm-10"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Internal Version Title</div>
+                        <div class="col-sm-2 text-right">Internal Version Title</div>
                         <div class="col-sm-10"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Format</div>
+                        <div class="col-sm-2 text-right">Format</div>
                         <div class="col-sm-4">Vinyl Single Standard 7" (Double Sided)</div>
-                        <div class="col-sm-2">Duration</div>
+                        <div class="col-sm-2 text-right">Duration</div>
                         <div class="col-sm-4">00:00:00</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2"># Tracks</div>
+                        <div class="col-sm-2 text-right"># Tracks</div>
                         <div class="col-sm-4">0</div>
-                        <div class="col-sm-2"># Tracks by BMG</div>
+                        <div class="col-sm-2 text-right"># Tracks by BMG</div>
                         <div class="col-sm-4">0</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="release-date-datepicker">Release Date</label>
                         </div>
                         <div class="col-sm-4">
@@ -230,107 +230,107 @@
                                 placeholder="Pick a release date"
                                 date-format="dd.MM.yyyy"
                                 popup-placement="auto top bottom"
-                                oncommit="xEditableCtrl.saveValue($data)"></inline-datepicker>
+                                oncommit="xEditableCtrl.promiseValue($data)"></inline-datepicker>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-2 text-right">
                             <label for="release-date-tentative-checkbox">Release date is tentative</label>
                         </div>
                         <div class="col-sm-4">
                             <data-inline-checkbox
                                 id="release-date-tentative-checkbox"
                                 data-ng-model="xEditableCtrl.data.releaseDateTentative"
-                                oncommit="xEditableCtrl.saveValue($data)"></data-inline-checkbox>
+                                oncommit="xEditableCtrl.promiseValue($data)"></data-inline-checkbox>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Repertoire Owner</div>
+                        <div class="col-sm-2 text-right">Repertoire Owner</div>
                         <div class="col-sm-4">Mute Records Ltd., a BMG Company</div>
-                        <div class="col-sm-2">Label</div>
+                        <div class="col-sm-2 text-right">Label</div>
                         <div class="col-sm-4">Mute, a BMG Company</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2 text-right"></div>
                         <div class="col-sm-4"></div>
-                        <div class="col-sm-2">GVL Label Code</div>
-                        <div class="col-sm-4"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-2">Genre</div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-2">Alt. Genre</div>
+                        <div class="col-sm-2 text-right">GVL Label Code</div>
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Advisory Content</div>
+                        <div class="col-sm-2 text-right">Genre</div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-2 text-right">Alt. Genre</div>
+                        <div class="col-sm-4"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 text-right">Advisory Content</div>
                         <div class="col-sm-4">Clean</div>
-                        <div class="col-sm-2">Advisory Lyrics</div>
+                        <div class="col-sm-2 text-right">Advisory Lyrics</div>
                         <div class="col-sm-4">Not Applicable</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Contractual Rights</div>
+                        <div class="col-sm-2 text-right">Contractual Rights</div>
                         <div class="col-sm-4"></div>
-                        <div class="col-sm-2">Release Intent</div>
+                        <div class="col-sm-2 text-right">Release Intent</div>
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Promo</div>
+                        <div class="col-sm-2 text-right">Promo</div>
                         <div class="col-sm-4">No</div>
-                        <div class="col-sm-2"># Promo Units</div>
+                        <div class="col-sm-2 text-right"># Promo Units</div>
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Mech. Licenses</div>
+                        <div class="col-sm-2 text-right">Mech. Licenses</div>
                         <div class="col-sm-4">Show Licenses</div>
-                        <div class="col-sm-2">Includes Booklet</div>
+                        <div class="col-sm-2 text-right">Includes Booklet</div>
                         <div class="col-sm-4">No</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Compilation</div>
+                        <div class="col-sm-2 text-right">Compilation</div>
                         <div class="col-sm-4">No</div>
-                        <div class="col-sm-2">Partial</div>
+                        <div class="col-sm-2 text-right">Partial</div>
                         <div class="col-sm-4">No</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Soundtrack</div>
+                        <div class="col-sm-2 text-right">Soundtrack</div>
                         <div class="col-sm-4">No</div>
-                        <div class="col-sm-2">Metadata Lang.</div>
+                        <div class="col-sm-2 text-right">Metadata Lang.</div>
                         <div class="col-sm-4">English</div>
                     </div>
 
                     <hr>
                     <h5>Ownership</h5>
                     <div class="form-group">
-                        <div class="col-sm-2">Ownership Type</div>
+                        <div class="col-sm-2 text-right">Ownership Type</div>
                         <div class="col-sm-4"></div>
-                        <div class="col-sm-2">Remaster</div>
+                        <div class="col-sm-2 text-right">Remaster</div>
                         <div class="col-sm-4">No</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Copyright Year</div>
+                        <div class="col-sm-2 text-right">Copyright Year</div>
                         <div class="col-sm-4"></div>
-                        <div class="col-sm-2">Orig. Copyright Year</div>
+                        <div class="col-sm-2 text-right">Orig. Copyright Year</div>
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Copyright Owner</div>
+                        <div class="col-sm-2 text-right">Copyright Owner</div>
                         <div class="col-sm-10"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Copyright Notice</div>
+                        <div class="col-sm-2 text-right">Copyright Notice</div>
                         <div class="col-sm-10">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
                             Ltd
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Artwork Year</div>
+                        <div class="col-sm-2 text-right">Artwork Year</div>
                         <div class="col-sm-4"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Artwork Owner</div>
+                        <div class="col-sm-2 text-right">Artwork Owner</div>
                         <div class="col-sm-10"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Artwork Notice</div>
+                        <div class="col-sm-2 text-right">Artwork Notice</div>
                         <div class="col-sm-10">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
                             Ltd
                         </div>
@@ -340,13 +340,13 @@
                     <h5>Other</h5>
 
                     <div class="form-group">
-                        <div class="col-sm-2">Prod. Manager</div>
+                        <div class="col-sm-2 text-right">Prod. Manager</div>
                         <div class="col-sm-4">Unknown at Data Takeon</div>
-                        <div class="col-sm-2">LC Coordinator</div>
+                        <div class="col-sm-2 text-right">LC Coordinator</div>
                         <div class="col-sm-4">Unknown at Data Takeon</div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2">Notes &amp; Comments</div>
+                        <div class="col-sm-2 text-right">Notes &amp; Comments</div>
                         <div class="col-sm-10">Purchased as part of Mute Catalogue - Not Re-Delivered to market.</div>
                     </div>
                 </div>
