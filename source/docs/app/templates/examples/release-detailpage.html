@@ -103,7 +103,10 @@
                                 placeholder="Select or search a site in the list …"
                                 items="xEditableCtrl.data.sites"
                                 oncommit="xEditableCtrl.saveValue($data)">
-                                <span data-ng-bind-html="item.text | highlight: $select.search"></span>
+                                <div>
+                                    <span data-ng-bind-html="item.text | highlight: $select.search"></span><br />
+                                    <small data-ng-bind="'ID: ' + item.value"></small>
+                                </div>
                             </data-inline-select>
                         </div>
                         <div class="col-sm-2">

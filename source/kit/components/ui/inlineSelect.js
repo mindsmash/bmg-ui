@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineSelect', inlineSelect);
 
-    function inlineSelect($timeout, $templateCache, $compile) {
+    function inlineSelect($timeout, $templateCache, $compile, miscService) {
         return {
             replace: true,
             scope: {

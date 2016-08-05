@@ -40,7 +40,6 @@
                                 });
 
                                 if (miscService.isPromise(commitPromise)) {
-                                    // if it looks like a promise and walks like a promise …
                                     animateSuccessIndicator(commitPromise);
                                 } else {
                                     animateSuccessIndicator();

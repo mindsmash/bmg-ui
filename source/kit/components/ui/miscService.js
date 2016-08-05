@@ -11,6 +11,7 @@
         };
 
         function isPromise(promise) {
+            // if it looks like a promise and walks like a promise …
             return angular.isDefined(promise) &&
                 angular.isDefined(promise.then) &&
                 angular.isFunction(promise.then);
