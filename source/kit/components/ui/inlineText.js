@@ -86,7 +86,6 @@
                                     .find('i')
                                     .removeClass('fa-undo fa-spin fa-spinner')
                                     .addClass('fa-check');
-                                undoBtn.addClass('success');
 
                                 endAnimation();
                             }, function() {
@@ -94,7 +93,6 @@
                                     .find('i')
                                     .removeClass('fa-undo fa-spin fa-spinner')
                                     .addClass('fa-remove');
-                                undoBtn.addClass('error');
 
                                 endAnimation();
                             });
@@ -104,7 +102,6 @@
                                 .find('i')
                                 .removeClass('fa-undo')
                                 .addClass('fa-check');
-                            undoBtn.addClass('success');
                             showUndoBtn();
 
                             endAnimation();
@@ -117,7 +114,6 @@
                         }, 500);
 
                         $timeout(function() {
-                            undoBtn.removeClass('success error');
                             undoBtn
                                 .find('i')
                                 .removeClass('fa-check fa-remove')

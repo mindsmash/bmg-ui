@@ -55,10 +55,12 @@
                     var initialValue = ngModel.$viewValue;
 
                     var dropdownHint = angular.element('<span class="dropdown-hint fa fa-angle-down"></span>');
+                    var indicatorButton = angular.element('<button class="revert-button"></button>');
                     var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
                     var inputWrapper = $(elem).find('div.selectize-input');
 
-                    inputWrapper.append(successIndicator);
+                    indicatorButton.append(successIndicator);
+                    inputWrapper.append(indicatorButton);
                     inputWrapper.append(dropdownHint);
 
                     // hide success indicator by default unless needed
@@ -74,20 +76,55 @@
 
                     scope.onSelect = function(newValue) {
                         if (initialValue !== newValue) {
-                            successIndicator.css('opacity', '1');
+                            if (scope.oncommit) {
+                                var commitPromise = scope.oncommit({ $data: newValue });
 
-                            $timeout(function() {
-                                successIndicator.css('opacity', '0');
-                            }, 500);
-                        }
-
-                        if (scope.oncommit) {
-                            scope.oncommit({ $data: newValue });
+                                if (miscService.isPromise(commitPromise)) {
+                                    animateSuccessIndicator(commitPromise);
+                                } else {
+                                    animateSuccessIndicator();
+                                }
+                            }
                         }
 
                         // update initial value
                         initialValue = newValue;
                     };
+
+                    function animateSuccessIndicator(commitPromise) {
+                        indicatorButton.css('opacity', '1');
+
+                        if (commitPromise) {
+                            successIndicator
+                                .css('opacity', '1')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                successIndicator
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function() {
+                                successIndicator
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                endAnimation();
+                            });
+                        } else {
+                            successIndicator
+                                .css('opacity', '1')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
+                        $timeout(function() {
+                            successIndicator.css('opacity', '0');
+                            indicatorButton.css('opacity', '0');
+                        }, 500);
+                    }
                 });
             }
         };
