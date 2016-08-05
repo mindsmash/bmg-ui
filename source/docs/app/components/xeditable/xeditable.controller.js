@@ -82,6 +82,7 @@
 
         this.saveValue = function(value) {
             // Do something with the value
+            console.log('COMMIT: ', value);
         };
 
         this.promiseValue = function(value) {

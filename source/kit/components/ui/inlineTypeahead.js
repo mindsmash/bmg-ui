@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineTypeahead', inlineTypeahead);
 
-    function inlineTypeahead($timeout) {
+    function inlineTypeahead($timeout, miscService) {
         return {
             replace: true,
             scope: {
@@ -43,17 +43,25 @@
                     };
 
                     scope.blurHandler = function() {
-                        hideUndoBtn();
-
-                        // call the callback function with the new input value
-                        scope.oncommit({
-                            $data: ngModel.$viewValue
-                        });
-
                         // show visual indicator of possible change
+                        var oldInitialValue = initialValue;
+
                         $timeout(function() {
-                            if (ngModel.$viewValue !== initialValue) {
-                                animateSuccessIndicator();
+                            hideUndoBtn();
+
+                            var newNgModel = ngModel.$viewValue;
+
+                            if (newNgModel !== oldInitialValue) {
+                                // call the callback function with the new input value
+                                var commitPromise = scope.oncommit({
+                                    $data: newNgModel
+                                });
+
+                                if (miscService.isPromise(commitPromise)) {
+                                    animateSuccessIndicator(commitPromise);
+                                } else {
+                                    animateSuccessIndicator();
+                                }
                             }
                         }, 10); // to make sure this happens after undo button click
                     };
@@ -72,18 +80,47 @@
                         undoBtn.addClass('active');
                     }
 
-                    function animateSuccessIndicator() {
-                        undoBtn.find('i').removeClass('fa-undo').addClass('fa-check');
-                        undoBtn.addClass('success');
+                    function animateSuccessIndicator(commitPromise) {
                         showUndoBtn();
 
+                        if (commitPromise) {
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function() {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                endAnimation();
+                            });
+                        } else {
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
                         $timeout(function() {
                             hideUndoBtn();
                         }, 500);
 
                         $timeout(function() {
-                            undoBtn.removeClass('success');
-                            undoBtn.find('i').removeClass('fa-check').addClass('fa-undo');
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-undo');
                         }, 600);
                     }
 
