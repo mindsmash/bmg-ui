@@ -54,6 +54,9 @@
                     '        class="success-indicator">',
                     '        <i class="fa fa-check"></i>',
                     '    </button>',
+                    '    <div',
+                    '        class="inline-error"',
+                    '        data-ng-bind="errorMessage"></div>',
                     '</div>'
                 ].join(''));
 

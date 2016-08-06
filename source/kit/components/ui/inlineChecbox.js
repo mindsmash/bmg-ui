@@ -19,6 +19,7 @@
                     var labelElem = $(elem).find('label');
                     var checkboxElem = $(elem).find('input');
                     var successIndicator = $(elem).find('.success-indicator');
+                    var container = $(elem).closest('.inline-edit-container');
 
                     // internal label support
                     labelElem.on('click', function() {
@@ -46,6 +47,7 @@
                     }
 
                     function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
                         successIndicator.addClass('active');
 
                         if (commitPromise) {
@@ -60,11 +62,14 @@
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-check');
                                 endAnimation();
-                            }, function() {
+                            }, function(error) {
                                 successIndicator
                                     .find('i')
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-remove');
+                                container.addClass('has-error');
+                                scope.errorMessage = error;
+
                                 endAnimation();
                             });
                         } else {
