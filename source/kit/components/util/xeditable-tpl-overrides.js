@@ -133,6 +133,9 @@
                     '            class="calendar-button">',
                     '            <i class="fa fa-calendar"></i>',
                     '        </button>',
+                    '    <div',
+                    '        class="inline-error"',
+                    '        data-ng-bind="errorMessage"></div>',
                     '</div>'
                 ].join(''));
         }]);

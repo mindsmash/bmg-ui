@@ -24,6 +24,7 @@
                     var successIndicator = elem.find('.success-indicator');
                     var inputElem = elem.find('.inline-datepicker');
                     var actionBtn = elem.find('.revert-button');
+                    var container = elem.closest('.inline-edit-container');
 
                     scope.popup = {
                         opened: false
@@ -107,6 +108,7 @@
                     }
 
                     function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
                         showActionBtn();
 
                         if (commitPromise) {
@@ -121,11 +123,14 @@
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-check');
                                 endAnimation();
-                            }, function() {
+                            }, function(error) {
                                 actionBtn
                                     .find('i')
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-remove');
+                                container.addClass('has-error');
+                                scope.errorMessage = error;
+
                                 endAnimation();
                             });
                         } else {
