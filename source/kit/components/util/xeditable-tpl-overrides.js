@@ -79,6 +79,9 @@
                     '       <i class="fa fa-undo"></i>',
                     '   </button><span',
                     '       class="fa fa-search typeahead-hint"></span>',
+                    '   <div',
+                    '      class="inline-error"',
+                    '      data-ng-bind="errorMessage"></div>',
                     '</div>'
                 ].join(''));
 
