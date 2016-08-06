@@ -34,6 +34,9 @@
                     '       class="revert-button">',
                     '       <i class="fa fa-undo"></i>',
                     '   </button>',
+                    '   <div',
+                    '      class="inline-error"',
+                    '      data-ng-bind="errorMessage"></div>',
                     '</div>'
                 ].join(''));
 

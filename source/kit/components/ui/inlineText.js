@@ -20,6 +20,7 @@
                 $timeout(function() {
                     // save original input value for undo
                     var initialValue = ngModel.$viewValue;
+                    var container = $(elem).closest('.inline-edit-container');
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-text');
 
@@ -74,6 +75,8 @@
                     }
 
                     function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
+
                         if (commitPromise) {
                             // animate spinner first until promise resolves
                             showUndoBtn();
@@ -89,11 +92,14 @@
                                     .addClass('fa-check');
 
                                 endAnimation();
-                            }, function() {
+                            }, function(error) {
                                 undoBtn
                                     .find('i')
                                     .removeClass('fa-undo fa-spin fa-spinner')
                                     .addClass('fa-remove');
+
+                                container.addClass('has-error');
+                                scope.errorMessage = error;
 
                                 endAnimation();
                             });

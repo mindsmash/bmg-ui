@@ -82,7 +82,6 @@
 
         this.saveValue = function(value) {
             // Do something with the value
-            console.log('COMMIT: ', value);
         };
 
         this.promiseValue = function(value) {
@@ -90,7 +89,7 @@
 
             $timeout(function() {
                 if (Math.random() > 0.5) {
-                    deferred.reject();
+                    deferred.reject('A disruption in the force was detected.');
                 } else {
                     deferred.resolve();
                 }
