@@ -101,6 +101,8 @@
                     '            repeat="item in items | filter: $select.search">',
                     '        </ui-select-choices>',
                     '    </ui-select>',
+                    '    <div',
+                    '        class="inline-error"></div>',
                     '</div>'
                 ].join(''));
 

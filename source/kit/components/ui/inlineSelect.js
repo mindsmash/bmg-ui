@@ -54,6 +54,7 @@
                     // save initial value for later comparison
                     var initialValue = ngModel.$viewValue;
 
+                    var container = $(template).closest('.inline-edit-container');
                     var dropdownHint = angular.element('<span class="dropdown-hint fa fa-angle-down"></span>');
                     var indicatorButton = angular.element('<button class="revert-button"></button>');
                     var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
@@ -91,6 +92,7 @@
                     };
 
                     function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
                         indicatorButton.css('opacity', '1');
 
                         if (commitPromise) {
@@ -104,10 +106,16 @@
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-check');
                                 endAnimation();
-                            }, function() {
+                            }, function(error) {
                                 successIndicator
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-remove');
+                                container.addClass('has-error');
+                                container
+                                    .find('.inline-error')
+                                    .empty()
+                                    .append(error);
+
                                 endAnimation();
                             });
                         } else {

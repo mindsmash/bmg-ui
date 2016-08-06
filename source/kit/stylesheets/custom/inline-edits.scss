@@ -57,7 +57,7 @@
     }
 
     &.has-error {
-        input {
+        input, .ui-select-match {
             border-bottom-color: $bmg-error;
         }
 
@@ -123,6 +123,10 @@
     &:focus {
         border-bottom-color: $bmg-malibu;
     }
+}
+
+.inline-edit-container .ui-select-match {
+    top: -1px !important;
 }
 
 .inline-edit-container .inline-datepicker {

@@ -103,9 +103,16 @@
                                 placeholder="Select or search a site in the list …"
                                 items="xEditableCtrl.data.sites"
                                 oncommit="xEditableCtrl.promiseValue($data)">
-                                <div>
-                                    <span data-ng-bind-html="item.text | highlight: $select.search"></span><br />
-                                    <small data-ng-bind="'ID: ' + item.value"></small>
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        <img
+                                            data-ng-src="{{ item.imageUrl }}"
+                                            style="width: 40px; padding-top: 5px;" />
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <span data-ng-bind-html="item.text | highlight: $select.search"></span><br />
+                                        <small>ID: {{ item.value }}, Location: {{ item.location }}</small>
+                                    </div>
                                 </div>
                             </data-inline-select>
                         </div>
