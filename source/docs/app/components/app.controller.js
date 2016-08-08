@@ -10,6 +10,12 @@
 
         this.isCollapsed = true;
 
+        this.navbarConfig = {
+            collapsedHeight: 20,
+            expandedHeight: 75,
+            mindFloatThead: true
+        };
+
         this.openAside = function(position, backdrop) {
             var asideInstance = $aside.open({
                 templateUrl: 'app/templates/apps.html',
