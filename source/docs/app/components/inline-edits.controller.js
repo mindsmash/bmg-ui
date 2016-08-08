@@ -10,8 +10,17 @@
 
         vm.data = {
             user: {
-                name: 'David Hasselhoff'
+                name: 'David Hasselhoff',
+                birthDate: new Date(1989, 9, 10)
             }
+        };
+
+        vm.datepickerOptions = {
+            maxDate: new Date(),
+            minMode: 'day',
+            datepickerMode: 'month',
+            showWeeks: false,
+            startingDay: 1
         };
 
         vm.sendToServer = sendToServer;

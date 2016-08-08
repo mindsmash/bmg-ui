@@ -1390,6 +1390,48 @@ jQuery(document).ready(function() {
 &lt;/div&gt;</code></pre>
                 </div>
             </div>
+
+            <div class="row inline-form">
+                <div class="col-xs-12">
+                    <h2>Inline datepicker</h2>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-1 text-right">
+                            <label for="user-birth-date-input">Birth date</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-3">
+                            <data-inline-datepicker
+                                id="user-birth-date-input"
+                                data-ng-model="inlineCtrl.data.user.birthDate"
+                                datepicker-options="inlineCtrl.datepickerOptions"
+                                placeholder="User birth date"
+                                date-format="dd/MM/yyyy"
+                                oncommit="inlineCtrl.sendToServer($data)"></data-inline-datepicker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <pre><code class="html">&lt;div class=&quot;row inline-form&quot;&gt;
+    &lt;div class=&quot;col-xs-12&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;div class=&quot;col-xs-4 col-sm-1 text-right&quot;&gt;
+                &lt;label for=&quot;user-birth-date-input&quot;&gt;Birth date&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-xs-8 col-sm-3&quot;&gt;
+                &lt;data-inline-datepicker
+                    id=&quot;user-birth-date-input&quot;
+                    data-ng-model=&quot;inlineCtrl.data.user.birthDate&quot;
+                    datepicker-options=&quot;inlineCtrl.datepickerOptions&quot;
+                    placeholder=&quot;User birth date&quot;
+                    date-format=&quot;dd/MM/yyyy&quot;
+                    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-datepicker&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Custom CSS-Classes -->
