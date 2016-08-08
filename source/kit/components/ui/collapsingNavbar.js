@@ -77,7 +77,6 @@
     }
 
     function rearrangeStickyBars(up) {
-        console.log('config: ', config);
         var stickyBars = $('*[sticky]');
 
         if (up) {
@@ -85,7 +84,7 @@
             stickyBars.css('top', config.collapsedHeight + 'px');
         } else {
             stickyBars.attr('offset', config.expandedHeight);
-            stickyBars.css('top', config.expandedHeight + '75px');
+            stickyBars.css('top', config.expandedHeight + 'px');
         }
 
         if (config.mindFloatThead) {
