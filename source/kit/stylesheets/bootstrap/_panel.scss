@@ -34,11 +34,14 @@
   margin: 0 30px 0;
 }
 
+.condensed {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 .panel-heading {
   width: 100% !important; // important to override the sticky directive settings
   background-color: $bmg-white;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
 
   &.panel-heading-line {
     > h1, h2, h3, h4, h5, h6 {
