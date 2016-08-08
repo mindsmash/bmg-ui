@@ -17,6 +17,12 @@
         line-height: inherit !important;
         cursor: pointer;
     }
+
+    @media (max-width: 768px) {
+        & .form-group > div:first-child {
+            margin-bottom: 20px;
+        }
+    }
 }
 
 .inline-edit-container .revert-button,
