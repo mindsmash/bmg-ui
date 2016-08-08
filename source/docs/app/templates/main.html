@@ -1329,21 +1329,65 @@ jQuery(document).ready(function() {
             </div>
         </div>
     </div>
-    <!-- X-Editable -->
+    <!-- Inline Edits -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1 id="xedit">X-Editable</h1>
+            <h1 id="inline-edits">Inline Edits</h1>
         </div>
-        <div class="panel-body">
+        <div
+            class="panel-body"
+            data-ng-controller="InlineEditController as inlineCtrl">
             <div class="row">
-                <div class="col-lg-12">
-                    <p>Please read the <a href="https://vitalets.github.io/angular-xeditable/#text-simple">documentation</a>.</p>
+                <div class="col-xs-12">
+                    <p>
+                        For detail pages and other areas where data should be viewable and quickly editable
+                        at the same time, there are directives to achieve that for various types of input.
+                    </p>
+                    <p>
+                        They all work on the same principle that as soon as the input element loses
+                        focus, the <code>oncommit</code> callback function is called. If this callback
+                        function returns a promise, a spinning wheel is displayed until the promise is
+                        resolved or rejected, at which point success or error feedback is shown where
+                        the spinner previously was. The parameter given to the <code>reject</code> function
+                        will be used as the error message and displayed unterneath the input element. If the
+                        callback function does not return a promise, success feedback is shown instantly.
+                    </p>
                 </div>
             </div>
+            <div class="row inline-form">
+                <div class="col-xs-12">
+                    <h2>Inline text input</h2>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-1 text-right">
+                            <label for="user-name-input">User name</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-3">
+                            <data-inline-text
+                                id="user-name-input"
+                                data-ng-model="inlineCtrl.data.user.name"
+                                placeholder="User name"
+                                oncommit="inlineCtrl.sendToServer($data)"></data-inline-text>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <pre><code class="html" ng-non-bindable>&lt;a href="#" editable-text="user.name"&gt;&#123;&#123; user.name || 'empty' &#125;&#125;&lt;/a&gt;</code></pre>
-                    <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://vitalets.github.io/angular-xeditable/">angular-xeditable</a></div>
+                <div class="col-xs-12">
+                    <pre><code class="html">&lt;div class=&quot;row inline-form&quot;&gt;
+    &lt;div class=&quot;form-group&quot;&gt;
+        &lt;div class=&quot;col-xs-4 col-sm-2 text-right&quot;&gt;
+            &lt;label for=&quot;user-name-input&quot;&gt;User name&lt;/label&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-xs-8 col-sm-4&quot;&gt;
+            &lt;data-inline-text
+                id=&quot;user-name-input&quot;
+                data-ng-model=&quot;inlineCtrl.data.user.name&quot;
+                placeholder=&quot;User name&quot;
+                oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-text&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
                 </div>
             </div>
         </div>
