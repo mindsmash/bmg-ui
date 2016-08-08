@@ -110,8 +110,14 @@
                                             style="width: 40px; padding-top: 5px;" />
                                     </div>
                                     <div class="col-xs-10">
-                                        <span data-ng-bind-html="item.text | highlight: $select.search"></span><br />
-                                        <small>ID: {{ item.value }}, Location: {{ item.location }}</small>
+                                        <span data-ng-bind-html="item.text | highlight:$select.search"></span><br />
+                                        <small>ID:
+                                            <span
+                                                data-ng-bind-html="item.value | highlight:$select.search"></span>,
+                                            Location:
+                                            <span
+                                                data-ng-bind-html="item.location | highlight:$select.search"></span>
+                                        </small>
                                     </div>
                                 </div>
                             </data-inline-select>
