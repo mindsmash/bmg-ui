@@ -7,7 +7,6 @@
 
     function inlineSelect($timeout, $templateCache, $compile, miscService) {
         return {
-            replace: true,
             scope: {
                 ngModel: '=',
                 placeholder: '@?',
@@ -44,11 +43,10 @@
                         'data-ng-bind', '$select.selected.' + scope.displayProperty);
                 }
 
-                elem.html('');
-                elem.append(template);
+                elem.replaceWith(template); // equivalent to 'replace: true' in directive definition
 
                 var uiSelect = elem.find('.inline-select');
-                $compile(uiSelect)(scope);
+                $compile(template)(scope);
 
                 $timeout(function() {
                     // save initial value for later comparison
@@ -58,7 +56,7 @@
                     var dropdownHint = angular.element('<span class="dropdown-hint fa fa-angle-down"></span>');
                     var indicatorButton = angular.element('<button class="revert-button"></button>');
                     var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
-                    var inputWrapper = $(elem).find('div.selectize-input');
+                    var inputWrapper = $(template).find('div.selectize-input');
 
                     indicatorButton.append(successIndicator);
                     inputWrapper.append(indicatorButton);
