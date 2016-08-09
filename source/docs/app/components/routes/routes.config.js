@@ -85,8 +85,8 @@
             .state('index.sticky', {
                 url: "#sticky"
             })
-            .state('index.xedit', {
-                url: "#xedit"
+            .state('index.inlineEdits', {
+                url: "#inline-edits"
             })
             .state('index.css', {
                 url: "#css"

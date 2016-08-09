@@ -5,10 +5,22 @@
         .module('bmg.components.ui')
         .directive('collapsingNavbar', collapsingNavbar);
 
+    // saves the previous 10 scroll positions
+    var lastKnownScrollPositions = [];
+    var isCollapsed = false;
+    var config = {};
+
     function collapsingNavbar() {
         return {
             restrict: 'A',
+            scope: {
+                config: '=collapsingNavbar'
+            },
             link: function(scope, elem) {
+                config.mindFloatThead = !!scope.config.mindFloatThead;
+                config.collapsedHeight = scope.config.collapsedHeight || 20;
+                config.expandedHeight = scope.config.expandedHeight || 75;
+
                 window.setInterval(checkScrollStatus, 200);
 
                 $('nav.navbar').click(expandNavbar);
@@ -21,10 +33,6 @@
             }
         };
     }
-
-    // saves the previous 10 scroll positions
-    var lastKnownScrollPositions = [];
-    var isCollapsed = false;
 
     function checkScrollStatus() {
         // check scroll status every 200ms
@@ -72,14 +80,16 @@
         var stickyBars = $('*[sticky]');
 
         if (up) {
-            stickyBars.attr('offset', 20);
-            stickyBars.css('top', '20px');
+            stickyBars.attr('offset', config.collapsedHeight);
+            stickyBars.css('top', config.collapsedHeight + 'px');
         } else {
-            stickyBars.attr('offset', 75);
-            stickyBars.css('top', '75px');
+            stickyBars.attr('offset', config.expandedHeight);
+            stickyBars.css('top', config.expandedHeight + 'px');
         }
 
-        changefloatTheadTop(up);
+        if (config.mindFloatThead) {
+            changefloatTheadTop(up);
+        }
     }
 
     function changefloatTheadTop(up) {
@@ -92,9 +102,9 @@
 
         $(tableSelector).floatThead({
             top: function($table) {
-                return up ? 20 : 75;
+                return up ? config.collapsedHeight : config.expandedHeight;
             },
-            responsiveContainer: function($table){
+            responsiveContainer: function($table) {
                 return $table.closest('.table-responsive, ' +
                     '.tableStandard-responsive, ' +
                     '.tableCondensed-responsive');
