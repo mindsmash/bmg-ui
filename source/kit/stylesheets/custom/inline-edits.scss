@@ -25,6 +25,28 @@
             margin-bottom: 20px;
         }
     }
+
+    .label-container {
+        max-width: 250px;
+    }
+
+    .narrow {
+        @media (max-width: 768px) {
+            max-width: 0px;
+        }
+
+        @media (min-width: 769px) and (max-width: 899px) {
+            max-width: 50px;
+        }
+
+        @media (min-width: 900px) and (max-width: 1999px) {
+            max-width: 100px;
+        }
+
+        @media (min-width: 2000px) {
+            max-width: 200px;
+        }
+    }
 }
 
 .inline-edit-container .revert-button,
