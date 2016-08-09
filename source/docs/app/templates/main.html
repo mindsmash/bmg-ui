@@ -1437,6 +1437,50 @@ jQuery(document).ready(function() {
 &lt;/div&gt;</code></pre>
                 </div>
             </div>
+
+            <div class="row inline-form">
+                <div class="col-xs-12">
+                    <h2>Inline typeahead</h2>
+                    <p>
+                        The typeahead is based on the
+                        <a href="https://angular-ui.github.io/bootstrap/#/typeahead">UI Bootstrap typeahead component</a>.
+                    </p>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-1 text-right">
+                            <label for="user-residence-input">Residence</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-3">
+                            <data-inline-typeahead
+                                id="user-residence-input"
+                                data-ng-model="inlineCtrl.data.user.residence"
+                                placeholder="User residence"
+                                items="inlineCtrl.states"
+                                oncommit="inlineCtrl.sendToServer($data)"></data-inline-typeahead>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <pre><code class="html">&lt;div class=&quot;row inline-form&quot;&gt;
+    &lt;div class=&quot;col-xs-12&quot;&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+            &lt;div class=&quot;col-xs-4 col-sm-1 text-right&quot;&gt;
+                &lt;label for=&quot;user-residence-input&quot;&gt;Residence&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-xs-8 col-sm-3&quot;&gt;
+                &lt;data-inline-typeahead
+                    id=&quot;user-residence-input&quot;
+                    data-ng-model=&quot;inlineCtrl.data.user.residence&quot;
+                    placeholder=&quot;User residence&quot;
+                    items=&quot;inlineCtrl.states&quot;
+                    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-typeahead&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Custom CSS-Classes -->

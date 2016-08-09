@@ -21,17 +21,17 @@
                     value: 1,
                     text: 'BMG Rights Management UK',
                     location: 'London',
-                    imageUrl: '/images/united-kingdom.svg'
+                    imageUrl: 'images/united-kingdom.svg'
                 }, {
                     value: 2,
                     text: 'BMG Rights Management GE',
                     location: 'Berlin',
-                    imageUrl: '/images/germany.svg'
+                    imageUrl: 'images/germany.svg'
                 }, {
                     value: 3,
                     text: 'BMG Rights Management US',
                     location: 'Los Angeles',
-                    imageUrl: '/images/united-states.svg'
+                    imageUrl: 'images/united-states.svg'
                 }
             ],
             'badgeStatii': [
