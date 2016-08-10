@@ -49,6 +49,13 @@
                         });
                     };
 
+                    inputElem.on('keyup', function(e) {
+                        if (e.keyCode === 13 || e.which === 13) {
+                            // ENTER pressed
+                            inputElem.blur();
+                        }
+                    });
+
                     inputElem.on('focus', function() {
                         initialValue = ngModel.$viewValue;
                     });
