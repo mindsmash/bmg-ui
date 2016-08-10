@@ -50,7 +50,12 @@
                         }, 10); // to make sure this happens after undo button click
                     });
 
-                    inputElem.on('keyup change', function() {
+                    inputElem.on('keyup change', function(e) {
+                        if (e.keyCode === 13 || e.which === 13) {
+                            // ENTER pressed
+                            inputElem.blur();
+                        }
+
                         var newValue = inputElem.val();
 
                         if (newValue != initialValue) {
