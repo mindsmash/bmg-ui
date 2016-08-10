@@ -103,22 +103,15 @@
                                 placeholder="Select or search a site in the list …"
                                 items="xEditableCtrl.data.sites"
                                 oncommit="xEditableCtrl.promiseValue($data)">
-                                <div class="row">
-                                    <div class="col-xs-2">
-                                        <img
-                                            data-ng-src="{{ item.imageUrl }}"
-                                            style="width: 40px; padding-top: 5px;" />
-                                    </div>
-                                    <div class="col-xs-10">
-                                        <span data-ng-bind-html="item.text | highlight:$select.search"></span><br />
-                                        <small>ID:
-                                            <span
-                                                data-ng-bind-html="item.value | highlight:$select.search"></span>,
-                                            Location:
-                                            <span
-                                                data-ng-bind-html="item.location | highlight:$select.search"></span>
-                                        </small>
-                                    </div>
+                                <div>
+                                    <span data-ng-bind-html="item.text | highlight:$select.search"></span><br />
+                                    <small>ID:
+                                        <span
+                                            data-ng-bind-html="item.value | highlight:$select.search"></span>,
+                                        Location:
+                                        <span
+                                            data-ng-bind-html="item.location | highlight:$select.search"></span>
+                                    </small>
                                 </div>
                             </data-inline-select>
                         </div>
