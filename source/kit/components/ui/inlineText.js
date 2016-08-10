@@ -11,7 +11,8 @@
             scope: {
                 ngModel: '=',
                 placeholder: '@',
-                oncommit: '&'
+                oncommit: '&',
+                tabindex: '@?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',

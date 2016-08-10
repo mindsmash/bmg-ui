@@ -98,6 +98,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-select
                                 id="site-select"
+                                tabindex="1"
                                 data-ng-model="xEditableCtrl.site"
                                 display-property="text"
                                 placeholder="Select or search a site in the list …"
@@ -124,6 +125,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="barcode-text"
+                                tabindex="2"
                                 data-ng-model="xEditableCtrl.data.barcode"
                                 placeholder="Barcode"
                                 oncommit="xEditableCtrl.promiseValue($data)"></data-inline-text>
@@ -147,6 +149,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="product-code-text"
+                                tabindex="5"
                                 data-ng-model="xEditableCtrl.data.productCode"
                                 placeholder="Product Code"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>
@@ -155,11 +158,12 @@
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">
-                            <label for="alt-product-code-text">Alt. Product Codes</label>
+                            <label for="alt-product-code-text">Alt. Product Code</label>
                         </div>
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="alt-product-code-text"
+                                tabindex="6"
                                 data-ng-model="xEditableCtrl.data.altProductCode"
                                 placeholder="Alt. Product Code"
                                 oncommit="xEditableCtrl.saveValue($data)"></data-inline-text>

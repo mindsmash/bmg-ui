@@ -9,7 +9,8 @@
         return {
             isPromise: isPromise,
             ENTER_KEY: 13,
-            ESCAPE_KEY: 27
+            ESCAPE_KEY: 27,
+            TAB_KEY: 9
         };
 
         function isPromise(promise) {
