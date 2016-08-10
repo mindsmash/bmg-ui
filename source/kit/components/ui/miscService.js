@@ -7,7 +7,9 @@
 
     function miscService() {
         return {
-            isPromise: isPromise
+            isPromise: isPromise,
+            ENTER_KEY: 13,
+            ESCAPE_KEY: 27
         };
 
         function isPromise(promise) {

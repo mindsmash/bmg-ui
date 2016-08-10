@@ -51,8 +51,14 @@
                     });
 
                     inputElem.on('keyup change', function(e) {
-                        if (e.keyCode === 13 || e.which === 13) {
-                            // ENTER pressed
+                        if (e.keyCode === miscService.ENTER_KEY ||
+                            e.which === miscService.ENTER_KEY) {
+                            // ENTER pressed -> commit and leave
+                            inputElem.blur();
+                        } else if (e.keyCode === miscService.ESCAPE_KEY ||
+                            e.which === miscService.ESCAPE_KEY) {
+                            // ESCAPE pressed -> undo and leave
+                            ngModel.$setViewValue(initialValue);
                             inputElem.blur();
                         }
 
