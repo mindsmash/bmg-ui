@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineDatepicker', inlineDatepicker);
 
-    function inlineDatepicker($timeout, miscService) {
+    function inlineDatepicker($timeout, utilService, keyConstants) {
         return {
             replace: true,
             scope: {
@@ -49,6 +49,18 @@
                         });
                     };
 
+                    inputElem.on('keyup', function(e) {
+                        if (e.keyCode === keyConstants.ENTER_KEY ||
+                            e.which === keyConstants.ENTER_KEY) {
+                            // ENTER pressed
+                            inputElem.blur();
+                        } else if (e.keyCode === keyConstants.ESCAPE_KEY ||
+                            e.which === keyConstants.ESCAPE_KEY) {
+                            ngModel.$setViewValue(initialValue);
+                            inputElem.blur();
+                        }
+                    });
+
                     inputElem.on('focus', function() {
                         initialValue = ngModel.$viewValue;
                     });
@@ -91,7 +103,7 @@
                                     $data: ngModel.$viewValue
                                 }) : undefined;
 
-                            if (miscService.isPromise(commitPromise)) {
+                            if (utilService.isPromise(commitPromise)) {
                                 animateSuccessIndicator(commitPromise);
                             } else {
                                 animateSuccessIndicator();

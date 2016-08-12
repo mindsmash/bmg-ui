@@ -5,13 +5,14 @@
         .module('bmg.components.ui')
         .directive('inlineText', inlineText);
 
-    function inlineText($timeout, miscService) {
+    function inlineText($timeout, utilService, keyConstants) {
         return {
             replace: true,
             scope: {
                 ngModel: '=',
                 placeholder: '@',
-                oncommit: '&'
+                oncommit: '&',
+                tabindex: '@?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',
@@ -41,7 +42,7 @@
                                         $data: inputElem.val()
                                     }) : undefined;
 
-                                if (miscService.isPromise(commitPromise)) {
+                                if (utilService.isPromise(commitPromise)) {
                                     animateSuccessIndicator(commitPromise);
                                 } else {
                                     animateSuccessIndicator();
@@ -50,7 +51,18 @@
                         }, 10); // to make sure this happens after undo button click
                     });
 
-                    inputElem.on('keyup change', function() {
+                    inputElem.on('keyup change', function(e) {
+                        if (e.keyCode === keyConstants.ENTER_KEY ||
+                            e.which === keyConstants.ENTER_KEY) {
+                            // ENTER pressed -> commit and leave
+                            inputElem.blur();
+                        } else if (e.keyCode === keyConstants.ESCAPE_KEY ||
+                            e.which === keyConstants.ESCAPE_KEY) {
+                            // ESCAPE pressed -> undo and leave
+                            ngModel.$setViewValue(initialValue);
+                            inputElem.blur();
+                        }
+
                         var newValue = inputElem.val();
 
                         if (newValue != initialValue) {

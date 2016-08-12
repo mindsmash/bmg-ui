@@ -10,18 +10,52 @@
 
         vm.data = {
             user: {
-                name: 'David Hasselhoff',
-                birthDate: new Date(1989, 9, 10)
+                firstname: 'David',
+                lastname: 'Hasselhoff',
+                birthDate: new Date(1989, 9, 10),
+                deathDate: new Date(2067, 6, 14),
+                stateOfBirth: 'North Dakota',
+                stateOfDeath: 'New Hampshire',
+                alive: true,
+                dead: false,
+                favoriteArtist: {
+                    name: 'Justin Bieber',
+                    country: 'Canada',
+                    age: 22
+                },
+                leastFavoriteArtist: {
+                    name: 'Liam Gallagher',
+                    country: 'United Kingdom',
+                    age: 43
+                }
             }
         };
 
-        vm.datepickerOptions = {
+        vm.birthDatepickerOptions = {
             maxDate: new Date(),
             minMode: 'day',
-            datepickerMode: 'month',
+            datepickerMode: 'year',
             showWeeks: false,
             startingDay: 1
         };
+
+        vm.deathDatepickerOptions = angular.copy(vm.birthDatepickerOptions);
+        vm.deathDatepickerOptions.maxDate = undefined;
+
+        vm.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+        vm.artists = [{
+            name: 'Justin Bieber',
+            country: 'Canada',
+            age: 22
+        }, {
+            name: 'Britney Spears',
+            country: 'United States',
+            age: 34
+        }, {
+            name: 'Liam Gallagher',
+            country: 'United Kingdom',
+            age: 43
+        }];
 
         vm.sendToServer = sendToServer;
 
@@ -37,6 +71,10 @@
             }, 1000);
 
             return deferred.promise;
+        }
+
+        function saveImmediately(value) {
+            // Do sth with the value
         }
     }
 

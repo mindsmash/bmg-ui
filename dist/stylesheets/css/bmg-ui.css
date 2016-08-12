@@ -85,7 +85,7 @@ div.ui-select-match input.ui-select-search:not(.ng-touched) { width: 100% !impor
 
 .status-line { position: absolute; top: 15px; left: 30px; right: 30px; height: 1px; background-color: #ededed; z-index: -1; }
 
-.inline-form { margin-bottom: 30px; }
+.inline-form { margin-bottom: 30px; width: 100%; }
 
 .inline-form h2, .inline-form h3, .inline-form h4, .inline-form h5 { margin-bottom: 20px; }
 
@@ -94,6 +94,16 @@ div.ui-select-match input.ui-select-search:not(.ng-touched) { width: 100% !impor
 .inline-form label { font-family: inherit !important; text-transform: none !important; color: inherit !important; font-size: inherit !important; line-height: inherit !important; cursor: pointer; }
 
 @media (max-width: 768px) { .inline-form .form-group > div:first-child { margin-bottom: 20px; } }
+
+.inline-form .label-container { max-width: 250px; }
+
+@media (max-width: 768px) { .inline-form .narrow { max-width: 0px; } }
+
+@media (min-width: 769px) and (max-width: 899px) { .inline-form .narrow { max-width: 50px; } }
+
+@media (min-width: 900px) and (max-width: 1999px) { .inline-form .narrow { max-width: 100px; } }
+
+@media (min-width: 2000px) { .inline-form .narrow { max-width: 200px; } }
 
 .inline-edit-container .revert-button, .inline-select .revert-button { position: relative; top: -2px; opacity: 0; transition: opacity 0.1s ease-in-out; margin-left: -20px; height: 20px; width: 20px; background-color: transparent; border: none; }
 

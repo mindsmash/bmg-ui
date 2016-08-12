@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineTypeahead', inlineTypeahead);
 
-    function inlineTypeahead($timeout, miscService) {
+    function inlineTypeahead($timeout, utilService, keyConstants) {
         return {
             replace: true,
             scope: {
@@ -59,7 +59,7 @@
                                         $data: newNgModel
                                     }) : undefined;
 
-                                if (miscService.isPromise(commitPromise)) {
+                                if (utilService.isPromise(commitPromise)) {
                                     animateSuccessIndicator(commitPromise);
                                 } else {
                                     animateSuccessIndicator();
@@ -72,6 +72,19 @@
                         ngModel.$setViewValue(initialValue);
                         hideUndoBtn();
                         inputElem.trigger('focus');
+                    });
+
+                    inputElem.on('keyup', function(e) {
+                        if (e.keyCode === keyConstants.ENTER_KEY ||
+                            e.which === keyConstants.ENTER_KEY) {
+                            // ENTER pressed
+                            inputElem.blur();
+                        } else if (e.keyCode === keyConstants.ESCAPE_KEY ||
+                            e.which === keyConstants.ESCAPE_KEY) {
+                            // ESCAPE pressed
+                            ngModel.$setViewValue(initialValue);
+                            inputElem.blur();
+                        }
                     });
 
                     function hideUndoBtn() {
