@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    angular.module('bmg.components.ui', ['ui.select'])
+    angular.module('bmg.components.ui', ['ui.select', 'bmg/template/inlineEdits'])
         .config(decorateUISelectWithOpenEvent)
         .run(xeditableRun);
 
