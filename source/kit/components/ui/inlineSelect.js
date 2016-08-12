@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineSelect', inlineSelect);
 
-    function inlineSelect($timeout, $templateCache, $compile, miscService) {
+    function inlineSelect($timeout, $templateCache, $compile, utilService) {
         return {
             scope: {
                 ngModel: '=',
@@ -78,7 +78,7 @@
                             var commitPromise = angular.isDefined(scope.oncommit) ?
                                 scope.oncommit({ $data: newValue }) : undefined;
 
-                            if (miscService.isPromise(commitPromise)) {
+                            if (utilService.isPromise(commitPromise)) {
                                 animateSuccessIndicator(commitPromise);
                             } else {
                                 animateSuccessIndicator();

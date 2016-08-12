@@ -3,14 +3,11 @@
 
     angular
         .module('bmg.components.ui')
-        .factory('miscService', miscService);
+        .factory('utilService', utilService);
 
-    function miscService() {
+    function utilService() {
         return {
-            isPromise: isPromise,
-            ENTER_KEY: 13,
-            ESCAPE_KEY: 27,
-            TAB_KEY: 9
+            isPromise: isPromise
         };
 
         function isPromise(promise) {

@@ -5,7 +5,7 @@
         .module('bmg.components.ui')
         .directive('inlineCheckbox', inlineCheckbox);
 
-    function inlineCheckbox($timeout, miscService) {
+    function inlineCheckbox($timeout, utilService) {
         return {
             replace: true,
             scope: {
@@ -39,7 +39,7 @@
                                 $data: ngModel.$viewValue
                             }) : undefined;
 
-                        if (miscService.isPromise(commitPromise)) {
+                        if (utilService.isPromise(commitPromise)) {
                             animateSuccessIndicator(commitPromise);
                         } else {
                             animateSuccessIndicator();
