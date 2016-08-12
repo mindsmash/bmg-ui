@@ -3,9 +3,9 @@
 
     angular
         .module('bmg.components.ui')
-        .factory('miscService', miscService);
+        .factory('utilService', utilService);
 
-    function miscService() {
+    function utilService() {
         return {
             isPromise: isPromise
         };

@@ -1352,84 +1352,294 @@ jQuery(document).ready(function() {
                         will be used as the error message and displayed unterneath the input element. If the
                         callback function does not return a promise, success feedback is shown instantly.
                     </p>
+                    <p>
+                        Forms using inline edits on detail pages should arrange them in a two column layout
+                        like suggested below and on the <a href="/release-detailpage#top">detail page</a>.
+                    </p>
                 </div>
             </div>
-            <div class="row inline-form">
-                <div class="col-xs-12">
-                    <h2>Inline text input</h2>
+
+            <h2>Inline text input</h2>
+            <div class="inline-form">
+                <div class="row">
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-1 text-right">
-                            <label for="user-name-input">User name</label>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="user-firstname-text">First name</label>
                         </div>
-                        <div class="col-xs-8 col-sm-3">
+                        <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
-                                id="user-name-input"
-                                data-ng-model="inlineCtrl.data.user.name"
-                                placeholder="User name"
+                                id="user-firstname-text"
+                                data-ng-model="inlineCtrl.data.user.firstname"
+                                placeholder="First name"
                                 oncommit="inlineCtrl.sendToServer($data)"></data-inline-text>
                         </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="user-surname-text">Surname</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-text
+                                id="user-surname-text"
+                                data-ng-model="inlineCtrl.data.user.lastname"
+                                placeholder="Surname"
+                                oncommit="inlineCtrl.saveImmediately($data)"></data-inline-text>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                 </div>
-
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <pre><code class="html">&lt;div class=&quot;row inline-form&quot;&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-        &lt;div class=&quot;col-xs-4 col-sm-2 text-right&quot;&gt;
-            &lt;label for=&quot;user-name-input&quot;&gt;User name&lt;/label&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;col-xs-8 col-sm-4&quot;&gt;
-            &lt;data-inline-text
-                id=&quot;user-name-input&quot;
-                data-ng-model=&quot;inlineCtrl.data.user.name&quot;
-                placeholder=&quot;User name&quot;
-                oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-text&gt;
+                    <pre><code class="html">&lt;div class=&quot;inline-form&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+        &lt;div class=&quot;col-xs-12&quot;&gt;
+            &lt;div class=&quot;form-group&quot;&gt;
+                &lt;div class=&quot;col-xs-4 col-sm-2 col-md-2 label-container&quot;&gt;
+                    &lt;label for=&quot;user-firstname-text&quot;&gt;First name&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-xs-8 col-sm-4 col-md-3&quot;&gt;
+                    &lt;data-inline-text
+                        id=&quot;user-firstname-text&quot;
+                        data-ng-model=&quot;inlineCtrl.data.user.firstname&quot;
+                        placeholder=&quot;First name&quot;
+                        oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-text&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;clearfix visible-xs&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;narrow col-md-2 hidden-xs hidden-sm&quot;&gt;&lt;/div&gt;
+
+                &lt;div class=&quot;col-xs-4 col-sm-2 col-md-2 label-container&quot;&gt;
+                    &lt;label for=&quot;user-surname-text&quot;&gt;Surname&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;col-xs-8 col-sm-4 col-md-3&quot;&gt;
+                    &lt;data-inline-text
+                        id=&quot;user-surname-text&quot;
+                        data-ng-model=&quot;inlineCtrl.data.user.lastname&quot;
+                        placeholder=&quot;Surname&quot;
+                        oncommit=&quot;inlineCtrl.saveImmediately($data)&quot;&gt;&lt;/data-inline-text&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;clearfix visible-xs&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;</code></pre>
                 </div>
             </div>
 
-            <div class="row inline-form">
-                <div class="col-xs-12">
-                    <h2>Inline datepicker</h2>
+            <h2>Inline datepicker</h2>
+            <p>
+                The datepicker supports all <code>datepickerOptions</code> that the
+                <a href="https://angular-ui.github.io/bootstrap/#/datepickerPopup">UI Bootstrap datepicker</a>
+                supports.
+            </p>
+            <div class="inline-form">
+                <div class="row">
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-1 text-right">
-                            <label for="user-birth-date-input">Birth date</label>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="user-birthdate-picker">Date of birth</label>
                         </div>
-                        <div class="col-xs-8 col-sm-3">
-                            <data-inline-datepicker
-                                id="user-birth-date-input"
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <inline-datepicker
+                                id="user-birthdate-picker"
                                 data-ng-model="inlineCtrl.data.user.birthDate"
-                                datepicker-options="inlineCtrl.datepickerOptions"
-                                placeholder="User birth date"
+                                datepicker-options="inlineCtrl.birthDatepickerOptions"
+                                placeholder="Pick your birth date"
                                 date-format="dd/MM/yyyy"
-                                oncommit="inlineCtrl.sendToServer($data)"></data-inline-datepicker>
+                                popup-placement="auto top bottom"
+                                oncommit="inlineCtrl.sendToServer($data)"></inline-datepicker>
                         </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="user-deathdate-picker">Date of death</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <inline-datepicker
+                                id="user-deathdate-picker"
+                                data-ng-model="inlineCtrl.data.user.deathDate"
+                                datepicker-options="inlineCtrl.deathDatepickerOptions"
+                                placeholder="Pick your death date"
+                                date-format="dd/MM/yyyy"
+                                popup-placement="auto top bottom"
+                                oncommit="inlineCtrl.saveImmediately($data)"></inline-datepicker>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <pre><code class="html">&lt;div class=&quot;row inline-form&quot;&gt;
-    &lt;div class=&quot;col-xs-12&quot;&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-            &lt;div class=&quot;col-xs-4 col-sm-1 text-right&quot;&gt;
-                &lt;label for=&quot;user-birth-date-input&quot;&gt;Birth date&lt;/label&gt;
-            &lt;/div&gt;
-            &lt;div class=&quot;col-xs-8 col-sm-3&quot;&gt;
-                &lt;data-inline-datepicker
-                    id=&quot;user-birth-date-input&quot;
-                    data-ng-model=&quot;inlineCtrl.data.user.birthDate&quot;
-                    datepicker-options=&quot;inlineCtrl.datepickerOptions&quot;
-                    placeholder=&quot;User birth date&quot;
-                    date-format=&quot;dd/MM/yyyy&quot;
-                    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-datepicker&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
+                    <pre><code class="html">&lt;inline-datepicker
+    id=&quot;user-birthdate-picker&quot;
+    data-ng-model=&quot;inlineCtrl.data.user.birthDate&quot;
+    datepicker-options=&quot;inlineCtrl.birthDatepickerOptions&quot;
+    placeholder=&quot;Pick your birth date&quot;
+    date-format=&quot;dd/MM/yyyy&quot;
+    popup-placement=&quot;auto top bottom&quot;
+    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/inline-datepicker&gt;</code></pre>
+                </div>
+            </div>
+
+            <h2>Inline typeahead</h2>
+            <p>
+                The typeahead is based on the
+                <a href="https://angular-ui.github.io/bootstrap/#/typeahead">UI Bootstrap typeahead component</a>.
+            </p>
+            <div class="inline-form">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="state-of-birth-typeahead">State of birth</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-typeahead
+                                id="state-of-birth-typeahead"
+                                data-ng-model="inlineCtrl.data.user.stateOfBirth"
+                                placeholder="Search states …"
+                                items="inlineCtrl.states"
+                                oncommit="inlineCtrl.sendToServer($data)"></data-inline-typeahead>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="state-of-death-typeahead">State of death</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-typeahead
+                                id="state-of-death-typeahead"
+                                data-ng-model="inlineCtrl.data.user.stateOfDeath"
+                                placeholder="Search states …"
+                                items="inlineCtrl.states"
+                                oncommit="inlineCtrl.saveImmediately($data)"></data-inline-typeahead>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <pre><code class="html">&lt;data-inline-typeahead
+    id=&quot;state-of-birth-typeahead&quot;
+    data-ng-model=&quot;inlineCtrl.data.user.stateOfBirth&quot;
+    placeholder=&quot;Search states &hellip;&quot;
+    items=&quot;inlineCtrl.states&quot;
+    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-typeahead&gt;</code></pre>
+                </div>
+            </div>
+
+            <h2>Inline select</h2>
+            <p>
+                The select field is based on the
+                <a href="https://github.com/angular-ui/ui-select/wiki">UI Select directive</a>. The HTML inside
+                the <code>data-inline-select</code> element will be used as a template for the select items
+                when the select is opened. The current item object is available in the <code>item</code>
+                variable. Apply the <code>highlight</code> filter as demonstrated below to visually highlight
+                the search text entered by the user inside the select items. The attribute <code>display-property</code>
+                determines which property of the item objects is used as the display value when the select is closed.
+            </p>
+            <div class="inline-form">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="state-of-birth-typeahead">Favorite artist</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-select
+                                id="site-select"
+                                data-ng-model="inlineCtrl.data.user.favoriteArtist"
+                                display-property="name"
+                                placeholder="Select or search an artist in the list …"
+                                items="inlineCtrl.artists"
+                                oncommit="inlineCtrl.sendToServer($data)">
+                                <div>
+                                    <span data-ng-bind-html="(item.name + ' (' + item.age + ')') | highlight:$select.search"></span><br />
+                                    <small>Country:
+                                        <span data-ng-bind-html="item.country | highlight:$select.search"></span>
+                                    </small>
+                                </div>
+                            </data-inline-select>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="state-of-death-typeahead">Least favorite artist</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-select
+                                id="site-select"
+                                data-ng-model="inlineCtrl.data.user.leastFavoriteArtist"
+                                display-property="name"
+                                placeholder="Select or search an artist in the list …"
+                                items="inlineCtrl.artists"
+                                oncommit="inlineCtrl.saveImmediately($data)">
+                                <div>
+                                    <span data-ng-bind-html="(item.name + ' (' + item.age + ')') | highlight:$select.search"></span><br />
+                                    <small>Country:
+                                        <span data-ng-bind-html="item.country | highlight:$select.search"></span>
+                                    </small>
+                                </div>
+                            </data-inline-select>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <pre><code class="html">&lt;data-inline-select
+    id=&quot;site-select&quot;
+    data-ng-model=&quot;inlineCtrl.data.user.favoriteArtist&quot;
+    display-property=&quot;name&quot;
+    placeholder=&quot;Select or search an artist in the list &hellip;&quot;
+    items=&quot;inlineCtrl.artists&quot;
+    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;
+    &lt;div&gt;
+        &lt;span data-ng-bind-html=&quot;(item.name + ' (' + item.age + ')') | highlight:$select.search&quot;&gt;&lt;/span&gt;&lt;br /&gt;
+        &lt;small&gt;Country: &lt;span data-ng-bind-html=&quot;item.country | highlight:$select.search&quot;&gt;&lt;/span&gt;&lt;/small&gt;
     &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/data-inline-select&gt;</code></pre>
+                </div>
+            </div>
+
+            <h2>Inline checkbox</h2>
+            <div class="inline-form">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="user-alive-checkbox">Alive</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-checkbox
+                                id="user-alive-checkbox"
+                                data-ng-model="inlineCtrl.data.user.alive"
+                                oncommit="inlineCtrl.sendToServer($data)"></data-inline-checkbox>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="user-dead-checkbox">Dead</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-checkbox
+                                id="user-dead-checkbox"
+                                data-ng-model="inlineCtrl.data.user.dead"
+                                oncommit="inlineCtrl.saveImmediately($data)"></data-inline-checkbox>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <pre><code class="html">&lt;data-inline-checkbox
+    id=&quot;user-alive-checkbox&quot;
+    data-ng-model=&quot;inlineCtrl.data.user.alive&quot;
+    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-checkbox&gt;</code></pre>
                 </div>
             </div>
         </div>
