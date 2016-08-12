@@ -10,7 +10,6 @@
         'rzModule',
         'ngSanitize',
         'ui.select',
-        'xeditable',
         'ngAside',
         'sticky',
         'bmg/template/inlineEdits'
