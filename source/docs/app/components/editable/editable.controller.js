@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('bmg-ui.docs')
-        .controller('XEditableController', XEditableController);
+        .controller('EditableController', EditableController);
 
-    XEditableController.$inject = ['$filter', '$rootScope', '$q', '$timeout'];
+    EditableController.$inject = ['$filter', '$rootScope', '$q', '$timeout'];
 
-    function XEditableController($filter, $rootScope, $q, $timeout) {
+    function EditableController($filter, $rootScope, $q, $timeout) {
 
         this.site = {
             value: 2,
