@@ -1,15 +1,31 @@
 (function(angular) {
     'use strict';
 
-    angular.module('bmg.components.ui', [])
-        .run(xeditableRun);
+    angular.module('bmg.components.ui', ['ui.select', 'bmg/template/inlineEdits'])
+        .config(decorateUISelectWithOpenEvent);
 
-    xeditableRun.$inject = ['editableOptions', 'editableThemes'];
+    decorateUISelectWithOpenEvent.$inject = ['$provide'];
 
-    function xeditableRun(editableOptions, editableThemes) {
-        editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
-        editableThemes['bs3'].submitTpl = '<button type="submit" class="btn btn-primary"><i class="fa fa-check"></i></button>';
-        editableThemes['bs3'].cancelTpl = '<button type="button" class="btn btn-secondary" ng-click="$form.$cancel()"><i class="fa fa-times"></i></button>';
+    // massive kudos to Github user yvesmh for the below
+    // source: https://github.com/angular-ui/ui-select/issues/432#issuecomment-109490350
+    function decorateUISelectWithOpenEvent($provide) {
+        $provide.decorator('uiSelectDirective', function($delegate) {
+            var directive = $delegate[0];
+            var directiveCompile = directive.compile;
+
+            directive.compile = function () {
+                var link = directiveCompile.apply(this, arguments);
+
+                return function(scope) {
+                    link.apply(this, arguments);
+                    scope.$watch('$select.open', function(value) {
+                        scope.$parent.$broadcast('uiSelect:open', value);
+                    });
+                };
+            };
+
+            return $delegate;
+        });
     }
 
 })(angular);
@@ -166,10 +182,22 @@
         .module('bmg.components.ui')
         .directive('collapsingNavbar', collapsingNavbar);
 
+    // saves the previous 10 scroll positions
+    var lastKnownScrollPositions = [];
+    var isCollapsed = false;
+    var config = {};
+
     function collapsingNavbar() {
         return {
             restrict: 'A',
+            scope: {
+                config: '=collapsingNavbar'
+            },
             link: function(scope, elem) {
+                config.mindFloatThead = !!scope.config.mindFloatThead;
+                config.collapsedHeight = scope.config.collapsedHeight || 20;
+                config.expandedHeight = scope.config.expandedHeight || 75;
+
                 window.setInterval(checkScrollStatus, 200);
 
                 $('nav.navbar').click(expandNavbar);
@@ -182,10 +210,6 @@
             }
         };
     }
-
-    // saves the previous 10 scroll positions
-    var lastKnownScrollPositions = [];
-    var isCollapsed = false;
 
     function checkScrollStatus() {
         // check scroll status every 200ms
@@ -233,14 +257,16 @@
         var stickyBars = $('*[sticky]');
 
         if (up) {
-            stickyBars.attr('offset', 20);
-            stickyBars.css('top', '20px');
+            stickyBars.attr('offset', config.collapsedHeight);
+            stickyBars.css('top', config.collapsedHeight + 'px');
         } else {
-            stickyBars.attr('offset', 75);
-            stickyBars.css('top', '75px');
+            stickyBars.attr('offset', config.expandedHeight);
+            stickyBars.css('top', config.expandedHeight + 'px');
         }
 
-        changefloatTheadTop(up);
+        if (config.mindFloatThead) {
+            changefloatTheadTop(up);
+        }
     }
 
     function changefloatTheadTop(up) {
@@ -253,9 +279,9 @@
 
         $(tableSelector).floatThead({
             top: function($table) {
-                return up ? 20 : 75;
+                return up ? config.collapsedHeight : config.expandedHeight;
             },
-            responsiveContainer: function($table){
+            responsiveContainer: function($table) {
                 return $table.closest('.table-responsive, ' +
                     '.tableStandard-responsive, ' +
                     '.tableCondensed-responsive');
@@ -359,6 +385,748 @@
 
     angular
         .module('bmg.components.ui')
+        .directive('inlineCheckbox', inlineCheckbox);
+
+    function inlineCheckbox($timeout, utilService) {
+        return {
+            replace: true,
+            scope: {
+                ngModel: '=',
+                oncommit: '&'
+            },
+            templateUrl: 'bmg/template/inline/checkbox.html',
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ngModel) {
+                $timeout(function() {
+                    var labelElem = $(elem).find('label');
+                    var checkboxElem = $(elem).find('input');
+                    var successIndicator = $(elem).find('.success-indicator');
+                    var container = $(elem).closest('.inline-edit-container');
+
+                    // internal label support
+                    labelElem.on('click', function() {
+                        toggleModel();
+                    });
+
+                    // global label support
+                    $('body').find('label[for="' + attrs.id + '"]').on('click', function() {
+                        toggleModel();
+                    });
+
+                    function toggleModel() {
+                        ngModel.$setViewValue(!ngModel.$viewValue);
+
+                        var commitPromise = angular.isDefined(scope.oncommit) ?
+                            scope.oncommit({
+                                $data: ngModel.$viewValue
+                            }) : undefined;
+
+                        if (utilService.isPromise(commitPromise)) {
+                            animateSuccessIndicator(commitPromise);
+                        } else {
+                            animateSuccessIndicator();
+                        }
+                    }
+
+                    function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
+                        successIndicator.addClass('active');
+
+                        if (commitPromise) {
+                            successIndicator
+                                .find('i')
+                                .removeClass('fa-remove fa-check')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                successIndicator
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function(error) {
+                                successIndicator
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                container.addClass('has-error');
+                                scope.errorMessage = error;
+
+                                endAnimation();
+                            });
+                        } else {
+                            successIndicator
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
+                        $timeout(function() {
+                            successIndicator.removeClass('active');
+                        }, 500);
+                    }
+                });
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('inlineDatepicker', inlineDatepicker);
+
+    function inlineDatepicker($timeout, utilService, keyConstants) {
+        return {
+            replace: true,
+            scope: {
+                ngModel: '=',
+                placeholder: '@?',
+                oncommit: '&?',
+                datepickerOptions: '=?',
+                popupPlacement: '@?',
+                dateFormat: '@?'
+            },
+            templateUrl: 'bmg/template/inline/datepicker.html',
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ngModel) {
+                $timeout(function() {
+                    var initialValue = ngModel.$viewValue;
+                    var successIndicator = elem.find('.success-indicator');
+                    var inputElem = elem.find('.inline-datepicker');
+                    var actionBtn = elem.find('.revert-button');
+                    var container = elem.closest('.inline-edit-container');
+
+                    scope.popup = {
+                        opened: false
+                    };
+
+                    scope.open = function() {
+                        this.popup.opened = true;
+                    };
+
+                    scope.updateDate = function() {
+                        $timeout(function() {
+                            // timeout necessary because $viewValue
+                            // lags one step behind otherwise
+                            if (hasActuallyChanged()) {
+                                if (inputElem.is(':focus')) {
+                                    // change was typed in the text field
+                                    showActionBtn();
+                                }
+                            } else {
+                                hideActionBtn();
+                            }
+                        });
+                    };
+
+                    inputElem.on('keyup', function(e) {
+                        if (e.keyCode === keyConstants.ENTER_KEY ||
+                            e.which === keyConstants.ENTER_KEY) {
+                            // ENTER pressed
+                            inputElem.blur();
+                        } else if (e.keyCode === keyConstants.ESCAPE_KEY ||
+                            e.which === keyConstants.ESCAPE_KEY) {
+                            ngModel.$setViewValue(initialValue);
+                            inputElem.blur();
+                        }
+                    });
+
+                    inputElem.on('focus', function() {
+                        initialValue = ngModel.$viewValue;
+                    });
+
+                    inputElem.on('blur', function() {
+                        hideActionBtn();
+
+                        $timeout(function() {
+                            if (hasActuallyChanged()) {
+                                // actual change detected
+                                // animate success
+                                publish();
+                            }
+                        }, 10);
+                    });
+
+                    actionBtn.click(function() {
+                        ngModel.$setViewValue(initialValue);
+                        hideActionBtn();
+                        inputElem.focus();
+                    });
+
+                    function hasActuallyChanged() {
+                        if (!ngModel.$viewValue && initialValue) {
+                            return true;
+                        }
+
+                        if (ngModel.$viewValue && !initialValue) {
+                            return true;
+                        }
+
+                        return initialValue.getTime() !== ngModel.$viewValue.getTime();
+                    }
+
+                    function publish() {
+                        if (angular.isDefined(scope.oncommit)) {
+                            // publish new value
+                            var commitPromise = angular.isDefined(scope.oncommit) ?
+                                scope.oncommit({
+                                    $data: ngModel.$viewValue
+                                }) : undefined;
+
+                            if (utilService.isPromise(commitPromise)) {
+                                animateSuccessIndicator(commitPromise);
+                            } else {
+                                animateSuccessIndicator();
+                            }
+                        }
+                    }
+
+                    function showActionBtn() {
+                        actionBtn.css('opacity', '1');
+                    }
+
+                    function hideActionBtn() {
+                        actionBtn.css('opacity', '0');
+                    }
+
+                    function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
+                        showActionBtn();
+
+                        if (commitPromise) {
+                            actionBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                actionBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function(error) {
+                                actionBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                container.addClass('has-error');
+                                scope.errorMessage = error;
+
+                                endAnimation();
+                            });
+                        } else {
+                            actionBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
+                        $timeout(function() {
+                            hideActionBtn();
+                        }, 500);
+
+                        $timeout(function() {
+                            actionBtn
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-undo');
+                        }, 600);
+                    }
+
+                    // label support
+                    if (attrs.id) {
+                        var labels = $('body').find('label[for=' + attrs.id + ']');
+
+                        labels.on('click', function() {
+                            inputElem.trigger('focus');
+                        });
+                    }
+                });
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('inlineSelect', inlineSelect);
+
+    function inlineSelect($timeout, $templateCache, $compile, utilService) {
+        return {
+            scope: {
+                ngModel: '=',
+                placeholder: '@?',
+                oncommit: '&?',
+                items: '=',
+                displayProperty: '@?'
+            },
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ngModel) {
+                /* like ngTransclude, but manual …
+                 * ngTransclude does not work in this case because
+                 * the transcluded html uses the 'item' variable which
+                 * is only made available inside an ng-repeat inside
+                 * ui-select, where it doesn't have access to the ng-repeat scope
+                 * see: https://github.com/angular/angular.js/issues/8182
+                 */
+                var children = elem.children();
+                var template = angular.element($templateCache.get('bmg/template/inline/select.html'));
+
+                if (children.length > 0) {
+                    // copy 'transcluded' html into our template
+                    template.find('.ui-select-choices').append(children);
+                } else {
+                    // no transcluded html given -> default to item, assuming it's a string
+                    template.find('.ui-select-choices').append(
+                        angular.element('<span data-ng-bind-html="item | highlight:$select.search"></span>')
+                    );
+                }
+
+                // if necessary, bind the ui-select-match to the correct property
+                // on the selected item
+                if (scope.displayProperty) {
+                    template.find('.ui-select-match').attr(
+                        'data-ng-bind', '$select.selected.' + scope.displayProperty);
+                }
+
+                elem.replaceWith(template); // equivalent to 'replace: true' in directive definition
+
+                var uiSelect = elem.find('.inline-select');
+                $compile(template)(scope);
+
+                $timeout(function() {
+                    // save initial value for later comparison
+                    var initialValue = ngModel.$viewValue;
+
+                    var container = $(template).closest('.inline-edit-container');
+                    var dropdownHint = angular.element('<span class="dropdown-hint fa fa-angle-down"></span>');
+                    var indicatorButton = angular.element('<button class="revert-button"></button>');
+                    var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
+                    var inputWrapper = $(template).find('div.selectize-input');
+
+                    indicatorButton.append(successIndicator);
+                    inputWrapper.append(indicatorButton);
+                    inputWrapper.append(dropdownHint);
+
+                    // hide success indicator by default unless needed
+                    successIndicator.css('opacity', '0');
+
+                    scope.$on('uiSelect:open', function(e, opened) {
+                        if (opened) {
+                            dropdownHint.hide();
+                        } else {
+                            dropdownHint.show();
+                        }
+                    });
+
+                    scope.onSelect = function(newValue) {
+                        if (initialValue !== newValue) {
+                            var commitPromise = angular.isDefined(scope.oncommit) ?
+                                scope.oncommit({ $data: newValue }) : undefined;
+
+                            if (utilService.isPromise(commitPromise)) {
+                                animateSuccessIndicator(commitPromise);
+                            } else {
+                                animateSuccessIndicator();
+                            }
+                        }
+
+                        // update initial value
+                        initialValue = newValue;
+                    };
+
+                    function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
+                        indicatorButton.css('opacity', '1');
+
+                        if (commitPromise) {
+                            successIndicator
+                                .css('opacity', '1')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                successIndicator
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function(error) {
+                                successIndicator
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                container.addClass('has-error');
+                                container
+                                    .find('.inline-error')
+                                    .empty()
+                                    .append(error);
+
+                                endAnimation();
+                            });
+                        } else {
+                            successIndicator
+                                .css('opacity', '1')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
+                        $timeout(function() {
+                            successIndicator.css('opacity', '0');
+                            indicatorButton.css('opacity', '0');
+                        }, 500);
+                    }
+                });
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('inlineText', inlineText);
+
+    function inlineText($timeout, utilService, keyConstants) {
+        return {
+            replace: true,
+            scope: {
+                ngModel: '=',
+                placeholder: '@',
+                oncommit: '&',
+                tabindex: '@?'
+            },
+            templateUrl: 'bmg/template/inline/text.html',
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ngModel) {
+                // timeout necessary, otherview $viewValue is still NaN
+                $timeout(function() {
+                    // save original input value for undo
+                    var initialValue = ngModel.$viewValue;
+                    var container = $(elem).closest('.inline-edit-container');
+                    var undoBtn = $(elem).find('.revert-button');
+                    var inputElem = $(elem).find('.inline-text');
+
+                    inputElem.focus(function() {
+                        // update initial value on new focus
+                        initialValue = ngModel.$viewValue;
+                    });
+
+                    inputElem.blur(function() {
+                        hideUndoBtn();
+
+                        // show visual indicator of possible change
+                        $timeout(function() {
+                            if (ngModel.$viewValue !== initialValue) {
+                                // call the callback function with the new input value
+                                var commitPromise = angular.isDefined(scope.oncommit) ?
+                                    scope.oncommit({
+                                        $data: inputElem.val()
+                                    }) : undefined;
+
+                                if (utilService.isPromise(commitPromise)) {
+                                    animateSuccessIndicator(commitPromise);
+                                } else {
+                                    animateSuccessIndicator();
+                                }
+                            }
+                        }, 10); // to make sure this happens after undo button click
+                    });
+
+                    inputElem.on('keyup change', function(e) {
+                        if (e.keyCode === keyConstants.ENTER_KEY ||
+                            e.which === keyConstants.ENTER_KEY) {
+                            // ENTER pressed -> commit and leave
+                            inputElem.blur();
+                        } else if (e.keyCode === keyConstants.ESCAPE_KEY ||
+                            e.which === keyConstants.ESCAPE_KEY) {
+                            // ESCAPE pressed -> undo and leave
+                            ngModel.$setViewValue(initialValue);
+                            inputElem.blur();
+                        }
+
+                        var newValue = inputElem.val();
+
+                        if (newValue != initialValue) {
+                            showUndoBtn();
+                        } else {
+                            hideUndoBtn();
+                        }
+                    });
+
+                    undoBtn.click(function() {
+                        ngModel.$setViewValue(initialValue);
+                        hideUndoBtn();
+                        inputElem.focus();
+                    });
+
+                    function hideUndoBtn() {
+                        undoBtn.removeClass('active');
+                    }
+
+                    function showUndoBtn() {
+                        undoBtn.addClass('active');
+                    }
+
+                    function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
+
+                        if (commitPromise) {
+                            // animate spinner first until promise resolves
+                            showUndoBtn();
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-undo fa-spin fa-spinner')
+                                    .addClass('fa-check');
+
+                                endAnimation();
+                            }, function(error) {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-undo fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+
+                                container.addClass('has-error');
+                                scope.errorMessage = error;
+
+                                endAnimation();
+                            });
+                        } else {
+                            // switch to success
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-check');
+                            showUndoBtn();
+
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
+                        $timeout(function() {
+                            hideUndoBtn();
+                        }, 500);
+
+                        $timeout(function() {
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-undo');
+                        }, 600);
+                    }
+
+                    // label support
+                    if (attrs.id) {
+                        var labels = $('body').find('label[for=' + attrs.id + ']');
+
+                        labels.on('click', function() {
+                            inputElem.trigger('focus');
+                        });
+                    }
+                });
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('inlineTypeahead', inlineTypeahead);
+
+    function inlineTypeahead($timeout, utilService, keyConstants) {
+        return {
+            replace: true,
+            scope: {
+                ngModel: '=',
+                placeholder: '@',
+                oncommit: '&',
+                items: '='
+            },
+            templateUrl: 'bmg/template/inline/typeahead.html',
+            require: 'ngModel',
+            link: function(scope, elem, attrs, ngModel) {
+                $timeout(function() {
+                    // save original input value for undo
+                    var initialValue = ngModel.$viewValue;
+                    var undoBtn = $(elem).find('.revert-button');
+                    var inputElem = $(elem).find('.inline-typeahead');
+                    var container = $(elem).closest('.inline-edit-container');
+
+                    scope.handleUndoBtnVisibility = function() {
+                        $timeout(function() {
+                            // timeout necessary because $viewValue would lag
+                            // one character behind otherwise
+                            var newValue = ngModel.$viewValue;
+
+                            if (newValue != initialValue) {
+                                showUndoBtn();
+                            } else {
+                                hideUndoBtn();
+                            }
+                        });
+                    };
+
+                    scope.focusHandler = function() {
+                        // update initial value on new focus
+                        initialValue = ngModel.$viewValue;
+                    };
+
+                    scope.blurHandler = function() {
+                        // show visual indicator of possible change
+                        var oldInitialValue = initialValue;
+
+                        $timeout(function() {
+                            hideUndoBtn();
+
+                            var newNgModel = ngModel.$viewValue;
+
+                            if (newNgModel !== oldInitialValue) {
+                                // call the callback function with the new input value
+                                var commitPromise = angular.isDefined(scope.oncommit) ?
+                                    scope.oncommit({
+                                        $data: newNgModel
+                                    }) : undefined;
+
+                                if (utilService.isPromise(commitPromise)) {
+                                    animateSuccessIndicator(commitPromise);
+                                } else {
+                                    animateSuccessIndicator();
+                                }
+                            }
+                        }, 10); // to make sure this happens after undo button click
+                    };
+
+                    undoBtn.click(function() {
+                        ngModel.$setViewValue(initialValue);
+                        hideUndoBtn();
+                        inputElem.trigger('focus');
+                    });
+
+                    inputElem.on('keyup', function(e) {
+                        if (e.keyCode === keyConstants.ENTER_KEY ||
+                            e.which === keyConstants.ENTER_KEY) {
+                            // ENTER pressed
+                            inputElem.blur();
+                        } else if (e.keyCode === keyConstants.ESCAPE_KEY ||
+                            e.which === keyConstants.ESCAPE_KEY) {
+                            // ESCAPE pressed
+                            ngModel.$setViewValue(initialValue);
+                            inputElem.blur();
+                        }
+                    });
+
+                    function hideUndoBtn() {
+                        undoBtn.removeClass('active');
+                    }
+
+                    function showUndoBtn() {
+                        undoBtn.addClass('active');
+                    }
+
+                    function animateSuccessIndicator(commitPromise) {
+                        container.removeClass('has-error');
+                        showUndoBtn();
+
+                        if (commitPromise) {
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-spin fa-spinner');
+
+                            commitPromise.then(function() {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-check');
+                                endAnimation();
+                            }, function(error) {
+                                undoBtn
+                                    .find('i')
+                                    .removeClass('fa-spin fa-spinner')
+                                    .addClass('fa-remove');
+                                container.addClass('has-error');
+                                scope.errorMessage = error;
+
+                                endAnimation();
+                            });
+                        } else {
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-undo')
+                                .addClass('fa-check');
+                            endAnimation();
+                        }
+                    }
+
+                    function endAnimation() {
+                        $timeout(function() {
+                            hideUndoBtn();
+                        }, 500);
+
+                        $timeout(function() {
+                            undoBtn
+                                .find('i')
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-undo');
+                        }, 600);
+                    }
+
+                    // label support
+                    if (attrs.id) {
+                        var labels = $('body').find('label[for=' + attrs.id + ']');
+
+                        labels.on('click', function() {
+                            inputElem.trigger('focus');
+                        });
+                    }
+                });
+            }
+        };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .constant('keyConstants', {
+            ENTER_KEY: 13,
+            ESCAPE_KEY: 27,
+            TAB_KEY: 9
+        });
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
         .directive('sidebarBadge', sidebarBadge);
 
     function sidebarBadge() {
@@ -410,6 +1178,27 @@
                 }
             }
         };
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .factory('utilService', utilService);
+
+    function utilService() {
+        return {
+            isPromise: isPromise
+        };
+
+        function isPromise(promise) {
+            // if it looks like a promise and walks like a promise …
+            return angular.isDefined(promise) &&
+                angular.isDefined(promise.then) &&
+                angular.isFunction(promise.then);
+        }
     }
 })();
 
@@ -744,6 +1533,127 @@ angular.module('bmg.components.ui')
         }]);
 
     angular
+        .module('bmg/template/inlineEdits', [])
+        .run(['$templateCache', function($templateCache) {
+            $templateCache.put('bmg/template/inline/text.html',
+                [
+                    '<div class="inline-edit-container">',
+                    '   <input',
+                    '       type="text"',
+                    '       data-ng-model="ngModel"',
+                    '       placeholder="{{placeholder}}"',
+                    '       class="inline-text" /><button', // sic! no whitespace between elements
+                    '       type="button"',
+                    '       class="revert-button">',
+                    '       <i class="fa fa-undo"></i>',
+                    '   </button>',
+                    '   <div',
+                    '      class="inline-error"',
+                    '      data-ng-bind="errorMessage"></div>',
+                    '</div>'
+                ].join(''));
+
+            $templateCache.put('bmg/template/inline/checkbox.html',
+                [
+                    '<div class="inline-edit-container">',
+                    '    <div class="bmg-checkbox-with-label">',
+                    '        <div class="bmg-checkbox">',
+                    '            <input',
+                    '                type="checkbox"',
+                    '                data-ng-model="ngModel"/>',
+                    '            <label><div></div></label>',
+                    '        </div>',
+                    '    </div><button',
+                    '        class="success-indicator">',
+                    '        <i class="fa fa-check"></i>',
+                    '    </button>',
+                    '    <div',
+                    '        class="inline-error"',
+                    '        data-ng-bind="errorMessage"></div>',
+                    '</div>'
+                ].join(''));
+
+            $templateCache.put('bmg/template/inline/typeahead.html',
+                [
+                    '<div class="inline-edit-container">',
+                    '   <input',
+                    '       type="text"',
+                    '       data-ng-model="ngModel"',
+                    '       data-ng-model-options="{}"',
+                    '       uib-typeahead="item for item in items | filter:$viewValue"',
+                    '       typeahead-on-select="handleUndoBtnVisibility()"',
+                    '       data-ng-change="handleUndoBtnVisibility()"',
+                    '       data-ng-blur="blurHandler()"',
+                    '       data-ng-focus="focusHandler()"',
+                    '       placeholder="{{placeholder}}"',
+                    '       class="inline-typeahead" /><button' + // sic! no whitespace between elements
+                    '       type="button"',
+                    '       class="revert-button">',
+                    '       <i class="fa fa-undo"></i>',
+                    '   </button><span',
+                    '       class="fa fa-search typeahead-hint"></span>',
+                    '   <div',
+                    '      class="inline-error"',
+                    '      data-ng-bind="errorMessage"></div>',
+                    '</div>'
+                ].join(''));
+
+            $templateCache.put('bmg/template/inline/select.html',
+                [
+                    '<div class="inline-edit-container">',
+                    '    <ui-select',
+                    '        append-to-body="true"',
+                    '        class="inline-select"',
+                    '        data-ng-model="ngModel"',
+                    '        on-select="onSelect($item)"',
+                    '        theme="selectize"',
+                    '        data-ng-disabled="false">',
+                    '        <ui-select-match',
+                    '            class="ui-select-match"',
+                    '            placeholder="{{placeholder}}"',
+                    '            data-ng-bind="$select.selected"></ui-select-match>',
+                    '        <ui-select-choices',
+                    '            class="ui-select-choices"',
+                    '            repeat="item in items | filter: $select.search">',
+                    '        </ui-select-choices>',
+                    '    </ui-select>',
+                    '    <div',
+                    '        class="inline-error"></div>',
+                    '</div>'
+                ].join(''));
+
+            $templateCache.put('bmg/template/inline/datepicker.html',
+                [
+                    '<div class="inline-edit-container">',
+                    '    <input',
+                    '        type="text"',
+                    '        class="inline-datepicker"',
+                    '        uib-datepicker-popup="{{ dateFormat || \'yyyy-MM-dd\' }}"',
+                    '        datepicker-append-to-body="true"',
+                    '        data-ng-model="ngModel"',
+                    '        data-ng-model-options="{}"',
+                    '        data-ng-change="updateDate()"',
+                    '        datepicker-options="datepickerOptions"',
+                    '        placeholder="{{ placeholder }}"',
+                    '        is-open="popup.opened"',
+                    '        popup-placement="{{ popupPlacement }}" /><button',
+                    '            type="button"',
+                    '            class="revert-button">',
+                    '            <i class="fa fa-undo"></i>',
+                    '        </button><button',
+                    '            type="button"',
+                    '            data-ng-click="open()"',
+                    '            class="calendar-button">',
+                    '            <i class="fa fa-calendar"></i>',
+                    '        </button>',
+                    '    <div',
+                    '        class="inline-error"',
+                    '        data-ng-bind="errorMessage"></div>',
+                    '</div>'
+                ].join(''));
+        }]);
+
+    angular
         .module('bmg/template/datepicker/control.html', [])
         .run(['$templateCache', function($templateCache) {
             $templateCache.put('bmg/template/datepicker/control.html',
@@ -751,7 +1661,7 @@ angular.module('bmg.components.ui')
             '    class="input-group datepicker-group">' +
             '    <input' +
             '        type="text"' +
-            '        class="form-control"' +
+            '        class="inline-datepicker"' +
             '        uib-datepicker-popup="{{ uibDatepickerPopup }}"' +
             '        data-ng-model="selectedDate.value"' +
             '        data-ng-model-options="modelOptions"' +

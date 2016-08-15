@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="full-width">
-        <div class="panel-heading" sticky offset="75" sticky-class="sticky">
+        <div class="panel-heading condensed" sticky offset="75" sticky-class="sticky">
             <div class="row vertical-center">
                 <div class="col-md-4 button-with-headline">
                     <button type="button" class="btn btn-default btn-circle pull-left">
@@ -87,214 +87,366 @@
                                 </span><span class="nav-text">Assets</span></a></li>
                 </ul>
             </div>
-            <div class="col-lg-10 sidebar-content" data-ng-controller="XEditableController as xEditableCtrl">
-                <div class="form-horizontal x-editable-form">
+            <div class="col-lg-10 sidebar-content" data-ng-controller="EditableController as editableCtrl">
+                <div class="form-horizontal inline-form">
 
                     <h5>Header</h5>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Site</div>
-                        <div class="col-sm-4">
-                            <a
-                                href="#"
-                                editable-one-click-select="xEditableCtrl.site.value"
-                                e-ng-options="s.value as s.text for s in xEditableCtrl.data.sites">{{
-                                    xEditableCtrl.showSites() }}</a>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="site-select">Site</label>
                         </div>
-                        <div class="col-sm-2 text-right">Barcode</div>
-                        <div class="col-sm-4"><a href="#" editable-text="xEditableCtrl.data.barcode">{{
-                            xEditableCtrl.data.barcode }}</a></div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-select
+                                id="site-select"
+                                tabindex="1"
+                                data-ng-model="editableCtrl.site"
+                                display-property="text"
+                                placeholder="Select or search a site in the list …"
+                                items="editableCtrl.data.sites"
+                                oncommit="editableCtrl.promiseValue($data)">
+                                <div>
+                                    <span data-ng-bind-html="item.text | highlight:$select.search"></span><br />
+                                    <small>ID:
+                                        <span
+                                            data-ng-bind-html="item.value | highlight:$select.search"></span>,
+                                        Location:
+                                        <span
+                                            data-ng-bind-html="item.location | highlight:$select.search"></span>
+                                    </small>
+                                </div>
+                            </data-inline-select>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="barcode-text">Barcode</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-text
+                                id="barcode-text"
+                                tabindex="2"
+                                data-ng-model="editableCtrl.data.barcode"
+                                placeholder="Barcode"
+                                oncommit="editableCtrl.promiseValue($data)"></data-inline-text>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Package</div>
-                        <div class="col-sm-4">N/a</div>
-                        <div class="col-sm-2 text-right">GRID</div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Package</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">N/a</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">GRID</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Product Code</div>
-                        <div class="col-sm-4"><a href="#" editable-text="xEditableCtrl.data.productCode">{{
-                            xEditableCtrl.data.productCode }}</a></div>
-                        <div class="col-sm-2 text-right">Alt. Product Codes</div>
-                        <div class="col-sm-4"><a href="#" editable-text="xEditableCtrl.data.altProductCode">{{
-                            xEditableCtrl.data.altProductCode }}</a></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="product-code-text">Product Code</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-text
+                                id="product-code-text"
+                                tabindex="5"
+                                data-ng-model="editableCtrl.data.productCode"
+                                placeholder="Product Code"
+                                oncommit="editableCtrl.saveValue($data)"></data-inline-text>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="alt-product-code-text">Alt. Product Code</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-text
+                                id="alt-product-code-text"
+                                tabindex="6"
+                                data-ng-model="editableCtrl.data.altProductCode"
+                                placeholder="Alt. Product Code"
+                                oncommit="editableCtrl.saveValue($data)"></data-inline-text>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Display Artist Name</div>
-                        <div class="col-sm-4"><a href="#" editable-text="xEditableCtrl.data.artistName">{{
-                            xEditableCtrl.data.artistName}}</a></div>
-                        <div class="col-sm-2 text-right">State of birth</div>
-                        <div class="col-sm-4">
-                            <a
-                                href="#"
-                                editable-typeahead="xEditableCtrl.data.stateOfBirth"
-                                items="xEditableCtrl.states"
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="artist-name-text">Display Artist Name</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-text
+                                id="artist-name-text"
+                                data-ng-model="editableCtrl.data.artistName"
+                                placeholder="Display Artist Name"
+                                oncommit="editableCtrl.saveValue($data)"></data-inline-text>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="state-of-birth-typeahead">State of birth</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-typeahead
+                                id="state-of-birth-typeahead"
+                                data-ng-model="editableCtrl.data.stateOfBirth"
                                 placeholder="Search states …"
-                                data-ng-model="ngModelOptionsSelected"
-                                >{{ xEditableCtrl.data.stateOfBirth}}</a>
+                                items="editableCtrl.states"
+                                oncommit="editableCtrl.promiseValue($data)"></data-inline-typeahead>
                         </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Product Title</div>
-                        <div class="col-sm-4">Peggy the Pistol/Hogs Are a Coming</div>
-                        <div class="col-sm-2 text-right">Sidebar badge status</div>
-                        <div class="col-sm-4">
-                            <a
-                                href="#"
-                                editable-one-click-select="xEditableCtrl.badgeStatus.value"
-                                e-ng-options="s.value as s.text for s in xEditableCtrl.data.badgeStatii"
-                                data-onbeforesave="xEditableCtrl.updateBadge($data)">{{
-                                    xEditableCtrl.getSelectedBadgeStatus() }}</a>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Product Title</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Peggy the Pistol/Hogs Are a Coming</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="sidebar-badge-status-select">Sidebar badge status</label>
                         </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-select
+                                id="sidebar-badge-status-select"
+                                data-ng-model="editableCtrl.badgeStatus"
+                                placeholder="Select or search a status in the list …"
+                                items="editableCtrl.data.badgeStatii"
+                                oncommit="editableCtrl.updateBadge($data)"></data-inline-select>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Title</div>
-                        <div class="col-sm-10"><a href="#" editable-text="xEditableCtrl.data.title">{{
-                            xEditableCtrl.data.title }}</a></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="title-text">Title</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-text
+                                id="title-text"
+                                data-ng-model="editableCtrl.data.title"
+                                placeholder="Title"
+                                oncommit="editableCtrl.saveValue($data)"></data-inline-text>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Version Title</div>
-                        <div class="col-sm-10"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Version Title</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Internal Version Title</div>
-                        <div class="col-sm-10"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Internal Version Title</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Format</div>
-                        <div class="col-sm-4">Vinyl Single Standard 7" (Double Sided)</div>
-                        <div class="col-sm-2 text-right">Duration</div>
-                        <div class="col-sm-4">00:00:00</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Format</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Vinyl Single Standard 7" (Double Sided)</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Duration</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">00:00:00</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right"># Tracks</div>
-                        <div class="col-sm-4">0</div>
-                        <div class="col-sm-2 text-right"># Tracks by BMG</div>
-                        <div class="col-sm-4">0</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"># Tracks</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">0</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"># Tracks by BMG</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">0</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Release Date</div>
-                        <div class="col-sm-4">
-                            <a
-                                href="#"
-                                data-editable-bmg-date="xEditableCtrl.data.date"
-                                datepicker-options="xEditableCtrl.datepickerOptions"
-                                placeholder="MMM yyyy"
-                                popup="dd.MM.yyyy"
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="release-date-datepicker">Release Date</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <inline-datepicker
+                                id="release-date-datepicker"
+                                data-ng-model="editableCtrl.data.date"
+                                datepicker-options="editableCtrl.datepickerOptions"
+                                placeholder="Pick a release date"
+                                date-format="dd.MM.yyyy"
                                 popup-placement="auto top bottom"
-                                close-text="Close"
-                                required="true"
-                                model-options="xEditableCtrl.datepickerModelOptions"
-                                onbeforesave="xEditableCtrl.updateDate($data)">{{ (xEditableCtrl.data.date | date: 'dd.MM.yyyy') || '' }}</a>
+                                oncommit="editableCtrl.promiseValue($data)"></inline-datepicker>
                         </div>
-                        <div class="col-sm-2 text-right">Release date is tentative</div>
-                        <div class="col-sm-4">No</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="release-date-tentative-checkbox">Release date is tentative</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-checkbox
+                                id="release-date-tentative-checkbox"
+                                data-ng-model="editableCtrl.data.releaseDateTentative"
+                                oncommit="editableCtrl.promiseValue($data)"></data-inline-checkbox>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Repertoire Owner</div>
-                        <div class="col-sm-4">Mute Records Ltd., a BMG Company</div>
-                        <div class="col-sm-2 text-right">Label</div>
-                        <div class="col-sm-4">Mute, a BMG Company</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Repertoire Owner</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Mute Records Ltd., a BMG Company</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Label</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Mute, a BMG Company</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-2 text-right">GVL Label Code</div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"></div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">GVL Label Code</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Genre</div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-2 text-right">Alt. Genre</div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Genre</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Alt. Genre</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Advisory Content</div>
-                        <div class="col-sm-4">Clean</div>
-                        <div class="col-sm-2 text-right">Advisory Lyrics</div>
-                        <div class="col-sm-4">Not Applicable</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Advisory Content</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Clean</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Advisory Lyrics</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Not Applicable</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Contractual Rights</div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-2 text-right">Release Intent</div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Contractual Rights</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Release Intent</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Promo</div>
-                        <div class="col-sm-4">No</div>
-                        <div class="col-sm-2 text-right"># Promo Units</div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Promo</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"># Promo Units</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Mech. Licenses</div>
-                        <div class="col-sm-4">Show Licenses</div>
-                        <div class="col-sm-2 text-right">Includes Booklet</div>
-                        <div class="col-sm-4">No</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Mech. Licenses</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Show Licenses</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Includes Booklet</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Compilation</div>
-                        <div class="col-sm-4">No</div>
-                        <div class="col-sm-2 text-right">Partial</div>
-                        <div class="col-sm-4">No</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Compilation</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Partial</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Soundtrack</div>
-                        <div class="col-sm-4">No</div>
-                        <div class="col-sm-2 text-right">Metadata Lang.</div>
-                        <div class="col-sm-4">English</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Soundtrack</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Metadata Lang.</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">English</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
 
                     <hr>
                     <h5>Ownership</h5>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Ownership Type</div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-2 text-right">Remaster</div>
-                        <div class="col-sm-4">No</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Ownership Type</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Remaster</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Copyright Year</div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-2 text-right">Orig. Copyright Year</div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Year</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Orig. Copyright Year</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Copyright Owner</div>
-                        <div class="col-sm-10"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Owner</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Copyright Notice</div>
-                        <div class="col-sm-10">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Notice</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
                             Ltd
                         </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Artwork Year</div>
-                        <div class="col-sm-4"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Year</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Artwork Owner</div>
-                        <div class="col-sm-10"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Owner</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Artwork Notice</div>
-                        <div class="col-sm-10">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Notice</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
                             Ltd
                         </div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
 
                     <hr>
                     <h5>Other</h5>
 
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Prod. Manager</div>
-                        <div class="col-sm-4">Unknown at Data Takeon</div>
-                        <div class="col-sm-2 text-right">LC Coordinator</div>
-                        <div class="col-sm-4">Unknown at Data Takeon</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Prod. Manager</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Unknown at Data Takeon</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">LC Coordinator</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Unknown at Data Takeon</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-2 text-right">Notes &amp; Comments</div>
-                        <div class="col-sm-10">Purchased as part of Mute Catalogue - Not Re-Delivered to market.</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Notes &amp; Comments</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Purchased as part of Mute Catalogue - Not Re-Delivered to market.</div>
+                        <div class="clearfix visible-xs"></div>
                     </div>
                 </div>
             </div>
