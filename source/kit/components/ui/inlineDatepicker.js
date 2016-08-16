@@ -14,7 +14,8 @@
                 oncommit: '&?',
                 datepickerOptions: '=?',
                 popupPlacement: '@?',
-                dateFormat: '@?'
+                dateFormat: '@?',
+                showButtonBar: "=?"
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',
@@ -74,7 +75,7 @@
                                 // animate success
                                 publish();
                             }
-                        }, 10);
+                        }, 100);
                     });
 
                     actionBtn.click(function() {
@@ -84,6 +85,10 @@
                     });
 
                     function hasActuallyChanged() {
+                        if (!ngModel.$viewValue && !initialValue) {
+                            return false;
+                        }
+
                         if (!ngModel.$viewValue && initialValue) {
                             return true;
                         }
