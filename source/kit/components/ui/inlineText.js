@@ -48,7 +48,7 @@
                                     animateSuccessIndicator();
                                 }
                             }
-                        }, 10); // to make sure this happens after undo button click
+                        }, 100); // to make sure this happens after undo button click
                     });
 
                     inputElem.on('keyup change', function(e) {
