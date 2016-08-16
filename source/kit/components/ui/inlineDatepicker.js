@@ -75,7 +75,7 @@
                                 // animate success
                                 publish();
                             }
-                        }, 10);
+                        }, 100);
                     });
 
                     actionBtn.click(function() {
