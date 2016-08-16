@@ -169,59 +169,7 @@ div.ui-select-match input.ui-select-search:not(.ng-touched) { width: 100% !impor
 
 .inline-select .ui-select-choices-content { padding: 5px 0; background-color: #ffffff; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175); border: 1px solid rgba(76, 76, 76, 0.15); }
 
-a.editable-click.editable-empty { min-width: 100%; min-height: 30px; display: block; }
-
-.editable-buttons .btn { min-width: 30px; padding: 3px 3px 3px 7px; width: 30px; margin: 0 0 0 10px; }
-
-.editable-buttons .btn + .btn { margin-left: 5px; }
-
-.form-inline .editable-controls .editable-input { width: 100%; }
-
-.form-horizontal.x-editable-form { width: 100%; }
-
-.editable-controls.form-group { position: relative; top: -1px; }
-
-.editable-controls.form-group .typeahead-wrapper { margin-bottom: 0; }
-
-.editable-controls.form-group .typeahead-wrapper .form-control { border-bottom-right-radius: 3px; border-top-right-radius: 3px; }
-
-.editable-controls.form-group .typeahead-wrapper .fa-search { z-index: 3; }
-
-@media screen and (max-width: 768px) { .editable-controls.form-group .editable-buttons { line-height: 28px; } }
-
-a.editable-click { text-decoration: none; color: #4c4c4c; font-size: 15px; font-weight: bold; line-height: 28px; position: relative; display: block; margin-left: -15px; margin-right: 60px; padding: 0px 16px; min-height: 30px; max-height: 30px; border: 1px solid transparent; border-radius: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-
-a.editable-click:hover { border: 1px solid #ddd; border-radius: 4px; color: #4c4c4c; }
-
-a.editable-click:hover:after { position: absolute; right: 8px; top: 7px; display: inline-block; font-family: 'FontAwesome'; font-style: normal; font-weight: normal; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; content: "\f044"; color: #ccc; }
-
-a.editable-click.editable-empty { min-width: 0; }
-
-@media screen and (min-width: 768px) and (max-width: 992px) { a.editable-click.editable-hide + .form-inline.editable-wrap { width: 100%; white-space: nowrap; }
-  a.editable-click.editable-hide + .form-inline.editable-wrap > .editable-controls.form-group { position: relative; width: 100%; display: block; min-height: 30px; } }
-
-@media screen and (min-width: 992px) and (max-width: 1200px) { a.editable-click.editable-hide + .form-inline.editable-wrap { position: relative; display: block; width: 100%; } }
-
-@media screen and (min-width: 1200px) { a.editable-click.editable-hide + .form-inline.editable-wrap { position: relative; display: block; width: 100%; } }
-
-.form-inline.editable-wrap { width: 100%; }
-
-.form-inline.editable-wrap > .editable-controls.form-group { width: 100%; position: relative; padding-right: 45px; }
-
-.x-editable-form div { line-height: 30px; min-height: 30px; }
-
-@-moz-document url-prefix() { .x-editable-form .datepicker-group div { line-height: 28px; min-height: 30px; } }
-
-p.datepicker-group { margin-bottom: 0px; line-height: 28px; }
-
-p.datepicker-group input { position: relative; top: 1px; }
-
-p.datepicker-group button { position: relative; top: 0; }
-
-p.datepicker-group _:-webkit-full-screen:not(:root:root), p.datepicker-group button { position: relative; top: 1px; }
-
-@-moz-document url-prefix() { p.datepicker-group input { position: relative; top: 0; }
-  p.datepicker-group button { height: 30px; } }
+.uib-datepicker-popup { padding-bottom: 10px !important; }
 
 table.uib-daypicker > thead > tr:first-child { height: 60px; background-color: #4d4d4d; }
 
