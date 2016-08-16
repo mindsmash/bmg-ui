@@ -271,193 +271,197 @@
     }
 }
 
+.uib-datepicker-popup {
+    padding-bottom: 10px !important;
+}
+
 // old style inline edits
-a.editable-click.editable-empty {
-  min-width: 100%;
-  min-height: 30px;
-  display: block;
-}
-
-.editable-buttons {
-  .btn {
-    min-width: 30px;
-    padding: 3px 3px 3px 7px;
-    width: 30px;
-    margin: 0 0 0 10px;
-  }
-
-  .btn + .btn {
-    margin-left: 5px;
-  }
-}
-
-.form-inline {
-  .editable-controls {
-    .editable-input {
-      width: 100%;
-    }
-  }
-}
-
-.form-horizontal.x-editable-form {
-  width: 100%;
-}
-
-.editable-controls.form-group {
-  position: relative;
-  top: -1px;
-
-  .typeahead-wrapper {
-      margin-bottom: 0;
-
-      .form-control {
-          border-bottom-right-radius: 3px;
-          border-top-right-radius: 3px;
-      }
-
-      .fa-search {
-          z-index: 3;
-      }
-  }
-
-  @media screen and (max-width: $screen-sm) {
-    .editable-buttons {
-      line-height: 28px;
-    }
-  }
-}
-
-a.editable-click {
-  text-decoration: none;
-  color: $bmg-text;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 28px;
-  position: relative;
-  display: block;
-  margin-left: -15px;
-  margin-right: 60px;
-  padding: 0px 16px;
-  min-height: 30px;
-  max-height: 30px;
-  border: 1px solid transparent;
-  border-radius: 3px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  &:hover {
-    border: 1px solid $bmg-btn-border;
-    border-radius: 4px;
-    color: $bmg-text;
-  }
-  &:hover:after {
-    position: absolute;
-    right: 8px;
-    top: 7px;
-    display: inline-block;
-    font-family: 'FontAwesome';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    content: "\f044";
-    color: #ccc;
-  }
-
-  &.editable-empty {
-    min-width: 0;
-  }
-
-  @media screen and (min-width: $screen-sm) and (max-width: $screen-md) {
-    &.editable-hide + .form-inline.editable-wrap {
-      width: 100%;
-      white-space: nowrap;
-      > .editable-controls.form-group {
-        position: relative;
-        width: 100%;
-        display: block;
-        min-height: 30px;
-      }
-    }
-  }
-
-  @media screen and (min-width: $screen-md) and (max-width: $screen-lg) {
-    &.editable-hide + .form-inline.editable-wrap {
-      position: relative;
-      display: block;
-      width: 100%;
-    }
-  }
-
-  @media screen and (min-width: $screen-lg) {
-    &.editable-hide + .form-inline.editable-wrap {
-      position: relative;
-      display: block;
-      width: 100%;
-    }
-  }
-
-}
-
-.editable-read-only {
-
-}
-
-.form-inline.editable-wrap {
-  width: 100%;
-  > .editable-controls.form-group {
-    width: 100%;
-    position: relative;
-    padding-right: 45px;
-  }
-}
-
-.x-editable-form {
-  div {
-    line-height: 30px;
-    min-height: 30px;
-  }
-	//firefox only
-	@-moz-document url-prefix() {
-		.datepicker-group {
-			div {
-				line-height: 28px;
-				min-height: 30px;
-		}
-	}
-  }
-}
-
-p.datepicker-group {
-    margin-bottom: 0px;
-    line-height: 28px;
-
-    input {
-        position: relative;
-        top: 1px; // 1px is perfect for safari and chrome, 0px is perfect for firefox
-    }
-
-    button {
-        position: relative;
-        top: 0; // 0px is perfect for chrome, 1px is prefect for safari and firefox
-    }
-
-	//safari only hack
-	_:-webkit-full-screen:not(:root:root), 	button {
-		position: relative;
-		top: 1px;
-	}
-
-	//firefox only
-	@-moz-document url-prefix() {
-		input {
-			position: relative;
-			top: 0;
-		}
-		button {
-			height: 30px;
-		}
-	}
-}
+// a.editable-click.editable-empty {
+//   min-width: 100%;
+//   min-height: 30px;
+//   display: block;
+// }
+//
+// .editable-buttons {
+//   .btn {
+//     min-width: 30px;
+//     padding: 3px 3px 3px 7px;
+//     width: 30px;
+//     margin: 0 0 0 10px;
+//   }
+//
+//   .btn + .btn {
+//     margin-left: 5px;
+//   }
+// }
+//
+// .form-inline {
+//   .editable-controls {
+//     .editable-input {
+//       width: 100%;
+//     }
+//   }
+// }
+//
+// .form-horizontal.x-editable-form {
+//   width: 100%;
+// }
+//
+// .editable-controls.form-group {
+//   position: relative;
+//   top: -1px;
+//
+//   .typeahead-wrapper {
+//       margin-bottom: 0;
+//
+//       .form-control {
+//           border-bottom-right-radius: 3px;
+//           border-top-right-radius: 3px;
+//       }
+//
+//       .fa-search {
+//           z-index: 3;
+//       }
+//   }
+//
+//   @media screen and (max-width: $screen-sm) {
+//     .editable-buttons {
+//       line-height: 28px;
+//     }
+//   }
+// }
+//
+// a.editable-click {
+//   text-decoration: none;
+//   color: $bmg-text;
+//   font-size: 15px;
+//   font-weight: bold;
+//   line-height: 28px;
+//   position: relative;
+//   display: block;
+//   margin-left: -15px;
+//   margin-right: 60px;
+//   padding: 0px 16px;
+//   min-height: 30px;
+//   max-height: 30px;
+//   border: 1px solid transparent;
+//   border-radius: 3px;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//
+//   &:hover {
+//     border: 1px solid $bmg-btn-border;
+//     border-radius: 4px;
+//     color: $bmg-text;
+//   }
+//   &:hover:after {
+//     position: absolute;
+//     right: 8px;
+//     top: 7px;
+//     display: inline-block;
+//     font-family: 'FontAwesome';
+//     font-style: normal;
+//     font-weight: normal;
+//     line-height: 1;
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     content: "\f044";
+//     color: #ccc;
+//   }
+//
+//   &.editable-empty {
+//     min-width: 0;
+//   }
+//
+//   @media screen and (min-width: $screen-sm) and (max-width: $screen-md) {
+//     &.editable-hide + .form-inline.editable-wrap {
+//       width: 100%;
+//       white-space: nowrap;
+//       > .editable-controls.form-group {
+//         position: relative;
+//         width: 100%;
+//         display: block;
+//         min-height: 30px;
+//       }
+//     }
+//   }
+//
+//   @media screen and (min-width: $screen-md) and (max-width: $screen-lg) {
+//     &.editable-hide + .form-inline.editable-wrap {
+//       position: relative;
+//       display: block;
+//       width: 100%;
+//     }
+//   }
+//
+//   @media screen and (min-width: $screen-lg) {
+//     &.editable-hide + .form-inline.editable-wrap {
+//       position: relative;
+//       display: block;
+//       width: 100%;
+//     }
+//   }
+//
+// }
+//
+// .editable-read-only {
+//
+// }
+//
+// .form-inline.editable-wrap {
+//   width: 100%;
+//   > .editable-controls.form-group {
+//     width: 100%;
+//     position: relative;
+//     padding-right: 45px;
+//   }
+// }
+//
+// .x-editable-form {
+//   div {
+//     line-height: 30px;
+//     min-height: 30px;
+//   }
+// 	//firefox only
+// 	@-moz-document url-prefix() {
+// 		.datepicker-group {
+// 			div {
+// 				line-height: 28px;
+// 				min-height: 30px;
+// 		}
+// 	}
+//   }
+// }
+//
+// p.datepicker-group {
+//     margin-bottom: 0px;
+//     line-height: 28px;
+//
+//     input {
+//         position: relative;
+//         top: 1px; // 1px is perfect for safari and chrome, 0px is perfect for firefox
+//     }
+//
+//     button {
+//         position: relative;
+//         top: 0; // 0px is perfect for chrome, 1px is prefect for safari and firefox
+//     }
+//
+// 	//safari only hack
+// 	_:-webkit-full-screen:not(:root:root), 	button {
+// 		position: relative;
+// 		top: 1px;
+// 	}
+//
+// 	//firefox only
+// 	@-moz-document url-prefix() {
+// 		input {
+// 			position: relative;
+// 			top: 0;
+// 		}
+// 		button {
+// 			height: 30px;
+// 		}
+// 	}
+// }

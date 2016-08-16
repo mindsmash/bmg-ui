@@ -14,7 +14,8 @@
                 oncommit: '&?',
                 datepickerOptions: '=?',
                 popupPlacement: '@?',
-                dateFormat: '@?'
+                dateFormat: '@?',
+                showButtonBar: "=?"
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',

@@ -124,6 +124,7 @@
                     '        datepicker-options="datepickerOptions"',
                     '        placeholder="{{ placeholder }}"',
                     '        is-open="popup.opened"',
+                    '        show-button-bar="showButtonBar"',
                     '        popup-placement="{{ popupPlacement }}" /><button',
                     '            type="button"',
                     '            class="revert-button">',
