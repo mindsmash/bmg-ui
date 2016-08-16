@@ -84,6 +84,10 @@
                     });
 
                     function hasActuallyChanged() {
+                        if (!ngModel.$viewValue && !initialValue) {
+                            return false;
+                        }
+
                         if (!ngModel.$viewValue && initialValue) {
                             return true;
                         }

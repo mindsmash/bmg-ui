@@ -1,7 +1,11 @@
 (function(angular) {
     'use strict';
 
-    angular.module('bmg.components.ui', ['ui.select', 'bmg/template/inlineEdits'])
+    angular.module('bmg.components.ui', [
+            'ui.select',
+            'ngSanitize',
+            'bmg/template/inlineEdits'
+        ])
         .config(decorateUISelectWithOpenEvent);
 
     decorateUISelectWithOpenEvent.$inject = ['$provide'];

@@ -103,6 +103,7 @@
                                 display-property="text"
                                 placeholder="Select or search a site in the list …"
                                 items="editableCtrl.data.sites"
+                                position="auto"
                                 oncommit="editableCtrl.promiseValue($data)">
                                 <div>
                                     <span data-ng-bind-html="item.text | highlight:$select.search"></span><br />

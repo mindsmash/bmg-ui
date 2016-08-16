@@ -12,7 +12,8 @@
                 placeholder: '@?',
                 oncommit: '&?',
                 items: '=',
-                displayProperty: '@?'
+                displayProperty: '@?',
+                position: '@?'
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {

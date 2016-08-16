@@ -101,6 +101,7 @@
                     '            data-ng-bind="$select.selected"></ui-select-match>',
                     '        <ui-select-choices',
                     '            class="ui-select-choices"',
+                    '            position="{{position}}"',
                     '            repeat="item in items | filter: $select.search">',
                     '        </ui-select-choices>',
                     '    </ui-select>',
