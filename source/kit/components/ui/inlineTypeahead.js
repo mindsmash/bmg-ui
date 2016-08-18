@@ -12,7 +12,8 @@
                 ngModel: '=',
                 placeholder: '@',
                 oncommit: '&',
-                items: '='
+                items: '=',
+                disabled: '=?'
             },
             templateUrl: 'bmg/template/inline/typeahead.html',
             require: 'ngModel',
