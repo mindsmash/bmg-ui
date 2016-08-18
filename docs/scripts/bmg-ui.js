@@ -1,7 +1,11 @@
 (function(angular) {
     'use strict';
 
-    angular.module('bmg.components.ui', ['ui.select', 'bmg/template/inlineEdits'])
+    angular.module('bmg.components.ui', [
+            'ui.select',
+            'ngSanitize',
+            'bmg/template/inlineEdits'
+        ])
         .config(decorateUISelectWithOpenEvent);
 
     decorateUISelectWithOpenEvent.$inject = ['$provide'];
@@ -490,7 +494,8 @@
                 oncommit: '&?',
                 datepickerOptions: '=?',
                 popupPlacement: '@?',
-                dateFormat: '@?'
+                dateFormat: '@?',
+                showButtonBar: "=?"
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',
@@ -550,7 +555,7 @@
                                 // animate success
                                 publish();
                             }
-                        }, 10);
+                        }, 100);
                     });
 
                     actionBtn.click(function() {
@@ -560,6 +565,10 @@
                     });
 
                     function hasActuallyChanged() {
+                        if (!ngModel.$viewValue && !initialValue) {
+                            return false;
+                        }
+
                         if (!ngModel.$viewValue && initialValue) {
                             return true;
                         }
@@ -671,7 +680,8 @@
                 placeholder: '@?',
                 oncommit: '&?',
                 items: '=',
-                displayProperty: '@?'
+                displayProperty: '@?',
+                position: '@?'
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
@@ -845,7 +855,7 @@
                                     animateSuccessIndicator();
                                 }
                             }
-                        }, 10); // to make sure this happens after undo button click
+                        }, 100); // to make sure this happens after undo button click
                     });
 
                     inputElem.on('keyup change', function(e) {
@@ -1018,7 +1028,7 @@
                                     animateSuccessIndicator();
                                 }
                             }
-                        }, 10); // to make sure this happens after undo button click
+                        }, 100); // to make sure this happens after undo button click
                     };
 
                     undoBtn.click(function() {
@@ -1614,6 +1624,7 @@ angular.module('bmg.components.ui')
                     '            data-ng-bind="$select.selected"></ui-select-match>',
                     '        <ui-select-choices',
                     '            class="ui-select-choices"',
+                    '            position="{{position}}"',
                     '            repeat="item in items | filter: $select.search">',
                     '        </ui-select-choices>',
                     '    </ui-select>',
@@ -1636,6 +1647,7 @@ angular.module('bmg.components.ui')
                     '        datepicker-options="datepickerOptions"',
                     '        placeholder="{{ placeholder }}"',
                     '        is-open="popup.opened"',
+                    '        show-button-bar="showButtonBar"',
                     '        popup-placement="{{ popupPlacement }}" /><button',
                     '            type="button"',
                     '            class="revert-button">',
