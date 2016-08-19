@@ -396,7 +396,8 @@
             replace: true,
             scope: {
                 ngModel: '=',
-                oncommit: '&'
+                oncommit: '&',
+                disabled: '=?'
             },
             templateUrl: 'bmg/template/inline/checkbox.html',
             require: 'ngModel',
@@ -495,7 +496,8 @@
                 datepickerOptions: '=?',
                 popupPlacement: '@?',
                 dateFormat: '@?',
-                showButtonBar: "=?"
+                showButtonBar: "=?",
+                disabled: '=?'
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',
@@ -681,7 +683,11 @@
                 oncommit: '&?',
                 items: '=',
                 displayProperty: '@?',
-                position: '@?'
+                position: '@?',
+                id: '@',
+                refreshDelay: '@?',
+                refresh: '&?',
+                disabled: '=?'
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
@@ -726,10 +732,14 @@
                     var indicatorButton = angular.element('<button class="revert-button"></button>');
                     var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
                     var inputWrapper = $(template).find('div.selectize-input');
+                    var inlineSelectElement = $(template).find('div.inline-select');
 
                     indicatorButton.append(successIndicator);
                     inputWrapper.append(indicatorButton);
                     inputWrapper.append(dropdownHint);
+
+                    // attach id attribute to make label support possible
+                    inlineSelectElement.attr('id', scope.id);
 
                     // hide success indicator by default unless needed
                     successIndicator.css('opacity', '0');
@@ -756,6 +766,14 @@
 
                         // update initial value
                         initialValue = newValue;
+                    };
+
+                    scope.refreshData = function(query) {
+                        if (scope.refresh) {
+                            scope.refresh({
+                                $query: query
+                            });
+                        }
                     };
 
                     function animateSuccessIndicator(commitPromise) {
@@ -819,7 +837,8 @@
                 ngModel: '=',
                 placeholder: '@',
                 oncommit: '&',
-                tabindex: '@?'
+                tabindex: '@?',
+                disabled: '=?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',
@@ -975,7 +994,8 @@
                 ngModel: '=',
                 placeholder: '@',
                 oncommit: '&',
-                items: '='
+                items: '=',
+                disabled: '=?'
             },
             templateUrl: 'bmg/template/inline/typeahead.html',
             require: 'ngModel',
@@ -1551,6 +1571,8 @@ angular.module('bmg.components.ui')
                     '   <input',
                     '       type="text"',
                     '       data-ng-model="ngModel"',
+                    '       data-ng-disabled="disabled"',
+                    '       data-ng-class="{ \'inline-edit-disabled\': disabled }"',
                     '       placeholder="{{placeholder}}"',
                     '       class="inline-text" /><button', // sic! no whitespace between elements
                     '       type="button"',
@@ -1570,8 +1592,9 @@ angular.module('bmg.components.ui')
                     '        <div class="bmg-checkbox">',
                     '            <input',
                     '                type="checkbox"',
+                    '                data-ng-disabled="disabled"',
                     '                data-ng-model="ngModel"/>',
-                    '            <label><div></div></label>',
+                    '            <label data-ng-disabled="disabled"><div></div></label>',
                     '        </div>',
                     '    </div><button',
                     '        class="success-indicator">',
@@ -1595,6 +1618,8 @@ angular.module('bmg.components.ui')
                     '       data-ng-change="handleUndoBtnVisibility()"',
                     '       data-ng-blur="blurHandler()"',
                     '       data-ng-focus="focusHandler()"',
+                    '       data-ng-disabled="disabled"',
+                    '       data-ng-class="{ \'inline-edit-disabled\': disabled }"',
                     '       placeholder="{{placeholder}}"',
                     '       class="inline-typeahead" /><button' + // sic! no whitespace between elements
                     '       type="button"',
@@ -1617,7 +1642,8 @@ angular.module('bmg.components.ui')
                     '        data-ng-model="ngModel"',
                     '        on-select="onSelect($item)"',
                     '        theme="selectize"',
-                    '        data-ng-disabled="false">',
+                    '        data-ng-class="{ \'inline-edit-disabled\': disabled }"',
+                    '        data-ng-disabled="disabled">',
                     '        <ui-select-match',
                     '            class="ui-select-match"',
                     '            placeholder="{{placeholder}}"',
@@ -1625,6 +1651,8 @@ angular.module('bmg.components.ui')
                     '        <ui-select-choices',
                     '            class="ui-select-choices"',
                     '            position="{{position}}"',
+                    '            refresh="refreshData($select.search)"',
+                    '            refresh-delay="{{refreshDelay}}"',
                     '            repeat="item in items | filter: $select.search">',
                     '        </ui-select-choices>',
                     '    </ui-select>',
@@ -1644,6 +1672,8 @@ angular.module('bmg.components.ui')
                     '        data-ng-model="ngModel"',
                     '        data-ng-model-options="{}"',
                     '        data-ng-change="updateDate()"',
+                    '        data-ng-disabled="disabled"',
+                    '        data-ng-class="{ \'inline-edit-disabled\': disabled }"',
                     '        datepicker-options="datepickerOptions"',
                     '        placeholder="{{ placeholder }}"',
                     '        is-open="popup.opened"',
@@ -1654,6 +1684,7 @@ angular.module('bmg.components.ui')
                     '            <i class="fa fa-undo"></i>',
                     '        </button><button',
                     '            type="button"',
+                    '            data-ng-disabled="disabled"',
                     '            data-ng-click="open()"',
                     '            class="calendar-button">',
                     '            <i class="fa fa-calendar"></i>',
