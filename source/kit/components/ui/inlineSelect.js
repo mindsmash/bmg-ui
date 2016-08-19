@@ -13,7 +13,11 @@
                 oncommit: '&?',
                 items: '=',
                 displayProperty: '@?',
-                position: '@?'
+                position: '@?',
+                id: '@',
+                refreshDelay: '@?',
+                refresh: '&?',
+                disabled: '=?'
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
@@ -58,10 +62,14 @@
                     var indicatorButton = angular.element('<button class="revert-button"></button>');
                     var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
                     var inputWrapper = $(template).find('div.selectize-input');
+                    var inlineSelectElement = $(template).find('div.inline-select');
 
                     indicatorButton.append(successIndicator);
                     inputWrapper.append(indicatorButton);
                     inputWrapper.append(dropdownHint);
+
+                    // attach id attribute to make label support possible
+                    inlineSelectElement.attr('id', scope.id);
 
                     // hide success indicator by default unless needed
                     successIndicator.css('opacity', '0');
@@ -88,6 +96,14 @@
 
                         // update initial value
                         initialValue = newValue;
+                    };
+
+                    scope.refreshData = function(query) {
+                        if (scope.refresh) {
+                            scope.refresh({
+                                $query: query
+                            });
+                        }
                     };
 
                     function animateSuccessIndicator(commitPromise) {

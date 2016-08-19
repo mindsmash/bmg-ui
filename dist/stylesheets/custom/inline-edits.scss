@@ -73,6 +73,10 @@
     padding: 0;
     margin: 0;
 
+    .inline-edit-disabled {
+        color: $bmg-gray-lighter;
+    }
+
     .inline-error {
         line-height: 20px;
         font-size: 12px;

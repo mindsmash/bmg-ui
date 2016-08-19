@@ -12,7 +12,8 @@
                 ngModel: '=',
                 placeholder: '@',
                 oncommit: '&',
-                tabindex: '@?'
+                tabindex: '@?',
+                disabled: '=?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',

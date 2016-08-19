@@ -10,7 +10,8 @@
             replace: true,
             scope: {
                 ngModel: '=',
-                oncommit: '&'
+                oncommit: '&',
+                disabled: '=?'
             },
             templateUrl: 'bmg/template/inline/checkbox.html',
             require: 'ngModel',

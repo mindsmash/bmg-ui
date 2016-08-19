@@ -111,6 +111,8 @@ div.ui-select-match input.ui-select-search:not(.ng-touched) { width: 100% !impor
 
 .inline-edit-container { line-height: 30px; max-height: 30px; padding: 0; margin: 0; }
 
+.inline-edit-container .inline-edit-disabled { color: #dadada; }
+
 .inline-edit-container .inline-error { line-height: 20px; font-size: 12px; min-height: 20px; margin-top: -2px; color: #c80031; opacity: 0; transition: opacity 0.1s ease-in-out; }
 
 .inline-edit-container .bmg-checkbox-with-label ~ .inline-error { margin-top: -10px; }

@@ -99,11 +99,14 @@
                             <data-inline-select
                                 id="site-select"
                                 tabindex="1"
+                                disabled="false"
                                 data-ng-model="editableCtrl.site"
                                 display-property="text"
                                 placeholder="Select or search a site in the list …"
                                 items="editableCtrl.data.sites"
                                 position="auto"
+                                refresh="editableCtrl.loadAsync($query)"
+                                refresh-delay="1000"
                                 oncommit="editableCtrl.promiseValue($data)">
                                 <div>
                                     <span data-ng-bind-html="item.text | highlight:$select.search"></span><br />
@@ -129,6 +132,7 @@
                                 tabindex="2"
                                 data-ng-model="editableCtrl.data.barcode"
                                 placeholder="Barcode"
+                                disabled="false"
                                 oncommit="editableCtrl.promiseValue($data)"></data-inline-text>
                         </div>
                         <div class="clearfix visible-xs"></div>
@@ -194,6 +198,7 @@
                                 data-ng-model="editableCtrl.data.stateOfBirth"
                                 placeholder="Search states …"
                                 items="editableCtrl.states"
+                                disabled="false"
                                 oncommit="editableCtrl.promiseValue($data)"></data-inline-typeahead>
                         </div>
                         <div class="clearfix visible-xs"></div>
@@ -272,6 +277,7 @@
                                 placeholder="Pick a release date"
                                 date-format="dd.MM.yyyy"
                                 show-button-bar="true"
+                                disabled="false"
                                 popup-placement="auto top bottom"
                                 oncommit="editableCtrl.promiseValue($data)"></inline-datepicker>
                         </div>
@@ -284,6 +290,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-checkbox
                                 id="release-date-tentative-checkbox"
+                                disabled="true"
                                 data-ng-model="editableCtrl.data.releaseDateTentative"
                                 oncommit="editableCtrl.promiseValue($data)"></data-inline-checkbox>
                         </div>
