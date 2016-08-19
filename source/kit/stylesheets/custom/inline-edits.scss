@@ -278,3 +278,7 @@
 .uib-datepicker-popup {
     padding-bottom: 10px !important;
 }
+
+.uib-datepicker-popup.dropdown-menu {
+    z-index: 1030;
+}

@@ -143,9 +143,21 @@
                         <div class="clearfix visible-xs"></div>
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">GRID</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="release-date-datepicker">Release Date</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <inline-datepicker
+                                id="release-date-datepicker"
+                                data-ng-model="editableCtrl.data.date"
+                                datepicker-options="editableCtrl.datepickerOptions"
+                                placeholder="Pick a release date"
+                                date-format="dd.MM.yyyy"
+                                show-button-bar="true"
+                                disabled="false"
+                                popup-placement="auto top bottom"
+                                oncommit="editableCtrl.promiseValue($data)"></inline-datepicker>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">
@@ -234,54 +246,6 @@
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
                         </div>
                         <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Version Title</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Internal Version Title</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Format</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Vinyl Single Standard 7" (Double Sided)</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Duration</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">00:00:00</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"># Tracks</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">0</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"># Tracks by BMG</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">0</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
-                            <label for="release-date-datepicker">Release Date</label>
-                        </div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">
-                            <inline-datepicker
-                                id="release-date-datepicker"
-                                data-ng-model="editableCtrl.data.date"
-                                datepicker-options="editableCtrl.datepickerOptions"
-                                placeholder="Pick a release date"
-                                date-format="dd.MM.yyyy"
-                                show-button-bar="true"
-                                disabled="false"
-                                popup-placement="auto top bottom"
-                                oncommit="editableCtrl.promiseValue($data)"></inline-datepicker>
-                        </div>
-                        <div class="clearfix visible-xs"></div>
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">
@@ -296,102 +260,12 @@
                         </div>
                         <div class="clearfix visible-xs"></div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Repertoire Owner</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Mute Records Ltd., a BMG Company</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Label</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Mute, a BMG Company</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"></div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">GVL Label Code</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Genre</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Alt. Genre</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Advisory Content</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Clean</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Advisory Lyrics</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Not Applicable</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Contractual Rights</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Release Intent</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Promo</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container"># Promo Units</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Mech. Licenses</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Show Licenses</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Includes Booklet</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Compilation</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Partial</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Soundtrack</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Metadata Lang.</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">English</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
 
                     <hr>
                     <h5>Ownership</h5>
                     <div class="form-group">
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Ownership Type</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Exclusive License</div>
                         <div class="clearfix visible-xs"></div>
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
@@ -401,60 +275,12 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Year</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">1994</div>
                         <div class="clearfix visible-xs"></div>
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Orig. Copyright Year</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Owner</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Notice</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
-                            Ltd
-                        </div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Year</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Owner</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Notice</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
-                            Ltd
-                        </div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-
-                    <hr>
-                    <h5>Other</h5>
-
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Prod. Manager</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Unknown at Data Takeon</div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">LC Coordinator</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Unknown at Data Takeon</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Notes &amp; Comments</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Purchased as part of Mute Catalogue - Not Re-Delivered to market.</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">1993</div>
                         <div class="clearfix visible-xs"></div>
                     </div>
                 </div>
