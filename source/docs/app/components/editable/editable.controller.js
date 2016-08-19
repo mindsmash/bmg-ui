@@ -44,6 +44,10 @@
             'releaseDateTentative': true
         };
 
+        this.loadAsync = function(query) {
+            // reload list items based on query
+        };
+
         this.showSites = function() {
             var selected = $filter('filter')(this.data.sites, {value: this.site.value});
             return (this.site.value && selected.length) ? selected[0].text : 'Not set';
