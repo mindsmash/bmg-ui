@@ -71,6 +71,12 @@
                         hideActionBtn();
 
                         $timeout(function() {
+                            // reject nonsense input
+                            if (!angular.isDefined(ngModel.$viewValue)) {
+                                ngModel.$setViewValue(initialValue);
+                                return;
+                            }
+
                             if (hasActuallyChanged()) {
                                 // actual change detected
                                 // animate success
