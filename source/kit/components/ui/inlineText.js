@@ -13,7 +13,8 @@
                 placeholder: '@',
                 oncommit: '&',
                 tabindex: '@?',
-                disabled: '=?'
+                disabled: '=?',
+                inputType: '@?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',
@@ -25,6 +26,11 @@
                     var container = $(elem).closest('.inline-edit-container');
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-text');
+
+                    // set input type for validation
+                    if (scope.inputType) {
+                        inputElem.attr('type', scope.inputType);
+                    }
 
                     inputElem.focus(function() {
                         // update initial value on new focus

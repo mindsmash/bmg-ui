@@ -158,6 +158,10 @@
     &:focus {
         border-bottom-color: $bmg-malibu;
     }
+
+    &:invalid {
+        border-bottom-color: $bmg-error;
+    }
 }
 
 .inline-edit-container .ui-select-match {
