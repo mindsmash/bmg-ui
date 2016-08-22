@@ -13,7 +13,8 @@
                 placeholder: '@',
                 oncommit: '&',
                 items: '=',
-                disabled: '=?'
+                disabled: '=?',
+                tabindex: '@?'
             },
             templateUrl: 'bmg/template/inline/typeahead.html',
             require: 'ngModel',
@@ -68,6 +69,12 @@
                             }
                         }, 100); // to make sure this happens after undo button click
                     };
+
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            inputElem.focus();
+                        }
+                    });
 
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);

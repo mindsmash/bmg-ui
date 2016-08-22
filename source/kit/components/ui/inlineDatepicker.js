@@ -16,7 +16,8 @@
                 popupPlacement: '@?',
                 dateFormat: '@?',
                 showButtonBar: "=?",
-                disabled: '=?'
+                disabled: '=?',
+                tabindex: '@?'
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',
@@ -83,6 +84,12 @@
                                 publish();
                             }
                         }, 100);
+                    });
+
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            inputElem.focus();
+                        }
                     });
 
                     actionBtn.click(function() {

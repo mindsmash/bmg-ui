@@ -79,6 +79,12 @@
                         }
                     });
 
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            inputElem.focus();
+                        }
+                    });
+
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
                         hideUndoBtn();

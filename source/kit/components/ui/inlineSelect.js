@@ -15,6 +15,7 @@
                 displayProperty: '@?',
                 position: '@?',
                 id: '@',
+                tabindex: '@?',
                 refreshDelay: '@?',
                 refresh: '&?',
                 disabled: '=?'
@@ -63,6 +64,7 @@
                     var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
                     var inputWrapper = $(template).find('div.selectize-input');
                     var inlineSelectElement = $(template).find('div.inline-select');
+                    var uiSelectMatch = $(template).find('div.ui-select-match');
 
                     indicatorButton.append(successIndicator);
                     inputWrapper.append(indicatorButton);
@@ -70,6 +72,11 @@
 
                     // attach id attribute to make label support possible
                     inlineSelectElement.attr('id', scope.id);
+
+                    // attach tabindex attribute to make tab key navigation possible
+                    if (scope.tabindex) {
+                        inputWrapper.find('input').attr('tabindex', scope.tabindex);
+                    }
 
                     // hide success indicator by default unless needed
                     successIndicator.css('opacity', '0');
@@ -105,6 +112,12 @@
                             });
                         }
                     };
+
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            uiSelectMatch.click();
+                        }
+                    });
 
                     function animateSuccessIndicator(commitPromise) {
                         container.removeClass('has-error');

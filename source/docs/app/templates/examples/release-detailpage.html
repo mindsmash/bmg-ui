@@ -150,6 +150,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <inline-datepicker
                                 id="release-date-datepicker"
+                                tabindex="3"
                                 data-ng-model="editableCtrl.data.date"
                                 datepicker-options="editableCtrl.datepickerOptions"
                                 placeholder="Pick a release date"
@@ -167,7 +168,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="product-code-text"
-                                tabindex="5"
+                                tabindex="4"
                                 data-ng-model="editableCtrl.data.productCode"
                                 placeholder="Product Code"
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
@@ -181,7 +182,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="email-text"
-                                tabindex="6"
+                                tabindex="5"
                                 input-type="email"
                                 data-ng-model="editableCtrl.data.emailAddress"
                                 placeholder="Email Address"
@@ -196,6 +197,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="artist-name-text"
+                                tabindex="6"
                                 data-ng-model="editableCtrl.data.artistName"
                                 placeholder="Display Artist Name"
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
@@ -209,6 +211,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-typeahead
                                 id="state-of-birth-typeahead"
+                                tabindex="7"
                                 data-ng-model="editableCtrl.data.stateOfBirth"
                                 placeholder="Search states …"
                                 items="editableCtrl.states"
@@ -229,6 +232,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-select
                                 id="sidebar-badge-status-select"
+                                tabindex="8"
                                 data-ng-model="editableCtrl.badgeStatus"
                                 placeholder="Select or search a status in the list …"
                                 items="editableCtrl.data.badgeStatii"
@@ -243,6 +247,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="title-text"
+                                tabindex="9"
                                 data-ng-model="editableCtrl.data.title"
                                 placeholder="Title"
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
@@ -256,6 +261,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-checkbox
                                 id="release-date-tentative-checkbox"
+                                tabindex="10"
                                 disabled="true"
                                 data-ng-model="editableCtrl.data.releaseDateTentative"
                                 oncommit="editableCtrl.promiseValue($data)"></data-inline-checkbox>
