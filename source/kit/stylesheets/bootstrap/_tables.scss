@@ -22,7 +22,7 @@
     border-width: 1px;
     font-weight: bold;
     letter-spacing: .025em;
-    padding: $row-padding-vertical 40px;
+    padding: $row-padding-vertical $row-padding-horizontal;
     white-space: nowrap;
 
     &.shrink {
@@ -33,14 +33,14 @@
 
   > tbody > tr > td {
     vertical-align: middle;
-    padding: $row-padding-vertical 40px;
+    padding: $row-padding-vertical $row-padding-horizontal;
   }
 }
 
 .table-condensed {
   width: 100%;
   > thead > tr > th {
-    padding: $row-padding-vertical-condensed 40px;
+    padding: $row-padding-vertical-condensed $row-padding-horizontal;
 
     &.shrink {
       white-space: nowrap;
@@ -49,7 +49,7 @@
   }
 
   > tbody > tr > td {
-    padding: $row-padding-vertical-condensed 40px;
+    padding: $row-padding-vertical-condensed $row-padding-horizontal;
   }
 }
 

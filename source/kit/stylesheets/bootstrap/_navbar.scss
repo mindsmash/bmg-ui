@@ -279,7 +279,7 @@ $bmg-nav-collapse-height: 20px;
 
   > li {
     &:last-child > a {
-      border-bottom: 1px solid $bmg-btn-border;
+      border-bottom: 1px solid $bmg-subtle-border;
     }
   }
 
@@ -291,8 +291,8 @@ $bmg-nav-collapse-height: 20px;
     height: 60px;
     padding: 10px;
     padding-left: 16px;
-    border-bottom: 1px solid $bmg-btn-border;
-    border-right: 1px solid $bmg-btn-border;
+    border-bottom: 1px solid $bmg-subtle-border;
+    border-right: 1px solid $bmg-subtle-border;
     z-index: 1;
 
     &:hover {
@@ -332,7 +332,7 @@ $bmg-nav-collapse-height: 20px;
     }
 
     &:before {
-      border-left-color: $bmg-btn-border;
+      border-left-color: $bmg-subtle-border;
       border-width: 13px;
       margin-top: -13px;
     }
@@ -358,7 +358,7 @@ $bmg-nav-collapse-height: 20px;
 
 .sidebar,
 .sidebar-content {
-  border-top: 1px solid $bmg-btn-border;
+  border-top: 1px solid $bmg-subtle-border;
 }
 
 .sidebar {
@@ -382,7 +382,7 @@ $bmg-nav-collapse-height: 20px;
 .sidebar-content {
   flex: 5;
   background-color: $bmg-white;
-  border-left: 1px solid $bmg-btn-border;
+  border-left: 1px solid $bmg-subtle-border;
   padding: 30px 45px 30px 50px;
   z-index: 0;
 

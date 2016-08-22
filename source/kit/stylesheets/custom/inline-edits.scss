@@ -168,6 +168,10 @@
     top: -1px !important;
 }
 
+.inline-select div[role=option].active {
+    background-color: rgb(246, 246, 246);
+}
+
 .inline-edit-container .inline-datepicker {
     & ~ .calendar-button {
         padding: 0px;
