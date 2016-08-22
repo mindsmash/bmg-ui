@@ -11,7 +11,8 @@
             scope: {
                 ngModel: '=',
                 oncommit: '&',
-                disabled: '=?'
+                disabled: '=?',
+                tabindex: '@?'
             },
             templateUrl: 'bmg/template/inline/checkbox.html',
             require: 'ngModel',
@@ -34,6 +35,11 @@
 
                     function toggleModel() {
                         ngModel.$setViewValue(!ngModel.$viewValue);
+
+                        // inform tabbable form about focus change
+                        if (scope.tabindex) {
+                            scope.$emit('inline-form.focus-changed', parseInt(scope.tabindex, 10));
+                        }
 
                         var commitPromise = angular.isDefined(scope.oncommit) ?
                             scope.oncommit({

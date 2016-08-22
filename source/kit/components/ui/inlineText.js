@@ -35,6 +35,11 @@
                     inputElem.focus(function() {
                         // update initial value on new focus
                         initialValue = ngModel.$viewValue;
+
+                        // inform tabbable form about focus change
+                        if (scope.tabindex) {
+                            scope.$emit('inline-form.focus-changed', parseInt(scope.tabindex, 10));
+                        }
                     });
 
                     inputElem.blur(function() {

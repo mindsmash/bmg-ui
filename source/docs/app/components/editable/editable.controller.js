@@ -53,14 +53,6 @@
             return (this.site.value && selected.length) ? selected[0].text : 'Not set';
         };
 
-        // this.getSelectedBadgeStatus = function() {
-        //     var selected = _.filter(
-        //         this.data.badgeStatii, { value: this.badgeStatus.value }
-        //     )[0].text;
-        //
-        //     return selected;
-        // };
-
         this.opened = {};
 
         this.open = function($event, elementOpened) {

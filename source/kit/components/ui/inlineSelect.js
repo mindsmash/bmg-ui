@@ -84,6 +84,11 @@
                     scope.$on('uiSelect:open', function(e, opened) {
                         if (opened) {
                             dropdownHint.hide();
+
+                            // inform tabbable form about focus change
+                            if (scope.tabindex) {
+                                scope.$emit('inline-form.focus-changed', parseInt(scope.tabindex, 10));
+                            }
                         } else {
                             dropdownHint.show();
                         }

@@ -26,6 +26,10 @@
                         }
                     });
 
+                    scope.$on('inline-form.focus-changed', function(event, index) {
+                        currentTabIndex = index;
+                    });
+
                     function sortIndices(elements) {
                         var resultList = [];
 
