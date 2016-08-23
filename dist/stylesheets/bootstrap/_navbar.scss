@@ -279,7 +279,7 @@ $bmg-nav-collapse-height: 20px;
 
   > li {
     &:last-child > a {
-      border-bottom: 1px solid $bmg-btn-border;
+      border-bottom: 1px solid $bmg-subtle-border;
     }
   }
 
@@ -287,46 +287,22 @@ $bmg-nav-collapse-height: 20px;
     font-size: 16px;
     font-weight: 300;
     color: $bmg-text;
-    background-color: $bmg-gray-light;
+    background-color: #fcfcfc;
     height: 60px;
     padding: 10px;
     padding-left: 16px;
-    border-bottom: 1px solid $bmg-btn-border;
-    border-right: 1px solid $bmg-btn-border;
+    border-bottom: 1px solid $bmg-subtle-border;
+    border-right: 1px solid $bmg-subtle-border;
     z-index: 1;
 
     &:hover {
-      background-color: #e3e3e3;
+      color: darken($bmg-text, 20%);
     }
 
     @media #{screen} and (max-width: $screen-lg) {
       .nav-text {
         display: none;
       }
-    }
-
-    &:hover:after,
-    &:hover:before {
-      left: 100%;
-      top: 50%;
-      border: solid transparent;
-      content: " ";
-      height: 0;
-      width: 0;
-      position: absolute;
-      pointer-events: none;
-    }
-
-    &:hover:after {
-      border-left-color: #e3e3e3;
-      border-width: 12px;
-      margin-top: -12px;
-    }
-
-    &:hover:before {
-      border-left-color: $bmg-btn-border;
-      border-width: 13px;
-      margin-top: -13px;
     }
   }
 
@@ -356,7 +332,7 @@ $bmg-nav-collapse-height: 20px;
     }
 
     &:before {
-      border-left-color: $bmg-btn-border;
+      border-left-color: $bmg-subtle-border;
       border-width: 13px;
       margin-top: -13px;
     }
@@ -371,6 +347,7 @@ $bmg-nav-collapse-height: 20px;
 
 .row-with-sidebar {
   margin: 0;
+  display: flex;
   background-color: #f3f3f3;
   position: relative;
   top: 0;
@@ -381,10 +358,11 @@ $bmg-nav-collapse-height: 20px;
 
 .sidebar,
 .sidebar-content {
-  border-top: 1px solid $bmg-btn-border;
+  border-top: 1px solid $bmg-subtle-border;
 }
 
 .sidebar {
+  flex: 1;
   background-color: #f3f3f3;
   padding-right: 0;
 
@@ -396,20 +374,21 @@ $bmg-nav-collapse-height: 20px;
 
   @media #{screen} and (max-width: $screen-lg) {
     float: left;
-    min-width: 110px;
-    max-width: 110px;
+    min-width: 90px;
+    max-width: 90px;
   }
 }
 
 .sidebar-content {
+  flex: 5;
   background-color: $bmg-white;
-  border-left: 1px solid $bmg-btn-border;
+  border-left: 1px solid $bmg-subtle-border;
   padding: 30px 45px 30px 50px;
   z-index: 0;
 
   @media #{screen} and (max-width: $screen-lg) {
     display: -webkit-box;
-    margin-left: 110px;
+    flex: 10;
   }
 }
 

@@ -130,6 +130,7 @@
                             <data-inline-text
                                 id="barcode-text"
                                 tabindex="2"
+                                input-type="number"
                                 data-ng-model="editableCtrl.data.barcode"
                                 placeholder="Barcode"
                                 disabled="false"
@@ -143,9 +144,22 @@
                         <div class="clearfix visible-xs"></div>
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">GRID</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="release-date-datepicker">Release Date</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <inline-datepicker
+                                id="release-date-datepicker"
+                                tabindex="3"
+                                data-ng-model="editableCtrl.data.date"
+                                datepicker-options="editableCtrl.datepickerOptions"
+                                placeholder="Pick a release date"
+                                date-format="dd.MM.yyyy"
+                                show-button-bar="true"
+                                disabled="false"
+                                popup-placement="auto top bottom"
+                                oncommit="editableCtrl.promiseValue($data)"></inline-datepicker>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">
@@ -154,7 +168,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="product-code-text"
-                                tabindex="5"
+                                tabindex="4"
                                 data-ng-model="editableCtrl.data.productCode"
                                 placeholder="Product Code"
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
@@ -163,14 +177,15 @@
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">
-                            <label for="alt-product-code-text">Alt. Product Code</label>
+                            <label for="email-text">Email Address</label>
                         </div>
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
-                                id="alt-product-code-text"
-                                tabindex="6"
-                                data-ng-model="editableCtrl.data.altProductCode"
-                                placeholder="Alt. Product Code"
+                                id="email-text"
+                                tabindex="5"
+                                input-type="email"
+                                data-ng-model="editableCtrl.data.emailAddress"
+                                placeholder="Email Address"
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
                         </div>
                         <div class="clearfix visible-xs"></div>
@@ -182,6 +197,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="artist-name-text"
+                                tabindex="6"
                                 data-ng-model="editableCtrl.data.artistName"
                                 placeholder="Display Artist Name"
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
@@ -195,6 +211,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-typeahead
                                 id="state-of-birth-typeahead"
+                                tabindex="7"
                                 data-ng-model="editableCtrl.data.stateOfBirth"
                                 placeholder="Search states …"
                                 items="editableCtrl.states"
@@ -215,6 +232,7 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-select
                                 id="sidebar-badge-status-select"
+                                tabindex="8"
                                 data-ng-model="editableCtrl.badgeStatus"
                                 placeholder="Select or search a status in the list …"
                                 items="editableCtrl.data.badgeStatii"
@@ -229,10 +247,48 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
                                 id="title-text"
+                                tabindex="9"
                                 data-ng-model="editableCtrl.data.title"
                                 placeholder="Title"
                                 oncommit="editableCtrl.saveValue($data)"></data-inline-text>
                         </div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="release-date-tentative-checkbox">Release date is tentative</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-checkbox
+                                id="release-date-tentative-checkbox"
+                                tabindex="10"
+                                disabled="true"
+                                data-ng-model="editableCtrl.data.releaseDateTentative"
+                                oncommit="editableCtrl.promiseValue($data)"></data-inline-checkbox>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                    </div>
+
+                    <hr>
+                    <h5>Ownership</h5>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Ownership Type</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Exclusive License</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Remaster</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
+                        <div class="clearfix visible-xs"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Year</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">1994</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Orig. Copyright Year</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">1993</div>
                         <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
@@ -263,37 +319,6 @@
 
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container"># Tracks by BMG</div>
                         <div class="col-xs-8 col-sm-4 col-md-3">0</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
-                            <label for="release-date-datepicker">Release Date</label>
-                        </div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">
-                            <inline-datepicker
-                                id="release-date-datepicker"
-                                data-ng-model="editableCtrl.data.date"
-                                datepicker-options="editableCtrl.datepickerOptions"
-                                placeholder="Pick a release date"
-                                date-format="dd.MM.yyyy"
-                                show-button-bar="true"
-                                disabled="false"
-                                popup-placement="auto top bottom"
-                                oncommit="editableCtrl.promiseValue($data)"></inline-datepicker>
-                        </div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
-                            <label for="release-date-tentative-checkbox">Release date is tentative</label>
-                        </div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">
-                            <data-inline-checkbox
-                                id="release-date-tentative-checkbox"
-                                disabled="true"
-                                data-ng-model="editableCtrl.data.releaseDateTentative"
-                                oncommit="editableCtrl.promiseValue($data)"></data-inline-checkbox>
-                        </div>
                         <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
@@ -386,50 +411,25 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">English</div>
                         <div class="clearfix visible-xs"></div>
                     </div>
-
-                    <hr>
-                    <h5>Ownership</h5>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Ownership Type</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Remaster</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">No</div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Year</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
-
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Orig. Copyright Year</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
-                    </div>
                     <div class="form-group">
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Owner</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Billy Ray Cyrus</div>
                         <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Copyright Notice</div>
                         <div class="col-xs-8 col-sm-4 col-md-3">Mute Records Ltd., a BMG Company, under exclusive license to [PIAS] UK
                             Ltd
                         </div>
-                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Year</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3"></div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">2001</div>
                         <div class="clearfix visible-xs"></div>
-                    </div>
-                    <div class="form-group">
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Owner</div>
                         <div class="col-xs-8 col-sm-4 col-md-3"></div>
-                        <div class="clearfix visible-xs"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">Artwork Notice</div>

@@ -13,7 +13,8 @@
                 placeholder: '@',
                 oncommit: '&',
                 items: '=',
-                disabled: '=?'
+                disabled: '=?',
+                tabindex: '@?'
             },
             templateUrl: 'bmg/template/inline/typeahead.html',
             require: 'ngModel',
@@ -42,6 +43,11 @@
                     scope.focusHandler = function() {
                         // update initial value on new focus
                         initialValue = ngModel.$viewValue;
+
+                        // inform tabbable form about focus change
+                        if (scope.tabindex) {
+                            scope.$emit('inline-form.focus-changed', parseInt(scope.tabindex, 10));
+                        }
                     };
 
                     scope.blurHandler = function() {
@@ -68,6 +74,12 @@
                             }
                         }, 100); // to make sure this happens after undo button click
                     };
+
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            inputElem.focus();
+                        }
+                    });
 
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);

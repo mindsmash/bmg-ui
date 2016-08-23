@@ -13,7 +13,8 @@
                 placeholder: '@',
                 oncommit: '&',
                 tabindex: '@?',
-                disabled: '=?'
+                disabled: '=?',
+                inputType: '@?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',
@@ -26,9 +27,19 @@
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-text');
 
+                    // set input type for validation
+                    if (scope.inputType) {
+                        inputElem.attr('type', scope.inputType);
+                    }
+
                     inputElem.focus(function() {
                         // update initial value on new focus
                         initialValue = ngModel.$viewValue;
+
+                        // inform tabbable form about focus change
+                        if (scope.tabindex) {
+                            scope.$emit('inline-form.focus-changed', parseInt(scope.tabindex, 10));
+                        }
                     });
 
                     inputElem.blur(function() {
@@ -70,6 +81,12 @@
                             showUndoBtn();
                         } else {
                             hideUndoBtn();
+                        }
+                    });
+
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            inputElem.focus();
                         }
                     });
 

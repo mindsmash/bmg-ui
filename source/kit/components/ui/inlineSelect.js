@@ -5,7 +5,9 @@
         .module('bmg.components.ui')
         .directive('inlineSelect', inlineSelect);
 
-    function inlineSelect($timeout, $templateCache, $compile, utilService) {
+    inlineSelect.$inject = ['$timeout', '$templateCache', '$compile', 'utilService', 'keyConstants'];
+
+    function inlineSelect($timeout, $templateCache, $compile, utilService, keyConstants) {
         return {
             scope: {
                 ngModel: '=',
@@ -15,6 +17,7 @@
                 displayProperty: '@?',
                 position: '@?',
                 id: '@',
+                tabindex: '@?',
                 refreshDelay: '@?',
                 refresh: '&?',
                 disabled: '=?'
@@ -63,6 +66,7 @@
                     var successIndicator = angular.element('<span class="success-indicator fa fa-check"></span>');
                     var inputWrapper = $(template).find('div.selectize-input');
                     var inlineSelectElement = $(template).find('div.inline-select');
+                    var uiSelectMatch = $(template).find('div.ui-select-match');
 
                     indicatorButton.append(successIndicator);
                     inputWrapper.append(indicatorButton);
@@ -71,12 +75,22 @@
                     // attach id attribute to make label support possible
                     inlineSelectElement.attr('id', scope.id);
 
+                    // attach tabindex attribute to make tab key navigation possible
+                    if (scope.tabindex) {
+                        inputWrapper.find('input').attr('tabindex', scope.tabindex);
+                    }
+
                     // hide success indicator by default unless needed
                     successIndicator.css('opacity', '0');
 
                     scope.$on('uiSelect:open', function(e, opened) {
                         if (opened) {
                             dropdownHint.hide();
+
+                            // inform tabbable form about focus change
+                            if (scope.tabindex) {
+                                scope.$emit('inline-form.focus-changed', parseInt(scope.tabindex, 10));
+                            }
                         } else {
                             dropdownHint.show();
                         }
@@ -105,6 +119,12 @@
                             });
                         }
                     };
+
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            uiSelectMatch.click();
+                        }
+                    });
 
                     function animateSuccessIndicator(commitPromise) {
                         container.removeClass('has-error');

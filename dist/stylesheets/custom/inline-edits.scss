@@ -158,10 +158,18 @@
     &:focus {
         border-bottom-color: $bmg-malibu;
     }
+
+    &:invalid {
+        border-bottom-color: $bmg-error;
+    }
 }
 
 .inline-edit-container .ui-select-match {
     top: -1px !important;
+}
+
+.inline-select div[role=option].active {
+    background-color: rgb(246, 246, 246);
 }
 
 .inline-edit-container .inline-datepicker {
@@ -214,9 +222,8 @@
     }
 
     & ~ .success-indicator {
-        float: right;
         position: relative;
-        top: -2px;
+        top: -11px;
         opacity: 0;
         border: none;
         background-color: transparent;
@@ -277,4 +284,8 @@
 
 .uib-datepicker-popup {
     padding-bottom: 10px !important;
+}
+
+.uib-datepicker-popup.dropdown-menu {
+    z-index: 1030;
 }

@@ -16,7 +16,8 @@
                 popupPlacement: '@?',
                 dateFormat: '@?',
                 showButtonBar: "=?",
-                disabled: '=?'
+                disabled: '=?',
+                tabindex: '@?'
             },
             templateUrl: 'bmg/template/inline/datepicker.html',
             require: 'ngModel',
@@ -65,18 +66,35 @@
 
                     inputElem.on('focus', function() {
                         initialValue = ngModel.$viewValue;
+
+                        // inform tabbable form about focus change
+                        if (scope.tabindex) {
+                            scope.$emit('inline-form.focus-changed', parseInt(scope.tabindex, 10));
+                        }
                     });
 
                     inputElem.on('blur', function() {
                         hideActionBtn();
 
                         $timeout(function() {
+                            // reject nonsense input
+                            if (!angular.isDefined(ngModel.$viewValue)) {
+                                ngModel.$setViewValue(initialValue);
+                                return;
+                            }
+
                             if (hasActuallyChanged()) {
                                 // actual change detected
                                 // animate success
                                 publish();
                             }
                         }, 100);
+                    });
+
+                    scope.$on('inline-form.focus-required', function(event, index) {
+                        if (scope.tabindex && parseInt(scope.tabindex, 10) === index) {
+                            inputElem.focus();
+                        }
                     });
 
                     actionBtn.click(function() {
