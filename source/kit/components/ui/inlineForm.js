@@ -20,6 +20,8 @@
                         if (e.keyCode === keyConstants.TAB_KEY ||
                             e.which === keyConstants.TAB_KEY) {
                             e.preventDefault();
+
+                            // tell next element to focus
                             var nextIndex = getSuccessorIndex(sortedTabIndices, currentTabIndex);
                             scope.$broadcast('inline-form.focus-required', nextIndex);
                             currentTabIndex = nextIndex;

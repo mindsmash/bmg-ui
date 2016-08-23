@@ -5,7 +5,9 @@
         .module('bmg.components.ui')
         .directive('inlineSelect', inlineSelect);
 
-    function inlineSelect($timeout, $templateCache, $compile, utilService) {
+    inlineSelect.$inject = ['$timeout', '$templateCache', '$compile', 'utilService', 'keyConstants'];
+
+    function inlineSelect($timeout, $templateCache, $compile, utilService, keyConstants) {
         return {
             scope: {
                 ngModel: '=',
