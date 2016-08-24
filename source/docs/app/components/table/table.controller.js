@@ -12,7 +12,7 @@
 
         tableCtrl.openFilterAside = function(position, backdrop) {
             var asideInstance = $aside.open({
-                templateUrl: 'app/templates/filter-aside.html',
+                templateUrl: 'app/templates/aside/filter-aside.html',
                 placement: position,
                 size: 'sm',
                 backdrop: backdrop,
@@ -41,7 +41,7 @@
 
         tableCtrl.openFilterColAside = function(position, backdrop) {
             var asideInstance = $aside.open({
-                templateUrl: 'app/templates/filter-col-aside.html',
+                templateUrl: 'app/templates/aside/filter-col-aside.html',
                 placement: position,
                 size: 'sm',
                 backdrop: backdrop,

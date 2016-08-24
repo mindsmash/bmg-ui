@@ -1,0 +1,142 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="form">Form Group / Input Group</h1>
+	</div>
+	<div class="panel-body">
+		<div class="row" data-ng-controller="FormController">
+			<div class="col-lg-12">
+				<h2>Text / E-Mail input fields</h2>
+				<form>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Email address (empty)</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="E-Mail">
+					</div>
+					<pre><code class="html">&lt;div class="form-group"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="email"&gt;Email address&lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="email" class="form-control" id="email" placeholder="E-Mail" data-ng-model="email"&gt;
+&lt;/div&gt;</code></pre>
+					<div class="form-group has-success has-feedback">
+						<label for="exampleInputEmail2">Email address (correct)</label>
+						<input type="email" class="form-control" id="exampleInputEmail2" placeholder="E-Mail"
+							   data-ng-model="email_correct">
+						<span class="fa fa-check form-control-feedback"></span>
+					</div>
+					<pre><code class="html">&lt;div class="form-group has-success has-feedback"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="email1"&gt;Email address&lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="email" class="form-control" id="email1" placeholder="E-Mail" data-ng-model="email"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="fa fa-check form-control-feedback"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+					<div class="form-group has-error has-feedback">
+						<label for="exampleInputEmail3">Email address (incorrect)</label>
+						<input type="email" class="form-control" id="exampleInputEmail3" placeholder="E-Mail"
+							   data-ng-model="email_incorrect">
+						<span class="fa fa-times form-control-feedback"></span>
+						<p class="help-block">Please correct your e-mail address</p>
+					</div>
+					<pre><code class="html">&lt;div class="form-group has-error has-feedback"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="email2"&gt;Email address&lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="email" class="form-control" id="email2" placeholder="E-Mail" data-ng-model="email"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="fa fa-times form-control-feedback"&gt;&lt;/span&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="help-block"&gt;Please correct your e-mail address&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						<input type="password" class="form-control" id="exampleInputPassword1"
+							   placeholder="Password" data-ng-model="password">
+					</div>
+					<div class="form-group">
+						<label>Notes</label>
+						<textarea class="form-control" rows="3"></textarea>
+					</div>
+					<pre><code class="html">&lt;div class="form-group"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;Notes&lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;textarea class="form-control" rows="3"&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+					<h2>File input</h2>
+					<div class="form-group">
+						<input type="file" title="Search for a file to add" ng-cloak="">
+						<p class="help-block">Select a file to upload.</p>
+					</div>
+					<pre><code class="html">&lt;div class="form-group"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="file" title="Search for a file to add"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class="help-block"&gt;Select a file to upload.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+					Init BootstrapFileInput to avoid default style for the file input field:
+					<pre><code class="JavaScript">jQuery(document).ready(function() {
+&nbsp;&nbsp;&nbsp;&nbsp;$('input[type=file]').bootstrapFileInput();
+});</code></pre>
+					<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependeny: <a href="https://jquery.com/">jquery</a></div>
+					<h2>Select</h2>
+					<div class="form-group">
+						<ui-select ng-model="address.selected"
+								   theme="bootstrap"
+								   ng-disabled="disabled"
+								   reset-search-input="false">
+							<ui-select-match allow-clear="true" placeholder="Enter an address...">
+								{{$select.selected.formatted_address}}
+							</ui-select-match>
+							<ui-select-choices repeat="address in addresses track by $index"
+											   refresh="refreshAddresses($select.search)"
+											   refresh-delay="0">
+								<div ng-bind-html="address.formatted_address | highlight: $select.search"></div>
+							</ui-select-choices>
+						</ui-select>
+					</div>
+					<pre><code class="html" ng-non-bindable>&lt;div class="form-group"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ui-select ng-model="address.selected" theme="bootstrap" ng-disabled="disabled" reset-search-input="false"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ui-select-match placeholder="Enter an address..."&gt;{{$select.selected.formatted_address}}&lt;/ui-select-match&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ui-select-choices repeat="address in addresses track by $index" refresh="refreshAddresses($select.search)" refresh-delay="0"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div ng-bind-html="address.formatted_address | highlight: $select.search"&gt;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ui-select-choices&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ui-select&gt;
+&lt;/div&gt;</code></pre>
+					<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://github.com/angular-ui/ui-select">angular-ui-select</a></div>
+					<br>
+					<br>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+				<br/>
+				<h2>Input Group</h2>
+				<div class="form-group">
+					<label>Seperate Units</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Value" data-ng-model="value">
+						<span class="input-group-addon">$</span>
+					</div>
+				</div>
+				<br>
+				<pre><code class="html">&lt;label&gt;Seperate Units&lt;/label&gt;
+&lt;div class="input-group"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" class="form-control" placeholder="Value" data-ng-model="value"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="input-group-addon"&gt;$&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+				<h2>Typeahead</h2>
+				<div class="form-group has-feedback">
+					<label class="control-label" for="inputSearch">Search (US states)</label>
+					<input type="text" id="inputSearch" class="form-control" placeholder="Search..."
+						   ng-model="ngModelOptionsSelected"
+						   ng-model-options="modelOptions"
+						   uib-typeahead="state for state in states | filter:$viewValue">
+					<span class="fa fa-search form-control-feedback"></span>
+				</div>
+				<pre><code class="html">&lt;div class="form-group has-feedback"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;label class="control-label" for="inputSearch"&gt;Search (US states)&lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" id="inputSearch" class="form-control" placeholder="Search..." ng-model="ngModelOptionsSelected" ng-model-options="modelOptions" uib-typeahead="state for state in states | filter:$viewValue"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="fa fa-search form-control-feedback"&gt;&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://angular-ui.github.io/bootstrap/">angular-bootstrap</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		$('input[type=file]').bootstrapFileInput();
+
+		$('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	});
+</script>

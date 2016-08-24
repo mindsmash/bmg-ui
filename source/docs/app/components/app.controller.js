@@ -18,7 +18,7 @@
 
         this.openAside = function(position, backdrop) {
             var asideInstance = $aside.open({
-                templateUrl: 'app/templates/apps.html',
+                templateUrl: 'app/templates/aside/apps.html',
                 placement: position,
                 size: 'sm',
                 backdrop: 'static',
