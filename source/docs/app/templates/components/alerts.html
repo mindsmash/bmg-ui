@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="alerts">Alerts</h1>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>BMG Bootstrap Alerts:</h2>
+				<div class="alert alert-success" role="alert">
+					Success!
+				</div>
+				<div class="alert alert-info" role="alert">
+					Info!
+				</div>
+				<div class="alert alert-warning" role="alert">
+					Warning!
+				</div>
+				<div class="alert alert-danger" role="alert">
+					Danger!
+				</div>
+				<pre><code class="html">&lt;div class="alert alert-success" role="alert"&gt;
+    Success!
+&lt;/div&gt;</code></pre>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Toastr Alerts:</h2>
+				<div data-ng-controller="NotificationController as notificationCtrl">
+					<button class="btn btn-success" data-ng-click="notificationCtrl.success()">Click me!</button>
+					<button class="btn btn-info" data-ng-click="notificationCtrl.info()">Click me!</button>
+					<button class="btn btn-warning" data-ng-click="notificationCtrl.warning()">Click me!</button>
+					<button class="btn btn-danger" data-ng-click="notificationCtrl.error()">Click me!</button>
+				</div>
+				<br>
+				<pre><code class="html">&lt;button class="btn btn-success" data-ng-click="success()"&gt;Click me!&lt;/button&gt;</code></pre>
+				<pre><code class="JavaScript">this.success = function() {
+    toastr.success('Hello world!', 'Toastr fun!');
+};</code></pre>
+				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://github.com/Foxandxss/angular-toastr">angular-toastr</a></div>
+			</div>
+		</div>
+	</div>
+</div>

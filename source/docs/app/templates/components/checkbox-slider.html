@@ -1,0 +1,77 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="checkbox-slider">Checkbox / Slider</h1>
+	</div>
+	<div class="panel-body">
+		<div class="row" data-ng-controller="CheckboxSliderController as checkboxSliderCtrl">
+			<div class="col-lg-12">
+				<h2>Checkbox</h2>
+				<div class="bmg-checkbox-with-label">
+					<div class="bmg-checkbox">
+						<input type="checkbox" id="squaredCheckbox1"
+							   data-ng-model="checkboxSliderCtrl.checkbox.checked"/>
+						<label for="squaredCheckbox1"><div></div></label>
+					</div>
+					<label for="squaredCheckbox1">Check me out!</label>
+				</div>
+
+				<div class="bmg-checkbox-with-label">
+					<div class="bmg-checkbox">
+						<input type="checkbox" id="squaredCheckbox2"
+							   data-ng-model="checkboxSliderCtrl.checkbox.notChecked"/>
+						<label for="squaredCheckbox2"><div></div></label>
+					</div>
+					<label for="squaredCheckbox2">Check me out too!</label>
+				</div>
+				<br>
+				<pre><code class="html">&lt;div class=&quot;bmg-checkbox-with-label&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bmg-checkbox&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type=&quot;checkbox&quot; id=&quot;squaredCheckbox1&quot; data-ng-model=&quot;checked&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for=&quot;squaredCheckbox1&quot;&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for=&quot;squaredCheckbox1&quot;&gt;Check me out!&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
+				<h2>Inline Checkboxes</h2>
+				<div class="bmg-checkbox-with-label bmg-checkbox-inline">
+					<div class="bmg-checkbox">
+						<input type="checkbox" id="squaredCheckbox3"
+							   data-ng-model="checkboxSliderCtrl.checkbox.lala"/>
+						<label for="squaredCheckbox3"><div></div></label>
+					</div>
+					<label for="squaredCheckbox3">I'm the first in line</label>
+				</div>
+
+				<div class="bmg-checkbox-with-label bmg-checkbox-inline">
+					<div class="bmg-checkbox">
+						<input type="checkbox" id="squaredCheckbox4"
+							   data-ng-model="checkboxSliderCtrl.checkbox.lulu"/>
+						<label for="squaredCheckbox4"><div></div></label>
+					</div>
+					<label for="squaredCheckbox4">And I'm right next to you!</label>
+				</div>
+				<br />
+				<pre><code class="html">&lt;div class=&quot;bmg-checkbox-with-label bmg-checkbox-inline&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;bmg-checkbox&quot;&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type=&quot;checkbox&quot; id=&quot;squaredCheckbox3&quot; data-ng-model=&quot;checked&quot;/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for=&quot;squaredCheckbox3&quot;&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for=&quot;squaredCheckbox3&quot;&gt;I'm the first in line&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
+				<h2>Slider</h2>
+				<div>
+					<rzslider
+							rz-slider-model="checkboxSliderCtrl.slider.min"
+							rz-slider-high="checkboxSliderCtrl.slider.max"
+							rz-slider-options="checkboxSliderCtrl.slider.options"></rzslider>
+				</div>
+				<br>
+				<pre><code class="html">&lt;rzslider rz-slider-options="slider.options"
+&nbsp;&nbsp;&nbsp;&nbsp;rz-slider-model="slider.min"
+&nbsp;&nbsp;&nbsp;&nbsp;rz-slider-high="slider.max"&gt;&lt;/rzslider&gt;</code></pre>
+				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://github.com/angular-slider/angularjs-slider">angularjs-slider</a></div>
+			</div>
+		</div>
+	</div>
+</div>

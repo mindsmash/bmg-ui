@@ -1,0 +1,51 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="modal">Modal</h1>
+	</div>
+	<div class="panel-body">
+		<div class="row" data-ng-controller="ModalController as modalCtrl">
+			<div class="col-lg-12">
+				<button class="btn btn-info" data-ng-click="modalCtrl.openModal()">Open modal</button>
+			</div>
+		</div>
+		<br>
+		<pre><code class="html">&lt;div class="modal-close"&gt;
+    &lt;button type="button" class="close" ng-click="cancel()"&gt;&lt;i class="fa fa-times color-secondary"&gt;&lt;/i&gt;&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="modal-header"&gt;
+    &lt;h2 class="modal-title"&gt;A simple Modal&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="modal-body"&gt;
+    &lt;form&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-lg-4"&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;label for="firstName"&gt;First Name&lt;/label&gt;
+                    &lt;input type="text" class="form-control" id="firstName" placeholder="First Name"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="col-lg-4"&gt;
+                &lt;div class="form-group"&gt;
+                    &lt;label for="secondName"&gt;Second Name&lt;/label&gt;
+                    &lt;input type="text" class="form-control" id="secondName" placeholder="Second Name"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+                &lt;div class="col-lg-4"&gt;
+                    &lt;div class="form-group"&gt;
+                    &lt;label for="lastName"&gt;Last Name&lt;/label&gt;
+                    &lt;input type="text" class="form-control" id="lastName" placeholder="Last Name"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+    &lt;hr&gt;
+    Any other content you need...
+&lt;/div&gt;
+&lt;div class="modal-footer"&gt;
+    &lt;hr&gt;
+    &lt;button class="btn btn-primary" type="button" ng-click="ok()"&gt;Create&lt;/button&gt;
+    &lt;button class="btn btn-secondary" type="button" ng-click="cancel()"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+		<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://angular-ui.github.io/bootstrap/">angular-bootstrap</a></div>
+	</div>
+</div>

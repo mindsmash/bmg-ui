@@ -1,0 +1,48 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="slide">Slide navigation</h1>
+	</div>
+	<div class="panel-body">
+		<div class="row" data-ng-controller="ModalController as modalCtrl">
+			<div class="col-lg-12">
+				<button class="btn btn-info" data-ng-click="modalCtrl.openSlideModal1()">Open modal</button>
+				<button class="btn btn-info" data-ng-click="modalCtrl.openSlideModal2()">Open modal with nested form</button>
+			</div>
+		</div>
+		<br>
+		<pre><code class="html">&lt;div class="modal-header"&gt;
+    &lt;h2 class="modal-title"&gt;Create Deal&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="modal-body"&gt;
+    &lt;uib-tabset active="activeJustified" justified="true" template-url=""&gt;
+        &lt;uib-tab index="0" heading="Common"&gt;
+            &lt;uib-tab-heading&gt;
+                &lt;div class="number-circle"&gt;1&lt;/div&gt; Common&lt;/h5&gt;
+            &lt;/uib-tab-heading&gt;
+            &lt;div class="form-group has-success has-feedback"&gt;
+                &lt;label for="deal"&gt;Deal&lt;/label&gt;
+                &lt;input type="text" class="form-control" id="deal" placeholder="Deal"&gt;
+                &lt;span class="fa fa-check form-control-feedback"&gt;&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/uib-tab&gt;
+        &lt;uib-tab index="1"&gt;
+            &lt;uib-tab-heading&gt;
+                &lt;span class="number-circle"&gt;2&lt;/span&gt; Financial
+            &lt;/uib-tab-heading&gt;
+            Financial data...
+        &lt;/uib-tab&gt;
+        &lt;uib-tab index="2" heading="People"&gt;
+            &lt;uib-tab-heading&gt;
+                &lt;span class="number-circle"&gt;3&lt;/span&gt; People
+            &lt;/uib-tab-heading&gt;
+            People data...
+        &lt;/uib-tab&gt;
+    &lt;/uib-tabset&gt;
+&lt;/div&gt;
+&lt;div class="modal-footer"&gt;
+    &lt;button class="btn btn-primary" type="button" ng-click="ok()"&gt;Create&lt;/button&gt;
+    &lt;button class="btn btn-secondary" type="button" ng-click="cancel()"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+		<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://angular-ui.github.io/bootstrap/">angular-bootstrap</a></div>
+	</div>
+</div>
