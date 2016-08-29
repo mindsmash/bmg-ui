@@ -1,244 +1,244 @@
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<h1 id="table">Table</h1>
-	</div>
-	<div class="panel-body">
-		<div class="row">
-			<div class="col-lg-12">
-				<div data-ng-controller="TableController as tableCtrl">
-					<h2>Table</h2>
-					<div class="tableStandard-responsive">
-						<table id="tableStandard" class="table table-hover table-fluid table-fixed-header">
-						<thead>
-						<tr>
-							<th class="shrink">
-								<div class="bmg-checkbox">
-									<input type="checkbox" id="tableCheckAll"/>
-									<label for="tableCheckAll"><div></div></label>
-								</div>
-							</th>
-							<th>Header A <i class="fa fa-sort"></i></th>
-							<th>Header B <i class="fa fa-sort"></i></th>
-							<th>Header C <i class="fa fa-sort"></i></th>
-							<th class="shrink">
-								<div class="pull-right">
-									<button type="button" class="btn btn-secondary btn-fa">
-										<i class="fa fa-columns"></i>
-									</button>
-									<button type="button" class="btn btn-secondary btn-fa">
-										<i class="fa fa-filter"></i>
-									</button>
-								</div>
-							</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr ng-repeat="content in tableCtrl.data">
-							<td>
-								<div class="bmg-checkbox">
-									<input type="checkbox" id="row-{{$index}}"/>
-									<label for="row-{{$index}}"><div></div></label>
-								</div>
-							</td>
-							<td>{{ content.a }}{{ $index }}</td>
-							<td>{{ content.b }}{{ $index }}</td>
-							<td>{{ content.c }}{{ $index }}</td>
-							<td>
-								<div class="pull-right">
-									<button type="button" class="btn btn-primary btn-fa">
-										<i class="fa fa-pencil"></i>
-									</button>
-								</div>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-					</div>
-					<h2>Table condensed</h2>
-					<div class="tableCondensed-responsive">
-						<table id="tableCondensed" class="table-condensed table-hover table-fluid">
-						<thead>
-						<tr>
-							<th class="shrink">
-								<div class="bmg-checkbox">
-									<input type="checkbox" id="tableCondensedCheckAll"/>
-									<label for="tableCondensedCheckAll"><div></div></label>
-								</div>
-							</th>
-							<th>Header A <i class="fa fa-sort"></i></th>
-							<th>Header B <i class="fa fa-sort"></i></th>
-							<th>Header C <i class="fa fa-sort"></i></th>
-							<th class="shrink">
-								<div class="pull-right">
-									<button type="button" class="btn btn-secondary btn-xs btn-fa">
-										<i class="fa fa-columns"></i>
-									</button>
-									<button type="button" class="btn btn-secondary btn-xs btn-fa">
-										<i class="fa fa-filter"></i>
-									</button>
-								</div>
-							</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr ng-repeat="content in tableCtrl.data">
-							<td>
-								<div class="bmg-checkbox">
-									<input type="checkbox" id="rowc-{{$index}}"/>
-									<label for="rowc-{{$index}}"><div></div></label>
-								</div>
-							</td>
-							<td>{{ content.a }}{{ $index }}</td>
-							<td>{{ content.b }}{{ $index }}</td>
-							<td>{{ content.c }}{{ $index }}</td>
-							<td>
-								<div class="pull-right">
-									<button type="button" class="btn btn-primary btn-xs btn-fa">
-										<i class="fa fa-pencil"></i>
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="bmg-checkbox">
-									<input type="checkbox" id="row-master"/>
-									<label for="row-master"><div></div></label>
-								</div>
-							</td>
-							<td>I am a master row</td>
-							<td>I can be expanded</td>
-							<td>
-								<a
-									href="#"
-									data-row-expander
-									data-row-expanded-by-default="false">Just click here</a>
-							</td>
-							<td>
-								<div class="pull-right">
-									<button type="button" class="btn btn-primary btn-xs btn-fa">
-										<i class="fa fa-pencil"></i>
-									</button>
-								</div>
-							</td>
-						</tr>
-						<tr class="slave-row">
-							<td colspan="5">
-								<div>
-									Expanded content.
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<div class="bmg-checkbox">
-									<input type="checkbox" id="rowc-appendix"/>
-									<label for="rowc-appendix"><div></div></label>
-								</div>
-							</td>
-							<td>Content A10</td>
-							<td>Content B10</td>
-							<td>Content C10</td>
-							<td>
-								<div class="pull-right">
-									<button type="button" class="btn btn-primary btn-xs btn-fa">
-										<i class="fa fa-pencil"></i>
-									</button>
-								</div>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-					</div>
-					<br>
-					<pre><code class="html" ng-non-bindable>&lt;div class="table-id-responsive"&gt;
+    <div class="panel-heading">
+        <h1 id="table">Table</h1>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div data-ng-controller="TableController as tableCtrl">
+                    <h2>Table</h2>
+                    <div class="tableStandard-responsive">
+                        <table id="tableStandard" class="table table-hover table-fluid table-fixed-header">
+                        <thead>
+                        <tr>
+                            <th class="shrink">
+                                <div class="bmg-checkbox">
+                                    <input type="checkbox" id="tableCheckAll"/>
+                                    <label for="tableCheckAll"><div></div></label>
+                                </div>
+                            </th>
+                            <th>Header A <i class="fa fa-sort"></i></th>
+                            <th>Header B <i class="fa fa-sort"></i></th>
+                            <th>Header C <i class="fa fa-sort"></i></th>
+                            <th class="shrink">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-secondary btn-fa">
+                                        <i class="fa fa-columns"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-secondary btn-fa">
+                                        <i class="fa fa-filter"></i>
+                                    </button>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="content in tableCtrl.data">
+                            <td>
+                                <div class="bmg-checkbox">
+                                    <input type="checkbox" id="row-{{$index}}"/>
+                                    <label for="row-{{$index}}"><div></div></label>
+                                </div>
+                            </td>
+                            <td>{{ content.a }}{{ $index }}</td>
+                            <td>{{ content.b }}{{ $index }}</td>
+                            <td>{{ content.c }}{{ $index }}</td>
+                            <td>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-fa">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <h2>Table condensed</h2>
+                    <div class="tableCondensed-responsive">
+                        <table id="tableCondensed" class="table-condensed table-hover table-fluid">
+                        <thead>
+                        <tr>
+                            <th class="shrink">
+                                <div class="bmg-checkbox">
+                                    <input type="checkbox" id="tableCondensedCheckAll"/>
+                                    <label for="tableCondensedCheckAll"><div></div></label>
+                                </div>
+                            </th>
+                            <th>Header A <i class="fa fa-sort"></i></th>
+                            <th>Header B <i class="fa fa-sort"></i></th>
+                            <th>Header C <i class="fa fa-sort"></i></th>
+                            <th class="shrink">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-secondary btn-xs btn-fa">
+                                        <i class="fa fa-columns"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-secondary btn-xs btn-fa">
+                                        <i class="fa fa-filter"></i>
+                                    </button>
+                                </div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="content in tableCtrl.data">
+                            <td>
+                                <div class="bmg-checkbox">
+                                    <input type="checkbox" id="rowc-{{$index}}"/>
+                                    <label for="rowc-{{$index}}"><div></div></label>
+                                </div>
+                            </td>
+                            <td>{{ content.a }}{{ $index }}</td>
+                            <td>{{ content.b }}{{ $index }}</td>
+                            <td>{{ content.c }}{{ $index }}</td>
+                            <td>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-xs btn-fa">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="bmg-checkbox">
+                                    <input type="checkbox" id="row-master"/>
+                                    <label for="row-master"><div></div></label>
+                                </div>
+                            </td>
+                            <td>I am a master row</td>
+                            <td>I can be expanded</td>
+                            <td>
+                                <a
+                                    href="#"
+                                    data-row-expander
+                                    data-row-expanded-by-default="false">Just click here</a>
+                            </td>
+                            <td>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-xs btn-fa">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="slave-row">
+                            <td colspan="5">
+                                <div>
+                                    Expanded content.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="bmg-checkbox">
+                                    <input type="checkbox" id="rowc-appendix"/>
+                                    <label for="rowc-appendix"><div></div></label>
+                                </div>
+                            </td>
+                            <td>Content A10</td>
+                            <td>Content B10</td>
+                            <td>Content C10</td>
+                            <td>
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary btn-xs btn-fa">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    <br>
+                    <pre><code class="html" ng-non-bindable>&lt;div class="table-id-responsive"&gt;
 &lt;table class="table table-hover table-fluid"&gt; &lt;!-- use css class "table-condensed" for small size table --&gt;
 &lt;thead&gt;
-	&lt;tr&gt;
-		&lt;th class="shrink"&gt;
-			&lt;div class="bmg-checkbox"&gt;
-				&lt;input type="checkbox" id="checkAll"/&gt;
-				&lt;label for="checkAll"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
-			&lt;/div&gt;
-		&lt;/th&gt;
-		&lt;th&gt;Header A &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
-		&lt;th&gt;Header B &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
-		&lt;th&gt;Header C &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
-		&lt;th class="shrink"&gt;
-			&lt;div class="pull-right"&gt;
-				&lt;button type="button" class="btn btn-secondary btn-fa"&gt;
-					&lt;i class="fa fa-columns"&gt;&lt;/i&gt;
-				&lt;/button&gt;
-				&lt;button type="button" class="btn btn-secondary btn-fa"&gt;
-					&lt;i class="fa fa-filter"&gt;&lt;/i&gt;
-				&lt;/button&gt;
-			&lt;/div&gt;
-		&lt;/th&gt;
-	&lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th class="shrink"&gt;
+            &lt;div class="bmg-checkbox"&gt;
+                &lt;input type="checkbox" id="checkAll"/&gt;
+                &lt;label for="checkAll"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/th&gt;
+        &lt;th&gt;Header A &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
+        &lt;th&gt;Header B &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
+        &lt;th&gt;Header C &lt;i class="fa fa-sort"&gt;&lt;/i&gt;&lt;/th&gt;
+        &lt;th class="shrink"&gt;
+            &lt;div class="pull-right"&gt;
+                &lt;button type="button" class="btn btn-secondary btn-fa"&gt;
+                    &lt;i class="fa fa-columns"&gt;&lt;/i&gt;
+                &lt;/button&gt;
+                &lt;button type="button" class="btn btn-secondary btn-fa"&gt;
+                    &lt;i class="fa fa-filter"&gt;&lt;/i&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/th&gt;
+    &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
-	&lt;tr ng-repeat="content in data"&gt;
-		&lt;td&gt;
-			&lt;div class="bmg-checkbox"&gt;
-				&lt;input type="checkbox" id="row-&#123;&#123;$index&#125;&#125;"/&gt;
-				&lt;label for="row-&#123;&#123;$index&#125;&#125;"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
-			&lt;/div&gt;
-		&lt;/td&gt;
-		&lt;td&gt;&#123;&#123; content.a &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
-		&lt;td&gt;&#123;&#123; content.b &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
-		&lt;td&gt;&#123;&#123; content.c &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
-		&lt;td&gt;
-			&lt;div class="pull-right"&gt;
-				&lt;button type="button" class="btn btn-primary btn-fa"&gt;
-					&lt;i class="fa fa-pencil"&gt;&lt;/i&gt;
-				&lt;/button&gt;
-			&lt;/div&gt;
-		&lt;/td&gt;
-	&lt;/tr&gt;
+    &lt;tr ng-repeat="content in data"&gt;
+        &lt;td&gt;
+            &lt;div class="bmg-checkbox"&gt;
+                &lt;input type="checkbox" id="row-&#123;&#123;$index&#125;&#125;"/&gt;
+                &lt;label for="row-&#123;&#123;$index&#125;&#125;"&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+        &lt;td&gt;&#123;&#123; content.a &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
+        &lt;td&gt;&#123;&#123; content.b &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
+        &lt;td&gt;&#123;&#123; content.c &#125;&#125;&#123;&#123; $index &#125;&#125;&lt;/td&gt;
+        &lt;td&gt;
+            &lt;div class="pull-right"&gt;
+                &lt;button type="button" class="btn btn-primary btn-fa"&gt;
+                    &lt;i class="fa fa-pencil"&gt;&lt;/i&gt;
+                &lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/div&gt;</code></pre>
-				</div>
-				<hr>
-				Add this to your html file(s) for a fixed table header:
-				<pre><code class="html">&lt;!-- Add this meta tag into your header to placate IE --&gt;
+                </div>
+                <hr>
+                Add this to your html file(s) for a fixed table header:
+                <pre><code class="html">&lt;!-- Add this meta tag into your header to placate IE --&gt;
 &lt;meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" /&gt;</code></pre>
-				<pre><code class="JavaScript">&lt;script&gt;
+                <pre><code class="JavaScript">&lt;script&gt;
 jQuery(document).ready(function() {
-&#36;('table#table-id').floatThead({
-	top: function(&#36;table) {
-		return &#36;table.top = 75;
-	},
-	responsiveContainer: function($table){
-		return $table.closest('.table-id-responsive');
-	}
-});
+    &#36;('table#table-id').floatThead({
+        top: function(&#36;table) {
+            return &#36;table.top = 75;
+        },
+        responsiveContainer: function($table){
+            return $table.closest('.table-id-responsive');
+        }
+    });
 });
 &lt;/script&gt;</code></pre>
-				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="http://mkoryak.github.io/floatThead/">floatThead</a></div>
-			</div>
-		</div>
-	</div>
+                <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="http://mkoryak.github.io/floatThead/">floatThead</a></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-	jQuery(document).ready(function() {
-		$('table#tableStandard').floatThead({
-			top: function($table) {
-				return 75;
-			},
-			responsiveContainer: function($table){
-				return $table.closest('.tableStandard-responsive');
-			}
-		});
+    jQuery(document).ready(function() {
+        $('table#tableStandard').floatThead({
+            top: function($table) {
+                return 75;
+            },
+            responsiveContainer: function($table){
+                return $table.closest('.tableStandard-responsive');
+            }
+        });
 
-		$('table#tableCondensed').floatThead({
-			top: function($table) {
-				return 75;
-			},
-			responsiveContainer: function($table){
-				return $table.closest('.tableCondensed-responsive');
-			}
-		});
-	});
+        $('table#tableCondensed').floatThead({
+            top: function($table) {
+                return 75;
+            },
+            responsiveContainer: function($table){
+                return $table.closest('.tableCondensed-responsive');
+            }
+        });
+    });
 </script>
