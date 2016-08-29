@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="pagination">Pagination</h1>
+	</div>
+	<div class="panel-body">
+		<div class="row" data-ng-controller="PaginationController as paginationCtrl">
+			<div class="col-lg-12">
+				<uib-pagination total-items="paginationCtrl.bigTotalItems" ng-model="paginationCtrl.bigCurrentPage" max-size="paginationCtrl.maxSize"
+								class="pagination pull-left with-page-number-input" boundary-links="true"
+								force-ellipses="false"></uib-pagination>
+				<input type="text" class="pagination-page-number-input" placeholder="Page..." ng-model="paginationCtrl.pageNumber"
+					   data-ng-change="paginationCtrl.changePageNumber(paginationCtrl.pageNumber)">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+                    <pre><code class="html">&lt;uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"
+&nbsp;&nbsp;&nbsp;&nbsp;class="pagination pull-left with-page-number-input" boundary-links="true" force-ellipses="false"&gt;&lt;/uib-pagination&gt;
+&lt;input type="text" class="pagination-page-number-input" placeholder="Page..." ng-model="pageNumber" data-ng-change="changePageNumber(pageNumber)"&gt;</code></pre>
+				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://angular-ui.github.io/bootstrap/">angular-bootstrap</a></div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -10,7 +10,7 @@
         this.openModal = function () {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/templates/mySimpleModal.html',
+                templateUrl: 'app/templates/modal/mySimpleModal.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'lg'
             });
@@ -22,7 +22,7 @@
         this.openSlideModal1 = function () {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/templates/myModalContent.html',
+                templateUrl: 'app/templates/modal/myModalContent.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'lg'
             });
@@ -34,7 +34,7 @@
         this.openSlideModal2 = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/templates/myModalContentWithAForm.html',
+                templateUrl: 'app/templates/modal/myModalContentWithAForm.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'lg'
             });

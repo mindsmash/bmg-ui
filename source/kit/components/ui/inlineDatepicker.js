@@ -23,7 +23,7 @@
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
                 $timeout(function() {
-                    var initialValue = ngModel.$viewValue;
+                    var initialValue = ngModel.$viewValue || null;
                     var successIndicator = elem.find('.success-indicator');
                     var inputElem = elem.find('.inline-datepicker');
                     var actionBtn = elem.find('.revert-button');

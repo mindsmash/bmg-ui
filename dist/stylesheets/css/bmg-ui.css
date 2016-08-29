@@ -3195,7 +3195,7 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .sidebar-content { flex: 5; background-color: #ffffff; border-left: 1px solid #eee; padding: 30px 45px 30px 50px; z-index: 0; }
 
-@media screen and (max-width: 1200px) { .sidebar-content { display: -webkit-box; flex: 10; } }
+@media screen and (max-width: 1200px) { .sidebar-content { flex: 10; } }
 
 .navbar { transition: min-height 0.3s ease-in-out; }
 

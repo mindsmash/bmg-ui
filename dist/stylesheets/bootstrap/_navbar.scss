@@ -387,7 +387,7 @@ $bmg-nav-collapse-height: 20px;
   z-index: 0;
 
   @media #{screen} and (max-width: $screen-lg) {
-    display: -webkit-box;
+    //display: -webkit-box;
     flex: 10;
   }
 }
