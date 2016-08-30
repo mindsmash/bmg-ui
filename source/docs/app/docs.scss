@@ -21,7 +21,7 @@ $bmg-stack: #999;
 
 $bmg-tundora: #4d4d4d;
 $bmg-rio-grande: #afce06;
-$bmg-turquoise: #1CE0D0;
+$bmg-turquoise: #18ccae;
 $bmg-supernova: #ffcc00;
 $bmg-monza: #c80031;
 $bmg-malibu: #51d0ff;
@@ -83,7 +83,7 @@ $bmg-border-dark: transparentize($bmg-black, .70);
   &.ec-white {
     color: $bmg-black;
     background-color: $bmg-white;
-    border: 1px solid $bmg-black;
+    border: 1px solid $bmg-celeste;
   }
 
   &.ec-black {
@@ -124,6 +124,11 @@ $bmg-border-dark: transparentize($bmg-black, .70);
   &.ec-warning {
     color: $bmg-white;
     background-color: $bmg-supernova;
+  }
+
+  &.ec-status {
+	color: $bmg-white;
+	background-color: $bmg-carrot;
   }
 
   &.ec-error {

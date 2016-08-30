@@ -12,7 +12,7 @@ code { font-size: 12px; white-space: pre; }
 
 .color { width: 100%; min-width: 33%; display: block; text-align: center; border-radius: 30px; }
 
-.color.ec-white { color: #4c4c4c; background-color: #ffffff; border: 1px solid #4c4c4c; }
+.color.ec-white { color: #4c4c4c; background-color: #ffffff; border: 1px solid #ededed; }
 
 .color.ec-black { color: #ffffff; background-color: #4c4c4c; }
 
@@ -26,9 +26,11 @@ code { font-size: 12px; white-space: pre; }
 
 .color.ec-success { color: #ffffff; background-color: #afce06; }
 
-.color.ec-info { color: #ffffff; background-color: #1CE0D0; }
+.color.ec-info { color: #ffffff; background-color: #18ccae; }
 
 .color.ec-warning { color: #ffffff; background-color: #ffcc00; }
+
+.color.ec-status { color: #ffffff; background-color: #f59422; }
 
 .color.ec-error { color: #ffffff; background-color: #c80031; }
 
