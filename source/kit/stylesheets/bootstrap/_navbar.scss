@@ -284,13 +284,29 @@ $bmg-nav-collapse-height: 20px;
   }
 
   > li > a {
-    font-size: 16px;
+      & .nav-text:before {
+          content: '•';
+          margin: 0px 25px 0px 30px;
+          font-size: 20px;
+          font-weight: normal !important;
+
+          @media #{screen} and (max-width: $screen-lg) {
+              margin: 0px 0px 0px 10px;
+              content: '';
+          }
+      }
+
+      display: table-cell;
+      padding: 0 !important;
+      vertical-align: middle;
+      width: 1%;
+
+      font-size: 14px;
     font-weight: 300;
     color: $bmg-text;
-    background-color: #fcfcfc;
+    background-color: #fafafa;
     height: 60px;
-    padding: 10px;
-    padding-left: 16px;
+    padding: 10px 30px;
     border-bottom: 1px solid $bmg-subtle-border;
     border-right: 1px solid $bmg-subtle-border;
     z-index: 1;
@@ -298,16 +314,14 @@ $bmg-nav-collapse-height: 20px;
     &:hover {
       color: darken($bmg-text, 20%);
     }
-
-    @media #{screen} and (max-width: $screen-lg) {
-      .nav-text {
-        display: none;
-      }
-    }
   }
 
   > li.active > a {
     background-color: #e3e3e3;
+
+    & .nav-text {
+        font-weight: bold;
+    }
 
     &:hover {
       background-color: #e3e3e3;
@@ -318,8 +332,8 @@ $bmg-nav-collapse-height: 20px;
       left: 100%;
       top: 50%;
       border: solid transparent;
-      content: " ";
       height: 0;
+      content: " ";
       width: 0;
       position: absolute;
       pointer-events: none;
@@ -374,8 +388,8 @@ $bmg-nav-collapse-height: 20px;
 
   @media #{screen} and (max-width: $screen-lg) {
     float: left;
-    min-width: 90px;
-    max-width: 90px;
+    min-width: 120px;
+    max-width: 120px;
   }
 }
 
