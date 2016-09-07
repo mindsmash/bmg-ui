@@ -1,0 +1,58 @@
+<div class="panel panel-default panel-first">
+	<div class="panel-heading">
+		<h1 id="loading-indicator">Loading Indicator</h1>
+	</div>
+	<div class="panel-body" data-ng-controller="LoadingController as ctrl">
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    Waiting animation for content that is currently loading.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="content-loading">
+                    <i class="fa fa-spin fa-spinner"></i>
+                </div>
+            </div>
+        </div>
+
+        <pre><code class="html">&lt;div class=&quot;content-loading&quot;&gt;
+    &lt;i class=&quot;fa fa-spin fa-spinner&quot;&gt;&lt;/i&gt;
+&lt;/div&gt;</code></pre>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    You can also specify a function that loads the content. Until the promise returned
+                    by that function resolves, the loading animation will be displayed:
+                </p>
+            </div>
+        </div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<button
+					class="btn btn-info"
+					data-content-placeholder-reload-button>Reload content</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<data-content-placeholder
+					id="j4825673gr2354f456f3"
+					data-content-promise="ctrl.loadContent()">
+					<h2 data-ng-bind="ctrl.content.heading"></h2>
+					<p data-ng-bind="ctrl.content.text"></p>
+				</data-content-placeholder>
+			</div>
+		</div>
+
+		<pre><code class="html">&lt;data-content-placeholder
+    data-content-promise=&quot;ctrl.loadContent()&quot;&gt;
+    &lt;h2 data-ng-bind=&quot;ctrl.content.heading&quot;&gt;&lt;/h2&gt;
+    &lt;p data-ng-bind=&quot;ctrl.content.text&quot;&gt;&lt;/p&gt;
+&lt;/data-content-placeholder&gt;</code></pre>
+	</div>
+</div>
