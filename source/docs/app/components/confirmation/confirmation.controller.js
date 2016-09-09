@@ -14,10 +14,11 @@
 
         function confirm() {
             userDialogs.askForConfirmation(
-                'Do you really want to hurt me?',
-                'Do you really want to make me cry?',
-                'Hurt him',
-                'Cancel'
+                'Do you really want to hurt me?', // title
+                'Do you really want to make me cry?', // text
+                'Hurt him', // primary button caption
+                'Cancel', // secondary button caption
+                'danger' // primary button class suffix (optional)
             ).then(function() {
                 toastr.success('Confirmed dialog successfully.', 'Success');
             }, function() {

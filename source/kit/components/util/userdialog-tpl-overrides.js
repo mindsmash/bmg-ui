@@ -31,7 +31,7 @@
                 '        data-ng-bind="ctrl.secondaryActionCaption"',
                 '        data-ng-click="ctrl.cancel()"></button>',
                 '    <button',
-                '        class="btn btn-primary"',
+                '        class="btn btn-{{ ctrl.primaryClass }}"',
                 '        type="button"',
                 '        data-ng-bind="ctrl.primaryActionCaption"',
                 '        data-ng-click="ctrl.ok()"></button>',

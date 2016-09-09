@@ -13,7 +13,8 @@
             askForConfirmation: askForConfirmation
         };
 
-        function askForConfirmation(title, text, primaryActionCaption, secondaryActionCaption) {
+        function askForConfirmation(title, text, primaryActionCaption, secondaryActionCaption,
+                primaryClass) {
             var modalInstance = $uibModal.open({
                 animation: true,
                 templateUrl: 'user/dialogs/confirm.html',
@@ -30,6 +31,9 @@
                     },
                     secondaryActionCaption: function() {
                         return secondaryActionCaption;
+                    },
+                    primaryClass: function() {
+                        return angular.isDefined(primaryClass) ? primaryClass : 'primary';
                     }
                 }
             });
@@ -39,10 +43,10 @@
     }
 
     UserDialogConfirmCtrl.$inject = ['$uibModalInstance', 'title', 'text',
-        'primaryActionCaption', 'secondaryActionCaption'];
+        'primaryActionCaption', 'secondaryActionCaption', 'primaryClass'];
 
     function UserDialogConfirmCtrl($uibModalInstance, title, text,
-            primaryActionCaption, secondaryActionCaption) {
+            primaryActionCaption, secondaryActionCaption, primaryClass) {
         var vm = this;
 
         vm.ok = ok;
@@ -51,6 +55,7 @@
         vm.text = text;
         vm.primaryActionCaption = primaryActionCaption;
         vm.secondaryActionCaption = secondaryActionCaption;
+        vm.primaryClass = primaryClass;
 
         function ok() {
             $uibModalInstance.close();
