@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="confirmation-dialog">Confirmation Dialog</h1>
+	</div>
+	<div class="panel-body" data-ng-controller="ConfirmationCtrl as ctrl">
+		<div class="row">
+			<div class="col-xs-12">
+				<button
+                    class="btn btn-info"
+                    data-ng-click="ctrl.confirm()">Open confirmation dialog</button>
+			</div>
+		</div>
+        <br />
+
+        <pre><code class="javascript">// inject 'userDialogs' into your angular component
+userDialogs.askForConfirmation(
+    'Do you really want to hurt me?',
+    'Do you really want to make me cry?',
+    'Hurt him',
+    'Cancel'
+).then(function() {
+    toastr.success('Confirmed dialog successfully.', 'Success');
+}, function() {
+    toastr.error('Canceled the dialog.', 'Canceled');
+});</code></pre>
+	</div>
+</div>
