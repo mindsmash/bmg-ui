@@ -34,7 +34,7 @@
         this.openSlideModal2 = function() {
             var modalInstance = $uibModal.open({
                 animation: true,
-                templateUrl: 'app/templates/modal/myModalContentWithAForm.html',
+                templateUrl: '	app/templates/modal/myModalContentWithAForm.html',
                 controller: 'ModalInstanceCtrl',
                 size: 'lg'
             });

@@ -276,38 +276,57 @@ $bmg-nav-collapse-height: 20px;
 }
 
 .nav.nav-sidebar {
+    > li {
+        display: table;
+        width: 100%;
 
-  > li {
-    &:last-child > a {
-      border-bottom: 1px solid $bmg-subtle-border;
-    }
-  }
-
-  > li > a {
-    font-size: 16px;
-    font-weight: 300;
-    color: $bmg-text;
-    background-color: #fcfcfc;
-    height: 60px;
-    padding: 10px;
-    padding-left: 16px;
-    border-bottom: 1px solid $bmg-subtle-border;
-    border-right: 1px solid $bmg-subtle-border;
-    z-index: 1;
-
-    &:hover {
-      color: darken($bmg-text, 20%);
+        &:last-child > a {
+            border-bottom: 1px solid $bmg-subtle-border;
+        }
     }
 
-    @media #{screen} and (max-width: $screen-lg) {
-      .nav-text {
-        display: none;
-      }
+    > li > a {
+        & .nav-text:before {
+            content: '•';
+            margin: 0px 25px 0px 30px;
+            font-size: 20px;
+            font-weight: normal !important;
+
+            @media #{screen} and (max-width: $screen-lg) {
+                margin: 0px 0px 0px 10px;
+                content: '';
+            }
+        }
+
+        display: table-cell;
+        width: 100%;
+        vertical-align: middle;
+        padding: 0 !important;
+        font-size: 14px;
+        font-weight: 300;
+        color: $bmg-text;
+        background-color: #fafafa;
+        height: 60px;
+        padding: 10px 30px;
+        border-bottom: 1px solid $bmg-subtle-border;
+        border-right: 1px solid $bmg-subtle-border;
+        z-index: 1;
+
+        &:hover {
+          color: darken($bmg-text, 20%);
+        }
+}
+
+    > li.active {
+        width: calc(100% + 1px);
     }
-  }
 
   > li.active > a {
     background-color: #e3e3e3;
+
+    & .nav-text {
+        font-weight: bold;
+    }
 
     &:hover {
       background-color: #e3e3e3;
@@ -318,8 +337,8 @@ $bmg-nav-collapse-height: 20px;
       left: 100%;
       top: 50%;
       border: solid transparent;
-      content: " ";
       height: 0;
+      content: " ";
       width: 0;
       position: absolute;
       pointer-events: none;
@@ -374,8 +393,8 @@ $bmg-nav-collapse-height: 20px;
 
   @media #{screen} and (max-width: $screen-lg) {
     float: left;
-    min-width: 90px;
-    max-width: 90px;
+    min-width: 120px;
+    max-width: 120px;
   }
 }
 
