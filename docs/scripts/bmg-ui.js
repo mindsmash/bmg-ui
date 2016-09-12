@@ -4,7 +4,8 @@
     angular.module('bmg.components.ui', [
             'ui.select',
             'ngSanitize',
-            'bmg/template/inlineEdits'
+            'bmg/template/inlineEdits',
+            'user/dialogs/templates'
         ])
         .config(decorateUISelectWithOpenEvent);
 
@@ -291,6 +292,71 @@
                     '.tableCondensed-responsive');
             }
         });
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
+        .directive('contentPlaceholder', contentPlaceholder);
+
+    contentPlaceholder.$inject = ['$compile'];
+
+    function contentPlaceholder($compile) {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                contentPromise: '&'
+            },
+            bindToController: true,
+            controllerAs: 'ctrl',
+            transclude: true,
+            require: 'contentPlaceholder',
+            template: '<div data-ng-transclude></div>',
+            link: function(scope, elem, attrs, ourCtrl) {
+                showLoading();
+
+                if (angular.isFunction(ourCtrl.contentPromise)) {
+                    var promise = ourCtrl.contentPromise();
+
+                    if (angular.isFunction(promise.then)) {
+                        promise.then(function() {
+                            showContent();
+                        }, function(err) {
+                            showError(err);
+                        });
+                    }
+                }
+
+                function showLoading() {
+                    $(elem).children().hide();
+                    $(elem)
+                        .addClass('content-loading')
+                        .append('<i class="fa fa-spin fa-spinner content-placeholder-loading"></i>');
+                }
+
+                function showContent() {
+                    $(elem)
+                        .removeClass('content-loading')
+                        .find('.content-placeholder-loading')
+                        .remove();
+                    $(elem).children().show();
+                }
+
+                function showError() {
+                    $(elem)
+                        .removeClass('content-loading')
+                        .find('.content-placeholder-loading')
+                        .remove();
+                    $(elem)
+                        .append('<div class="content-error">' + err + '</div>');
+                }
+             },
+            controller: function() {}
+        };
     }
 })();
 
@@ -1390,6 +1456,75 @@
 
     angular
         .module('bmg.components.ui')
+        .factory('userDialogs', userDialogs)
+        .controller('UserDialogConfirmCtrl', UserDialogConfirmCtrl);
+
+    userDialogs.$inject = ['$uibModal'];
+
+    function userDialogs($uibModal) {
+        return {
+            askForConfirmation: askForConfirmation
+        };
+
+        function askForConfirmation(title, text, primaryActionCaption, secondaryActionCaption,
+                primaryClass) {
+            var modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'user/dialogs/confirm.html',
+                controller: 'UserDialogConfirmCtrl as ctrl',
+                resolve: {
+                    title: function() {
+                        return title;
+                    },
+                    text: function() {
+                        return text;
+                    },
+                    primaryActionCaption: function() {
+                        return primaryActionCaption;
+                    },
+                    secondaryActionCaption: function() {
+                        return secondaryActionCaption;
+                    },
+                    primaryClass: function() {
+                        return angular.isDefined(primaryClass) ? primaryClass : 'primary';
+                    }
+                }
+            });
+
+            return modalInstance.result;
+        }
+    }
+
+    UserDialogConfirmCtrl.$inject = ['$uibModalInstance', 'title', 'text',
+        'primaryActionCaption', 'secondaryActionCaption', 'primaryClass'];
+
+    function UserDialogConfirmCtrl($uibModalInstance, title, text,
+            primaryActionCaption, secondaryActionCaption, primaryClass) {
+        var vm = this;
+
+        vm.ok = ok;
+        vm.cancel = cancel;
+        vm.title = title;
+        vm.text = text;
+        vm.primaryActionCaption = primaryActionCaption;
+        vm.secondaryActionCaption = secondaryActionCaption;
+        vm.primaryClass = primaryClass;
+
+        function ok() {
+            $uibModalInstance.close();
+        }
+
+        function cancel() {
+            $uibModalInstance.dismiss();
+        }
+    }
+})();
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg.components.ui')
         .factory('utilService', utilService);
 
     function utilService() {
@@ -1714,6 +1849,48 @@ angular.module('bmg.components.ui')
         $templateCache.put("selectize/select.tpl.html","<div class=\"ui-select-container selectize-control single\" ng-class=\"{\'open\': $select.open}\"><div class=\"selectize-input\" ng-class=\"{\'focus\': $select.open, \'disabled\': $select.disabled, \'selectize-focus\' : $select.focus}\" ng-click=\"$select.open && !$select.searchEnabled ? $select.toggle($event) : $select.activate()\"><div class=\"ui-select-match\"></div><input type=\"text\" autocomplete=\"off\" tabindex=\"-1\" class=\"ui-select-search ui-select-toggle\" ng-click=\"$select.toggle($event)\" placeholder=\"{{$select.placeholder}}\" ng-model=\"$select.search\" ng-hide=\"!$select.searchEnabled || ($select.selected && !$select.open)\" ng-disabled=\"$select.disabled\" aria-label=\"{{ $select.baseTitle }}\"></div><div class=\"ui-select-choices\"></div></div>");
     }]);
 })(angular);
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('user/dialogs/templates', [])
+        .run(['$templateCache', function($templateCache) {
+            $templateCache.put('user/dialogs/confirm.html', [
+                '<div class="modal-close">',
+                '    <button',
+                '        type="button"',
+                '        class="close"',
+                '        data-ng-click="ctrl.cancel()"><i class="fa fa-times color-secondary"></i></button>',
+                '</div>',
+                '<div class="modal-header">',
+                '    <h2',
+                '        class="modal-title"',
+                '        data-ng-bind="ctrl.title"></h2>',
+                '</div>',
+                '<div class="modal-body">',
+                '    <div class="row">',
+                '        <div',
+                '            class="col-xs-12"',
+                '            data-ng-bind="ctrl.text"></div>',
+                '    </div>',
+                '</div>',
+                '<div class="modal-footer">',
+                '    <hr>',
+                '    <button',
+                '        class="btn btn-secondary"',
+                '        type="button"',
+                '        data-ng-bind="ctrl.secondaryActionCaption"',
+                '        data-ng-click="ctrl.cancel()"></button>',
+                '    <button',
+                '        class="btn btn-{{ ctrl.primaryClass }}"',
+                '        type="button"',
+                '        data-ng-bind="ctrl.primaryActionCaption"',
+                '        data-ng-click="ctrl.ok()"></button>',
+                '</div>'
+            ].join(''));
+        }]);
+})();
 
 (function(undefined) {
     'use strict';
