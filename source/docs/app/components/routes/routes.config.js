@@ -62,8 +62,14 @@
             .state('index.status', {
                 url: '#status'
             })
+            .state('index.loading-indicator', {
+                url: '#loading-indicator'
+            })
             .state('index.modal', {
                 url: '#modal'
+            })
+            .state('index.confirmation-dialog', {
+                url: '#confirmation-dialog'
             })
             .state('index.slide', {
                 url: '#slide'

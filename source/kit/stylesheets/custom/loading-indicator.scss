@@ -1,0 +1,9 @@
+.content-loading {
+    padding: 20px 0;
+    text-align: center;
+
+    i.fa.fa-spin.fa-spinner.content-placeholder-loading {
+        font-size: 150%;
+        color: $bmg-gray-dark;
+    }
+}

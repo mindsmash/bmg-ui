@@ -4,7 +4,8 @@
     angular.module('bmg.components.ui', [
             'ui.select',
             'ngSanitize',
-            'bmg/template/inlineEdits'
+            'bmg/template/inlineEdits',
+            'user/dialogs/templates'
         ])
         .config(decorateUISelectWithOpenEvent);
 
