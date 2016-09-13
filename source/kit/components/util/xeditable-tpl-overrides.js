@@ -95,6 +95,7 @@
                     '<div class="inline-edit-container">',
                     '    <ui-select',
                     '        append-to-body="true"',
+                    '        data-dollar-select-grabber',
                     '        class="inline-select"',
                     '        data-ng-model="ngModel"',
                     '        on-select="onSelect($item)"',

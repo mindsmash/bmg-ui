@@ -255,6 +255,11 @@
 
         .success-indicator {
             transition: opacity 0.1s ease-in-out;
+
+            &.clear-button {
+                color: $bmg-gray-dark;
+                font-size: smaller;
+            }
         }
     }
 
