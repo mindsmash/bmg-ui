@@ -7,7 +7,9 @@
 
     function utilService() {
         return {
-            isPromise: isPromise
+            isPromise: isPromise,
+            hideUndoBtn: hideUndoBtn,
+            showUndoBtn: showUndoBtn
         };
 
         function isPromise(promise) {
@@ -15,6 +17,16 @@
             return angular.isDefined(promise) &&
                 angular.isDefined(promise.then) &&
                 angular.isFunction(promise.then);
+        }
+
+        function hideUndoBtn(undoBtn) {
+            undoBtn.removeClass('active');
+            undoBtn.attr('disabled', 'disabled');
+        }
+
+        function showUndoBtn(undoBtn) {
+            undoBtn.addClass('active');
+            undoBtn.removeAttr('disabled');
         }
     }
 })();

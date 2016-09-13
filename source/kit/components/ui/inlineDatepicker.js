@@ -26,7 +26,7 @@
                     var initialValue = ngModel.$viewValue || null;
                     var successIndicator = elem.find('.success-indicator');
                     var inputElem = elem.find('.inline-datepicker');
-                    var actionBtn = elem.find('.revert-button');
+                    var undoBtn = elem.find('.revert-button');
                     var container = elem.closest('.inline-edit-container');
 
                     scope.popup = {
@@ -44,10 +44,10 @@
                             if (hasActuallyChanged()) {
                                 if (inputElem.is(':focus')) {
                                     // change was typed in the text field
-                                    showActionBtn();
+                                    utilService.showUndoBtn(undoBtn);
                                 }
                             } else {
-                                hideActionBtn();
+                                utilService.hideUndoBtn(undoBtn);
                             }
                         });
                     };
@@ -74,9 +74,9 @@
                     });
 
                     inputElem.on('blur', function() {
-                        hideActionBtn();
-
                         $timeout(function() {
+                            utilService.hideUndoBtn(undoBtn);
+
                             // reject nonsense input
                             if (!angular.isDefined(ngModel.$viewValue)) {
                                 ngModel.$setViewValue(initialValue);
@@ -97,9 +97,9 @@
                         }
                     });
 
-                    actionBtn.click(function() {
+                    undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
-                        hideActionBtn();
+                        utilService.hideUndoBtn(undoBtn);
                         inputElem.focus();
                     });
 
@@ -135,32 +135,24 @@
                         }
                     }
 
-                    function showActionBtn() {
-                        actionBtn.css('opacity', '1');
-                    }
-
-                    function hideActionBtn() {
-                        actionBtn.css('opacity', '0');
-                    }
-
                     function animateSuccessIndicator(commitPromise) {
                         container.removeClass('has-error');
-                        showActionBtn();
+                        utilService.showUndoBtn(undoBtn);
 
                         if (commitPromise) {
-                            actionBtn
+                            undoBtn
                                 .find('i')
                                 .removeClass('fa-undo')
                                 .addClass('fa-spin fa-spinner');
 
                             commitPromise.then(function() {
-                                actionBtn
+                                undoBtn
                                     .find('i')
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-check');
                                 endAnimation();
                             }, function(error) {
-                                actionBtn
+                                undoBtn
                                     .find('i')
                                     .removeClass('fa-spin fa-spinner')
                                     .addClass('fa-remove');
@@ -170,7 +162,7 @@
                                 endAnimation();
                             });
                         } else {
-                            actionBtn
+                            undoBtn
                                 .find('i')
                                 .removeClass('fa-undo')
                                 .addClass('fa-check');
@@ -180,11 +172,11 @@
 
                     function endAnimation() {
                         $timeout(function() {
-                            hideActionBtn();
+                            utilService.hideUndoBtn(undoBtn);
                         }, 500);
 
                         $timeout(function() {
-                            actionBtn
+                            undoBtn
                                 .find('i')
                                 .removeClass('fa-check fa-remove')
                                 .addClass('fa-undo');

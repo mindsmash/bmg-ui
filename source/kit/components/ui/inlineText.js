@@ -43,7 +43,7 @@
                     });
 
                     inputElem.blur(function() {
-                        hideUndoBtn();
+                        utilService.hideUndoBtn(undoBtn);
 
                         // show visual indicator of possible change
                         $timeout(function() {
@@ -78,9 +78,9 @@
                         var newValue = inputElem.val();
 
                         if (newValue != initialValue) {
-                            showUndoBtn();
+                            utilService.showUndoBtn(undoBtn);
                         } else {
-                            hideUndoBtn();
+                            utilService.hideUndoBtn(undoBtn);
                         }
                     });
 
@@ -92,24 +92,16 @@
 
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
-                        hideUndoBtn();
+                        utilService.hideUndoBtn(undoBtn);
                         inputElem.focus();
                     });
-
-                    function hideUndoBtn() {
-                        undoBtn.removeClass('active');
-                    }
-
-                    function showUndoBtn() {
-                        undoBtn.addClass('active');
-                    }
 
                     function animateSuccessIndicator(commitPromise) {
                         container.removeClass('has-error');
 
                         if (commitPromise) {
                             // animate spinner first until promise resolves
-                            showUndoBtn();
+                            utilService.showUndoBtn(undoBtn);
                             undoBtn
                                 .find('i')
                                 .removeClass('fa-undo')
@@ -139,7 +131,7 @@
                                 .find('i')
                                 .removeClass('fa-undo')
                                 .addClass('fa-check');
-                            showUndoBtn();
+                            utilService.showUndoBtn(undoBtn);
 
                             endAnimation();
                         }
@@ -147,7 +139,7 @@
 
                     function endAnimation() {
                         $timeout(function() {
-                            hideUndoBtn();
+                            utilService.hideUndoBtn(undoBtn);
                         }, 500);
 
                         $timeout(function() {

@@ -33,9 +33,9 @@
                             var newValue = ngModel.$viewValue;
 
                             if (newValue != initialValue) {
-                                showUndoBtn();
+                                utilService.showUndoBtn(undoBtn);
                             } else {
-                                hideUndoBtn();
+                                utilService.hideUndoBtn(undoBtn);
                             }
                         });
                     };
@@ -55,7 +55,7 @@
                         var oldInitialValue = initialValue;
 
                         $timeout(function() {
-                            hideUndoBtn();
+                            utilService.hideUndoBtn(undoBtn);
 
                             var newNgModel = ngModel.$viewValue;
 
@@ -83,7 +83,7 @@
 
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
-                        hideUndoBtn();
+                        utilService.hideUndoBtn(undoBtn);
                         inputElem.trigger('focus');
                     });
 
@@ -100,17 +100,9 @@
                         }
                     });
 
-                    function hideUndoBtn() {
-                        undoBtn.removeClass('active');
-                    }
-
-                    function showUndoBtn() {
-                        undoBtn.addClass('active');
-                    }
-
                     function animateSuccessIndicator(commitPromise) {
                         container.removeClass('has-error');
-                        showUndoBtn();
+                        utilService.showUndoBtn(undoBtn);
 
                         if (commitPromise) {
                             undoBtn
@@ -145,7 +137,7 @@
 
                     function endAnimation() {
                         $timeout(function() {
-                            hideUndoBtn();
+                            utilService.hideUndoBtn(undoBtn);
                         }, 500);
 
                         $timeout(function() {
