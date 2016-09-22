@@ -43,10 +43,10 @@
                     });
 
                     inputElem.blur(function() {
-                        utilService.hideUndoBtn(undoBtn);
-
                         // show visual indicator of possible change
                         $timeout(function() {
+                            utilService.hideUndoBtn(undoBtn);
+
                             if (ngModel.$viewValue !== initialValue) {
                                 // call the callback function with the new input value
                                 var commitPromise = angular.isDefined(scope.oncommit) ?
