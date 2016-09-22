@@ -21,7 +21,8 @@
                 refreshDelay: '@?',
                 refresh: '&?',
                 disabled: '=?',
-                allowClear: '=?'
+                allowClear: '=?',
+                allowCommitUnchanged: '=?'
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
@@ -109,7 +110,8 @@
                     });
 
                     scope.onSelect = function(newValue) {
-                        if (initialValue !== newValue) {
+                        var shouldUpdate = scope.allowCommitUnchanged || (initialValue !== newValue);
+                        if (shouldUpdate) {
                             var commitPromise = angular.isDefined(scope.oncommit) ?
                                 scope.oncommit({ $data: newValue }) : undefined;
 
