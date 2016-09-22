@@ -61,9 +61,11 @@
     width: 20px;
     background-color: transparent;
     border: none;
+    cursor: text;
 
     &.active {
         opacity: 1;
+        cursor: pointer;
     }
 }
 
@@ -172,6 +174,10 @@
     background-color: rgb(246, 246, 246);
 }
 
+.inline-select.ui-select-container {
+    z-index: 1050;
+}
+
 .inline-edit-container .inline-datepicker {
     & ~ .calendar-button {
         padding: 0px;
@@ -192,6 +198,10 @@
         top: -2px;
         opacity: 0;
         transition: opacity 0.1s ease-in-out;
+
+        &.active {
+            opacity: 1;
+        }
     }
 }
 
@@ -249,7 +259,16 @@
 
         .success-indicator {
             transition: opacity 0.1s ease-in-out;
+
+            &.clear-button {
+                color: $bmg-gray-dark;
+                font-size: smaller;
+            }
         }
+    }
+
+    .selectize-input.focus .revert-button {
+        cursor: text;
     }
 
     .dropdown-hint {
