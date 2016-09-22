@@ -20,10 +20,15 @@
                 tabindex: '@?',
                 refreshDelay: '@?',
                 refresh: '&?',
-                disabled: '=?'
+                disabled: '=?',
+                allowClear: '=?',
+                allowCommitUnchanged: '=?'
             },
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
+                // to identify it in rootScope events
+                var identifier = guid();
+
                 /* like ngTransclude, but manual …
                  * ngTransclude does not work in this case because
                  * the transcluded html uses the 'item' variable which
@@ -33,6 +38,9 @@
                  */
                 var children = elem.children();
                 var template = angular.element($templateCache.get('bmg/template/inline/select.html'));
+
+                // attach identifier
+                template.find('ui-select').attr('data-identifier', identifier);
 
                 if (children.length > 0) {
                     // copy 'transcluded' html into our template
@@ -67,6 +75,7 @@
                     var inputWrapper = $(template).find('div.selectize-input');
                     var inlineSelectElement = $(template).find('div.inline-select');
                     var uiSelectMatch = $(template).find('div.ui-select-match');
+                    var $select;
 
                     indicatorButton.append(successIndicator);
                     inputWrapper.append(indicatorButton);
@@ -83,9 +92,12 @@
                     // hide success indicator by default unless needed
                     successIndicator.css('opacity', '0');
 
+                    showClearButton();
+
                     scope.$on('uiSelect:open', function(e, opened) {
                         if (opened) {
                             dropdownHint.hide();
+                            successIndicator.hide();
 
                             // inform tabbable form about focus change
                             if (scope.tabindex) {
@@ -93,11 +105,13 @@
                             }
                         } else {
                             dropdownHint.show();
+                            successIndicator.show();
                         }
                     });
 
                     scope.onSelect = function(newValue) {
-                        if (initialValue !== newValue) {
+                        var shouldUpdate = scope.allowCommitUnchanged || (initialValue !== newValue);
+                        if (shouldUpdate) {
                             var commitPromise = angular.isDefined(scope.oncommit) ?
                                 scope.oncommit({ $data: newValue }) : undefined;
 
@@ -126,9 +140,35 @@
                         }
                     });
 
+                    scope.$on('$selectController', function(event, selectCtrl, selectIdentifier) {
+                        if (selectIdentifier === identifier) {
+                            $select = selectCtrl;
+                        }
+                    });
+
+                    successIndicator.click(function(e) {
+                        if (scope.allowClear && successIndicator.hasClass('clear-button')) {
+                            e.stopPropagation();
+
+                            $select.clear(e);
+                        }
+                    });
+
+                    function showClearButton() {
+                        if ((scope.allowClear && !$select) ||
+                            (scope.allowClear && $select && $select.selected)) {
+                            indicatorButton.css('opacity', '1');
+                            successIndicator.css('opacity', '1');
+                            successIndicator
+                                .removeClass('fa-check')
+                                .addClass('fa-remove clear-button');
+                        }
+                    }
+
                     function animateSuccessIndicator(commitPromise) {
                         container.removeClass('has-error');
                         indicatorButton.css('opacity', '1');
+                        successIndicator.removeClass('clear-button');
 
                         if (commitPromise) {
                             successIndicator
@@ -166,9 +206,24 @@
                             successIndicator.css('opacity', '0');
                             indicatorButton.css('opacity', '0');
                         }, 500);
+
+                        $timeout(function() {
+                            showClearButton();
+                        }, 600);
                     }
                 });
             }
         };
+    }
+
+    function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
     }
 })();

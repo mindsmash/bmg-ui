@@ -26,7 +26,7 @@
                     var initialValue = ngModel.$viewValue || null;
                     var successIndicator = elem.find('.success-indicator');
                     var inputElem = elem.find('.inline-datepicker');
-                    var actionBtn = elem.find('.revert-button');
+                    var undoBtn = elem.find('.revert-button');
                     var container = elem.closest('.inline-edit-container');
 
                     scope.popup = {
@@ -44,10 +44,10 @@
                             if (hasActuallyChanged()) {
                                 if (inputElem.is(':focus')) {
                                     // change was typed in the text field
-                                    showActionBtn();
+                                    utilService.showUndoBtn(undoBtn);
                                 }
                             } else {
-                                hideActionBtn();
+                                utilService.hideUndoBtn(undoBtn);
                             }
                         });
                     };
@@ -74,9 +74,9 @@
                     });
 
                     inputElem.on('blur', function() {
-                        hideActionBtn();
-
                         $timeout(function() {
+                            utilService.hideUndoBtn(undoBtn);
+
                             // reject nonsense input
                             if (!angular.isDefined(ngModel.$viewValue)) {
                                 ngModel.$setViewValue(initialValue);
@@ -97,9 +97,9 @@
                         }
                     });
 
-                    actionBtn.click(function() {
+                    undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
-                        hideActionBtn();
+                        utilService.hideUndoBtn(undoBtn);
                         inputElem.focus();
                     });
 
@@ -128,77 +128,25 @@
                                 }) : undefined;
 
                             if (utilService.isPromise(commitPromise)) {
-                                animateSuccessIndicator(commitPromise);
+                                utilService.animateSuccessIndicator(
+                                    commitPromise, undoBtn, container, function(message) {
+                                        scope.errorMessage = message;
+                                    }
+                                );
                             } else {
-                                animateSuccessIndicator();
+                                utilService.animateSuccessIndicator(
+                                    undefined, undoBtn, container, function(message) {
+                                        scope.errorMessage = message;
+                                    }
+                                );
                             }
                         }
                     }
 
-                    function showActionBtn() {
-                        actionBtn.css('opacity', '1');
-                    }
-
-                    function hideActionBtn() {
-                        actionBtn.css('opacity', '0');
-                    }
-
-                    function animateSuccessIndicator(commitPromise) {
-                        container.removeClass('has-error');
-                        showActionBtn();
-
-                        if (commitPromise) {
-                            actionBtn
-                                .find('i')
-                                .removeClass('fa-undo')
-                                .addClass('fa-spin fa-spinner');
-
-                            commitPromise.then(function() {
-                                actionBtn
-                                    .find('i')
-                                    .removeClass('fa-spin fa-spinner')
-                                    .addClass('fa-check');
-                                endAnimation();
-                            }, function(error) {
-                                actionBtn
-                                    .find('i')
-                                    .removeClass('fa-spin fa-spinner')
-                                    .addClass('fa-remove');
-                                container.addClass('has-error');
-                                scope.errorMessage = error;
-
-                                endAnimation();
-                            });
-                        } else {
-                            actionBtn
-                                .find('i')
-                                .removeClass('fa-undo')
-                                .addClass('fa-check');
-                            endAnimation();
-                        }
-                    }
-
-                    function endAnimation() {
-                        $timeout(function() {
-                            hideActionBtn();
-                        }, 500);
-
-                        $timeout(function() {
-                            actionBtn
-                                .find('i')
-                                .removeClass('fa-check fa-remove')
-                                .addClass('fa-undo');
-                        }, 600);
-                    }
-
                     // label support
-                    if (attrs.id) {
-                        var labels = $('body').find('label[for=' + attrs.id + ']');
-
-                        labels.on('click', function() {
-                            inputElem.trigger('focus');
-                        });
-                    }
+                    utilService.addLabelSupport(attrs.id, function() {
+                        inputElem.trigger('focus');
+                    });
                 });
             }
         };
