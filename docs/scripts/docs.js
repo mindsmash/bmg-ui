@@ -374,52 +374,28 @@
 
     angular
         .module('bmg-ui.docs')
-        .controller('LoadingController', LoadingController)
-        .directive('contentPlaceholderReloadButton', contentPlaceholderReloadButton);
+        .controller('ConfirmationCtrl', ConfirmationCtrl);
 
-    LoadingController.$inject = ['$q', '$timeout'];
+    ConfirmationCtrl.$inject = ['userDialogs', 'toastr'];
 
-    function LoadingController($q, $timeout) {
+    function ConfirmationCtrl(userDialogs, toastr) {
         var vm = this;
 
-        vm.loadContent = loadContent;
+        vm.confirm = confirm;
 
-        function loadContent() {
-            var deferred = $q.defer();
-
-            $timeout(function() {
-                vm.content = {
-                    heading: 'Some exciting headline',
-                    text: 'An even more exciting content.'
-                };
-
-                deferred.resolve();
-            }, 2000);
-
-            return deferred.promise;
+        function confirm() {
+            userDialogs.askForConfirmation(
+                'Do you really want to hurt me?', // title
+                'Do you really want to make me cry?', // text
+                'Hurt him', // primary button caption
+                'Cancel', // secondary button caption
+                'danger' // primary button class suffix (optional)
+            ).then(function() {
+                toastr.success('Confirmed dialog successfully.', 'Success');
+            }, function() {
+                toastr.error('Canceled the dialog.', 'Canceled');
+            });
         }
-    }
-
-    contentPlaceholderReloadButton.$inject = ['$compile'];
-
-    function contentPlaceholderReloadButton($compile) {
-        return {
-            restrict: 'A',
-            link: function(scope, elem, attrs) {
-                $(elem).click(function() {
-                    var newElemHtml = '<data-content-placeholder' +
-    					'  id="j4825673gr2354f456f3"' +
-    					'  data-content-promise="ctrl.loadContent()">' +
-    					'  <h2 data-ng-bind="ctrl.content.heading"></h2>' +
-    					'  <p data-ng-bind="ctrl.content.text"></p>' +
-    				'</data-content-placeholder>';
-                    var newElem = angular.element(newElemHtml);
-
-                    $('#j4825673gr2354f456f3').replaceWith(newElem);
-                    $compile(newElem)(scope);
-                });
-            }
-        };
     }
 })();
 
@@ -531,6 +507,60 @@
 
 })(angular);
 
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg-ui.docs')
+        .controller('LoadingController', LoadingController)
+        .directive('contentPlaceholderReloadButton', contentPlaceholderReloadButton);
+
+    LoadingController.$inject = ['$q', '$timeout'];
+
+    function LoadingController($q, $timeout) {
+        var vm = this;
+
+        vm.loadContent = loadContent;
+
+        function loadContent() {
+            var deferred = $q.defer();
+
+            $timeout(function() {
+                vm.content = {
+                    heading: 'Some exciting headline',
+                    text: 'An even more exciting content.'
+                };
+
+                deferred.resolve();
+            }, 2000);
+
+            return deferred.promise;
+        }
+    }
+
+    contentPlaceholderReloadButton.$inject = ['$compile'];
+
+    function contentPlaceholderReloadButton($compile) {
+        return {
+            restrict: 'A',
+            link: function(scope, elem, attrs) {
+                $(elem).click(function() {
+                    var newElemHtml = '<data-content-placeholder' +
+    					'  id="j4825673gr2354f456f3"' +
+    					'  data-content-promise="ctrl.loadContent()">' +
+    					'  <h2 data-ng-bind="ctrl.content.heading"></h2>' +
+    					'  <p data-ng-bind="ctrl.content.text"></p>' +
+    				'</data-content-placeholder>';
+                    var newElem = angular.element(newElemHtml);
+
+                    $('#j4825673gr2354f456f3').replaceWith(newElem);
+                    $compile(newElem)(scope);
+                });
+            }
+        };
+    }
+})();
+
 (function(angular) {
     'use strict';
 
@@ -598,36 +628,6 @@
     }
 
 })(angular);
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg-ui.docs')
-        .controller('ConfirmationCtrl', ConfirmationCtrl);
-
-    ConfirmationCtrl.$inject = ['userDialogs', 'toastr'];
-
-    function ConfirmationCtrl(userDialogs, toastr) {
-        var vm = this;
-
-        vm.confirm = confirm;
-
-        function confirm() {
-            userDialogs.askForConfirmation(
-                'Do you really want to hurt me?', // title
-                'Do you really want to make me cry?', // text
-                'Hurt him', // primary button caption
-                'Cancel', // secondary button caption
-                'danger' // primary button class suffix (optional)
-            ).then(function() {
-                toastr.success('Confirmed dialog successfully.', 'Success');
-            }, function() {
-                toastr.error('Canceled the dialog.', 'Canceled');
-            });
-        }
-    }
-})();
 
 (function(angular) {
     'use strict';
