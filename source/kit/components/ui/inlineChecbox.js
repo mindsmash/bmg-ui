@@ -29,7 +29,7 @@
                     });
 
                     // global label support
-                    $('body').find('label[for="' + attrs.id + '"]').on('click', function() {
+                    utilService.addLabelSupport(attrs.id, function() {
                         toggleModel();
                     });
 

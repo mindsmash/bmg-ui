@@ -7,7 +7,6 @@
     EditableController.$inject = ['$filter', '$rootScope', '$q', '$timeout'];
 
     function EditableController($filter, $rootScope, $q, $timeout) {
-
         this.site = {
             value: 2,
             text: 'BMG Rights Management GE'

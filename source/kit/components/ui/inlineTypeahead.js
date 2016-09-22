@@ -33,9 +33,9 @@
                             var newValue = ngModel.$viewValue;
 
                             if (newValue != initialValue) {
-                                showUndoBtn();
+                                utilService.showUndoBtn(undoBtn);
                             } else {
-                                hideUndoBtn();
+                                utilService.hideUndoBtn(undoBtn);
                             }
                         });
                     };
@@ -55,7 +55,7 @@
                         var oldInitialValue = initialValue;
 
                         $timeout(function() {
-                            hideUndoBtn();
+                            utilService.hideUndoBtn(undoBtn);
 
                             var newNgModel = ngModel.$viewValue;
 
@@ -67,9 +67,17 @@
                                     }) : undefined;
 
                                 if (utilService.isPromise(commitPromise)) {
-                                    animateSuccessIndicator(commitPromise);
+                                    utilService.animateSuccessIndicator(
+                                        commitPromise, undoBtn, container, function(message) {
+                                            scope.errorMessage = message;
+                                        }
+                                    );
                                 } else {
-                                    animateSuccessIndicator();
+                                    utilService.animateSuccessIndicator(
+                                        undefined, undoBtn, container, function(message) {
+                                            scope.errorMessage = message;
+                                        }
+                                    );
                                 }
                             }
                         }, 100); // to make sure this happens after undo button click
@@ -83,7 +91,7 @@
 
                     undoBtn.click(function() {
                         ngModel.$setViewValue(initialValue);
-                        hideUndoBtn();
+                        utilService.hideUndoBtn(undoBtn);
                         inputElem.trigger('focus');
                     });
 
@@ -100,70 +108,10 @@
                         }
                     });
 
-                    function hideUndoBtn() {
-                        undoBtn.removeClass('active');
-                    }
-
-                    function showUndoBtn() {
-                        undoBtn.addClass('active');
-                    }
-
-                    function animateSuccessIndicator(commitPromise) {
-                        container.removeClass('has-error');
-                        showUndoBtn();
-
-                        if (commitPromise) {
-                            undoBtn
-                                .find('i')
-                                .removeClass('fa-undo')
-                                .addClass('fa-spin fa-spinner');
-
-                            commitPromise.then(function() {
-                                undoBtn
-                                    .find('i')
-                                    .removeClass('fa-spin fa-spinner')
-                                    .addClass('fa-check');
-                                endAnimation();
-                            }, function(error) {
-                                undoBtn
-                                    .find('i')
-                                    .removeClass('fa-spin fa-spinner')
-                                    .addClass('fa-remove');
-                                container.addClass('has-error');
-                                scope.errorMessage = error;
-
-                                endAnimation();
-                            });
-                        } else {
-                            undoBtn
-                                .find('i')
-                                .removeClass('fa-undo')
-                                .addClass('fa-check');
-                            endAnimation();
-                        }
-                    }
-
-                    function endAnimation() {
-                        $timeout(function() {
-                            hideUndoBtn();
-                        }, 500);
-
-                        $timeout(function() {
-                            undoBtn
-                                .find('i')
-                                .removeClass('fa-check fa-remove')
-                                .addClass('fa-undo');
-                        }, 600);
-                    }
-
                     // label support
-                    if (attrs.id) {
-                        var labels = $('body').find('label[for=' + attrs.id + ']');
-
-                        labels.on('click', function() {
-                            inputElem.trigger('focus');
-                        });
-                    }
+                    utilService.addLabelSupport(attrs.id, function() {
+                        inputElem.trigger('focus');
+                    });
                 });
             }
         };
