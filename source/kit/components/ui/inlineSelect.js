@@ -112,6 +112,8 @@
                     scope.onSelect = function(newValue) {
                         var shouldUpdate = scope.allowCommitUnchanged || (initialValue !== newValue);
                         if (shouldUpdate) {
+                            ngModel.$setViewValue(newValue);
+                            
                             var commitPromise = angular.isDefined(scope.oncommit) ?
                                 scope.oncommit({ $data: newValue }) : undefined;
 
