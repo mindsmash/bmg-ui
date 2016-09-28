@@ -96,6 +96,28 @@
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 
+				<h2>Multi-Select</h2>
+				<div class="form-group">
+					<ui-select
+						multiple
+						data-ng-model="multipleDemo.selectedPeople"
+						theme="bootstrap"
+						sortable="true"
+						close-on-select="false">
+						<ui-select-match
+							placeholder="Select people …">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+						<ui-select-choices
+							repeat="person in allPeople | propsFilter: {name: $select.search, age: $select.search, email: $select.search}">
+							<div
+								data-ng-bind-html="person.name | highlight: $select.search"></div>
+							<small>
+							Email: <span data-ng-bind-html="person.email | highlight: $select.search"></span>
+							Age: <span data-ng-bind-html="''+person.age | highlight: $select.search"></span>
+							</small>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+
 				<br/>
 				<h2>Input Group</h2>
 				<div class="form-group">
