@@ -34,6 +34,10 @@
                     });
 
                     function toggleModel() {
+                        if (scope.disabled === true) {
+                            return;
+                        }
+
                         ngModel.$setViewValue(!ngModel.$viewValue);
 
                         // inform tabbable form about focus change

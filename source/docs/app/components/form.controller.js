@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('bmg-ui.docs')
-        .controller('FormController', FormController);
+        .controller('FormController', FormController)
+        .filter('propsFilter', propsFilter);
 
     FormController.$inject = ['$scope', '$http'];
 
@@ -43,6 +44,63 @@
                 blur: 250
             },
             getterSetter: true
+        };
+
+        $scope.allPeople = [{
+            name: 'Adam', age: 34, email: 'adam@gmail.com'
+        }, {
+            name: 'George', age: 46, email: 'george@yahoo.com'
+        }, {
+            name: 'Eric', age: 62, email: 'eric@gmx.de'
+        }, {
+            name: 'Robert', age: 23, email: 'robert@gmail.com'
+        }, {
+            name: 'Vanessa', age: 31, email: 'vanessa@facebook.com'
+        }, {
+            name: 'Eva', age: 34, email: 'eva@hotmail.com'
+        }, {
+            name: 'Laura', age: 50, email: 'laura@gmail.com'
+        }, {
+            name: 'Lisa', age: 24, email: 'lisa@gmx.de'
+        }];
+
+        $scope.multipleDemo = {
+            selectedPeople: []
+        };
+    }
+
+    propsFilter.$inject = [];
+
+    function propsFilter() {
+        return function(items, props) {
+            var out = [];
+
+            if (angular.isArray(items)) {
+                var keys = Object.keys(props);
+
+                items.forEach(function(item) {
+                    var itemMatches = false;
+
+                    for (var i = 0; i < keys.length; i++) {
+                        var prop = keys[i];
+                        var text = props[prop].toLowerCase();
+
+                        if (item[prop].toString().toLowerCase().indexOf(text) !== -1) {
+                            itemMatches = true;
+                            break;
+                        }
+                    }
+
+                    if (itemMatches) {
+                        out.push(item);
+                    }
+                });
+            } else {
+                // Let the output be the input untouched
+                out = items;
+            }
+
+            return out;
         };
     }
 

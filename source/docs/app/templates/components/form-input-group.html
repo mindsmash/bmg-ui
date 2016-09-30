@@ -96,6 +96,47 @@
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
 
+				<h2>Multi-Select</h2>
+				<div class="form-group">
+					<ui-select
+						multiple
+						data-ng-model="multipleDemo.selectedPeople"
+						theme="bootstrap"
+						sortable="true"
+						close-on-select="true">
+						<ui-select-match
+							placeholder="Select people …">{{$item.name}} &lt;{{$item.email}}&gt;</ui-select-match>
+						<ui-select-choices
+							repeat="person in allPeople | propsFilter: { name: $select.search, age: $select.search, email: $select.search }">
+							<div
+								data-ng-bind-html="person.name | highlight: $select.search"></div>
+							<small>
+							Email: <span data-ng-bind-html="person.email | highlight: $select.search"></span>
+							Age: <span data-ng-bind-html="''+person.age | highlight: $select.search"></span>
+							</small>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+				<pre><code class="html">&lt;ui-select
+    multiple
+    data-ng-model=&quot;multipleDemo.selectedPeople&quot;
+    theme=&quot;bootstrap&quot;
+    sortable=&quot;true&quot;
+    close-on-select=&quot;true&quot;&gt;
+    &lt;ui-select-match
+        placeholder=&quot;Select people &hellip;&quot;&gt;{{$item.name}} &amp;lt;{{$item.email}}&amp;gt;&lt;/ui-select-match&gt;
+    &lt;ui-select-choices
+        repeat=&quot;person in allPeople | propsFilter: { name: $select.search, age: $select.search, email: $select.search }&quot;&gt;
+        &lt;div
+            data-ng-bind-html=&quot;person.name | highlight: $select.search&quot;&gt;&lt;/div&gt;
+        &lt;small&gt;
+        Email: &lt;span data-ng-bind-html=&quot;person.email | highlight: $select.search&quot;&gt;&lt;/span&gt;
+        Age: &lt;span data-ng-bind-html=&quot;''+person.age | highlight: $select.search&quot;&gt;&lt;/span&gt;
+        &lt;/small&gt;
+    &lt;/ui-select-choices&gt;
+&lt;/ui-select&gt;</code></pre>
+				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="https://github.com/angular-ui/ui-select">angular-ui-select</a></div>
+
 				<br/>
 				<h2>Input Group</h2>
 				<div class="form-group">
