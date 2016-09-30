@@ -18,8 +18,23 @@
       width: 100% !important;
     }
   }
-}
+  &:not(.ui-select-multiple) {
+    width: 100% !important;
+  }
 
+  &.ui-select-multiple {
+    .ui-select-match-close {
+      position: relative;
+      top: 2px;
+    }
+
+    input.ui-select-search.input-xs {
+      min-width: 0;
+      width: auto;
+      height: auto;
+    }
+  }
+}
 
 .custom-remove-icon {
   min-width: 0 !important;
