@@ -2,6 +2,11 @@
 
 ## Versions
 
+### v0.7.5
+
+ - thinner clear button for inline-select
+ - removed css declaration that breaks inline-select
+
 ### v0.7.4
 
  - add changelog 

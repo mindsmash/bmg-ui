@@ -61,11 +61,9 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 .ui-select-container .ui-select-match + .ui-select-search:not(.ng-touched) { width: 100% !important; }
 
-.ui-select-container:not(.ui-select-multiple) { width: 100% !important; }
-
 .ui-select-container.ui-select-multiple .ui-select-match-close { position: relative; top: 2px; }
 
-.ui-select-container.ui-select-multiple input.ui-select-search.input-xs { min-width: 0; width: auto; height: auto; }
+.ui-select-container.ui-select-multiple input.ui-select-search.input-xs { min-width: 0; height: auto; }
 
 .custom-remove-icon { min-width: 0 !important; color: #4d4d4d !important; }
 
@@ -192,6 +190,8 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 .uib-datepicker-popup { padding-bottom: 10px !important; }
 
 .uib-datepicker-popup.dropdown-menu { z-index: 1030; }
+
+.fa-times-thin:before { content: '\00d7'; position: relative; top: -1px; font-size: 16px; }
 
 table.uib-daypicker > thead > tr:first-child { height: 60px; background-color: #4d4d4d; }
 
