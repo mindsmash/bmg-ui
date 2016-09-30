@@ -19,7 +19,7 @@
     }
   }
   &:not(.ui-select-multiple) {
-    width: 100% !important;
+    //width: 100% !important; // breaks inline-edits!
   }
 
   &.ui-select-multiple {
@@ -28,9 +28,9 @@
       top: 2px;
     }
 
-    input.ui-select-search.input-xs {
+    & input.ui-select-search.input-xs {
       min-width: 0;
-      width: auto;
+      //width: auto; //seems unnecessary
       height: auto;
     }
   }
