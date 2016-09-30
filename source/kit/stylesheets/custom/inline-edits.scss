@@ -308,3 +308,10 @@
 .uib-datepicker-popup.dropdown-menu {
     z-index: 1030;
 }
+
+.fa-times-thin:before {
+    content: '\00d7';
+    position: relative;
+    top: -1px;
+    font-size: 16px;
+}

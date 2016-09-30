@@ -113,7 +113,7 @@
                         var shouldUpdate = scope.allowCommitUnchanged || (initialValue !== newValue);
                         if (shouldUpdate) {
                             ngModel.$setViewValue(newValue);
-                            
+
                             var commitPromise = angular.isDefined(scope.oncommit) ?
                                 scope.oncommit({ $data: newValue }) : undefined;
 
@@ -162,8 +162,8 @@
                             indicatorButton.css('opacity', '1');
                             successIndicator.css('opacity', '1');
                             successIndicator
-                                .removeClass('fa-check')
-                                .addClass('fa-remove clear-button');
+                                .removeClass('fa-check fa-remove')
+                                .addClass('fa-times-thin clear-button');
                         }
                     }
 
@@ -175,7 +175,7 @@
                         if (commitPromise) {
                             successIndicator
                                 .css('opacity', '1')
-                                .removeClass('fa-check fa-remove')
+                                .removeClass('fa-check fa-remove fa-times-thin')
                                 .addClass('fa-spin fa-spinner');
 
                             commitPromise.then(function() {
