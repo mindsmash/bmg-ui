@@ -61,6 +61,8 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 .ui-select-container .ui-select-match { outline: none; box-shadow: none; }
 
+.ui-select-container .ui-select-match + .ui-select-search:not(.ng-touched) { width: 100% !important; }
+
 .ui-select-container.ui-select-multiple .ui-select-match-close { position: relative; top: 2px; }
 
 .ui-select-container.ui-select-multiple input.ui-select-search.input-xs { min-width: 0; height: auto; }
