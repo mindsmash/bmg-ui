@@ -57,9 +57,9 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 .ui-select-bootstrap .ui-select-choices-row.active > a { color: #4d4d4d; background-color: rgba(218, 218, 218, 0.25); }
 
-.ui-select-container .ui-select-match { outline: none; box-shadow: none; }
+.inline-select .ui-select-container .ui-select-match:not(.ui-select-multiple) { width: auto; }
 
-.ui-select-container .ui-select-match + .ui-select-search:not(.ng-touched) { width: 100% !important; }
+.ui-select-container .ui-select-match { outline: none; box-shadow: none; }
 
 .ui-select-container.ui-select-multiple .ui-select-match-close { position: relative; top: 2px; }
 

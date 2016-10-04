@@ -9,17 +9,20 @@
   }
 }
 
+.inline-select {
+  .ui-select-container {
+    .ui-select-match {
+      &:not(.ui-select-multiple) {
+        width: auto; // breaks inline-edits!
+      }
+    }
+  }
+}
+
 .ui-select-container {
   .ui-select-match {
     outline: none;
     box-shadow: none;
-
-    & + .ui-select-search:not(.ng-touched) {
-      width: 100% !important;
-    }
-  }
-  &:not(.ui-select-multiple) {
-    //width: 100% !important; // breaks inline-edits!
   }
 
   &.ui-select-multiple {
@@ -30,7 +33,6 @@
 
     & input.ui-select-search.input-xs {
       min-width: 0;
-      //width: auto; //seems unnecessary
       height: auto;
     }
   }
