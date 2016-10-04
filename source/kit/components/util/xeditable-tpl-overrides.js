@@ -42,6 +42,25 @@
                     '</div>'
                 ].join(''));
 
+            $templateCache.put('bmg/template/inline/textarea.html',
+                [
+                    '<div class="inline-edit-container textarea-container">',
+                    '    <textarea',
+                    '        class="inline-textarea"',
+                    '        data-ng-model="ngModel"',
+                    '        tabindex="{{tabindex}}"',
+                    '        data-ng-disabled="disabled"',
+                    '        placeholder="{{placeholder}}"></textarea><button', // sic! no whitespace between elements
+                    '        type="button"',
+                    '        class="revert-button">',
+                    '        <i class="fa fa-undo"></i>',
+                    '    </button>',
+                    '    <div',
+                    '        class="inline-error"',
+                    '        data-ng-bind="errorMessage"></div>',
+                    '</div>'
+                ].join(''));
+
             $templateCache.put('bmg/template/inline/checkbox.html',
                 [
                     '<div class="inline-edit-container">',

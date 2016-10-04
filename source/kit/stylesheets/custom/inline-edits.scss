@@ -70,7 +70,6 @@
 }
 
 .inline-edit-container {
-    line-height: 30px;
     max-height: 30px;
     padding: 0;
     margin: 0;
@@ -138,6 +137,7 @@
 }
 
 .inline-edit-container .inline-text,
+.inline-edit-container .inline-textarea,
 .inline-edit-container .inline-typeahead,
 .inline-edit-container .inline-datepicker,
 .inline-edit-container .ui-select-match,
@@ -164,6 +164,21 @@
     &:invalid {
         border-bottom-color: $bmg-error;
     }
+}
+
+.inline-edit-container.textarea-container {
+    max-height: 99px;
+
+    .revert-button {
+        top: -72px;
+    }
+}
+
+.inline-edit-container .inline-textarea {
+    max-height: 1000px !important;
+    height: 90px;
+    line-height: normal;
+    padding-top: 5px !important;
 }
 
 .inline-edit-container .ui-select-match {
