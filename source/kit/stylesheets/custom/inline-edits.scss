@@ -93,7 +93,7 @@
     }
 
     &.has-error {
-        input, .ui-select-match {
+        input, .ui-select-match, textarea {
             border-bottom-color: $bmg-error;
         }
 
@@ -168,6 +168,10 @@
 
 .inline-edit-container.textarea-container {
     max-height: 99px;
+
+    .inline-error {
+        margin-top: -12px;
+    }
 
     .revert-button {
         top: -72px;
