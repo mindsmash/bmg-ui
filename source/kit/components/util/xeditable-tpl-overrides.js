@@ -46,6 +46,8 @@
                 [
                     '<div class="inline-edit-container textarea-container">',
                     '    <textarea',
+                    '        msd-elastic',
+                    '        rows="1"',
                     '        class="inline-textarea"',
                     '        data-ng-model="ngModel"',
                     '        tabindex="{{tabindex}}"',

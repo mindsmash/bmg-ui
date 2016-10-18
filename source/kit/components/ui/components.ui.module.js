@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('bmg.components.ui', [
+            'monospaced.elastic',
             'ui.select',
             'ngSanitize',
             'bmg/template/inlineEdits',

@@ -167,7 +167,7 @@
 }
 
 .inline-edit-container.textarea-container {
-    max-height: 99px;
+    max-height: initial !important;
 
     .inline-error {
         margin-top: -12px;
@@ -180,7 +180,6 @@
 
 .inline-edit-container .inline-textarea {
     max-height: 1000px !important;
-    height: 90px;
     line-height: normal;
     padding-top: 5px !important;
 }

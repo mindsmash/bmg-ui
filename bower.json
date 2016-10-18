@@ -23,7 +23,8 @@
   ],
   "dependencies": {
     "font-awesome": "~4.6.1",
-    "mindsmash-source-sans-pro": "~1.1.0"
+    "mindsmash-source-sans-pro": "~1.1.0",
+    "angular-elastic": "^2.5.1"
   },
   "devDependencies": {
     "jquery": "^2.2.2",
@@ -39,7 +40,7 @@
     "holderjs": "~2.9.0",
     "jquery.floatThead": "floatThead#^1.4.0",
     "ngSticky": "^1.8.10",
-	"lodash": "^4.13.1"
+    "lodash": "^4.13.1"
   },
   "overrides": {
     "highlightjs": {
