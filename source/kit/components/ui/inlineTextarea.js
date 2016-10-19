@@ -28,6 +28,12 @@
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-textarea');
 
+                    container.css('height', inputElem.css('height'));
+
+                    scope.$on('elastic:resize', function(event, element, oldHeight, newHeight) {
+                        container.css('height', newHeight + 'px');
+                    });
+
                     inputElem.focus(function() {
                         // update initial value on new focus
                         initialValue = ngModel.$viewValue;

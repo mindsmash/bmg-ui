@@ -168,13 +168,14 @@
 
 .inline-edit-container.textarea-container {
     max-height: initial !important;
+    height: 30px;
 
     .inline-error {
         margin-top: -12px;
     }
 
     .revert-button {
-        top: -72px;
+        position: absolute;
     }
 }
 

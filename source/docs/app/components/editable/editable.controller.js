@@ -40,7 +40,8 @@
             'title': 'Peggy the Pistol/Hogs Are a Coming',
             'date': new Date(1999, 4, 15),
             'stateOfBirth': 'Arkansas',
-            'releaseDateTentative': true
+            'releaseDateTentative': true,
+            'notesComments': 'This is an auto-resizing textarea that will grow and shrink as you type text into it. What an amazing advance in technology.'
         };
 
         this.loadAsync = function(query) {
