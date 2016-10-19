@@ -74,6 +74,22 @@
     padding: 0;
     margin: 0;
 
+    ::-webkit-input-placeholder {
+        font-weight: 200;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+        font-weight: 200;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+        font-weight: 200;
+    }
+
+    :-ms-input-placeholder {
+        font-weight: 200;
+    }
+
     .inline-edit-disabled {
         color: $bmg-gray-lighter;
     }
