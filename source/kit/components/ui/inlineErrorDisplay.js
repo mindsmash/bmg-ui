@@ -17,6 +17,11 @@
             controllerAs: 'ctrl',
             require: 'inlineErrorDisplay',
             link: function(scope, elem, attrs, ctrl) {
+                if (angular.isUndefined(ctrl.text)) {
+                    // no error text, no tooltip
+                    return;
+                }
+
                 var template = $templateCache.get('bmg/template/inline/error-tooltip.html');
                 var triangle = angular.element(template);
                 var compiledTriangle = $compile(triangle)(scope);
