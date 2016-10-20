@@ -134,5 +134,16 @@
                 </tr>
             </tbody>
         </table>
+
+        <p>
+            The HTML inside
+			the <code>data-inline-select</code> element will be used as a template for the select items
+			when the select is opened. The current item object is available in the <code>item</code>
+			variable. Apply the <code>highlight</code> filter as demonstrated above to visually highlight
+			the search text entered by the user inside the select items. If no child element of
+            <code>data-inline-select</code> is supplied, the following HTML will be used as the default
+            item template:
+        </p>
+        <pre><code class="html">&lt;span data-ng-bind-html=&quot;item | highlight:$select.search&quot;&gt;&lt;/span&gt;</code></pre>
     </div>
 </div>
