@@ -22,6 +22,16 @@
     angular
         .module('bmg/template/inlineEdits', [])
         .run(['$templateCache', function($templateCache) {
+            $templateCache.put('bmg/template/inline/error-tooltip.html', [
+                '<i',
+                '    class="fa fa-exclamation-triangle inline-error"',
+                '    title="{{ ctrl.text }}"',
+                '    data-placement="top"',
+                '    data-toggle="tooltip"',
+                '    rel="tooltip"',
+                '    ></i>'
+            ].join(''));
+
             $templateCache.put('bmg/template/inline/text.html',
                 [
                     '<div class="inline-edit-container">',

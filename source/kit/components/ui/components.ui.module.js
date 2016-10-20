@@ -2,6 +2,7 @@
     'use strict';
 
     angular.module('bmg.components.ui', [
+            'ui.bootstrap',
             'monospaced.elastic',
             'ui.select',
             'ngSanitize',

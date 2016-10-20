@@ -27,9 +27,12 @@
                     name: 'Liam Gallagher',
                     country: 'United Kingdom',
                     age: 43
-                }
+                },
+                answer: 45
             }
         };
+
+        vm.answerError = 'Wrong answer, dumbhead.';
 
         vm.birthDatepickerOptions = {
             maxDate: new Date(),

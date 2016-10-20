@@ -310,5 +310,81 @@
     oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-checkbox&gt;</code></pre>
 			</div>
 		</div>
+
+		<h2>Inline textarea</h2>
+
+		<p>
+			Inline textareas are dynamic text field that grow with their content. They start out as
+			single-line text fields and will dynamically adapt to be tall enough to display all their
+			content as it's being entered, up to a maximum height of 200px.
+		</p>
+
+		<div class="inline-form">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-xs-4 col-sm-2 col-md-2 label-container">
+						<label for="user-biography-text">Biography</label>
+					</div>
+					<div class="col-xs-8 col-sm-4 col-md-3">
+						<data-inline-textarea
+							id="user-biography-text"
+							placeholder="Biography"
+							data-ng-model="inlineCtrl.data.user.biography"
+							oncommit="inlineCtrl.sendToServer($data)"></data-inline-textarea>
+					</div>
+
+					<div class="clearfix visible-xs"></div>
+					<div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+					<div class="col-xs-4 col-sm-2 col-md-2 label-container">
+						<label for="user-testament-text">Testament</label>
+					</div>
+					<div class="col-xs-8 col-sm-4 col-md-3">
+						<data-inline-textarea
+							id="user-testament-text"
+							placeholder="Testament"
+							data-ng-model="inlineCtrl.data.user.testament"
+							oncommit="inlineCtrl.saveImmediately($data)"></data-inline-textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<pre><code class="html">&lt;data-inline-textarea
+    id=&quot;user-biography-text&quot;
+    placeholder=&quot;Biography&quot;
+    data-ng-model=&quot;inlineCtrl.data.user.biography&quot;
+    oncommit=&quot;inlineCtrl.sendToServer($data)&quot;&gt;&lt;/data-inline-textarea&gt;</code></pre>
+			</div>
+		</div>
+
+		<h2>Error display in labels</h2>
+
+		<div class="inline-form">
+			<div class="row">
+				<div class="form-group">
+					<div class="col-xs-4 col-sm-2 col-md-2 label-container">
+						<label
+							for="user-answer-text"
+							inline-error-display="inlineCtrl.answerError">Answer to everything</label>
+					</div>
+					<div class="col-xs-8 col-sm-4 col-md-3">
+						<data-inline-textarea
+							id="user-answer-text"
+							placeholder="Answer"
+							data-ng-model="inlineCtrl.data.user.answer"
+							oncommit="inlineCtrl.saveImmediately($data)"></data-inline-textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<pre><code class="html">&lt;label for=&quot;user-answer-text&quot; inline-error-display=&quot;inlineCtrl.answerError&quot;&gt;Answer to everything&lt;/label&gt;</code></pre>
+			</div>
+		</div>
 	</div>
 </div>

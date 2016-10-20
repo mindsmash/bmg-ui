@@ -44,6 +44,10 @@
             'notesComments': 'This is an auto-resizing textarea that will grow and shrink as you type text into it. What an amazing advance in technology.'
         };
 
+        this.errors = {
+            'barcode': 'Number must be prime.'
+        };
+
         this.loadAsync = function(query) {
             // reload list items based on query
         };
