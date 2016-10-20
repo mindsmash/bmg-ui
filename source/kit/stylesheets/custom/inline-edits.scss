@@ -69,11 +69,7 @@
     }
 }
 
-.inline-edit-container {
-    max-height: 30px;
-    padding: 0;
-    margin: 0;
-
+.inline-edit-container, .inline-select {
     ::-webkit-input-placeholder {
         font-weight: 200;
     }
@@ -93,6 +89,12 @@
     .inline-edit-disabled {
         color: $bmg-gray-lighter;
     }
+}
+
+.inline-edit-container {
+    max-height: 30px;
+    padding: 0;
+    margin: 0;
 
     .inline-error {
         line-height: 20px;
