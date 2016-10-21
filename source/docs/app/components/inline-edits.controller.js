@@ -61,6 +61,7 @@
         }];
 
         vm.sendToServer = sendToServer;
+        vm.saveImmediately = saveImmediately;
 
         function sendToServer(value) {
             var deferred = $q.defer();
