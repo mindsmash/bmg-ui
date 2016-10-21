@@ -59,12 +59,93 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&lt;label for=&quot;squaredCheckbox3&quot;&gt;I'm the first in line&lt;/label&gt;
 &lt;/div&gt;</code></pre>
 
+				<h2>Radio button</h2>
+				<div class="bmg-radio-button-with-label">
+					<div class="bmg-radio-button">
+						<input
+							type="radio"
+							id="radio-button-1"
+							data-ng-model="checkboxSliderCtrl.radioOption.name"
+							value="a" />
+						<label for="radio-button-1"><div></div></label>
+					</div>
+					<label for="radio-button-1">Option 1</label>
+				</div>
+
+				<div class="bmg-radio-button-with-label">
+					<div class="bmg-radio-button">
+						<input
+							type="radio"
+							id="radio-button-2"
+							data-ng-model="checkboxSliderCtrl.radioOption.name"
+							value="b" />
+						<label for="radio-button-2"><div></div></label>
+					</div>
+					<label for="radio-button-2">Option 2</label>
+				</div>
+
+				<div class="bmg-radio-button-with-label">
+					<div class="bmg-radio-button">
+						<input
+							type="radio"
+							id="radio-button-3"
+							data-ng-model="checkboxSliderCtrl.radioOption.name"
+							value="c" />
+						<label for="radio-button-3"><div></div></label>
+					</div>
+					<label for="radio-button-3">Option 3</label>
+				</div>
+
+				<pre><code class="html">&lt;div class=&quot;bmg-radio-button-with-label&quot;&gt;
+    &lt;div class=&quot;bmg-radio-button&quot;&gt;
+        &lt;input type=&quot;radio&quot; id=&quot;radio-button-1&quot; data-ng-model=&quot;checkboxSliderCtrl.radioOption.name&quot; value=&quot;a&quot; /&gt;
+        &lt;label for=&quot;radio-button-1&quot;&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;label for=&quot;radio-button-1&quot;&gt;Option 1&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
+				<h2>Inline Radio Buttons</h2>
+				<div class="bmg-radio-button-with-label bmg-radio-button-inline">
+					<div class="bmg-radio-button">
+						<input type="radio" id="radioInline1" value="orange"
+							   data-ng-model="checkboxSliderCtrl.checkbox.lulu"/>
+						<label for="radioInline1"><div></div></label>
+					</div>
+					<label for="radioInline1">Option 1</label>
+				</div>
+
+				<div class="bmg-radio-button-with-label bmg-radio-button-inline">
+					<div class="bmg-radio-button">
+						<input type="radio" id="radioInline2" value="purple"
+							   data-ng-model="checkboxSliderCtrl.checkbox.lulu"/>
+						<label for="radioInline2"><div></div></label>
+					</div>
+					<label for="radioInline2">Option 2</label>
+				</div>
+
+				<div class="bmg-radio-button-with-label bmg-radio-button-inline">
+					<div class="bmg-radio-button">
+						<input type="radio" id="radioInline3" value="yellow"
+							   data-ng-model="checkboxSliderCtrl.checkbox.lulu"/>
+						<label for="radioInline3"><div></div></label>
+					</div>
+					<label for="radioInline3">Option 3</label>
+				</div>
+
+				<pre><code class="html">&lt;div class=&quot;bmg-radio-button-with-label bmg-radio-button-inline&quot;&gt;
+    &lt;div class=&quot;bmg-radio-button&quot;&gt;
+        &lt;input type=&quot;radio&quot; id=&quot;radioInline1&quot; value=&quot;orange&quot; data-ng-model=&quot;checkboxSliderCtrl.checkbox.lulu&quot;/&gt;
+        &lt;label for=&quot;radioInline1&quot;&gt;&lt;div&gt;&lt;/div&gt;&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;label for=&quot;radioInline1&quot;&gt;Option 1&lt;/label&gt;
+&lt;/div&gt;</code></pre>
+
 				<h2>Slider</h2>
 				<div>
 					<rzslider
-							rz-slider-model="checkboxSliderCtrl.slider.min"
-							rz-slider-high="checkboxSliderCtrl.slider.max"
-							rz-slider-options="checkboxSliderCtrl.slider.options"></rzslider>
+						rz-slider-model="checkboxSliderCtrl.slider.min"
+						rz-slider-high="checkboxSliderCtrl.slider.max"
+						rz-slider-options="checkboxSliderCtrl.slider.options"></rzslider>
 				</div>
 				<br>
 				<pre><code class="html">&lt;rzslider rz-slider-options="slider.options"

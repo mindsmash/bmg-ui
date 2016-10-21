@@ -69,15 +69,32 @@
     }
 }
 
-.inline-edit-container {
-    line-height: 30px;
-    max-height: 30px;
-    padding: 0;
-    margin: 0;
+.inline-edit-container, .inline-select {
+    ::-webkit-input-placeholder {
+        font-weight: 200;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+        font-weight: 200;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+        font-weight: 200;
+    }
+
+    :-ms-input-placeholder {
+        font-weight: 200;
+    }
 
     .inline-edit-disabled {
         color: $bmg-gray-lighter;
     }
+}
+
+.inline-edit-container {
+    max-height: 30px;
+    padding: 0;
+    margin: 0;
 
     .inline-error {
         line-height: 20px;
@@ -94,7 +111,7 @@
     }
 
     &.has-error {
-        input, .ui-select-match {
+        input, .ui-select-match, textarea {
             border-bottom-color: $bmg-error;
         }
 
@@ -138,6 +155,7 @@
 }
 
 .inline-edit-container .inline-text,
+.inline-edit-container .inline-textarea,
 .inline-edit-container .inline-typeahead,
 .inline-edit-container .inline-datepicker,
 .inline-edit-container .ui-select-match,
@@ -164,6 +182,25 @@
     &:invalid {
         border-bottom-color: $bmg-error;
     }
+}
+
+.inline-edit-container.textarea-container {
+    max-height: initial !important;
+    height: 30px;
+
+    .inline-error {
+        margin-top: -12px;
+    }
+
+    .revert-button {
+        position: absolute;
+    }
+}
+
+.inline-edit-container .inline-textarea {
+    max-height: 200px !important;
+    line-height: normal;
+    padding-top: 5px !important;
 }
 
 .inline-edit-container .ui-select-match {
@@ -314,4 +351,9 @@
     position: relative;
     top: -1px;
     font-size: 16px;
+}
+
+label .inline-error {
+    color: $bmg-error;
+    margin-left: 7px;
 }

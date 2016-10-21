@@ -208,25 +208,24 @@ textarea {
   }
 }
 
-input[type=checkbox] {
+input[type=checkbox], input[type=radio] {
   visibility: hidden;
   display: none;
 }
 
-.bmg-checkbox {
+// BMG Checkbox and Radio Button
+.bmg-checkbox, .bmg-radio-button {
   float: left;
   width: 18px;
   height: 18px;
   background: $bmg-border;
-  border-radius: 4px;
   margin: 2px 8px 2px 0;
   position: relative;
 
-  input[type=checkbox] {
+  input[type=checkbox], input[type=radio] {
 
     & + label > div {
       border: 1px solid $bmg-malibu;
-      border-radius: 4px;
       width: 18px;
       height: 18px;
       position: absolute;
@@ -267,7 +266,6 @@ input[type=checkbox] {
   label {
     cursor: pointer;
     position: absolute;
-    border-radius: 3px;
     width: 16px;
     height: 16px;
     left: 1px;
@@ -284,23 +282,54 @@ input[type=checkbox] {
       width: 8px;
       height: 8px;
       background: $bmg-malibu;
-      border-radius: 2px;
       top: 4px;
       left: 4px;
     }
   }
 }
 
-.bmg-checkbox-with-label {
+.bmg-checkbox {
+    border-radius: 4px;
+
+    input[type=checkbox] + label > div {
+        border-radius: 4px;
+    }
+
+    label {
+        border-radius: 3px;
+
+        &:after {
+            border-radius: 2px;
+        }
+    }
+}
+
+.bmg-radio-button {
+    border-radius: 50%;
+
+    input[type=radio] + label > div {
+        border-radius: 50%;
+    }
+
+    label {
+        border-radius: 50%;
+
+        &:after {
+            border-radius: 50%;
+        }
+    }
+}
+
+.bmg-checkbox-with-label, .bmg-radio-button-with-label {
   display: block;
   margin: 8px auto;
 }
 
-.bmg-checkbox-inline {
+.bmg-checkbox-inline, .bmg-radio-button-inline {
   position: relative;
   display: inline-block;
 
-  + .bmg-checkbox-inline {
+  + .bmg-checkbox-inline, + .bmg-radio-button-inline {
     margin-left: 25px;
   }
 }

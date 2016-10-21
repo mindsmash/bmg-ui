@@ -1,26 +1,26 @@
 .popover {
     padding: 0 !important;
     border-radius: 2px !important;
-    border-color: $bmg-celeste !important;
+    border-color: $bmg-gray-lighter !important;
 
     .popover-title {
-        background-color: $bmg-white !important;
-        color: $bmg-monza;
+        background-color: $bmg-gray-dark !important;
+        color: $bmg-white;
     }
 
     &.bottom .arrow {
-        border-bottom-color: $bmg-celeste !important;
+        border-bottom-color: $bmg-gray-lighter !important;
     }
 
     &.top .arrow {
-        border-top-color: $bmg-celeste !important;
+        border-top-color: $bmg-gray-lighter !important;
     }
 
     &.right .arrow {
-        border-right-color: $bmg-celeste !important;
+        border-right-color: $bmg-gray-lighter !important;
     }
 
     &.left .arrow {
-        border-left-color: $bmg-celeste !important;
+        border-left-color: $bmg-gray-lighter !important;
     }
 }

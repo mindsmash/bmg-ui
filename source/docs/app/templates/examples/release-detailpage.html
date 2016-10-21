@@ -134,7 +134,9 @@
                         <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
 
                         <div class="col-xs-4 col-sm-2 col-md-2 label-container">
-                            <label for="barcode-text">Barcode</label>
+                            <label
+                                for="barcode-text"
+                                inline-error-display="editableCtrl.errors.barcode">Barcode</label>
                         </div>
                         <div class="col-xs-8 col-sm-4 col-md-3">
                             <data-inline-text
@@ -463,9 +465,30 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">Unknown at Data Takeon</div>
                         <div class="clearfix visible-xs"></div>
                     </div>
+
                     <div class="form-group">
-                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Notes &amp; Comments</div>
-                        <div class="col-xs-8 col-sm-4 col-md-3">Purchased as part of Mute Catalogue - Not Re-Delivered to market.</div>
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">
+                            <label for="notes-comments-text">Notes &amp; Comments</label>
+                        </div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">
+                            <data-inline-textarea
+                                id="notes-comments-text"
+                                tabindex="11"
+                                data-ng-model="editableCtrl.data.notesComments"
+                                oncommit="editableCtrl.promiseValue($data)"
+                                placeholder="Notes &amp; Comments"></data-inline-textarea>
+                        </div>
+                        <div class="clearfix visible-xs"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Lawyer Contact</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Johnny Flannagan</div>
+                        <div class="clearfix visible-xs"></div>
+                        <div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+                        <div class="col-xs-4 col-sm-2 col-md-2 label-container">Art Director</div>
+                        <div class="col-xs-8 col-sm-4 col-md-3">Don Draper</div>
                         <div class="clearfix visible-xs"></div>
                     </div>
                 </div>

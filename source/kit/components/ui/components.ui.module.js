@@ -2,9 +2,12 @@
     'use strict';
 
     angular.module('bmg.components.ui', [
+            'ui.bootstrap',
+            'monospaced.elastic',
             'ui.select',
             'ngSanitize',
             'bmg/template/inlineEdits',
+            'bmg/template/alert',
             'user/dialogs/templates'
         ])
         .config(decorateUISelectWithOpenEvent);

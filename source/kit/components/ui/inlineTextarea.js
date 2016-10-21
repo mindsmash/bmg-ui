@@ -3,11 +3,11 @@
 
     angular
         .module('bmg.components.ui')
-        .directive('inlineText', inlineText);
+        .directive('inlineTextarea', inlineTextarea);
 
-    inlineText.$inject = ['$timeout', 'utilService', 'keyConstants'];
+    inlineTextarea.$inject = ['$timeout', 'utilService', 'keyConstants'];
 
-    function inlineText($timeout, utilService, keyConstants) {
+    function inlineTextarea($timeout, utilService, keyConstants) {
         return {
             replace: true,
             scope: {
@@ -15,10 +15,9 @@
                 placeholder: '@',
                 oncommit: '&',
                 tabindex: '@?',
-                disabled: '=?',
-                inputType: '@?'
+                disabled: '=?'
             },
-            templateUrl: 'bmg/template/inline/text.html',
+            templateUrl: 'bmg/template/inline/textarea.html',
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
                 // timeout necessary, otherview $viewValue is still NaN
@@ -27,12 +26,13 @@
                     var initialValue = ngModel.$viewValue;
                     var container = $(elem).closest('.inline-edit-container');
                     var undoBtn = $(elem).find('.revert-button');
-                    var inputElem = $(elem).find('.inline-text');
+                    var inputElem = $(elem).find('.inline-textarea');
 
-                    // set input type for validation
-                    if (scope.inputType) {
-                        inputElem.attr('type', scope.inputType);
-                    }
+                    container.css('height', inputElem.css('height'));
+
+                    scope.$on('elastic:resize', function(event, element, oldHeight, newHeight) {
+                        container.css('height', newHeight + 'px');
+                    });
 
                     inputElem.focus(function() {
                         // update initial value on new focus
@@ -74,11 +74,10 @@
                     });
 
                     inputElem.on('keyup change', function(e) {
-                        if (e.keyCode === keyConstants.ENTER_KEY ||
-                            e.which === keyConstants.ENTER_KEY) {
-                            // ENTER pressed -> commit and leave
-                            inputElem.blur();
-                        } else if (e.keyCode === keyConstants.ESCAPE_KEY ||
+                        // don't listen for ENTER key in textarea. it should
+                        // cause a line break only
+
+                        if (e.keyCode === keyConstants.ESCAPE_KEY ||
                             e.which === keyConstants.ESCAPE_KEY) {
                             // ESCAPE pressed -> undo and leave
                             ngModel.$setViewValue(initialValue);

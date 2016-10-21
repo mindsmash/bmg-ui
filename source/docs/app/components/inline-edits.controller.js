@@ -27,9 +27,12 @@
                     name: 'Liam Gallagher',
                     country: 'United Kingdom',
                     age: 43
-                }
+                },
+                answer: 45
             }
         };
+
+        vm.answerError = 'Wrong answer, dumbhead.';
 
         vm.birthDatepickerOptions = {
             maxDate: new Date(),
@@ -57,8 +60,6 @@
             age: 43
         }];
 
-        vm.sendToServer = sendToServer;
-
         function sendToServer(value) {
             var deferred = $q.defer();
 
@@ -72,10 +73,12 @@
 
             return deferred.promise;
         }
+		vm.sendToServer = sendToServer;
 
         function saveImmediately(value) {
             // Do sth with the value
         }
+		vm.saveImmediately = saveImmediately;
     }
 
     InlineEditController.$inject = ['$q', '$timeout'];

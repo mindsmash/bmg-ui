@@ -1,0 +1,157 @@
+<div class="row">
+    <div class="col-xs-12">
+        <p>
+            Configuration:
+        </p>
+
+        <table class="table table-condensed inline-properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Values</th>
+                    <th>Explanation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>ng-model</code></td>
+                    <td>Angular expression</td>
+                    <td>The model representing the selected element</td>
+                </tr>
+                <tr>
+                    <td><code>placeholder</code></td>
+                    <td>String</td>
+                    <td>Text displayed when the select's text field is empty or the select is opened</td>
+                </tr>
+                <tr>
+                    <td><code>oncommit</code></td>
+                    <td>Function</td>
+                    <td>
+                        <p>
+                            Function to be called when the selected value value is committed
+                        </p>
+                        <p>
+                            Parameters:
+                            <ul>
+                                <li>
+                                    <code>$data</code> contains the entered value to be
+                                    committed
+                                </li>
+                            </ul>
+                        </p>
+                        <p>
+                            Return value:
+
+                            <ul>
+                                <li>
+                                    If the function returns a promise, the inline text field
+                                    will display a spinning wheel until the promise is resolved or rejected.
+                                </li>
+                                <li>
+                                    If the promise gets resolved, a green success indicator is displayed.
+                                </li>
+                                <li>
+                                    If the promise gets rejected, a red error indicator is displayed.
+                                    Additionally, the parameter with which the promise was rejected
+                                    will be displayed as the error message underneath the text field.
+                                </li>
+                                <li>
+                                    If the function does not return a promise, the green success indicator is shown immediately.
+                                </li>
+                            </ul>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>items</code></td>
+                    <td>Array</td>
+                    <td>The array of values to be used as the select's possible values</td>
+                </tr>
+                <tr>
+                    <td><code>tabindex</code></td>
+                    <td>Number</td>
+                    <td>The index of this form field for tab navigation</td>
+                </tr>
+                <tr>
+                    <td><code>disabled</code></td>
+                    <td>Angular expression</td>
+                    <td>If this expression evaluates to true, the input field will be disabled.</td>
+                </tr>
+                <tr>
+                    <td><code>display-property</code></td>
+                    <td>String</td>
+                    <td>
+                        If the values in the <code>items</code> array are objects, this argument can be
+                        used to determine which property of those objects will be used as the display value
+                        of the selected element when the select is closed.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>position</code></td>
+                    <td>String</td>
+                    <td>In which direction the dropdown should open. See <a href="https://github.com/angular-ui/ui-select/wiki">UI Select documentation</a></td>
+                </tr>
+                <tr>
+                    <td><code>refresh</code></td>
+                    <td>Function</td>
+                    <td>
+                        <p>
+                            Function used to dynamically load source data for this select's items.
+                        </p>
+                        <p>
+                            Parameters:
+                            <ul>
+                                <li>
+                                    <code>$query</code> The search string typed into the select's text field by the user
+                                </li>
+                            </ul>
+                        </p>
+                        <p>
+                            See <a href="https://github.com/angular-ui/ui-select/wiki/ui-select-choices">UI Select documentation</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>refresh-delay</code></td>
+                    <td>Number</td>
+                    <td>See <a href="https://github.com/angular-ui/ui-select/wiki/ui-select-choices">UI Select documentation</a></td>
+                </tr>
+                <tr>
+                    <td><code>allow-clear</code></td>
+                    <td>Angular expression</td>
+                    <td>
+                        If the expression evaluates to <code>true</code>, the content of the inline-select will be
+                        clearable via a <i class="fa fa-times-thin"></i> button.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>allow-commit-unchanged</code></td>
+                    <td>Angular expression</td>
+                    <td>
+                        If the expression evaluates to <code>true</code>, the <code>oncommit</code> handler will
+                        be called regardless of whether the selected value actually changed or not.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>
+            The HTML inside
+			the <code>data-inline-select</code> element will be used as a template for the select items
+			when the select is opened. The current item object is available in the <code>item</code>
+			variable. Apply the <code>highlight</code> filter as demonstrated above to visually highlight
+			the search text entered by the user inside the select items. If no child element of
+            <code>data-inline-select</code> is supplied, the following HTML will be used as the default
+            item template:
+        </p>
+        <pre><code class="html">&lt;span data-ng-bind-html=&quot;item | highlight:$select.search&quot;&gt;&lt;/span&gt;</code></pre>
+    </div>
+</div>
+
+<script>
+	jQuery(document).ready(function() {
+		$('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	});
+</script>
