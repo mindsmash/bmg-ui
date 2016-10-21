@@ -147,3 +147,11 @@
         <pre><code class="html">&lt;span data-ng-bind-html=&quot;item | highlight:$select.search&quot;&gt;&lt;/span&gt;</code></pre>
     </div>
 </div>
+
+<script>
+	jQuery(document).ready(function() {
+		$('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+		});
+	});
+</script>

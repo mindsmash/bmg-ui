@@ -215,7 +215,7 @@ jQuery(document).ready(function() {
     });
 });
 &lt;/script&gt;</code></pre>
-                <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="http://mkoryak.github.io/floatThead/">floatThead</a></div>
+                <div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependency: <a href="http://mkoryak.github.io/floatThead/">floatThead</a> version <= 1.4.3</div>
             </div>
         </div>
     </div>
@@ -225,7 +225,7 @@ jQuery(document).ready(function() {
     jQuery(document).ready(function() {
         $('table#tableStandard').floatThead({
             top: function($table) {
-                return 75;
+                return $table.top = 75;
             },
             responsiveContainer: function($table){
                 return $table.closest('.tableStandard-responsive');
@@ -234,7 +234,7 @@ jQuery(document).ready(function() {
 
         $('table#tableCondensed').floatThead({
             top: function($table) {
-                return 75;
+                return $table.top = 75;
             },
             responsiveContainer: function($table){
                 return $table.closest('.tableCondensed-responsive');
