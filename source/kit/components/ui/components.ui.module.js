@@ -7,6 +7,7 @@
             'ui.select',
             'ngSanitize',
             'bmg/template/inlineEdits',
+            'bmg/template/alert',
             'user/dialogs/templates'
         ])
         .config(decorateUISelectWithOpenEvent);
