@@ -60,9 +60,6 @@
             age: 43
         }];
 
-        vm.sendToServer = sendToServer;
-        vm.saveImmediately = saveImmediately;
-
         function sendToServer(value) {
             var deferred = $q.defer();
 
@@ -76,10 +73,12 @@
 
             return deferred.promise;
         }
+		vm.sendToServer = sendToServer;
 
         function saveImmediately(value) {
             // Do sth with the value
         }
+		vm.saveImmediately = saveImmediately;
     }
 
     InlineEditController.$inject = ['$q', '$timeout'];
