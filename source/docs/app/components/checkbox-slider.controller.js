@@ -23,6 +23,11 @@
                 ceil: 100
             }
         };
+
+        this.radioOption = {
+            name: 'a'
+        };
+
     }
 
 })(angular);

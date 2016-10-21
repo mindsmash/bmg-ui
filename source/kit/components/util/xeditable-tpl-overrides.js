@@ -22,6 +22,16 @@
     angular
         .module('bmg/template/inlineEdits', [])
         .run(['$templateCache', function($templateCache) {
+            $templateCache.put('bmg/template/inline/error-tooltip.html', [
+                '<i',
+                '    class="fa fa-exclamation-triangle inline-error"',
+                '    title="{{ ctrl.text }}"',
+                '    data-placement="top"',
+                '    data-toggle="tooltip"',
+                '    rel="tooltip"',
+                '    ></i>'
+            ].join(''));
+
             $templateCache.put('bmg/template/inline/text.html',
                 [
                     '<div class="inline-edit-container">',
@@ -39,6 +49,27 @@
                     '   <div',
                     '      class="inline-error"',
                     '      data-ng-bind="errorMessage"></div>',
+                    '</div>'
+                ].join(''));
+
+            $templateCache.put('bmg/template/inline/textarea.html',
+                [
+                    '<div class="inline-edit-container textarea-container">',
+                    '    <textarea',
+                    '        msd-elastic',
+                    '        rows="1"',
+                    '        class="inline-textarea"',
+                    '        data-ng-model="ngModel"',
+                    '        tabindex="{{tabindex}}"',
+                    '        data-ng-disabled="disabled"',
+                    '        placeholder="{{placeholder}}"></textarea><button', // sic! no whitespace between elements
+                    '        type="button"',
+                    '        class="revert-button">',
+                    '        <i class="fa fa-undo"></i>',
+                    '    </button>',
+                    '    <div',
+                    '        class="inline-error"',
+                    '        data-ng-bind="errorMessage"></div>',
                     '</div>'
                 ].join(''));
 

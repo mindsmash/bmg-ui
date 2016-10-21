@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-xs-12">
+        <p>
+            Configuration:
+        </p>
+
+        <table class="table table-condensed inline-properties-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Values</th>
+                    <th>Explanation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>ng-model</code></td>
+                    <td>Angular expression</td>
+                    <td>The model representing the textarea's content</td>
+                </tr>
+                <tr>
+                    <td><code>placeholder</code></td>
+                    <td>String</td>
+                    <td>Text displayed when the textarea is empty</td>
+                </tr>
+                <tr>
+                    <td><code>oncommit</code></td>
+                    <td>Function</td>
+                    <td>
+                        <p>
+                            Function to be called when the textarea's value is committed
+                        </p>
+                        <p>
+                            Parameters:
+                            <ul>
+                                <li>
+                                    <code>$data</code> contains the entered value to be
+                                    committed
+                                </li>
+                            </ul>
+                        </p>
+                        <p>
+                            Return value:
+
+                            <ul>
+                                <li>
+                                    If the function returns a promise, the inline text field
+                                    will display a spinning wheel until the promise is resolved or rejected.
+                                </li>
+                                <li>
+                                    If the promise gets resolved, a green success indicator is displayed.
+                                </li>
+                                <li>
+                                    If the promise gets rejected, a red error indicator is displayed.
+                                    Additionally, the parameter with which the promise was rejected
+                                    will be displayed as the error message underneath the text field.
+                                </li>
+                                <li>
+                                    If the function does not return a promise, the green success indicator is shown immediately.
+                                </li>
+                            </ul>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>tabindex</code></td>
+                    <td>Number</td>
+                    <td>The index of this form field for tab navigation</td>
+                </tr>
+                <tr>
+                    <td><code>disabled</code></td>
+                    <td>Angular expression</td>
+                    <td>If this expression evaluates to true, the input field will be disabled.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
