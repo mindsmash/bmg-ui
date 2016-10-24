@@ -159,7 +159,7 @@
                     '        uib-datepicker-popup="{{ dateFormat || \'yyyy-MM-dd\' }}"',
                     '        datepicker-append-to-body="true"',
                     '        data-ng-model="ngModel"',
-                    '        data-ng-model-options="{}"',
+                    '        data-ng-model-options="ngModelOptions || {}"',
                     '        data-ng-change="updateDate()"',
                     '        data-ng-disabled="disabled"',
                     '        data-ng-class="{ \'inline-edit-disabled\': disabled }"',
