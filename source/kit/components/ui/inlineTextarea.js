@@ -15,7 +15,9 @@
                 placeholder: '@',
                 oncommit: '&',
                 tabindex: '@?',
-                disabled: '=?'
+                disabled: '=?',
+                maxlength: '=',
+                minlength: '='
             },
             templateUrl: 'bmg/template/inline/textarea.html',
             require: 'ngModel',

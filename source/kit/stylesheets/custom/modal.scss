@@ -1,6 +1,7 @@
-$modal-padding-left-right: 80px;
+$modal-padding-left-right: 40px;
 $model-padding-inner: 12px;
-$model-padding-top-bottom: 66px;
+$model-padding-body-inner: 20px;
+$model-padding-top-bottom: 25px;
 
 .modal-content {
   .close:hover {
@@ -9,19 +10,22 @@ $model-padding-top-bottom: 66px;
 
   > .modal-close {
     position: absolute;
-    top: 42px;
-    right: 42px;
+    top: 30px;
+    right: 40px;
+    color: $bmg-black;
   }
 
   > .modal-header {
     padding: $model-padding-top-bottom $modal-padding-left-right $model-padding-inner $modal-padding-left-right;
+    border-bottom: 1px solid $bmg-gray-lighter;
   }
 
   > .modal-body {
-    padding: $model-padding-inner $modal-padding-left-right;
+    padding: $model-padding-body-inner $modal-padding-left-right;
   }
 
   > .modal-footer {
-    padding: $model-padding-inner $modal-padding-left-right $model-padding-top-bottom $modal-padding-left-right;
+    padding: $model-padding-body-inner $modal-padding-left-right;
+    border-top: 1px solid $bmg-gray-lighter;
   }
 }
