@@ -61,6 +61,8 @@
                     '        class="inline-textarea"',
                     '        data-ng-model="ngModel"',
                     '        tabindex="{{tabindex}}"',
+                    '        maxlength="{{maxlength}}"',
+                    '        minlength="{{minlength}}"',
                     '        data-ng-disabled="disabled"',
                     '        placeholder="{{placeholder}}"></textarea><button', // sic! no whitespace between elements
                     '        type="button"',
