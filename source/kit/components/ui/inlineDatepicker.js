@@ -10,6 +10,7 @@
             replace: true,
             scope: {
                 ngModel: '=',
+                ngModelOptions: '=?',
                 placeholder: '@?',
                 oncommit: '&?',
                 datepickerOptions: '=?',

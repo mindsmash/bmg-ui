@@ -160,17 +160,18 @@
                             <label for="release-date-datepicker">Release Date</label>
                         </div>
                         <div class="col-xs-8 col-sm-4 col-md-3">
-                            <inline-datepicker
+                            <data-inline-datepicker
                                 id="release-date-datepicker"
                                 tabindex="3"
                                 data-ng-model="editableCtrl.data.date"
+                                data-ng-model-options="{ timezone: '+0000' }"
                                 datepicker-options="editableCtrl.datepickerOptions"
                                 placeholder="Pick a release date"
                                 date-format="dd.MM.yyyy"
                                 show-button-bar="true"
                                 disabled="false"
                                 popup-placement="auto top bottom"
-                                oncommit="editableCtrl.promiseValue($data)"></inline-datepicker>
+                                oncommit="editableCtrl.promiseValue($data)"></data-inline-datepicker>
                         </div>
                     </div>
                     <div class="form-group">
@@ -474,6 +475,8 @@
                             <data-inline-textarea
                                 id="notes-comments-text"
                                 tabindex="11"
+                                minlength="10"
+                                maxlength="100"
                                 data-ng-model="editableCtrl.data.notesComments"
                                 oncommit="editableCtrl.promiseValue($data)"
                                 placeholder="Notes &amp; Comments"></data-inline-textarea>

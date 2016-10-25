@@ -478,6 +478,8 @@ angular.module('bmg.components.ui')
                     '        class="inline-textarea"',
                     '        data-ng-model="ngModel"',
                     '        tabindex="{{tabindex}}"',
+                    '        maxlength="{{maxlength}}"',
+                    '        minlength="{{minlength}}"',
                     '        data-ng-disabled="disabled"',
                     '        placeholder="{{placeholder}}"></textarea><button', // sic! no whitespace between elements
                     '        type="button"',
@@ -576,7 +578,7 @@ angular.module('bmg.components.ui')
                     '        uib-datepicker-popup="{{ dateFormat || \'yyyy-MM-dd\' }}"',
                     '        datepicker-append-to-body="true"',
                     '        data-ng-model="ngModel"',
-                    '        data-ng-model-options="{}"',
+                    '        data-ng-model-options="ngModelOptions || {}"',
                     '        data-ng-change="updateDate()"',
                     '        data-ng-disabled="disabled"',
                     '        data-ng-class="{ \'inline-edit-disabled\': disabled }"',
@@ -1209,6 +1211,7 @@ angular.module('bmg.components.ui')
             replace: true,
             scope: {
                 ngModel: '=',
+                ngModelOptions: '=?',
                 placeholder: '@?',
                 oncommit: '&?',
                 datepickerOptions: '=?',
@@ -1823,7 +1826,9 @@ angular.module('bmg.components.ui')
                 placeholder: '@',
                 oncommit: '&',
                 tabindex: '@?',
-                disabled: '=?'
+                disabled: '=?',
+                maxlength: '=',
+                minlength: '='
             },
             templateUrl: 'bmg/template/inline/textarea.html',
             require: 'ngModel',
