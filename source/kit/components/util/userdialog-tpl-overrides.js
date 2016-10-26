@@ -24,7 +24,6 @@
                 '    </div>',
                 '</div>',
                 '<div class="modal-footer">',
-                '    <hr>',
                 '    <button',
                 '        class="btn btn-secondary"',
                 '        type="button"',
