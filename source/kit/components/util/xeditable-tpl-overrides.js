@@ -61,9 +61,10 @@
                     '        class="inline-textarea"',
                     '        data-ng-model="ngModel"',
                     '        tabindex="{{tabindex}}"',
-                    '        maxlength="{{maxlength}}"',
+                    //'        maxlength="{{maxlength}}"', // dismissed in favor of custom max length
                     '        minlength="{{minlength}}"',
                     '        data-ng-disabled="disabled"',
+                    '        data-ng-trim="false"',
                     '        placeholder="{{placeholder}}"></textarea><button', // sic! no whitespace between elements
                     '        type="button"',
                     '        class="revert-button">',
