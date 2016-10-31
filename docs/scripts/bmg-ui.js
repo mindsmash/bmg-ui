@@ -399,7 +399,6 @@ angular.module('bmg.components.ui')
                 '    </div>',
                 '</div>',
                 '<div class="modal-footer">',
-                '    <hr>',
                 '    <button',
                 '        class="btn btn-secondary"',
                 '        type="button"',
@@ -478,9 +477,10 @@ angular.module('bmg.components.ui')
                     '        class="inline-textarea"',
                     '        data-ng-model="ngModel"',
                     '        tabindex="{{tabindex}}"',
-                    '        maxlength="{{maxlength}}"',
+                    //'        maxlength="{{maxlength}}"', // dismissed in favor of custom max length
                     '        minlength="{{minlength}}"',
                     '        data-ng-disabled="disabled"',
+                    '        data-ng-trim="false"',
                     '        placeholder="{{placeholder}}"></textarea><button', // sic! no whitespace between elements
                     '        type="button"',
                     '        class="revert-button">',
@@ -1840,6 +1840,8 @@ angular.module('bmg.components.ui')
                     var container = $(elem).closest('.inline-edit-container');
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-textarea');
+                    var maxLengthDefined = angular.isDefined(scope.maxlength);
+                    var maxLength = parseInt(scope.maxlength, 10);
 
                     container.css('height', inputElem.css('height'));
 
@@ -1898,6 +1900,15 @@ angular.module('bmg.components.ui')
                         }
 
                         var newValue = inputElem.val();
+
+                        // check max length
+                        if (maxLengthDefined) {
+                            if (newValue.length > maxLength) {
+                                newValue = newValue.substr(0, maxLength);
+                                inputElem.val(newValue);
+                                ngModel.$setViewValue(newValue);
+                            }
+                        }
 
                         if (newValue != initialValue) {
                             utilService.showUndoBtn(undoBtn);
@@ -2125,20 +2136,26 @@ angular.module('bmg.components.ui')
                 }
 
                 function convertBadgeToType(type) {
+                    var i;
+
                     if (type === 'error') {
                         elem
                             .addClass('status-error')
                             .removeClass('status-warning')
                             .removeClass('status-success');
 
-                        elem.text('!');
+                        elem.text('');
+                        i = angular.element('<i class="fa fa-exclamation"></i>');
+                        elem.append(i);
                     } else if (type === 'warning') {
                         elem
                             .addClass('status-warning')
                             .removeClass('status-error')
                             .removeClass('status-success');
 
-                        elem.text('?');
+                        elem.text('');
+                        i = angular.element('<i class="fa fa-question"></i>');
+                        elem.append(i);
                     } else if (type === 'success') {
                         elem
                             .addClass('status-success')
@@ -2146,7 +2163,7 @@ angular.module('bmg.components.ui')
                             .removeClass('status-warning');
 
                         elem.text('');
-                        var i = angular.element('<i class="fa fa-check"></i>');
+                        i = angular.element('<i class="fa fa-check"></i>');
                         elem.append(i);
                     }
                 }
