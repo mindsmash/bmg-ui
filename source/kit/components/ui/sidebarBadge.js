@@ -27,20 +27,26 @@
                 }
 
                 function convertBadgeToType(type) {
+                    var i;
+
                     if (type === 'error') {
                         elem
                             .addClass('status-error')
                             .removeClass('status-warning')
                             .removeClass('status-success');
 
-                        elem.text('!');
+                        elem.text('');
+                        i = angular.element('<i class="fa fa-exclamation"></i>');
+                        elem.append(i);
                     } else if (type === 'warning') {
                         elem
                             .addClass('status-warning')
                             .removeClass('status-error')
                             .removeClass('status-success');
 
-                        elem.text('?');
+                        elem.text('');
+                        i = angular.element('<i class="fa fa-question"></i>');
+                        elem.append(i);
                     } else if (type === 'success') {
                         elem
                             .addClass('status-success')
@@ -48,7 +54,7 @@
                             .removeClass('status-warning');
 
                         elem.text('');
-                        var i = angular.element('<i class="fa fa-check"></i>');
+                        i = angular.element('<i class="fa fa-check"></i>');
                         elem.append(i);
                     }
                 }

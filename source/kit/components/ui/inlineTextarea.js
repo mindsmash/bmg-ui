@@ -29,6 +29,8 @@
                     var container = $(elem).closest('.inline-edit-container');
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-textarea');
+                    var maxLengthDefined = angular.isDefined(scope.maxlength);
+                    var maxLength = parseInt(scope.maxlength, 10);
 
                     container.css('height', inputElem.css('height'));
 
@@ -87,6 +89,15 @@
                         }
 
                         var newValue = inputElem.val();
+
+                        // check max length
+                        if (maxLengthDefined) {
+                            if (newValue.length > maxLength) {
+                                newValue = newValue.substr(0, maxLength);
+                                inputElem.val(newValue);
+                                ngModel.$setViewValue(newValue);
+                            }
+                        }
 
                         if (newValue != initialValue) {
                             utilService.showUndoBtn(undoBtn);
