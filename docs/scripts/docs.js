@@ -436,36 +436,6 @@
     }
 
 })(angular);
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg-ui.docs')
-        .controller('ConfirmationCtrl', ConfirmationCtrl);
-
-    ConfirmationCtrl.$inject = ['userDialogs', 'toastr'];
-
-    function ConfirmationCtrl(userDialogs, toastr) {
-        var vm = this;
-
-        vm.confirm = confirm;
-
-        function confirm() {
-            userDialogs.askForConfirmation(
-                'Do you really want to hurt me?', // title
-                'Do you really want to make me cry?', // text
-                'Hurt him', // primary button caption
-                'Cancel', // secondary button caption
-                'danger' // primary button class suffix (optional)
-            ).then(function() {
-                toastr.success('Confirmed dialog successfully.', 'Success');
-            }, function() {
-                toastr.error('Canceled the dialog.', 'Canceled');
-            });
-        }
-    }
-})();
-
 (function(angular) {
     'use strict';
 
@@ -578,6 +548,36 @@
     }
 
 })(angular);
+
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg-ui.docs')
+        .controller('ConfirmationCtrl', ConfirmationCtrl);
+
+    ConfirmationCtrl.$inject = ['userDialogs', 'toastr'];
+
+    function ConfirmationCtrl(userDialogs, toastr) {
+        var vm = this;
+
+        vm.confirm = confirm;
+
+        function confirm() {
+            userDialogs.askForConfirmation(
+                'Do you really want to hurt me?', // title
+                'Do you really want to make me cry?', // text
+                'Hurt him', // primary button caption
+                'Cancel', // secondary button caption
+                'danger' // primary button class suffix (optional)
+            ).then(function() {
+                toastr.success('Confirmed dialog successfully.', 'Success');
+            }, function() {
+                toastr.error('Canceled the dialog.', 'Canceled');
+            });
+        }
+    }
+})();
 
 (function(undefined) {
     'use strict';
@@ -701,131 +701,6 @@
 
 })(angular);
 
-(function(angular) {
-    'use strict';
-
-    angular.module('bmg-ui.docs')
-        .config(routesConfig);
-
-    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$uiViewScrollProvider'];
-
-    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, $uiViewScrollProvider) {
-        $uiViewScrollProvider.useAnchorScroll();
-        $urlRouterProvider.otherwise('/');
-        $locationProvider.html5Mode(true);
-        $stateProvider
-            .state('index', {
-                url: '/',
-                templateUrl: 'app/templates/main.html'
-            })
-            .state('release-list', {
-                url: '/release-list',
-                templateUrl: 'app/templates/examples/release-list.html'
-            })
-            .state('release-detailpage', {
-                url: '/release-detailpage',
-                templateUrl: 'app/templates/examples/release-detailpage.html'
-            })
-            .state('release-structure', {
-                url: '/release-structure',
-                templateUrl: 'app/templates/examples/release-structure.html'
-            })
-            .state('grid', {
-                url: '/grid',
-                templateUrl: 'app/templates/examples/grid.html'
-            })
-            //anchor
-            .state('index.typography', {
-                url: '#typography'
-            })
-            .state('index.colors', {
-                url: '#colors'
-            })
-            .state('index.grid', {
-                url: '#grid'
-            })
-            .state('index.buttons', {
-                url: '#buttons'
-            })
-            .state('index.button-group', {
-                url: '#button-group'
-            })
-            .state('index.button-dropdown', {
-                url: '#button-dropdown'
-            })
-            .state('index.pagination', {
-                url: '#pagination'
-            })
-            .state('index.form', {
-                url: '#form'
-            })
-            .state('index.checkbox-slider', {
-                url: '#checkbox-slider'
-            })
-            .state('index.status', {
-                url: '#status'
-            })
-            .state('index.loading-indicator', {
-                url: '#loading-indicator'
-            })
-            .state('index.modal', {
-                url: '#modal'
-            })
-            .state('index.confirmation-dialog', {
-                url: '#confirmation-dialog'
-            })
-            .state('index.slide', {
-                url: '#slide'
-            })
-            .state('index.alerts', {
-                url: '#alerts'
-            })
-            .state('index.table', {
-                url: '#table'
-            })
-            .state('index.datepicker', {
-                url: '#datepicker'
-            })
-            .state('index.activities', {
-                url: '#activities'
-            })
-            .state('index.filter', {
-                url: '#filter'
-            })
-            .state('index.popover', {
-                url: '#popover'
-            })
-            .state('index.sticky', {
-                url: '#sticky'
-            })
-            .state('index.inlineEdits', {
-                url: '#inline-edits'
-            })
-            .state('index.css', {
-                url: '#css'
-            });
-    }
-
-})(angular);
-
-(function(angular) {
-    'use strict';
-
-    angular.module('bmg-ui.docs')
-        .run(routesRun);
-
-    routesRun.$inject = ['$rootScope', '$location', '$anchorScroll', '$state'];
-
-    function routesRun($rootScope, $location, $anchorScroll, $state) {
-        $rootScope.$state = $state;
-        $rootScope.$on('$routeChangeSuccess', function() {
-            if($location.hash()) {
-                $anchorScroll();
-            }
-        });
-    }
-
-})(angular);
 (function(angular) {
     'use strict';
 
@@ -1038,6 +913,131 @@
             return TableColFilterService.colFilter;
         }), function(newData) {
             tableCtrl.filterCol = newData;
+        });
+    }
+
+})(angular);
+(function(angular) {
+    'use strict';
+
+    angular.module('bmg-ui.docs')
+        .config(routesConfig);
+
+    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$uiViewScrollProvider'];
+
+    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, $uiViewScrollProvider) {
+        $uiViewScrollProvider.useAnchorScroll();
+        $urlRouterProvider.otherwise('/');
+        $locationProvider.html5Mode(true);
+        $stateProvider
+            .state('index', {
+                url: '/',
+                templateUrl: 'app/templates/main.html'
+            })
+            .state('release-list', {
+                url: '/release-list',
+                templateUrl: 'app/templates/examples/release-list.html'
+            })
+            .state('release-detailpage', {
+                url: '/release-detailpage',
+                templateUrl: 'app/templates/examples/release-detailpage.html'
+            })
+            .state('release-structure', {
+                url: '/release-structure',
+                templateUrl: 'app/templates/examples/release-structure.html'
+            })
+            .state('grid', {
+                url: '/grid',
+                templateUrl: 'app/templates/examples/grid.html'
+            })
+            //anchor
+            .state('index.typography', {
+                url: '#typography'
+            })
+            .state('index.colors', {
+                url: '#colors'
+            })
+            .state('index.grid', {
+                url: '#grid'
+            })
+            .state('index.buttons', {
+                url: '#buttons'
+            })
+            .state('index.button-group', {
+                url: '#button-group'
+            })
+            .state('index.button-dropdown', {
+                url: '#button-dropdown'
+            })
+            .state('index.pagination', {
+                url: '#pagination'
+            })
+            .state('index.form', {
+                url: '#form'
+            })
+            .state('index.checkbox-slider', {
+                url: '#checkbox-slider'
+            })
+            .state('index.status', {
+                url: '#status'
+            })
+            .state('index.loading-indicator', {
+                url: '#loading-indicator'
+            })
+            .state('index.modal', {
+                url: '#modal'
+            })
+            .state('index.confirmation-dialog', {
+                url: '#confirmation-dialog'
+            })
+            .state('index.slide', {
+                url: '#slide'
+            })
+            .state('index.alerts', {
+                url: '#alerts'
+            })
+            .state('index.table', {
+                url: '#table'
+            })
+            .state('index.datepicker', {
+                url: '#datepicker'
+            })
+            .state('index.activities', {
+                url: '#activities'
+            })
+            .state('index.filter', {
+                url: '#filter'
+            })
+            .state('index.popover', {
+                url: '#popover'
+            })
+            .state('index.sticky', {
+                url: '#sticky'
+            })
+            .state('index.inlineEdits', {
+                url: '#inline-edits'
+            })
+            .state('index.css', {
+                url: '#css'
+            });
+    }
+
+})(angular);
+
+(function(angular) {
+    'use strict';
+
+    angular.module('bmg-ui.docs')
+        .run(routesRun);
+
+    routesRun.$inject = ['$rootScope', '$location', '$anchorScroll', '$state'];
+
+    function routesRun($rootScope, $location, $anchorScroll, $state) {
+        $rootScope.$state = $state;
+        $rootScope.$on('$routeChangeSuccess', function() {
+            if($location.hash()) {
+                $anchorScroll();
+            }
         });
     }
 
