@@ -5,6 +5,7 @@
 ### 2016-12-22 - v0.8.3
 
  - inline edit (text) revert button bugfix for safari and improvement for all browser
+ - added panel example
 
 ### 2016-10-31 - v0.8.2
 
@@ -19,7 +20,7 @@
 
 ### 2016-10-21 - v0.8.0
 
- - add inline editable textarea
+ - added inline editable textarea
  - radio buttons and inline radio buttons with ui kit style
  - fixed bug where people select would disappear when approvers were edited
  - re-design popover style
@@ -36,7 +37,7 @@
 
 ### 2016-09-30 - v0.7.4
 
- - add changelog 
+ - added changelog 
  - clear button for (multi) select input fields
  - inline checkboxes are defeatable
 
