@@ -1,157 +1,94 @@
 // new inline edits
 .inline-form {
-    margin-bottom: 30px;
-    width: 100%;
+  margin-bottom: 30px;
+  width: 100%;
 
-    h2, h3, h4, h5 {
-        margin-bottom: 20px;
+  h2, h3, h4, h5 {
+    margin-bottom: 20px;
+  }
+
+  div {
+    min-height: 30px;
+    line-height: 30px;
+  }
+
+  label {
+    font-family: inherit !important;
+    text-transform: none !important;
+    color: inherit !important;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    & .form-group > div:first-child {
+      margin-bottom: 20px;
     }
+  }
 
-    div {
-        min-height: 30px;
-        line-height: 30px;
-    }
+  .label-container {
+    max-width: 250px;
+  }
 
-    label {
-        font-family: inherit !important;
-        text-transform: none !important;
-        color: inherit !important;
-        font-size: inherit !important;
-        line-height: inherit !important;
-        cursor: pointer;
-    }
-
+  .narrow {
     @media (max-width: 768px) {
-        & .form-group > div:first-child {
-            margin-bottom: 20px;
-        }
+      max-width: 0px;
     }
 
-    .label-container {
-        max-width: 250px;
+    @media (min-width: 769px) and (max-width: 899px) {
+      max-width: 50px;
     }
 
-    .narrow {
-        @media (max-width: 768px) {
-            max-width: 0px;
-        }
-
-        @media (min-width: 769px) and (max-width: 899px) {
-            max-width: 50px;
-        }
-
-        @media (min-width: 900px) and (max-width: 1999px) {
-            max-width: 100px;
-        }
-
-        @media (min-width: 2000px) {
-            max-width: 200px;
-        }
+    @media (min-width: 900px) and (max-width: 1999px) {
+      max-width: 100px;
     }
+
+    @media (min-width: 2000px) {
+      max-width: 200px;
+    }
+  }
 }
 
 .inline-edit-container .revert-button,
 .inline-select .revert-button {
-    position: relative;
-    top: -2px;
-    opacity: 0;
-    transition: opacity 0.1s ease-in-out;
-    margin-left: -20px;
-    height: 20px;
-    width: 20px;
-    background-color: transparent;
-    border: none;
-    cursor: text;
+  position: relative;
+  top: -2px;
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+  margin-left: -20px;
+  height: 24px;
+  width: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: text;
 
-    &.active {
-        opacity: 1;
-        cursor: pointer;
-    }
+  &.active {
+    opacity: 1;
+    cursor: pointer;
+  }
 }
 
 .inline-edit-container, .inline-select {
-    ::-webkit-input-placeholder {
-        font-weight: 200;
-    }
+  ::-webkit-input-placeholder {
+    font-weight: 200;
+  }
 
-    :-moz-placeholder { /* Firefox 18- */
-        font-weight: 200;
-    }
+  :-moz-placeholder { /* Firefox 18- */
+    font-weight: 200;
+  }
 
-    ::-moz-placeholder {  /* Firefox 19+ */
-        font-weight: 200;
-    }
+  ::-moz-placeholder { /* Firefox 19+ */
+    font-weight: 200;
+  }
 
-    :-ms-input-placeholder {
-        font-weight: 200;
-    }
+  :-ms-input-placeholder {
+    font-weight: 200;
+  }
 
-    .inline-edit-disabled {
-        color: $bmg-gray-lighter;
-    }
-}
-
-.inline-edit-container {
-    max-height: 30px;
-    padding: 0;
-    margin: 0;
-
-    .inline-error {
-        line-height: 20px;
-        font-size: 12px;
-        min-height: 20px;
-        margin-top: -2px;
-        color: $bmg-error;
-        opacity: 0;
-        transition: opacity 0.1s ease-in-out;
-    }
-
-    .bmg-checkbox-with-label ~ .inline-error {
-        margin-top: -10px;
-    }
-
-    &.has-error {
-        input, .ui-select-match, textarea {
-            border-bottom-color: $bmg-error;
-        }
-
-        .inline-error {
-            opacity: 1;
-        }
-    }
-
-    .fa-check {
-        color: $bmg-success;
-    }
-
-    .fa-spinner {
-        color: $bmg-gray-dark;
-    }
-
-    .fa-remove {
-        color: $bmg-error;
-    }
-
-    .inline-typeahead {
-        padding-right: 40px;
-
-        & ~ .revert-button {
-            margin-left: -45px;
-            opacity: 0;
-
-            &.active {
-                opacity: 1;
-            }
-        }
-
-        & ~ .typeahead-hint {
-            position: relative;
-            top: -2px;
-            margin-left: 5px;
-            width: 20px;
-            height: 20px;
-        }
-    }
+  .inline-edit-disabled {
+    color: $bmg-gray-lighter;
+  }
 }
 
 .inline-edit-container .inline-text,
@@ -160,98 +97,167 @@
 .inline-edit-container .inline-datepicker,
 .inline-edit-container .ui-select-match,
 .inline-select input {
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid $bmg-gray-lighter;
-    transition: border-bottom-color 0.1s ease-in-out;
-    border-top: 1px solid transparent;
-    padding: 0px 20px 0px 0px;
-    position: relative;
-    top: -2px;
-    display: inline-block;
-    width: 100%;
-    max-height: 30px !important;
-    height: 30px;
-    font-weight: 600;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid $bmg-gray-lighter;
+  transition: border-bottom-color 0.1s ease-in-out;
+  border-top: 1px solid transparent;
+  padding: 0px 20px 0px 0px;
+  position: relative;
+  top: -2px;
+  display: inline-block;
+  width: 100%;
+  max-height: 30px !important;
+  height: 30px;
+  font-weight: 600;
 
-    &:focus {
-        border-bottom-color: $bmg-malibu;
-    }
+  &:focus {
+    border-bottom-color: $bmg-malibu;
+  }
 
-    &:invalid {
-        border-bottom-color: $bmg-error;
-    }
+  &:invalid {
+    border-bottom-color: $bmg-error;
+  }
 }
 
-.inline-edit-container.textarea-container {
+.inline-edit-container {
+
+  max-height: 30px;
+  padding: 0;
+  margin: 0;
+
+  .revert-button {
+    height: 24px;
+  }
+
+  .inline-error {
+    line-height: 22px;
+    font-size: 12px;
+    min-height: 22px;
+    margin-top: -2px;
+    color: $bmg-error;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+  }
+
+  .bmg-checkbox-with-label ~ .inline-error {
+    margin-top: -10px;
+  }
+
+  &.has-error {
+    input, .ui-select-match, textarea {
+      border-bottom-color: $bmg-error;
+    }
+
+    .inline-error {
+      opacity: 1;
+    }
+  }
+
+  .fa-check {
+    color: $bmg-success;
+  }
+
+  .fa-spinner {
+    color: $bmg-gray-dark;
+  }
+
+  .fa-remove {
+    color: $bmg-error;
+  }
+
+  .inline-typeahead {
+    padding-right: 40px;
+
+    & ~ .revert-button {
+      margin-left: -45px;
+      opacity: 0;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    & ~ .typeahead-hint {
+      position: relative;
+      top: -2px;
+      margin-left: 5px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.textarea-container {
     max-height: initial !important;
     height: 30px;
 
     .inline-error {
-        margin-top: -12px;
+      margin-top: -12px;
     }
 
     .revert-button {
-        position: absolute;
+      position: absolute;
     }
-}
+  }
 
-.inline-edit-container .inline-textarea {
-    max-height: 200px !important;
-    line-height: normal;
-    padding-top: 5px !important;
-}
-
-.inline-edit-container .ui-select-match {
-    top: -1px !important;
-}
-
-.inline-select div[role=option].active {
-    background-color: rgb(246, 246, 246);
-}
-
-.inline-select.ui-select-container {
-    z-index: 1050;
-}
-
-.inline-edit-container .inline-datepicker {
-    & ~ .calendar-button {
-        padding: 0px;
+  input[type=number] {
+    &.inline-text {
+      padding: 0;
+      & ~ .revert-button {
         width: 20px;
-        height: 20px;
-        margin-left: 5px;
-        position: relative;
-        top: -2px;
-        background-color: transparent;
-        border: none;
-    }
-
-    & ~ .revert-button {
-        width: 20px;
-        height: 20px;
-        margin-left: -45px;
+        height: 24px;
+        margin-left: -40px;
         position: relative;
         top: -2px;
         opacity: 0;
         transition: opacity 0.1s ease-in-out;
 
         &.active {
-            opacity: 1;
+          opacity: 1;
         }
+      }
     }
-}
+  }
 
-.inline-edit-container .ui-select-match,
-.inline-select input {
-    top: 0px;
-}
+  .inline-textarea {
+    max-height: 200px !important;
+    line-height: normal;
+    padding-top: 5px !important;
+  }
 
-.inline-edit-container .ui-select-match {
-    cursor: pointer;
-}
+  .ui-select-match {
+    top: -1px !important;
+  }
 
-.inline-edit-container .bmg-checkbox-with-label {
+  .inline-datepicker {
+    & ~ .calendar-button {
+      padding: 0px;
+      width: 20px;
+      height: 24px;
+      margin-left: 5px;
+      position: relative;
+      top: -2px;
+      background-color: transparent;
+      border: none;
+    }
+
+    & ~ .revert-button {
+      width: 20px;
+      height: 24px;
+      margin-left: -45px;
+      position: relative;
+      top: -2px;
+      opacity: 0;
+      transition: opacity 0.1s ease-in-out;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .bmg-checkbox-with-label {
     line-height: 18px !important;
     padding: 5px 20px 0 0;
     margin: 0;
@@ -260,100 +266,118 @@
     display: inline-block;
 
     .bmg-checkbox {
-        line-height: 18px !important;
-        min-height: 18px;
+      line-height: 18px !important;
+      min-height: 18px;
 
-        label > div {
-            min-height: 18px;
-        }
+      label > div {
+        min-height: 18px;
+      }
     }
 
     & ~ .success-indicator {
-        position: relative;
-        top: -11px;
-        opacity: 0;
-        border: none;
-        background-color: transparent;
-        width: 20px;
-        height: 20px;
-        transition: opacity 0.1s ease-in-out;
+      position: relative;
+      top: -11px;
+      opacity: 0;
+      border: none;
+      background-color: transparent;
+      width: 20px;
+      height: 20px;
+      transition: opacity 0.1s ease-in-out;
 
-        &.active {
-            opacity: 1;
-        }
+      &.active {
+        opacity: 1;
+      }
     }
+
+    .ui-select-match {
+      cursor: pointer;
+    }
+  }
+}
+
+.inline-select div[role=option].active {
+  background-color: rgb(246, 246, 246);
+}
+
+.inline-select.ui-select-container {
+  z-index: 1050;
+}
+
+.inline-edit-container .ui-select-match,
+.inline-select input {
+  top: 0px;
 }
 
 .inline-select {
-    .revert-button {
-        position: relative;
-        top: -2px;
-        margin-left: 0;
-        width: 20px;
-        height: 20px;
-        margin-left: -40px;
-        cursor: pointer;
+  .revert-button {
+    position: relative;
+    top: -2px;
+    margin-left: 0;
+    width: 20px;
+    height: 24px;
+    margin-left: -40px;
+    cursor: pointer;
 
-        .success-indicator {
-            transition: opacity 0.1s ease-in-out;
+    .success-indicator {
+      transition: opacity 0.1s ease-in-out;
 
-            &.clear-button {
-                color: $bmg-gray-dark;
-                font-size: smaller;
-            }
-        }
+      &.clear-button {
+        color: $bmg-gray-dark;
+        font-size: smaller;
+      }
     }
+  }
 
-    .selectize-input.focus .revert-button {
-        cursor: text;
+  .selectize-input.focus .revert-button {
+    cursor: text;
+  }
+
+  .dropdown-hint {
+    position: relative;
+    top: -2px;
+    margin-left: 0;
+    text-align: right;
+    padding-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-left: 0px;
+    cursor: pointer;
+  }
+
+  .ui-select-choices-row {
+    background-color: $bmg-white;
+    cursor: pointer;
+    padding: 3px 20px;
+
+    &:hover {
+      background-color: rgb(246, 246, 246);
     }
+  }
 
-    .dropdown-hint {
-        position: relative;
-        top: -2px;
-        margin-left: 0;
-        text-align: right;
-        padding-right: 5px;
-        width: 20px;
-        height: 20px;
-        margin-left: 0px;
-        cursor: pointer;
-    }
-
-    .ui-select-choices-row {
-        background-color: $bmg-white;
-        cursor: pointer;
-        padding: 3px 20px;
-
-        &:hover {
-            background-color: rgb(246, 246, 246);
-        }
-    }
-
-    .ui-select-choices-content {
-        padding: 5px 0;
-        background-color: $bmg-white;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-        border: 1px solid rgba(76, 76, 76, 0.15);
-    }
+  .ui-select-choices-content {
+    padding: 5px 0;
+    background-color: $bmg-white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    border: 1px solid rgba(76, 76, 76, 0.15);
+  }
 }
 
 .uib-datepicker-popup {
-    padding-bottom: 10px !important;
+  padding-bottom: 10px !important;
 }
 
 .uib-datepicker-popup.dropdown-menu {
-    z-index: 1030;
+  z-index: 1030;
 }
 
 .fa-times-thin:before {
-    content: '\00d7';
-    position: relative;
-    top: -1px;
-    font-size: 16px;
+  content: '\00d7';
+  position: relative;
+  top: -1px;
+  font-size: 16px;
 }
 
 label .inline-error {
-    color: $bmg-error;
-    margin-left: 7px;
+  color: $bmg-error;
+  margin-left: 7px;
 }

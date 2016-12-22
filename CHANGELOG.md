@@ -2,6 +2,21 @@
 
 ## Versions
 
+### 2016-12-22 - v0.8.3
+
+ - inline edit (text) revert button bugfix for safari and improvement for all browser
+
+### 2016-10-31 - v0.8.2
+
+ - layout fixes
+ - min- and maxlength improvements to handle line breaks
+
+### 2016-10-25 - v0.8.1
+
+ - more compact styling of modal dialogs
+ - min- and maxlength attributes for inline-textarea
+ - dependency update
+
 ### 2016-10-21 - v0.8.0
 
  - add inline editable textarea
