@@ -436,6 +436,36 @@
     }
 
 })(angular);
+(function(undefined) {
+    'use strict';
+
+    angular
+        .module('bmg-ui.docs')
+        .controller('ConfirmationCtrl', ConfirmationCtrl);
+
+    ConfirmationCtrl.$inject = ['userDialogs', 'toastr'];
+
+    function ConfirmationCtrl(userDialogs, toastr) {
+        var vm = this;
+
+        vm.confirm = confirm;
+
+        function confirm() {
+            userDialogs.askForConfirmation(
+                'Do you really want to hurt me?', // title
+                'Do you really want to make me cry?', // text
+                'Hurt him', // primary button caption
+                'Cancel', // secondary button caption
+                'danger' // primary button class suffix (optional)
+            ).then(function() {
+                toastr.success('Confirmed dialog successfully.', 'Success');
+            }, function() {
+                toastr.error('Canceled the dialog.', 'Canceled');
+            });
+        }
+    }
+})();
+
 (function(angular) {
     'use strict';
 
@@ -548,36 +578,6 @@
     }
 
 })(angular);
-
-(function(undefined) {
-    'use strict';
-
-    angular
-        .module('bmg-ui.docs')
-        .controller('ConfirmationCtrl', ConfirmationCtrl);
-
-    ConfirmationCtrl.$inject = ['userDialogs', 'toastr'];
-
-    function ConfirmationCtrl(userDialogs, toastr) {
-        var vm = this;
-
-        vm.confirm = confirm;
-
-        function confirm() {
-            userDialogs.askForConfirmation(
-                'Do you really want to hurt me?', // title
-                'Do you really want to make me cry?', // text
-                'Hurt him', // primary button caption
-                'Cancel', // secondary button caption
-                'danger' // primary button class suffix (optional)
-            ).then(function() {
-                toastr.success('Confirmed dialog successfully.', 'Success');
-            }, function() {
-                toastr.error('Canceled the dialog.', 'Canceled');
-            });
-        }
-    }
-})();
 
 (function(undefined) {
     'use strict';
@@ -701,6 +701,134 @@
 
 })(angular);
 
+(function(angular) {
+    'use strict';
+
+    angular.module('bmg-ui.docs')
+        .config(routesConfig);
+
+    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$uiViewScrollProvider'];
+
+    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, $uiViewScrollProvider) {
+        $uiViewScrollProvider.useAnchorScroll();
+        $urlRouterProvider.otherwise('/');
+        $locationProvider.html5Mode(true);
+        $stateProvider
+            .state('index', {
+                url: '/',
+                templateUrl: 'app/templates/main.html'
+            })
+            .state('release-list', {
+                url: '/release-list',
+                templateUrl: 'app/templates/examples/release-list.html'
+            })
+            .state('release-detailpage', {
+                url: '/release-detailpage',
+                templateUrl: 'app/templates/examples/release-detailpage.html'
+            })
+            .state('release-structure', {
+                url: '/release-structure',
+                templateUrl: 'app/templates/examples/release-structure.html'
+            })
+            .state('grid', {
+                url: '/grid',
+                templateUrl: 'app/templates/examples/grid.html'
+            })
+            //anchor
+            .state('index.typography', {
+                url: '#typography'
+            })
+            .state('index.colors', {
+                url: '#colors'
+            })
+            .state('index.grid', {
+                url: '#grid'
+            })
+            .state('index.buttons', {
+                url: '#buttons'
+            })
+            .state('index.button-group', {
+                url: '#button-group'
+            })
+            .state('index.button-dropdown', {
+                url: '#button-dropdown'
+            })
+            .state('index.pagination', {
+                url: '#pagination'
+            })
+            .state('index.form', {
+                url: '#form'
+            })
+            .state('index.checkbox-slider', {
+                url: '#checkbox-slider'
+            })
+            .state('index.status', {
+                url: '#status'
+            })
+            .state('index.loading-indicator', {
+                url: '#loading-indicator'
+            })
+            .state('index.modal', {
+                url: '#modal'
+            })
+            .state('index.confirmation-dialog', {
+                url: '#confirmation-dialog'
+            })
+            .state('index.slide', {
+                url: '#slide'
+            })
+            .state('index.alerts', {
+                url: '#alerts'
+            })
+            .state('index.table', {
+                url: '#table'
+            })
+            .state('index.datepicker', {
+                url: '#datepicker'
+            })
+            .state('index.activities', {
+                url: '#activities'
+            })
+            .state('index.filter', {
+                url: '#filter'
+            })
+            .state('index.popover', {
+                url: '#popover'
+            })
+            .state('index.sticky', {
+                url: '#sticky'
+            })
+            .state('index.inlineEdits', {
+                url: '#inline-edits'
+            })
+			.state('index.panel', {
+				url: '#panel-example'
+			})
+            .state('index.css', {
+                url: '#css'
+            });
+    }
+
+})(angular);
+
+(function(angular) {
+    'use strict';
+
+    angular.module('bmg-ui.docs')
+        .run(routesRun);
+
+    routesRun.$inject = ['$rootScope', '$location', '$anchorScroll', '$state'];
+
+    function routesRun($rootScope, $location, $anchorScroll, $state) {
+        $rootScope.$state = $state;
+        $rootScope.$on('$routeChangeSuccess', function() {
+            if($location.hash()) {
+                $anchorScroll();
+            }
+        });
+    }
+
+})(angular);
 (function(angular) {
     'use strict';
 
@@ -917,135 +1045,10 @@
     }
 
 })(angular);
-(function(angular) {
-    'use strict';
-
-    angular.module('bmg-ui.docs')
-        .config(routesConfig);
-
-    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$uiViewScrollProvider'];
-
-    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, $uiViewScrollProvider) {
-        $uiViewScrollProvider.useAnchorScroll();
-        $urlRouterProvider.otherwise('/');
-        $locationProvider.html5Mode(true);
-        $stateProvider
-            .state('index', {
-                url: '/',
-                templateUrl: 'app/templates/main.html'
-            })
-            .state('release-list', {
-                url: '/release-list',
-                templateUrl: 'app/templates/examples/release-list.html'
-            })
-            .state('release-detailpage', {
-                url: '/release-detailpage',
-                templateUrl: 'app/templates/examples/release-detailpage.html'
-            })
-            .state('release-structure', {
-                url: '/release-structure',
-                templateUrl: 'app/templates/examples/release-structure.html'
-            })
-            .state('grid', {
-                url: '/grid',
-                templateUrl: 'app/templates/examples/grid.html'
-            })
-            //anchor
-            .state('index.typography', {
-                url: '#typography'
-            })
-            .state('index.colors', {
-                url: '#colors'
-            })
-            .state('index.grid', {
-                url: '#grid'
-            })
-            .state('index.buttons', {
-                url: '#buttons'
-            })
-            .state('index.button-group', {
-                url: '#button-group'
-            })
-            .state('index.button-dropdown', {
-                url: '#button-dropdown'
-            })
-            .state('index.pagination', {
-                url: '#pagination'
-            })
-            .state('index.form', {
-                url: '#form'
-            })
-            .state('index.checkbox-slider', {
-                url: '#checkbox-slider'
-            })
-            .state('index.status', {
-                url: '#status'
-            })
-            .state('index.loading-indicator', {
-                url: '#loading-indicator'
-            })
-            .state('index.modal', {
-                url: '#modal'
-            })
-            .state('index.confirmation-dialog', {
-                url: '#confirmation-dialog'
-            })
-            .state('index.slide', {
-                url: '#slide'
-            })
-            .state('index.alerts', {
-                url: '#alerts'
-            })
-            .state('index.table', {
-                url: '#table'
-            })
-            .state('index.datepicker', {
-                url: '#datepicker'
-            })
-            .state('index.activities', {
-                url: '#activities'
-            })
-            .state('index.filter', {
-                url: '#filter'
-            })
-            .state('index.popover', {
-                url: '#popover'
-            })
-            .state('index.sticky', {
-                url: '#sticky'
-            })
-            .state('index.inlineEdits', {
-                url: '#inline-edits'
-            })
-            .state('index.css', {
-                url: '#css'
-            });
-    }
-
-})(angular);
-
-(function(angular) {
-    'use strict';
-
-    angular.module('bmg-ui.docs')
-        .run(routesRun);
-
-    routesRun.$inject = ['$rootScope', '$location', '$anchorScroll', '$state'];
-
-    function routesRun($rootScope, $location, $anchorScroll, $state) {
-        $rootScope.$state = $state;
-        $rootScope.$on('$routeChangeSuccess', function() {
-            if($location.hash()) {
-                $anchorScroll();
-            }
-        });
-    }
-
-})(angular);
 angular.module("bmg-ui.docs").run(["$templateCache", function($templateCache) {$templateCache.put("app/templates/editable-textarea.html","<div class=\"form-group\">\n  <label class=\"col-sm-2 control-label\">Textarea</label>\n  <div class=\"col-sm-10\">\n    <msm-spinner></msm-spinner>\n  </div>\n</div>");
 $templateCache.put("app/templates/hljs.html","<script>\n	jQuery(document).ready(function() {\n		$(\'pre code\').each(function(i, block) {\n			hljs.highlightBlock(block);\n		});\n	});\n</script>");
-$templateCache.put("app/templates/main.html","<div class=\"body-header\">\n    <div class=\"container\">\n        <h1>BMG Bootstrap Style Guide</h1>\n        <p>This is supposed to be a title that is displayed beneath the navbar.</p>\n        <p>This is a page header for full-width elements that are not supposed to be displayed within a panel.</p>\n        <hr>\n        <h2>BMG UI-Kit dependencies <i class=\"fa fa-exclamation-triangle color-warning\"></i></h2>\n        <p>The BMG UI-Kit has following bower <strong>dependencies</strong>:</p>\n        <ul>\n            <li><a href=\"https://fortawesome.github.io/Font-Awesome/\">font-awesome</a></li>\n            <li><a href=\"https://github.com/mindsmash/mindsmash-source-sans-pro\">mindsmash-source-sans-pro</a></li>\n        </ul>\n        <p>The BMG UI-Kit has following bower <strong>development dependencies</strong>:</p>\n        <ul>\n            <li><a href=\"http://tether.io/\">tether</a></li>\n            <li><a href=\"https://jquery.com/\">jquery</a></li>\n            <li><a href=\"http://getbootstrap.com/\">bootstrap</a></li>\n            <li><a href=\"https://angularjs.org/\">angular</a></li>\n            <li><a href=\"https://angular-ui.github.io/bootstrap/\">angular-bootstrap</a></li>\n            <li><a href=\"https://github.com/Foxandxss/angular-toastr\">angular-toastr</a></li>\n            <li><a href=\"https://github.com/angular-slider/angularjs-slider\">angularjs-slider</a></li>\n            <li><a href=\"https://github.com/angular-ui/ui-select\">angular-ui-select</a></li>\n            <li><a href=\"https://github.com/angular-ui/ui-router\">angular-ui-router</a></li>\n            <li><a href=\"https://github.com/angular/bower-angular-sanitize\">angular-sanitize</a></li>\n            <li><a href=\"https://github.com/dbtek/angular-aside\">angular-aside</a></li>\n            <li><a href=\"https://highlightjs.org/\">highlightjs</a></li>\n            <li><a href=\"http://holderjs.com/\">holderjs</a></li>\n            <li><a href=\"http://mkoryak.github.io/floatThead/\">floatThead</a></li>\n            <li><a href=\"https://github.com/d-oliveros/ngSticky\">ngSticky</a></li>\n            <li><a href=\"https://github.com/lodash/lodash\">lodash</a></li>\n            <li><a href=\"https://github.com/monospaced/angular-elastic\">angular-elastic</a></li>\n        </ul>\n        <p>To use some of these features you must include the required dependencies in your <strong>own bower.json</strong>.</p>\n        <h2>UI-Kit components</h2>\n        <p>Please add <strong>\'bmg.components.ui\'</strong> and <strong>\'bmg.components.util\'</strong> to your angular app dependencies!</p>\n        <pre><code class=\"JavaScript\">angular.module(\"app\", [\"bmg.components.ui\", \"bmg.components.util\"]);</code></pre>\n    </div>\n</div>\n<div class=\"container\" role=\"main\">\n    <!-- in production wrap panel div with: <div class=\"row\"><div class=\"col-lg-12\"> </div></div> -->\n	<!-- Grid -->\n	<div ng-include=\"\'app/templates/components/grid.html\'\"></div>\n    <!-- Typography -->\n	<div ng-include=\"\'app/templates/components/typography.html\'\"></div>\n    <!-- Colors -->\n	<div ng-include=\"\'app/templates/components/colors.html\'\"></div>\n    <!-- Buttons -->\n	<div ng-include=\"\'app/templates/components/buttons.html\'\"></div>\n    <!-- Button Group -->\n	<div ng-include=\"\'app/templates/components/button-group.html\'\"></div>\n    <!-- Button Dropdown -->\n	<div ng-include=\"\'app/templates/components/button-dropdown.html\'\"></div>\n    <!-- Pagination -->\n	<div ng-include=\"\'app/templates/components/pagination.html\'\"></div>\n    <!-- Form / Input Group -->\n	<div ng-include=\"\'app/templates/components/form-input-group.html\'\"></div>\n    <!-- Checkbox / Slider -->\n	<div ng-include=\"\'app/templates/components/checkbox-slider.html\'\"></div>\n    <!-- Status -->\n	<div ng-include=\"\'app/templates/components/status.html\'\"></div>\n    <!-- Loading Indicator -->\n	<div ng-include=\"\'app/templates/components/loading-indicator.html\'\"></div>\n    <!-- Modal -->\n	<div ng-include=\"\'app/templates/components/modal.html\'\"></div>\n    <!-- Confirmation Dialog -->\n    <div ng-include=\"\'app/templates/components/confirmation-dialog.html\'\"></div>\n    <!-- Slide Navigation -->\n	<div ng-include=\"\'app/templates/components/slide-navigation.html\'\"></div>\n    <!-- Alerts -->\n	<div ng-include=\"\'app/templates/components/alerts.html\'\"></div>\n    <!-- Table -->\n	<div ng-include=\"\'app/templates/components/table.html\'\"></div>\n    <!-- Datepicker -->\n	<div ng-include=\"\'app/templates/components/datepicker.html\'\"></div>\n    <!-- Activities -->\n	<div ng-include=\"\'app/templates/components/activities.html\'\"></div>\n    <!-- Filter -->\n	<div ng-include=\"\'app/templates/components/filter.html\'\"></div>\n    <!-- Popover -->\n	<div ng-include=\"\'app/templates/components/popover.html\'\"></div>\n    <!-- Sticky -->\n	<div ng-include=\"\'app/templates/components/sticky.html\'\"></div>\n    <!-- Inline Edits -->\n	<div ng-include=\"\'app/templates/components/inline-edits.html\'\"></div>\n    <!-- Custom CSS-Classes -->\n	<div ng-include=\"\'app/templates/components/custom-css-classes.html\'\"></div>\n</div>\n\n<!-- highlight.js -->\n<div ng-include=\"\'app/templates/hljs.html\'\"></div>\n");
-$templateCache.put("app/templates/nav.html","<nav class=\"navbar navbar-default navbar-fixed-top\" collapsing-navbar=\"appCtrl.navbarConfig\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <a ng-click=\"appCtrl.openAside(\'left\', true)\"><i class=\"fa fa-th pull-left app-aside-left\"></i></a>\n            <a class=\"navbar-brand\" href=\".\" target=\"_self\">\n                <img src=\"images/bmg_logo.png\" alt=\"\">\n                <span class=\"navbar-brand-appname\">UI-Kit</span>\n            </a>\n            <!-- Collapsed: Menu button -->\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bmg-navbar-collapsed\" ng-click=\"appCtrl.isCollapsed = !appCtrl.isCollapsed\">\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <!-- /Collapsed: Menu button -->\n        </div>\n\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse\" id=\"bmg-navbar-collapsed\" uib-collapse=\"appCtrl.isCollapsed\">\n            <ul class=\"nav navbar-nav navbar-left\">\n                <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index\"><i class=\"fa fa-map-o\"></i><span>Overview</span></a></li>\n                <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"release-detailpage\"><i class=\"fa fa-search\"></i><span>Detail</span></a></li>\n                <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"release-list\"><i class=\"fa fa-list\"></i><span>List</span></a></li>\n            </ul>\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\" uib-dropdown>\n                    <a href=\"#\" uib-dropdown-toggle>\n                        <i class=\"fa fa-bookmark-o fa-lg\"></i>\n                        <i class=\"fa fa-caret-down\"></i>\n                    </a>\n                    <ul class=\"dropdown-menu\" uib-dropdown-menu>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.grid\">Grid</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.typography\">Typography</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.colors\">Colors</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.buttons\">Buttons</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.button-group\">Button Group</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.button-dropdown\">Button Dropdown</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.pagination\">Pagination</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.form\">Form / Input Group</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.checkbox-slider\">Checkbox / Slider</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.status\">Status</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.loading-indicator\">Loading Indicator</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.modal\">Modal</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.confirmation-dialog\">Confirmation Dialog</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.slide\">Slide Navigation</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.alerts\">Alerts</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.table\">Table</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.datepicker\">Datepicker</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.activities\">Activities</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.filter\">Filter</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.popover\">Popover</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.sticky\">Sticky header</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.inlineEdits\">Inline Edits</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.css\">Custom CSS-Classes</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n        <!-- /.navbar-collapse -->\n    </div>\n    <!-- /.container-fluid -->\n</nav>\n");
+$templateCache.put("app/templates/main.html","<div class=\"body-header\">\n    <div class=\"container\">\n        <h1>BMG Bootstrap Style Guide</h1>\n        <p>This is supposed to be a title that is displayed beneath the navbar.</p>\n        <p>This is a page header for full-width elements that are not supposed to be displayed within a panel.</p>\n        <hr>\n        <h2>BMG UI-Kit dependencies <i class=\"fa fa-exclamation-triangle color-warning\"></i></h2>\n        <p>The BMG UI-Kit has following bower <strong>dependencies</strong>:</p>\n        <ul>\n            <li><a href=\"https://fortawesome.github.io/Font-Awesome/\">font-awesome</a></li>\n            <li><a href=\"https://github.com/mindsmash/mindsmash-source-sans-pro\">mindsmash-source-sans-pro</a></li>\n        </ul>\n        <p>The BMG UI-Kit has following bower <strong>development dependencies</strong>:</p>\n        <ul>\n            <li><a href=\"http://tether.io/\">tether</a></li>\n            <li><a href=\"https://jquery.com/\">jquery</a></li>\n            <li><a href=\"http://getbootstrap.com/\">bootstrap</a></li>\n            <li><a href=\"https://angularjs.org/\">angular</a></li>\n            <li><a href=\"https://angular-ui.github.io/bootstrap/\">angular-bootstrap</a></li>\n            <li><a href=\"https://github.com/Foxandxss/angular-toastr\">angular-toastr</a></li>\n            <li><a href=\"https://github.com/angular-slider/angularjs-slider\">angularjs-slider</a></li>\n            <li><a href=\"https://github.com/angular-ui/ui-select\">angular-ui-select</a></li>\n            <li><a href=\"https://github.com/angular-ui/ui-router\">angular-ui-router</a></li>\n            <li><a href=\"https://github.com/angular/bower-angular-sanitize\">angular-sanitize</a></li>\n            <li><a href=\"https://github.com/dbtek/angular-aside\">angular-aside</a></li>\n            <li><a href=\"https://highlightjs.org/\">highlightjs</a></li>\n            <li><a href=\"http://holderjs.com/\">holderjs</a></li>\n            <li><a href=\"http://mkoryak.github.io/floatThead/\">floatThead</a></li>\n            <li><a href=\"https://github.com/d-oliveros/ngSticky\">ngSticky</a></li>\n            <li><a href=\"https://github.com/lodash/lodash\">lodash</a></li>\n            <li><a href=\"https://github.com/monospaced/angular-elastic\">angular-elastic</a></li>\n        </ul>\n        <p>To use some of these features you must include the required dependencies in your <strong>own bower.json</strong>.</p>\n        <h2>UI-Kit components</h2>\n        <p>Please add <strong>\'bmg.components.ui\'</strong> and <strong>\'bmg.components.util\'</strong> to your angular app dependencies!</p>\n        <pre><code class=\"JavaScript\">angular.module(\"app\", [\"bmg.components.ui\", \"bmg.components.util\"]);</code></pre>\n    </div>\n</div>\n<div class=\"container\" role=\"main\">\n    <!-- in production wrap panel div with: <div class=\"row\"><div class=\"col-lg-12\"> </div></div> -->\n	<!-- Grid -->\n	<div ng-include=\"\'app/templates/components/grid.html\'\"></div>\n    <!-- Typography -->\n	<div ng-include=\"\'app/templates/components/typography.html\'\"></div>\n    <!-- Colors -->\n	<div ng-include=\"\'app/templates/components/colors.html\'\"></div>\n    <!-- Buttons -->\n	<div ng-include=\"\'app/templates/components/buttons.html\'\"></div>\n    <!-- Button Group -->\n	<div ng-include=\"\'app/templates/components/button-group.html\'\"></div>\n    <!-- Button Dropdown -->\n	<div ng-include=\"\'app/templates/components/button-dropdown.html\'\"></div>\n    <!-- Pagination -->\n	<div ng-include=\"\'app/templates/components/pagination.html\'\"></div>\n    <!-- Form / Input Group -->\n	<div ng-include=\"\'app/templates/components/form-input-group.html\'\"></div>\n    <!-- Checkbox / Slider -->\n	<div ng-include=\"\'app/templates/components/checkbox-slider.html\'\"></div>\n    <!-- Status -->\n	<div ng-include=\"\'app/templates/components/status.html\'\"></div>\n    <!-- Loading Indicator -->\n	<div ng-include=\"\'app/templates/components/loading-indicator.html\'\"></div>\n    <!-- Modal -->\n	<div ng-include=\"\'app/templates/components/modal.html\'\"></div>\n    <!-- Confirmation Dialog -->\n    <div ng-include=\"\'app/templates/components/confirmation-dialog.html\'\"></div>\n    <!-- Slide Navigation -->\n	<div ng-include=\"\'app/templates/components/slide-navigation.html\'\"></div>\n    <!-- Alerts -->\n	<div ng-include=\"\'app/templates/components/alerts.html\'\"></div>\n    <!-- Table -->\n	<div ng-include=\"\'app/templates/components/table.html\'\"></div>\n    <!-- Datepicker -->\n	<div ng-include=\"\'app/templates/components/datepicker.html\'\"></div>\n    <!-- Activities -->\n	<div ng-include=\"\'app/templates/components/activities.html\'\"></div>\n    <!-- Filter -->\n	<div ng-include=\"\'app/templates/components/filter.html\'\"></div>\n    <!-- Popover -->\n	<div ng-include=\"\'app/templates/components/popover.html\'\"></div>\n    <!-- Sticky -->\n	<div ng-include=\"\'app/templates/components/sticky.html\'\"></div>\n    <!-- Inline Edits -->\n	<div ng-include=\"\'app/templates/components/inline-edits.html\'\"></div>\n	<!-- Panel Example -->\n	<div ng-include=\"\'app/templates/components/panel.html\'\"></div>\n	<!-- Custom CSS-Classes -->\n	<div ng-include=\"\'app/templates/components/custom-css-classes.html\'\"></div>\n\n</div>\n\n<!-- highlight.js -->\n<div ng-include=\"\'app/templates/hljs.html\'\"></div>\n");
+$templateCache.put("app/templates/nav.html","<nav class=\"navbar navbar-default navbar-fixed-top\" collapsing-navbar=\"appCtrl.navbarConfig\">\n    <div class=\"container-fluid\">\n        <!-- Brand and toggle get grouped for better mobile display -->\n        <div class=\"navbar-header\">\n            <a ng-click=\"appCtrl.openAside(\'left\', true)\"><i class=\"fa fa-th pull-left app-aside-left\"></i></a>\n            <a class=\"navbar-brand\" href=\".\" target=\"_self\">\n                <img src=\"images/bmg_logo.png\" alt=\"\">\n                <span class=\"navbar-brand-appname\">UI-Kit</span>\n            </a>\n            <!-- Collapsed: Menu button -->\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bmg-navbar-collapsed\" ng-click=\"appCtrl.isCollapsed = !appCtrl.isCollapsed\">\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <!-- /Collapsed: Menu button -->\n        </div>\n\n        <!-- Collect the nav links, forms, and other content for toggling -->\n        <div class=\"collapse navbar-collapse\" id=\"bmg-navbar-collapsed\" uib-collapse=\"appCtrl.isCollapsed\">\n            <ul class=\"nav navbar-nav navbar-left\">\n                <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index\"><i class=\"fa fa-map-o\"></i><span>Overview</span></a></li>\n                <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"release-detailpage\"><i class=\"fa fa-search\"></i><span>Detail</span></a></li>\n                <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"release-list\"><i class=\"fa fa-list\"></i><span>List</span></a></li>\n            </ul>\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\" uib-dropdown>\n                    <a href=\"#\" uib-dropdown-toggle>\n                        <i class=\"fa fa-bookmark-o fa-lg\"></i>\n                        <i class=\"fa fa-caret-down\"></i>\n                    </a>\n                    <ul class=\"dropdown-menu\" uib-dropdown-menu>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.grid\">Grid</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.typography\">Typography</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.colors\">Colors</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.buttons\">Buttons</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.button-group\">Button Group</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.button-dropdown\">Button Dropdown</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.pagination\">Pagination</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.form\">Form / Input Group</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.checkbox-slider\">Checkbox / Slider</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.status\">Status</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.loading-indicator\">Loading Indicator</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.modal\">Modal</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.confirmation-dialog\">Confirmation Dialog</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.slide\">Slide Navigation</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.alerts\">Alerts</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.table\">Table</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.datepicker\">Datepicker</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.activities\">Activities</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.filter\">Filter</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.popover\">Popover</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.sticky\">Sticky header</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.inlineEdits\">Inline Edits</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.panel\">Panel Example</a></li>\n                        <li ui-sref-active=\"active\" ng-click=\"appCtrl.isCollapsed = true\"><a ui-sref=\"index.css\">Custom CSS-Classes</a></li>\n                    </ul>\n                </li>\n            </ul>\n        </div>\n        <!-- /.navbar-collapse -->\n    </div>\n    <!-- /.container-fluid -->\n</nav>\n");
 $templateCache.put("app/templates/aside/apps.html","<div class=\"app-nav\">\n    <h3>\n        BMG Applications\n        <button type=\"button\" class=\"btn btn-secondary-invers btn-circle pull-right\" data-ng-click=\"cancel()\"><i class=\"fa fa-chevron-left\"></i></button>\n    </h3>\n    <ul>\n        <li><a href=\"#\"><img src=\"images/analytics.svg\" />Analytics</a></li>\n        <li><a href=\"#\"><img src=\"images/capture.svg\" />Capture</a></li>\n        <li class=\"active\"><a href=\"#\"><img src=\"images/cashmatch.svg\" />Cash Match</a></li>\n        <li><a href=\"#\"><img src=\"images/datawise.svg\" />Datawise</a></li>\n        <li><a href=\"#\"><img src=\"images/deliver.svg\" />Deliver</a></li>\n        <li><a href=\"#\"><img src=\"images/e-license.svg\" />E-License</a></li>\n        <li><a href=\"#\"><img src=\"images/fileboxes.svg\" />Fileboxes</a></li>\n        <li><a href=\"#\"><img src=\"images/release.svg\" />Release</a></li>\n        <li><a href=\"#\"><img src=\"images/s-print.svg\" />S-Print</a></li>\n        <li><a href=\"#\"><img src=\"images/smartmatch.svg\" />Smartmatch</a></li>\n        <li><a href=\"#\"><img src=\"images/songdelivery.svg\" />Song Delivery</a></li>\n        <li><a href=\"#\"><img src=\"images/songs.svg\" />Songs</a></li>\n        <li><a href=\"#\"><img src=\"images/statementcompression.svg\" />Statement Compression</a></li>\n        <li><a href=\"#\"><img src=\"images/store.svg\" />Store</a></li>\n        <li><a href=\"#\"><img src=\"images/vault.svg\" />Vault</a></li>\n    </ul>\n</div>\n");
 $templateCache.put("app/templates/aside/filter-aside.html","<div>\n    <h3>\n        Search / Edit Filters\n        <button type=\"button\" class=\"btn btn-secondary-invers btn-circle pull-right\" data-ng-click=\"asideCtrl.cancel()\"><i class=\"fa fa-chevron-right\"></i></button>\n    </h3>\n    <div class=\"aside-content\">\n        <!--<button class=\"btn btn-primary\">Edit filters</button>-->\n        <div class=\"form-group filter-form-group\">\n            <label for=\"song\">Song</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"song\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.song\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.song = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <label for=\"status\">Status</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"status\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.status\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.status = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <label for=\"artist\">Artist</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"artist\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.artist\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.artist = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n\n        <div class=\"form-group filter-form-group\">\n            <label for=\"title\">Title</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"title\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.title\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.title = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <label for=\"versionTitle\">Version Title</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"versionTitle\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.versionTitle\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.versionTitle = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <label for=\"publisher\">Publisher</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"publisher\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.publisher\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.publisher = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <label for=\"format\">Format</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"format\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.format\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.format = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <label for=\"releaseDate\">Release Date</label>\n            <div class=\"inline-form-group has-feedback\">\n                <input type=\"text\" id=\"releaseDate\" class=\"form-control\" placeholder=\"\" data-ng-model=\"asideCtrl.filter.releaseDate\">\n                <button class=\"btn btn-fa btn-secondary\" ng-click=\"asideCtrl.filter.releaseDate = \'\'\"><i class=\"fa fa-trash-o\"></i></button>\n                <span class=\"fa fa-search form-control-feedback\"></span>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <span style=\"height: 26px; display: block;\"></span>\n            <button class=\"btn btn-primary full-width\" data-ng-click=\"asideCtrl.applyFilter()\">Apply Filter</button>\n        </div>\n    </div>\n</div>\n");
 $templateCache.put("app/templates/aside/filter-col-aside.html","<div>\n    <h3>\n        Enable / disable table columns\n        <button type=\"button\" class=\"btn btn-secondary-invers btn-circle pull-right\" data-ng-click=\"asideCtrl.cancel()\"><i class=\"fa fa-chevron-right\"></i></button>\n    </h3>\n    <div class=\"aside-content\">\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-status\" data-ng-model=\"asideCtrl.colFilter.status\"/>\n                    <label for=\"filter-status\"><div></div></label>\n                </div>\n                <label for=\"filter-status\">Status</label>\n            </div>\n\n        </div>\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-song\" data-ng-model=\"asideCtrl.colFilter.song\"/>\n                    <label for=\"filter-song\"><div></div></label>\n                </div>\n                <label for=\"filter-song\">Song</label>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-statusKey\" data-ng-model=\"asideCtrl.colFilter.statusKey\"/>\n                    <label for=\"filter-statusKey\"><div></div></label>\n                </div>\n                <label for=\"filter-statusKey\">Status Key</label>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-artist\" data-ng-model=\"asideCtrl.colFilter.artist\"/>\n                    <label for=\"filter-artist\"><div></div></label>\n                </div>\n                <label for=\"filter-artist\">Artist</label>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-versionTitle\" data-ng-model=\"asideCtrl.colFilter.versionTitle\"/>\n                    <label for=\"filter-versionTitle\"><div></div></label>\n                </div>\n                <label for=\"filter-versionTitle\">Version Title</label>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-publisher\" data-ng-model=\"asideCtrl.colFilter.publisher\"/>\n                    <label for=\"filter-publisher\"><div></div></label>\n                </div>\n                <label for=\"filter-publisher\">Publisher</label>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-format\" data-ng-model=\"asideCtrl.colFilter.format\"/>\n                    <label for=\"filter-format\"><div></div></label>\n                </div>\n                <label for=\"filter-format\">Format</label>\n            </div>\n        </div>\n        <div class=\"form-group\">\n            <div class=\"bmg-checkbox-with-label\">\n                <div class=\"bmg-checkbox\">\n                    <input type=\"checkbox\" id=\"filter-releaseDate\" data-ng-model=\"asideCtrl.colFilter.releaseDate\"/>\n                    <label for=\"filter-releaseDate\"><div></div></label>\n                </div>\n                <label for=\"filter-releaseDate\">Release Date</label>\n            </div>\n        </div>\n        <div class=\"form-group filter-form-group\">\n            <span style=\"height: 26px; display: block;\"></span>\n            <button class=\"btn btn-primary full-width\" data-ng-click=\"asideCtrl.resetColFilter()\">Reset filter</button>\n        </div>\n    </div>\n</div>\n");
@@ -1066,6 +1069,7 @@ $templateCache.put("app/templates/components/inline-edits.html","<div class=\"pa
 $templateCache.put("app/templates/components/loading-indicator.html","<div class=\"panel panel-default panel-first\">\n	<div class=\"panel-heading\">\n		<h1 id=\"loading-indicator\">Loading Indicator</h1>\n	</div>\n	<div class=\"panel-body\" data-ng-controller=\"LoadingController as ctrl\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <p>\n                    Waiting animation for content that is currently loading.\n                </p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <div class=\"content-loading\">\n                    <i class=\"fa fa-spin fa-spinner content-placeholder-loading\"></i>\n                </div>\n            </div>\n        </div>\n\n        <pre><code class=\"html\">&lt;div class=&quot;content-loading&quot;&gt;\n    &lt;i class=&quot;fa fa-spin fa-spinner content-placeholder-loading&quot;&gt;&lt;/i&gt;\n&lt;/div&gt;</code></pre>\n\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <p>\n                    You can also specify a function that loads the content. Until the promise returned\n                    by that function resolves, the loading animation will be displayed:\n                </p>\n            </div>\n        </div>\n\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n				<button\n					class=\"btn btn-info\"\n					data-content-placeholder-reload-button>Reload content</button>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n				<data-content-placeholder\n					id=\"j4825673gr2354f456f3\"\n					data-content-promise=\"ctrl.loadContent()\">\n					<h2 data-ng-bind=\"ctrl.content.heading\"></h2>\n					<p data-ng-bind=\"ctrl.content.text\"></p>\n				</data-content-placeholder>\n			</div>\n		</div>\n\n		<pre><code class=\"html\">&lt;data-content-placeholder\n    data-content-promise=&quot;ctrl.loadContent()&quot;&gt;\n    &lt;h2 data-ng-bind=&quot;ctrl.content.heading&quot;&gt;&lt;/h2&gt;\n    &lt;p data-ng-bind=&quot;ctrl.content.text&quot;&gt;&lt;/p&gt;\n&lt;/data-content-placeholder&gt;</code></pre>\n	</div>\n</div>\n");
 $templateCache.put("app/templates/components/modal.html","<div class=\"panel panel-default\">\n	<div class=\"panel-heading\">\n		<h1 id=\"modal\">Modal</h1>\n	</div>\n	<div class=\"panel-body\">\n		<div class=\"row\" data-ng-controller=\"ModalController as modalCtrl\">\n			<div class=\"col-lg-12\">\n				<button class=\"btn btn-info\" data-ng-click=\"modalCtrl.openModal()\">Open modal</button>\n			</div>\n		</div>\n		<br>\n		<pre><code class=\"html\">&lt;div class=\"modal-close\"&gt;\n    &lt;button type=\"button\" class=\"close\" ng-click=\"cancel()\"&gt;&lt;i class=\"fa fa-times color-secondary\"&gt;&lt;/i&gt;&lt;/button&gt;\n&lt;/div&gt;\n&lt;div class=\"modal-header\"&gt;\n    &lt;h2 class=\"modal-title\"&gt;A simple Modal&lt;/h2&gt;\n&lt;/div&gt;\n&lt;div class=\"modal-body\"&gt;\n    &lt;form&gt;\n        &lt;div class=\"row\"&gt;\n            &lt;div class=\"col-lg-4\"&gt;\n                &lt;div class=\"form-group\"&gt;\n                    &lt;label for=\"firstName\"&gt;First Name&lt;/label&gt;\n                    &lt;input type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"First Name\"&gt;\n                &lt;/div&gt;\n            &lt;/div&gt;\n            &lt;div class=\"col-lg-4\"&gt;\n                &lt;div class=\"form-group\"&gt;\n                    &lt;label for=\"secondName\"&gt;Second Name&lt;/label&gt;\n                    &lt;input type=\"text\" class=\"form-control\" id=\"secondName\" placeholder=\"Second Name\"&gt;\n                &lt;/div&gt;\n            &lt;/div&gt;\n                &lt;div class=\"col-lg-4\"&gt;\n                    &lt;div class=\"form-group\"&gt;\n                    &lt;label for=\"lastName\"&gt;Last Name&lt;/label&gt;\n                    &lt;input type=\"text\" class=\"form-control\" id=\"lastName\" placeholder=\"Last Name\"&gt;\n                &lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/div&gt;\n    &lt;/form&gt;\n    &lt;hr&gt;\n    Any other content you need...\n&lt;/div&gt;\n&lt;div class=\"modal-footer\"&gt;\n    &lt;hr&gt;\n    &lt;button class=\"btn btn-primary\" type=\"button\" ng-click=\"ok()\"&gt;Create&lt;/button&gt;\n    &lt;button class=\"btn btn-secondary\" type=\"button\" ng-click=\"cancel()\"&gt;Cancel&lt;/button&gt;\n&lt;/div&gt;</code></pre>\n		<div class=\"dependency-warning\"><i class=\"fa fa-exclamation-triangle color-warning\"></i> Dependency: <a href=\"https://angular-ui.github.io/bootstrap/\">angular-bootstrap</a></div>\n	</div>\n</div>");
 $templateCache.put("app/templates/components/pagination.html","<div class=\"panel panel-default\">\n	<div class=\"panel-heading\">\n		<h1 id=\"pagination\">Pagination</h1>\n	</div>\n	<div class=\"panel-body\">\n		<div class=\"row\" data-ng-controller=\"PaginationController as paginationCtrl\">\n			<div class=\"col-lg-12\">\n				<uib-pagination total-items=\"paginationCtrl.bigTotalItems\" ng-model=\"paginationCtrl.bigCurrentPage\" max-size=\"paginationCtrl.maxSize\"\n								class=\"pagination pull-left with-page-number-input\" boundary-links=\"true\"\n								force-ellipses=\"false\"></uib-pagination>\n				<input type=\"text\" class=\"pagination-page-number-input\" placeholder=\"Page...\" ng-model=\"paginationCtrl.pageNumber\"\n					   data-ng-change=\"paginationCtrl.changePageNumber(paginationCtrl.pageNumber)\">\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n                    <pre><code class=\"html\">&lt;uib-pagination total-items=\"bigTotalItems\" ng-model=\"bigCurrentPage\" max-size=\"maxSize\"\n&nbsp;&nbsp;&nbsp;&nbsp;class=\"pagination pull-left with-page-number-input\" boundary-links=\"true\" force-ellipses=\"false\"&gt;&lt;/uib-pagination&gt;\n&lt;input type=\"text\" class=\"pagination-page-number-input\" placeholder=\"Page...\" ng-model=\"pageNumber\" data-ng-change=\"changePageNumber(pageNumber)\"&gt;</code></pre>\n				<div class=\"dependency-warning\"><i class=\"fa fa-exclamation-triangle color-warning\"></i> Dependency: <a href=\"https://angular-ui.github.io/bootstrap/\">angular-bootstrap</a></div>\n			</div>\n		</div>\n	</div>\n</div>");
+$templateCache.put("app/templates/components/panel.html","<div class=\"panel panel-default\">\n	<div class=\"panel-heading\">\n		<h1 id=\"panel-example\">Panel Example</h1>\n	</div>\n	<div class=\"panel-body\">\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n				<div>Panel Body</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-lg-12 data-create-code\">\n                    <pre><code class=\"html\">&lt;div class=\"panel panel-default\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"panel-heading\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1 id=\"status\"&gt;Panel Header&lt;/h1&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"panel-body\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"row\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"col-lg-12\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Panel Body&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"panel-footer\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"row\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"col-lg-12\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;Panel Footer&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&lt;/div&gt;</code></pre>\n			</div>\n		</div>\n	</div>\n	<div class=\"panel-footer\">\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n				<div>Panel Footer</div>\n			</div>\n		</div>\n	</div>\n</div>");
 $templateCache.put("app/templates/components/popover.html","<div class=\"panel panel-default\">\n	<div class=\"panel-heading\">\n		<h1 id=\"popover\">Popover</h1>\n	</div>\n	<div class=\"panel-body\">\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n                    <span\n							class=\"popover-anchor\"\n							id=\"popover-hover-anchor\"\n							uib-popover=\"Darth Vader acknowledges fatherhood of rebel alliance youngster Luke Skywalker.\"\n							popover-title=\"Breaking News\"\n							popover-placement=\"auto top-left\"\n							popover-trigger=\"mouseenter\">Move the cursor over me</span>\n			</div>\n		</div>\n\n		<br />\n		<br />\n\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n				<p>\n					Popovers can be declared on an element using the regular UI Bootstrap Popover directive.\n					Popovers can also specify custom templates containing arbitrary HTML. For detailed info on\n					how to do this, consult the <a href=\"https://angular-ui.github.io/bootstrap/#/popover\">UI Bootstrap documentation</a>.\n				</p>\n			</div>\n		</div>\n\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n                    <pre><code class=\"html\">&lt;span\n&nbsp;&nbsp;&nbsp;&nbsp;uib-popover=&quot;Content&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;popover-title=&quot;Title&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;popover-placement=&quot;auto top-left&quot;\n&nbsp;&nbsp;&nbsp;&nbsp;popover-trigger=&quot;mouseenter&quot;&gt;Move the cursor over me&lt;/span&gt;</code></pre>\n				<div class=\"dependency-warning\"><i class=\"fa fa-exclamation-triangle color-warning\"></i> Dependency: <a href=\"https://angular-ui.github.io/bootstrap/\">angular-bootstrap</a></div>\n			</div>\n		</div>\n	</div>\n</div>");
 $templateCache.put("app/templates/components/slide-navigation.html","<div class=\"panel panel-default\">\n	<div class=\"panel-heading\">\n		<h1 id=\"slide\">Slide navigation</h1>\n	</div>\n	<div class=\"panel-body\">\n		<div class=\"row\" data-ng-controller=\"ModalController as modalCtrl\">\n			<div class=\"col-lg-12\">\n				<button class=\"btn btn-info\" data-ng-click=\"modalCtrl.openSlideModal1()\">Open modal</button>\n				<button class=\"btn btn-info\" data-ng-click=\"modalCtrl.openSlideModal2()\">Open modal with nested form</button>\n			</div>\n		</div>\n		<br>\n		<pre><code class=\"html\">&lt;div class=\"modal-header\"&gt;\n    &lt;h2 class=\"modal-title\"&gt;Create Deal&lt;/h2&gt;\n&lt;/div&gt;\n&lt;div class=\"modal-body\"&gt;\n    &lt;uib-tabset active=\"activeJustified\" justified=\"true\" template-url=\"\"&gt;\n        &lt;uib-tab index=\"0\" heading=\"Common\"&gt;\n            &lt;uib-tab-heading&gt;\n                &lt;div class=\"number-circle\"&gt;1&lt;/div&gt; Common&lt;/h5&gt;\n            &lt;/uib-tab-heading&gt;\n            &lt;div class=\"form-group has-success has-feedback\"&gt;\n                &lt;label for=\"deal\"&gt;Deal&lt;/label&gt;\n                &lt;input type=\"text\" class=\"form-control\" id=\"deal\" placeholder=\"Deal\"&gt;\n                &lt;span class=\"fa fa-check form-control-feedback\"&gt;&lt;/span&gt;\n            &lt;/div&gt;\n        &lt;/uib-tab&gt;\n        &lt;uib-tab index=\"1\"&gt;\n            &lt;uib-tab-heading&gt;\n                &lt;span class=\"number-circle\"&gt;2&lt;/span&gt; Financial\n            &lt;/uib-tab-heading&gt;\n            Financial data...\n        &lt;/uib-tab&gt;\n        &lt;uib-tab index=\"2\" heading=\"People\"&gt;\n            &lt;uib-tab-heading&gt;\n                &lt;span class=\"number-circle\"&gt;3&lt;/span&gt; People\n            &lt;/uib-tab-heading&gt;\n            People data...\n        &lt;/uib-tab&gt;\n    &lt;/uib-tabset&gt;\n&lt;/div&gt;\n&lt;div class=\"modal-footer\"&gt;\n    &lt;button class=\"btn btn-primary\" type=\"button\" ng-click=\"ok()\"&gt;Create&lt;/button&gt;\n    &lt;button class=\"btn btn-secondary\" type=\"button\" ng-click=\"cancel()\"&gt;Cancel&lt;/button&gt;\n&lt;/div&gt;</code></pre>\n		<div class=\"dependency-warning\"><i class=\"fa fa-exclamation-triangle color-warning\"></i> Dependency: <a href=\"https://angular-ui.github.io/bootstrap/\">angular-bootstrap</a></div>\n	</div>\n</div>");
 $templateCache.put("app/templates/components/status.html","<div class=\"panel panel-default\">\n	<div class=\"panel-heading\">\n		<h1 id=\"status\">Status</h1>\n	</div>\n	<div class=\"panel-body\">\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n				<h2>A four step status bar</h2>\n				<div class=\"row\">\n					<div class=\"col-lg-6\">\n						<div class=\"progress-status\">\n							<div class=\"progress-display-status\">\n								<div class=\"status-line\"></div>\n								<div class=\"status-active\">1</div>\n								<div class=\"status-open\"></div>\n								<div class=\"status-open\"></div>\n								<div class=\"status-open\"></div>\n							</div>\n							<div class=\"status-percentage\">0&#37;<span\n									class=\"status-percentage-text\">complete</span>\n							</div>\n						</div>\n					</div>\n					<div class=\"col-lg-6\">\n						<div class=\"progress-status\">\n							<div class=\"progress-display-status\">\n								<div class=\"status-line\"></div>\n								<div class=\"status-finished\"></div>\n								<div class=\"status-active\">2</div>\n								<div class=\"status-open\"></div>\n								<div class=\"status-open\"></div>\n							</div>\n							<div class=\"status-percentage\">25&#37;<span\n									class=\"status-percentage-text\">complete</span>\n							</div>\n						</div>\n					</div>\n				</div>\n				<div class=\"row\">\n					<div class=\"col-lg-6\">\n						<div class=\"progress-status\">\n							<div class=\"progress-display-status\">\n								<div class=\"status-line\"></div>\n								<div class=\"status-finished\"></div>\n								<div class=\"status-finished\"></div>\n								<div class=\"status-active\">3</div>\n								<div class=\"status-open\"></div>\n							</div>\n							<div class=\"status-percentage\">50&#37;<span\n									class=\"status-percentage-text\">complete</span>\n							</div>\n						</div>\n					</div>\n					<div class=\"col-lg-6\">\n						<div class=\"progress-status\">\n							<div class=\"progress-display-status\">\n								<div class=\"status-line\"></div>\n								<div class=\"status-finished\"></div>\n								<div class=\"status-finished\"></div>\n								<div class=\"status-finished\"></div>\n								<div class=\"status-active\">4</div>\n							</div>\n							<div class=\"status-percentage\">75&#37;<span\n									class=\"status-percentage-text\">complete</span>\n							</div>\n						</div>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-lg-12\">\n				<h2>Longer status bar</h2>\n				<div class=\"progress-status\">\n					<div class=\"progress-display-status\">\n						<div class=\"status-line\"></div>\n						<div class=\"status-finished\"></div>\n						<div class=\"status-finished\"></div>\n						<div class=\"status-finished\"></div>\n						<div class=\"status-finished\"></div>\n						<div class=\"status-finished\"></div>\n						<div class=\"status-finished\"></div>\n						<div class=\"status-finished\"></div>\n						<div class=\"status-active\">8</div>\n						<div class=\"status-open\"></div>\n						<div class=\"status-open\"></div>\n					</div>\n					<div class=\"status-percentage\">70&#37;<span class=\"status-percentage-text\">complete</span>\n					</div>\n				</div>\n			</div>\n		</div>\n		<div class=\"row\">\n			<div class=\"col-lg-12 data-create-code\">\n                    <pre><code class=\"html\">&lt;div class=\"progress-status\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"progress-display-status\"&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"status-line\"&gt;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"status-finished\"&gt;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"status-finished\"&gt;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"status-active\"&gt;3&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"status-open\"&gt;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;\n&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=\"status-percentage\"&gt;50&amp;&#35;&#51;&#55;&#59;&lt;span class=\"status-percentage-text\"&gt;complete&lt;/span&gt;&lt;/div&gt;\n&lt;/div&gt;</code></pre>\n			</div>\n		</div>\n	</div>\n</div>");
