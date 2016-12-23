@@ -98,6 +98,9 @@
             .state('index.inlineEdits', {
                 url: '#inline-edits'
             })
+			.state('index.panel', {
+				url: '#panel-example'
+			})
             .state('index.css', {
                 url: '#css'
             });
