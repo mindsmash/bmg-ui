@@ -111,7 +111,7 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 @media (min-width: 2000px) { .inline-form .narrow { max-width: 200px; } }
 
-.inline-edit-container .revert-button, .inline-select .revert-button { position: relative; top: -2px; opacity: 0; transition: opacity 0.1s ease-in-out; margin-left: -20px; height: 20px; width: 20px; background-color: transparent; border: none; cursor: text; }
+.inline-edit-container .revert-button, .inline-select .revert-button { position: relative; top: -2px; opacity: 0; transition: opacity 0.1s ease-in-out; margin-left: -20px; height: 24px; width: 20px; background-color: transparent; border: none; cursor: text; }
 
 .inline-edit-container .revert-button.active, .inline-select .revert-button.active { opacity: 1; cursor: pointer; }
 
@@ -125,9 +125,17 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 .inline-edit-container .inline-edit-disabled, .inline-select .inline-edit-disabled { color: #dadada; }
 
+.inline-edit-container .inline-text, .inline-edit-container .inline-textarea, .inline-edit-container .inline-typeahead, .inline-edit-container .inline-datepicker, .inline-edit-container .ui-select-match, .inline-select input { border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #dadada; transition: border-bottom-color 0.1s ease-in-out; border-top: 1px solid transparent; padding: 0px 20px 0px 0px; position: relative; top: -2px; display: inline-block; width: 100%; max-height: 30px !important; height: 30px; font-weight: 600; }
+
+.inline-edit-container .inline-text:focus, .inline-edit-container .inline-textarea:focus, .inline-edit-container .inline-typeahead:focus, .inline-edit-container .inline-datepicker:focus, .inline-edit-container .ui-select-match:focus, .inline-select input:focus { border-bottom-color: #51d0ff; }
+
+.inline-edit-container .inline-text:invalid, .inline-edit-container .inline-textarea:invalid, .inline-edit-container .inline-typeahead:invalid, .inline-edit-container .inline-datepicker:invalid, .inline-edit-container .ui-select-match:invalid, .inline-select input:invalid { border-bottom-color: #c80031; }
+
 .inline-edit-container { max-height: 30px; padding: 0; margin: 0; }
 
-.inline-edit-container .inline-error { line-height: 20px; font-size: 12px; min-height: 20px; margin-top: -2px; color: #c80031; opacity: 0; transition: opacity 0.1s ease-in-out; }
+.inline-edit-container .revert-button { height: 24px; }
+
+.inline-edit-container .inline-error { line-height: 22px; font-size: 12px; min-height: 22px; margin-top: -2px; color: #c80031; opacity: 0; transition: opacity 0.1s ease-in-out; }
 
 .inline-edit-container .bmg-checkbox-with-label ~ .inline-error { margin-top: -10px; }
 
@@ -149,35 +157,27 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 .inline-edit-container .inline-typeahead ~ .typeahead-hint { position: relative; top: -2px; margin-left: 5px; width: 20px; height: 20px; }
 
-.inline-edit-container .inline-text, .inline-edit-container .inline-textarea, .inline-edit-container .inline-typeahead, .inline-edit-container .inline-datepicker, .inline-edit-container .ui-select-match, .inline-select input { border-top: none; border-left: none; border-right: none; border-bottom: 1px solid #dadada; transition: border-bottom-color 0.1s ease-in-out; border-top: 1px solid transparent; padding: 0px 20px 0px 0px; position: relative; top: -2px; display: inline-block; width: 100%; max-height: 30px !important; height: 30px; font-weight: 600; }
-
-.inline-edit-container .inline-text:focus, .inline-edit-container .inline-textarea:focus, .inline-edit-container .inline-typeahead:focus, .inline-edit-container .inline-datepicker:focus, .inline-edit-container .ui-select-match:focus, .inline-select input:focus { border-bottom-color: #51d0ff; }
-
-.inline-edit-container .inline-text:invalid, .inline-edit-container .inline-textarea:invalid, .inline-edit-container .inline-typeahead:invalid, .inline-edit-container .inline-datepicker:invalid, .inline-edit-container .ui-select-match:invalid, .inline-select input:invalid { border-bottom-color: #c80031; }
-
 .inline-edit-container.textarea-container { max-height: initial !important; height: 30px; }
 
 .inline-edit-container.textarea-container .inline-error { margin-top: -12px; }
 
 .inline-edit-container.textarea-container .revert-button { position: absolute; }
 
+.inline-edit-container input[type=number].inline-text { padding: 0; }
+
+.inline-edit-container input[type=number].inline-text ~ .revert-button { width: 20px; height: 24px; margin-left: -40px; position: relative; top: -2px; opacity: 0; transition: opacity 0.1s ease-in-out; }
+
+.inline-edit-container input[type=number].inline-text ~ .revert-button.active { opacity: 1; }
+
 .inline-edit-container .inline-textarea { max-height: 200px !important; line-height: normal; padding-top: 5px !important; }
 
 .inline-edit-container .ui-select-match { top: -1px !important; }
 
-.inline-select div[role=option].active { background-color: #f6f6f6; }
+.inline-edit-container .inline-datepicker ~ .calendar-button { padding: 0px; width: 20px; height: 24px; margin-left: 5px; position: relative; top: -2px; background-color: transparent; border: none; }
 
-.inline-select.ui-select-container { z-index: 1050; }
-
-.inline-edit-container .inline-datepicker ~ .calendar-button { padding: 0px; width: 20px; height: 20px; margin-left: 5px; position: relative; top: -2px; background-color: transparent; border: none; }
-
-.inline-edit-container .inline-datepicker ~ .revert-button { width: 20px; height: 20px; margin-left: -45px; position: relative; top: -2px; opacity: 0; transition: opacity 0.1s ease-in-out; }
+.inline-edit-container .inline-datepicker ~ .revert-button { width: 20px; height: 24px; margin-left: -45px; position: relative; top: -2px; opacity: 0; transition: opacity 0.1s ease-in-out; }
 
 .inline-edit-container .inline-datepicker ~ .revert-button.active { opacity: 1; }
-
-.inline-edit-container .ui-select-match, .inline-select input { top: 0px; }
-
-.inline-edit-container .ui-select-match { cursor: pointer; }
 
 .inline-edit-container .bmg-checkbox-with-label { line-height: 18px !important; padding: 5px 20px 0 0; margin: 0; position: relative; top: -2px; display: inline-block; }
 
@@ -189,7 +189,15 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 .inline-edit-container .bmg-checkbox-with-label ~ .success-indicator.active { opacity: 1; }
 
-.inline-select .revert-button { position: relative; top: -2px; margin-left: 0; width: 20px; height: 20px; margin-left: -40px; cursor: pointer; }
+.inline-edit-container .bmg-checkbox-with-label .ui-select-match { cursor: pointer; }
+
+.inline-select div[role=option].active { background-color: #f6f6f6; }
+
+.inline-select.ui-select-container { z-index: 1050; }
+
+.inline-edit-container .ui-select-match, .inline-select input { top: 0px; }
+
+.inline-select .revert-button { position: relative; top: -2px; margin-left: 0; width: 20px; height: 24px; margin-left: -40px; cursor: pointer; }
 
 .inline-select .revert-button .success-indicator { transition: opacity 0.1s ease-in-out; }
 
