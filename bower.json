@@ -43,6 +43,7 @@
     "jquery.floatThead": "floatThead#1.4.3",
     "ngSticky": "^1.8.10",
     "lodash": "^4.13.1",
+    "angular-marked": "^1.2.2",
     "angular-elastic": "^2.5.1"
   },
   "overrides": {

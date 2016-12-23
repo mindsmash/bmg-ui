@@ -12,7 +12,8 @@
         'ui.select',
         'ngAside',
         'sticky',
-        'bmg/template/inlineEdits'
+        'bmg/template/inlineEdits',
+		'hc.marked'
     ]);
 
 })(angular);

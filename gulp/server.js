@@ -47,9 +47,14 @@ gulp.task('docs:dev', function () {
   gulp.watch('source/**/*.html', ['docs:dev:reload']);
   gulp.watch('source/**/*.scss', ['docs:dev:restyle']);
   gulp.watch('source/docs/index.html', ['docs:dev:reload']);
+  gulp.watch('CHANGELOG.md', ['docs:build:reload']);
 });
 
 // ----------------------------------------------------------------------------------------------------
+
+gulp.task('docs:build:reload', ['copy:markdown'], function(){
+  browserSync.reload();
+});
 
 gulp.task('docs:dev:reload', ['inject:dev'], function(){
   browserSync.reload();

@@ -28,7 +28,6 @@ gulp.task('inject:dev', function () {
       gulp.src('.tmp/css/docs.css', {read: false}),
       gulp.src('source/docs/**/app.js', {read: false}),
       gulp.src('source/docs/**/*.module.js', {read: false}),
-      
       gulp.src([
         '!source/docs/**/app.js',
         '!source/docs/**/*.module.js',
