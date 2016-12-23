@@ -1,4 +1,4 @@
-# BMG-UI Kit Changelog
+# BMG UI-Kit Changelog
 
 ## Versions
 
