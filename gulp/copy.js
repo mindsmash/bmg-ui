@@ -47,3 +47,14 @@ gulp.task('copy:images', function(){
     return gulp.src('source/kit/images/*')
         .pipe(gulp.dest('docs/images'));
 });
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
+ * Copies markdown
+ */
+gulp.task('copy:markdown', function(){
+	return gulp.src('./CHANGELOG.md')
+		.pipe(gulp.dest('.tmp/'))
+		.pipe(gulp.dest('docs/'));
+});

@@ -13,5 +13,6 @@ gulp.task('build', gulpSequence(
   'scripts:build',
   'inject:build',
   'copy:fonts',
-  'copy:images'
+  'copy:images',
+  'copy:markdown'
 ));
