@@ -162,6 +162,10 @@ $bmg-border-dark: transparentize($bmg-black, .70);
   }
 }
 
+.dim {
+  color: transparentize($bmg-black, .75);
+}
+
 .panel-example {
   vertical-align: middle;
   text-align: center;

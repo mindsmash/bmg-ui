@@ -13,6 +13,9 @@
                 $anchorScroll();
             }
         });
+		$rootScope.$on('$stateChangeError', function() {
+			$state.go('index');
+		});
     }
 
 })(angular);

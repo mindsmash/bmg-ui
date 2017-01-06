@@ -4,12 +4,16 @@
     angular.module('bmg-ui.docs')
         .config(routesConfig);
 
-    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$uiViewScrollProvider'];
+    routesConfig.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$uiViewScrollProvider', '$qProvider'];
 
-    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, $uiViewScrollProvider) {
+    function routesConfig($stateProvider, $locationProvider, $urlRouterProvider, $uiViewScrollProvider, $qProvider) {
         $uiViewScrollProvider.useAnchorScroll();
         $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode(true);
+
+		// https://github.com/angular-ui/ui-router/issues/2889
+		$qProvider.errorOnUnhandledRejections(false);
+
         $stateProvider
             .state('index', {
                 url: '/',
@@ -91,6 +95,9 @@
             })
             .state('index.popover', {
                 url: '#popover'
+            })
+			.state('index.notifications', {
+                url: '#notifications'
             })
             .state('index.sticky', {
                 url: '#sticky'

@@ -1,0 +1,178 @@
+<div class="row">
+	<div class="col-xs-12">
+		<p>
+			Configuration:
+		</p>
+
+		<table class="table table-condensed inline-properties-table">
+			<thead>
+			<tr>
+				<th>Property</th>
+				<th>Values</th>
+				<th>Explanation</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td><code>title</code></td>
+				<td>string (optional)</td>
+				<td>The string representing the popover title. If no title is given, the title header within the popover
+					will not be displayed.
+				</td>
+			</tr>
+			<tr>
+				<td><code>template</code></td>
+				<td>string</td>
+				<td>Representing the location of a template to use for the popover body. Note that the contents of this
+					template need to be wrapped in a tag, e.g.: &lt;div&gt;&lt;/div&gt;</td>
+			</tr>
+			<tr>
+				<td><code>data</code></td>
+				<td>object</td>
+				<td>
+					<p>The data object contains all notification data. The data object has following required
+						properties:</p>
+					<p><code>highlightedNotifications</code>, <code>highlightedNotificationsTitle</code>, <code>notifications</code>,
+						<code>notificationsTitle</code></p>
+				</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.</span>count</code></td>
+				<td>number</td>
+				<td>This number will displayed in the red bubble and shows the number of new notifications and/or
+					highlighted notifications.
+				</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.</span>highlightedNotificationsTitle</code></td>
+				<td>string (optional)</td>
+				<td>Optional title for highlighted notifications section. If no title is given the section title will
+					not be displayed.
+				</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.</span>highlightedNotifications</code></td>
+				<td>array</td>
+				<td>
+					<p>Array including highlightedNotification objects. If the array is empty the highlighted
+						notifications section will not be displayed. The highlightedNotifications object has following
+						required properties:</p>
+					<p><code>icon</code>, <code>handled</code>, <code>username</code>, <code>action</code>,
+						<code>message</code>, <code>date</code></p>
+					<p>You can add more properties (e.g. id), if the notification functions (e.g. handleUrl or
+						markAllAsRead) need them.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.</span>notificationsTitle</code></td>
+				<td>string (optional)</td>
+				<td>Optional title for notifications section. If no title is given the section title will not be
+					displayed.
+				</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.</span>notifications</code></td>
+				<td>array</td>
+				<td>
+					<p>Array including notification objects. If the array is empty the notifications section will not be
+						displayed. The notifications object has following required properties:</p>
+					<p><code>unread</code>, <code>icon</code>, <code>username</code>, <code>action</code>,
+						<code>message</code>, <code>date</code></p>
+					<p>You can add more properties (e.g. id), if the notification functions (e.g. handleUrl or
+						markAllAsRead) need them.</p>
+				</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].</span>handled</code></td>
+				<td>boolean</td>
+				<td>A boolean flag to show the handled (read) status of an notification.</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].</span>username</code></td>
+				<td>string</td>
+				<td>A string to display the name of the notification triggering person.</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].</span>action</code></td>
+				<td>string</td>
+				<td>A short text about the action.</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].</span>message</code></td>
+				<td>string (optional)</td>
+				<td>A additional (more detailed) message for an action.</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].</span>date</code></td>
+				<td>Date</td>
+				<td>The notification date.</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].</span>icon</code></td>
+				<td>object</td>
+				<td>
+					<p>Icon object to display an icon for the notification. The icon object has following required
+						properties:</p>
+					<p><code>symbol</code>, <code>color</code></p>
+				</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].icon.</span>symbol</code></td>
+				<td>string</td>
+				<td>A font awesome icon e.g. fa-check.</td>
+			</tr>
+			<tr>
+				<td><code><span class="dim">data.notifications[i].icon.</span>color</code></td>
+				<td>string</td>
+				<td>A color class.</td>
+			</tr>
+			<tr>
+				<td><code>loadMore</code></td>
+				<td>function (optional)</td>
+				<td>A custom function that will be called if the infinite scroll event ist triggered. This function
+					should update the data object.
+				</td>
+			</tr>
+			<tr>
+				<td><code>handleUrl</code></td>
+				<td>function (optional)</td>
+				<td>A custom function that will be called if a notification is clicked (redirect to an specific page,
+					mark notification as read, ...). If no function is available a click will not do anything.
+					The function (as directive property) should always have '{notification: notification}' as function
+					argument.
+					If a notification is clicked, the directive will return a notification object that contains all the
+					data of the clicked notification.
+				</td>
+			</tr>
+			<tr>
+				<td><code>handleHighlightUrl</code></td>
+				<td>function (optional)</td>
+				<td>A custom function that will be called if a highlighted notification is clicked (redirect to an
+					specific page, mark highlighted notification as read, ...). If no function is available a click will
+					not do anything.
+					The function (as directive property) should always have '{notification: notification}' as function
+					argument.
+					If a notification is clicked, the directive will return a notification object that contains all the
+					data of the clicked notification.
+				</td>
+			</tr>
+			<tr>
+				<td><code>goToOverviewPage</code></td>
+				<td>function (optional)</td>
+				<td>A custom function that will be called if the 'See all' link is clicked (redirect to an
+					specific page). If no function is available the see all link will not be displayed.
+				</td>
+			</tr>
+			<tr>
+				<td><code>markAllAsRead</code></td>
+				<td>function (optional)</td>
+				<td>A custom function to add additional behavior to the internal markAllAsRead function.
+					The markAllAsRead will be called if the mark all as read link is clicked. In this case the internal
+					markAllAsRead will set the handled flag of all notifications (except the highlighted notifications)
+					to true.
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
