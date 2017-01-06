@@ -379,6 +379,40 @@ table.uib-yearpicker > tbody > tr > td > button.btn.active > span { color: #ffff
 
 .content-loading i.fa.fa-spin.fa-spinner.content-placeholder-loading { font-size: 150%; color: #999; }
 
+.angular-notifications-container { font-size: 14px; }
+
+.angular-notifications-container .angular-notifications-icon { right: -2px; padding-top: 0; line-height: 18px; min-width: 18px; height: 18px; background-color: #c80031; }
+
+.notification-popover.popover { max-width: 600px; min-width: 600px; }
+
+.notification-popover.popover .arrow { right: 24px !important; }
+
+.notification-popover.popover .popover-title { background-color: #ffffff !important; font-weight: 600; color: #4d4d4d; }
+
+.notification-popover.popover .popover-content { max-height: 390px; overflow-y: scroll; overflow-x: hidden; padding: 0 0 0 1px; margin: 0; }
+
+.notification-popover.popover .popover-content table { margin-bottom: 15px; }
+
+.notification-popover.popover .popover-content table tbody { border: none; }
+
+.notification-popover.popover .popover-content table tbody td:last-of-type { border-bottom: none; }
+
+.notification-popover.popover .popover-content .footer { position: absolute; bottom: 0; left: 0; right: 0; line-height: 24px; height: 24px; align-content: center; text-align: center; background-color: #ffffff; border-top: 1px solid rgba(77, 77, 77, 0.05); }
+
+.notification-popover.popover .popover-content .footer a { color: #51d0ff; }
+
+.notification-popover.popover .popover-content .unread { border-left: 4px solid #999; background-color: rgba(153, 153, 153, 0.15); }
+
+.notification-popover.popover .popover-content .highlight { border-left: 4px solid #c80031; background-color: rgba(153, 153, 153, 0.15); }
+
+.notification-popover.popover .popover-content .details { padding: 2px 50px 2px 20px; }
+
+.notification-popover.popover .popover-content .title { float: left; text-align: left; }
+
+.notification-popover.popover .popover-content .go-to-overview { display: block; cursor: pointer; float: right; }
+
+.navbar .navbar-collapse.collapse .navbar-nav.navbar-right > li:hover .popover .popover-content, .navbar .navbar-collapse.collapse .navbar-nav.navbar-right > li:active .popover .popover-content, .navbar .navbar-collapse.collapse .navbar-nav.navbar-right > li:focus .popover .popover-content { color: #4d4d4d !important; }
+
 /*! Bootstrap v3.3.7 (http://getbootstrap.com) Copyright 2011-2016 Twitter, Inc. Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE) */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html { font-family: sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
