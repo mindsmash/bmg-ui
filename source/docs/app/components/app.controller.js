@@ -86,7 +86,7 @@
 
         this.notifications = {
 			title: 'Notifications',
-			template: 'app/template	s/components/notification-popover.html',
+			template: 'app/templates/components/notification-popover.html',
 			data: createNotificationsData(null, 10, true)
 		};
 

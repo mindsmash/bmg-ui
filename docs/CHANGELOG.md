@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 2017-01-06 - V0.9.0
+
+ - select on focus for inline edit text input
+ - notifications (icon) for navbar
+
 ### 2016-12-22 - v0.8.3
 
  - inline edit (text) revert button bugfix for safari and improvement for all browser
