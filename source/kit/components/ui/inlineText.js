@@ -16,12 +16,13 @@
                 oncommit: '&',
                 tabindex: '@?',
                 disabled: '=?',
-                inputType: '@?'
+	            inputType : '@?',
+	            selectOnFocus : '=?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
-                // timeout necessary, otherview $viewValue is still NaN
+	            // timeout necessary, otherwise $viewValue is still NaN
                 $timeout(function() {
                     // save original input value for undo
                     var initialValue = ngModel.$viewValue;
@@ -37,6 +38,14 @@
                     inputElem.focus(function() {
                         // update initial value on new focus
                         initialValue = ngModel.$viewValue;
+
+	                    // select value
+	                    if (!!scope.selectOnFocus) {
+		                    // The timeout is needed by safari browser to keep the selection.
+		                    $timeout(function() {
+			                    inputElem.select();
+		                    });
+	                    }
 
                         // inform tabbable form about focus change
                         if (scope.tabindex) {
