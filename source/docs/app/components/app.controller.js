@@ -102,7 +102,7 @@
 			this.notifications.data = createNotificationsData(this.notifications.data, 1, true, true);
 		};
 
-		this.loadMoreItems = function() {
+		this.loadMoreNotifications = function() {
 			this.notifications.data = createNotificationsData(this.notifications.data, 10, false, false, true);
 			offsetTime += 60;
 		};

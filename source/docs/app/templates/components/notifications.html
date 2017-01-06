@@ -13,13 +13,13 @@
 					<button class="btn btn-default" data-ng-click="appCtrl.addHighlightedNotification()"><i class="fa fa-bell-o"></i> Add a new highlighted notification</button>
 				</p>
 				<pre><code class="html">&lt;notification
-	title=&quot;ctrl.notifications.title&quot;
-	template=&quot;ctrl.notifications.template&quot;
-	data=&quot;ctrl.notifications.data&quot;
-	handle-url=&quot;ctrl.notifications.handleUrl({notification: notification})&quot;
-	handle-highlighted-url=&quot;ctrl.notifications.handleHighlightedUrl({notification: notification})&quot;
-	mark-all-as-read=&quot;ctrl.notifications.markAllAsRead()&quot;
-	load-more=&quot;ctrl.notifications.loadMoreItems()&quot;&gt;&lt;/notification&gt;</code></pre>
+	notification-title=&quot;ctrl.notifications.title&quot;
+	notification-template=&quot;ctrl.notifications.template&quot;
+	notification-data=&quot;ctrl.notifications.data&quot;
+	notification-handle=&quot;ctrl.notifications.handle({notification: notification})&quot;
+	notification-handle-highlighted=&quot;ctrl.notifications.handleHighlighted({notification: notification})&quot;
+	notification-mark-all-as-read=&quot;ctrl.notifications.markAllAsRead()&quot;
+	notification-load-more=&quot;ctrl.notifications.loadMoreNotifications()&quot;&gt;&lt;/notification&gt;</code></pre>
 				<div ng-include="'app/templates/components/config-blocks/notification.html'"></div>
 				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependencies:
 					<a href="https://github.com/jacob-meacham/angular-notification-icons">angular-notification-icons</a>,

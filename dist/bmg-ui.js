@@ -1514,14 +1514,14 @@
 		return {
 			replace: true,
 			scope: {
-				title: '=',
-				template: '=',
-				data: '=',
-				loadMore: '&?',
-				markAllAsRead: '&?',
-				goToOverviewPage: '&?',
-				handleUrl: '&?',
-				handleHighlightUrl: '&?'
+				title: '=notificationTitle',
+				template: '=notificationTemplate',
+				data: '=notificationData',
+				loadMore: '&?notificationLoadMore',
+				markAllAsRead: '&?notificationMarkAllAsRead',
+				goToOverviewPage: '&?notificationGoToOverviewPage',
+				handle: '&?notificationHandle',
+				handleHighlighted: '&?notificationHandleHighlighted'
 			},
 			restrict: 'AE',
 			templateUrl: 'bmg/template/notification/notification-icon.html',
@@ -1534,16 +1534,15 @@
 				};
 				scope.highlightedNotificationsAvailable = false;
 				scope.notificationsAvailable = false;
-				scope.loading = true;
-				var diff = 0;
+				scope.showLoading = true;
 
-				var handleDataArray = function() {
+				var handleDataArray = function(diff) {
 					scope.dataArray = {};
 					if (!scope.data) {
 						return {};
 					}
-					if (diff > 0) {
-						scope.loading = false;
+					if (diff == 0) {
+						scope.showLoading = false;
 					}
 					if (!!scope.data.highlightedNotifications && scope.data.highlightedNotifications.length > 0) {
 						scope.highlightedNotificationsAvailable = true;
@@ -1567,27 +1566,31 @@
 					scope.infiniteScrollDisabled = false;
 				};
 
-				scope.$watch('data', function() {
-					handleDataArray();
+				scope.$watch('data', function(newData, oldData) {
+					var diff = 0;
+					if (!!newData.notifications && !!oldData.notifications) {
+						diff = newData.notifications.legnth - oldData.notifications.length;
+					}
+					handleDataArray(diff);
 				}, true);
 
 				scope.handleHighlightNotification = function(notification) {
-					if (!!scope.handleHighlightUrl) {
-						if (typeof scope.handleHighlightUrl === "function") {
-							scope.handleHighlightUrl({notification: notification});
+					if (!!scope.handleHighlighted) {
+						if (typeof scope.handleHighlighted === "function") {
+							scope.handleHighlighted({notification: notification});
 						} else {
-							console.info('notification: no function is given for property \'handleHighlightUrl\'.')
+							console.info('notification: no function is given for property \'handleHighlighted\'.')
 						}
 					}
 				};
 
 				scope.handleNotification = function(notification) {
-					if (!!scope.handleUrl) {
-						scope.handleUrl({notification: notification});
-						if (typeof scope.handleUrl === "function") {
-							scope.handleUrl({notification: notification});
+					if (!!scope.handle) {
+						scope.handle({notification: notification});
+						if (typeof scope.handle === "function") {
+							scope.handle({notification: notification});
 						} else {
-							console.info('notification: no function is given for property \'handleUrl\'.')
+							console.info('notification: no function is given for property \'handle\'.')
 						}
 					}
 				};
