@@ -4,7 +4,7 @@
 	angular
 		.module('bmg.components.ui')
 		.run(['$templateCache', function($templateCache) {
-			$templateCache.put('bmg/template/notification/notification-icon.html',
+			$templateCache.put('app/template/notification/notification-icon.html',
 				'<a class="nav-notification-icon" data-ng-click="resetCounter()" uib-popover-template="template" ' +
 				'popover-title="{{title}}" ' +
 				'popover-placement="bottom-right" ' +
@@ -41,7 +41,7 @@
 				handleHighlighted: '&?notificationHandleHighlighted'
 			},
 			restrict: 'AE',
-			templateUrl: 'bmg/template/notification/notification-icon.html',
+			templateUrl: 'app/template/notification/notification-icon.html',
 			link: function(scope) {
 				scope.dataArray = {
 					highlightedNotifications: [],
