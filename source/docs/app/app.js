@@ -11,9 +11,13 @@
         'ngSanitize',
         'ui.select',
         'ngAside',
+        'ngAnimate',
+		'angularMoment',
         'sticky',
         'bmg/template/inlineEdits',
-		'hc.marked'
+		'hc.marked',
+		'angular-notification-icons',
+		'infinite-scroll'
     ]);
 
 })(angular);

@@ -1,0 +1,105 @@
+.angular-notifications-container {
+
+  font-size: 14px;
+
+  .angular-notifications-icon {
+    right: -2px;
+    padding-top: 0;
+    line-height: 18px;
+    min-width: 18px;
+    height: 18px;
+    background-color: $bmg-monza;
+  }
+}
+
+.notification-popover {
+  &.popover {
+    max-width: 600px;
+    min-width: 600px;
+
+    .arrow {
+      right: 24px !important;
+    }
+
+    .popover-title {
+      background-color: $bmg-white !important;
+      font-weight: 600;
+      color: $bmg-text;
+    }
+
+    .popover-content {
+      max-height: 390px;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding: 0 0 0 1px;
+      margin: 0;
+
+      table {
+        margin-bottom: 15px;
+
+        tbody {
+          border: none;
+
+          td:last-of-type {
+            border-bottom: none;
+          }
+        }
+      }
+
+      .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        line-height: 24px;
+        height: 24px;
+        align-content: center;
+        text-align: center;
+        background-color: $bmg-white;
+        border-top: 1px solid $bmg-border-light;
+
+        a {
+          color: $bmg-malibu;
+        }
+      }
+
+      .unread {
+        border-left: 4px solid $bmg-gray-dark;
+        background-color: transparentize($bmg-gray-dark, .85);
+      }
+
+      .highlight {
+        border-left: 4px solid $bmg-monza;
+        background-color: transparentize($bmg-gray-dark, .85);
+      }
+
+      .details {
+        padding: 2px 50px 2px 20px;
+      }
+
+      .title {
+        float: left;
+        text-align: left;
+      }
+
+      .go-to-overview {
+        display: block;
+        cursor: pointer;
+        float: right;
+      }
+    }
+  }
+}
+
+// reset hover effect from "navbar li" elements
+.navbar .navbar-collapse.collapse .navbar-nav.navbar-right > li {
+  &:hover,
+  &:active,
+  &:focus {
+    .popover {
+      .popover-content {
+        color: $bmg-text !important;
+      }
+    }
+  }
+}

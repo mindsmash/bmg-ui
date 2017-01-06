@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 id="notifications">Notifications</h1>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-lg-12">
+				<p></p>
+				<p>Take a look into the navbar for the notification icon and the notification count.</p>
+				<p>
+					<button class="btn btn-default" data-ng-click="appCtrl.addNotification()"><i class="fa fa-bell-slash-o"></i> Add a read notification</button>
+					<button class="btn btn-default" data-ng-click="appCtrl.addNewNotification()"><i class="fa fa-bell-o"></i> Add a new notification</button>
+					<button class="btn btn-default" data-ng-click="appCtrl.addHighlightedNotification()"><i class="fa fa-bell-o"></i> Add a new highlighted notification</button>
+				</p>
+				<pre><code class="html">&lt;notification
+	notification-title=&quot;ctrl.notifications.title&quot;
+	notification-template=&quot;ctrl.notifications.template&quot;
+	notification-data=&quot;ctrl.notifications.data&quot;
+	notification-handle=&quot;ctrl.notifications.handle({notification: notification})&quot;
+	notification-handle-highlighted=&quot;ctrl.notifications.handleHighlighted({notification: notification})&quot;
+	notification-mark-all-as-read=&quot;ctrl.notifications.markAllAsRead()&quot;
+	notification-load-more=&quot;ctrl.notifications.loadMoreNotifications()&quot;&gt;&lt;/notification&gt;</code></pre>
+				<div ng-include="'app/templates/components/config-blocks/notification.html'"></div>
+				<div class="dependency-warning"><i class="fa fa-exclamation-triangle color-warning"></i> Dependencies:
+					<a href="https://github.com/jacob-meacham/angular-notification-icons">angular-notification-icons</a>,
+					<a href="https://github.com/sroze/ngInfiniteScroll">ng-infinite-scroll</a>,
+					<a href="https://github.com/urish/angular-moment">angular-moment</a>,
+					<a href="https://github.com/angular/bower-angular-animate">angular-animate</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
