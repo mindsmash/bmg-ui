@@ -3,7 +3,7 @@
 		<tbody id="scroll-container">
 			<tr class="highlighted-notification-title" data-ng-if="!!dataArray.highlightedNotificationsTitle">
 				<td colspan="2">
-					<div class="title"><strong>{{dataArray.highlightedNotificationsTitle}}</strong></div>
+					<div class="title"><strong>{{::dataArray.highlightedNotificationsTitle}}</strong></div>
 				</td>
 				<td>
 					<a class="go-to-overview" data-ng-if="goToOverviewPageAvailable()" data-ng-click="handleOverviewPage()">See all</a>
@@ -21,17 +21,17 @@
 				</td>
 				<td class="pointer" data-ng-click="handleHighlightNotification(highlightedNotification)">
 					<div class="action">
-						<strong>{{highlightedNotification.username}}</strong> {{highlightedNotification.action}}
+						<strong>{{::highlightedNotification.username}}</strong> {{::highlightedNotification.action}}
 					</div>
 					<div class="message" data-ng-if="!!highlightedNotification.message" uib-collapse="highlightedNotification.collapsed">
-						<ul class="details"><li><span>{{highlightedNotification.message}}</span></li></ul>
+						<ul class="details"><li><span>{{::highlightedNotification.message}}</span></li></ul>
 					</div>
 				</td>
 				<td class="meta-info-time" am-time-ago="highlightedNotification.date" title="{{highlightedNotification.date | date:'yyyy-mm-dd hh:mm:ss'}}"></td>
 			</tr>
 			<tr class="notification-title" data-ng-if="!!dataArray.notificationsTitle">
 				<td colspan="2">
-					<div class="title"><strong>{{dataArray.notificationsTitle}}</strong></div>
+					<div class="title"><strong>{{::dataArray.notificationsTitle}}</strong></div>
 				</td>
 				<td>
 					<a class="go-to-overview" data-ng-if="goToOverviewPageAvailable()" data-ng-click="handleOverviewPage()">See all</a>
@@ -50,10 +50,10 @@
 				</td>
 				<td class="pointer" data-ng-click="handleNotification(notification)">
 					<div class="action">
-						<strong>{{notification.username}}</strong> {{notification.action}}
+						<strong>{{::notification.username}}</strong> {{::notification.action}}
 					</div>
 					<div class="message" data-ng-if="!!notification.message" uib-collapse="notification.collapsed">
-						<ul class="details"><li><span>{{notification.message}}</span></li></ul>
+						<ul class="details"><li><span>{{::notification.message}}</span></li></ul>
 					</div>
 				</td>
 				<td class="meta-info-time" am-time-ago="notification.date" title="{{notification.date | date:'yyyy-mm-dd hh:mm:ss'}}"></td>
