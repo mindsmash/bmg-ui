@@ -9,11 +9,11 @@
 					<a class="go-to-overview" data-ng-if="goToOverviewPageAvailable()" data-ng-click="handleOverviewPage()">See all</a>
 				</td>
 			</tr>
-			<tr class="highlight-notification highlight" data-ng-repeat="highlightedNotification in dataArray.highlightedNotifications">
+			<tr class="highlight-notification highlight" data-ng-repeat="highlightedNotification in dataArray.highlightedNotifications | orderBy: 'date':true">
 				<td style="width: 100px;" class="pointer" data-ng-init="highlightedNotification.collapsed = true" data-ng-click="highlightedNotification.collapsed = !highlightedNotification.collapsed">
 					<span class="fa-stack fa-lg">
-						<i class="fa fa-circle fa-stack-2x {{highlightedNotification.icon.color}}"></i>
-						<i class="fa {{highlightedNotification.icon.symbol}} fa-stack-1x fa-inverse"></i>
+						<i class="fa fa-circle fa-stack-2x {{::highlightedNotification.icon.color}}"></i>
+						<i class="fa {{::highlightedNotification.icon.symbol}} fa-stack-1x fa-inverse"></i>
 					</span>
 					<span data-ng-if="!!highlightedNotification.message">
 						<i class="fa fa-lg" data-ng-class="{'fa-caret-right' : highlightedNotification.collapsed, 'fa-caret-down' : !highlightedNotification.collapsed}"></i>
@@ -24,7 +24,7 @@
 						<strong>{{::highlightedNotification.username}}</strong> {{::highlightedNotification.action}}
 					</div>
 					<div class="message" data-ng-if="!!highlightedNotification.message" uib-collapse="highlightedNotification.collapsed">
-						<ul class="details"><li><span>{{::highlightedNotification.message}}</span></li></ul>
+						<div class="details"><span>{{::highlightedNotification.message}}</span></div>
 					</div>
 				</td>
 				<td class="meta-info-time" am-time-ago="highlightedNotification.date" title="{{highlightedNotification.date | date:'yyyy-mm-dd hh:mm:ss'}}"></td>
@@ -37,12 +37,12 @@
 					<a class="go-to-overview" data-ng-if="goToOverviewPageAvailable()" data-ng-click="handleOverviewPage()">See all</a>
 				</td>
 			</tr>
-			<tr class="notification" data-ng-repeat="notification in dataArray.notifications"
+			<tr class="notification" data-ng-repeat="notification in dataArray.notifications | orderBy: 'date':true"
 				data-ng-class="{'unread': !notification.handled}">
 				<td style="width: 100px;" class="pointer" data-ng-init="notification.collapsed = true" data-ng-click="notification.collapsed = !notification.collapsed">
 					<span class="fa-stack fa-lg">
-						<i class="fa fa-circle fa-stack-2x {{notification.icon.color}}"></i>
-						<i class="fa {{notification.icon.symbol}} fa-stack-1x fa-inverse"></i>
+						<i class="fa fa-circle fa-stack-2x {{::notification.icon.color}}"></i>
+						<i class="fa {{::notification.icon.symbol}} fa-stack-1x fa-inverse"></i>
 					</span>
 					<span data-ng-if="notification.message">
 						<i class="fa fa-lg" data-ng-class="{'fa-caret-right' : notification.collapsed, 'fa-caret-down' : !notification.collapsed}"></i>
@@ -53,7 +53,7 @@
 						<strong>{{::notification.username}}</strong> {{::notification.action}}
 					</div>
 					<div class="message" data-ng-if="!!notification.message" uib-collapse="notification.collapsed">
-						<ul class="details"><li><span>{{::notification.message}}</span></li></ul>
+						<div class="details"><span>{{::notification.message}}</span></div>
 					</div>
 				</td>
 				<td class="meta-info-time" am-time-ago="notification.date" title="{{notification.date | date:'yyyy-mm-dd hh:mm:ss'}}"></td>
