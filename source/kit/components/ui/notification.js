@@ -27,7 +27,7 @@
 		.module('infinite-scroll')
 		.value('THROTTLE_MILLISECONDS', 500);
 
-	notification.$inject = ['$timeout'];
+	notification.$inject = [];
 
 	function notification() {
 		return {
