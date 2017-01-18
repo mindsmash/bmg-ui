@@ -8,7 +8,7 @@
 			<thead>
 			<tr>
 				<th>Property</th>
-				<th>Values</th>
+				<th style="width: 180px;">Values</th>
 				<th>Explanation</th>
 			</tr>
 			</thead>
@@ -30,8 +30,7 @@
 				<td><code>notification-data</code></td>
 				<td>object</td>
 				<td>
-					<p>The data object contains all notification data. The data object has following required
-						properties:</p>
+					<p>The data object contains all notification data. The data object has following properties:</p>
 					<p><code>count</code>, <code>highlightedNotifications</code>,
 						<code>highlightedNotificationsTitle</code>, <code>notifications</code>,
 						<code>notificationsTitle</code></p>
@@ -77,7 +76,7 @@
 				<td>
 					<p>Array including notification objects. If the array is empty the notifications section will not be
 						displayed. The notifications object has following required properties:</p>
-					<p><code>unread</code>, <code>icon</code>, <code>username</code>, <code>action</code>,
+					<p><code>handled</code>, <code>icon</code>, <code>username</code>, <code>action</code>,
 						<code>message</code>, <code>date</code></p>
 					<p>You can add more properties (e.g. id), if the notification functions (e.g. handleUrl or
 						markAllAsRead) need them.</p>
@@ -85,7 +84,7 @@
 			</tr>
 			<tr>
 				<td><code><span class="dim">data.notifications[i].</span>handled</code></td>
-				<td>boolean</td>
+				<td>boolean (required)</td>
 				<td>A boolean flag to show the handled (read) status of an notification.</td>
 			</tr>
 			<tr>
@@ -139,8 +138,8 @@
 				<td>function (optional)</td>
 				<td>A custom function that will be called if a notification is clicked (redirect to an specific page,
 					mark notification as read, ...). If no function is available a click will not do anything.
-					The function (as directive property) should always have '{notification: notification}' as function
-					argument.
+					The function (as directive property) should have '{notification: notification}' as function
+					argument if you need the notification data.
 					If a notification is clicked, the directive will return a notification object that contains all the
 					data of the clicked notification.
 				</td>
@@ -151,8 +150,8 @@
 				<td>A custom function that will be called if a highlighted notification is clicked (redirect to an
 					specific page, mark highlighted notification as read, ...). If no function is available a click will
 					not do anything.
-					The function (as directive property) should always have '{notification: notification}' as function
-					argument.
+					The function (as directive property) should have '{notification: notification}' as function
+					argument if you need the notification data.
 					If a notification is clicked, the directive will return a notification object that contains all the
 					data of the clicked notification.
 				</td>
@@ -168,9 +167,10 @@
 				<td><code>notification-mark-all-as-read</code></td>
 				<td>function (optional)</td>
 				<td>A custom function with additional behavior will be called if the 'mark all as read' link is clicked.
-					In this case the (directive) internal
-					function will set the handled flag of all notifications (except the highlighted notifications)
-					to true
+					In this case the (directive) internal function will set the handled flag of all notifications
+					(except the highlighted notifications) to true.
+					The function (as directive property) should have '{notifications: notifications}' as function
+					argument if you need the notifications data array of the 'mark as read'-notifications.
 				</td>
 			</tr>
 			</tbody>

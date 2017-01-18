@@ -10,7 +10,9 @@
 				'popover-placement="bottom-right" ' +
 				'popover-class="notification-popover" ' +
 				'popover-append-to-body="false" ' +
-				'popover-trigger="outsideClick">' +
+				'popover-trigger="outsideClick" ' +
+				'popover-popup-delay="50"' +
+				'popover-is-open="popover.isOpen">' +
 				'	<notification-icon count="data.count" animation="\'bounce\'">' +
 				'		<i class="fa fa-bell-o fa-2x"></i>' +
 				'	</notification-icon>' +
@@ -31,9 +33,9 @@
 		return {
 			replace: true,
 			scope: {
-				title: '=notificationTitle',
 				template: '=notificationTemplate',
 				data: '=notificationData',
+				title: '=?notificationTitle',
 				loadMore: '&?notificationLoadMore',
 				markAllAsRead: '&?notificationMarkAllAsRead',
 				goToOverviewPage: '&?notificationGoToOverviewPage',
@@ -52,6 +54,9 @@
 				scope.highlightedNotificationsAvailable = false;
 				scope.notificationsAvailable = false;
 				scope.showLoading = true;
+				scope.popover = {
+					isOpen: false
+				};
 
 				var handleDataArray = function(diff) {
 					scope.dataArray = {};
@@ -68,10 +73,23 @@
 					}
 					if (!!scope.data.notifications && scope.data.notifications.length > 0) {
 						scope.notificationsAvailable = true;
-						scope.dataArray.notificationsTitle = !!scope.data.notificationsTitle ? scope.data.notificationsTitle : 'Notifications';
 						scope.dataArray.notifications = scope.data.notifications;
+						scope.dataArray.notificationsTitle = !!scope.data.notificationsTitle ? scope.data.notificationsTitle : 'Notifications';
 					}
 				};
+
+				scope.$on('navbar-collapsed', function() {
+					scope.popover.isOpen = false;
+					scope.$digest();
+				});
+
+				scope.$watch('data', function(newData, oldData) {
+					var diff = 0;
+					if (!!newData.notifications && !!oldData.notifications) {
+						diff = newData.notifications.legnth - oldData.notifications.length;
+					}
+					handleDataArray(diff);
+				}, true);
 
 				scope.loadMoreNotifications = function() {
 					scope.infiniteScrollDisabled = true;
@@ -82,14 +100,6 @@
 					}
 					scope.infiniteScrollDisabled = false;
 				};
-
-				scope.$watch('data', function(newData, oldData) {
-					var diff = 0;
-					if (!!newData.notifications && !!oldData.notifications) {
-						diff = newData.notifications.legnth - oldData.notifications.length;
-					}
-					handleDataArray(diff);
-				}, true);
 
 				scope.handleHighlightNotification = function(notification) {
 					if (!!scope.handleHighlighted) {
@@ -103,7 +113,6 @@
 
 				scope.handleNotification = function(notification) {
 					if (!!scope.handle) {
-						scope.handle({notification: notification});
 						if (typeof scope.handle === "function") {
 							scope.handle({notification: notification});
 						} else {
@@ -113,13 +122,15 @@
 				};
 
 				scope.handleMarkAllAsRead = function() {
+					var handledNotifications = [];
 					for (var i = 0; i < scope.data.notifications.length; i++) {
 						if (!scope.data.notifications[i].handled) {
 							scope.data.notifications[i].handled = true;
+							handledNotifications.push(scope.data.notifications[i]);
 						}
 					}
 					if (typeof scope.markAllAsRead === "function") {
-						scope.markAllAsRead();
+						scope.markAllAsRead({notifications: handledNotifications});
 					} else {
 						console.info('notification: no function is given for property \'markAllAsRead\'.')
 					}
@@ -141,7 +152,8 @@
 					if (!!scope.data.highlightedNotifications) {
 						scope.data.count = scope.data.highlightedNotifications.length;
 					}
-				}
+					scope.$emit('notification-open');
+				};
 			}
 		};
 	}

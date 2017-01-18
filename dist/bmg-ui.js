@@ -220,7 +220,9 @@
     var isCollapsed = false;
     var config = {};
 
-    function collapsingNavbar() {
+	collapsingNavbar.$inject = ['$rootScope'];
+
+    function collapsingNavbar($rootScope) {
         return {
             restrict: 'A',
             scope: {
@@ -240,87 +242,92 @@
                     '<div class="bmg-nav-expand-hint"><i class="fa fa-bars"></i></div>');
 
                 elem.find('.container-fluid').append(expandHint);
+
+				function checkScrollStatus() {
+					// check scroll status every 200ms
+					var scrollTop = $(document).scrollTop();
+					lastKnownScrollPositions.push(scrollTop);
+
+					if (lastKnownScrollPositions.length > 10) {
+						// only the last 10 positions should be saved
+						lastKnownScrollPositions.shift();
+
+						var earliestKnownScrollTop = lastKnownScrollPositions[0];
+						var previousScrollTop = lastKnownScrollPositions[lastKnownScrollPositions.length - 2];
+
+						if (scrollTop !== previousScrollTop) {
+							// do not do anything if we're not scrolling anymore
+
+							if ((scrollTop - earliestKnownScrollTop) > 200 && !isCollapsed) {
+								// more than 200px scrolled down? -> collapse
+								collapseNavbar();
+							}
+
+							// at the top of the page or more than 200px
+							// scrolled up? -> expand
+							if (((earliestKnownScrollTop - scrollTop) > 200 || scrollTop <= 50) &&
+								isCollapsed) {
+								expandNavbar();
+							}
+						}
+					}
+				}
+
+				function collapseNavbar() {
+					$('nav.navbar').addClass('smaller');
+					rearrangeStickyBars(true);
+					isCollapsed = true;
+					$rootScope.$broadcast('navbar-collapsed');
+				}
+
+				function expandNavbar() {
+					$('nav.navbar').removeClass('smaller');
+					rearrangeStickyBars(false);
+					if (isCollapsed) {
+						$rootScope.$broadcast('navbar-expanded');
+					}
+					isCollapsed = false;
+				}
+
+				function rearrangeStickyBars(up) {
+					var stickyBars = $('*[sticky]');
+
+					if (up) {
+						stickyBars.attr('offset', config.collapsedHeight);
+						stickyBars.css('top', config.collapsedHeight + 'px');
+					} else {
+						stickyBars.attr('offset', config.expandedHeight);
+						stickyBars.css('top', config.expandedHeight + 'px');
+					}
+
+					if (config.mindFloatThead) {
+						changefloatTheadTop(up);
+					}
+				}
+
+				function changefloatTheadTop(up) {
+					var tableSelector = '.table-responsive table, ' +
+						'.tableStandard-responsive table, ' +
+						'.tableCondensed-responsive table';
+
+					// reinitialize floating table headers
+					$(tableSelector).floatThead('destroy');
+
+					$(tableSelector).floatThead({
+						top: function($table) {
+							return up ? config.collapsedHeight : config.expandedHeight;
+						},
+						responsiveContainer: function($table) {
+							return $table.closest('.table-responsive, ' +
+								'.tableStandard-responsive, ' +
+								'.tableCondensed-responsive');
+						}
+					});
+				}
             }
         };
     }
 
-    function checkScrollStatus() {
-        // check scroll status every 200ms
-        var scrollTop = $(document).scrollTop();
-        lastKnownScrollPositions.push(scrollTop);
-
-        if (lastKnownScrollPositions.length > 10) {
-            // only the last 10 positions should be saved
-            lastKnownScrollPositions.shift();
-
-            var earliestKnownScrollTop = lastKnownScrollPositions[0];
-            var previousScrollTop = lastKnownScrollPositions[lastKnownScrollPositions.length - 2];
-
-            if (scrollTop !== previousScrollTop) {
-                // do not do anything if we're not scrolling anymore
-
-                if ((scrollTop - earliestKnownScrollTop) > 200 && !isCollapsed) {
-                    // more than 200px scrolled down? -> collapse
-                    collapseNavbar();
-                }
-
-                // at the top of the page or more than 200px
-                // scrolled up? -> expand
-                if (((earliestKnownScrollTop - scrollTop) > 200 || scrollTop <= 50) &&
-                    isCollapsed) {
-                    expandNavbar();
-                }
-            }
-        }
-    }
-
-    function collapseNavbar() {
-        $('nav.navbar').addClass('smaller');
-        rearrangeStickyBars(true);
-        isCollapsed = true;
-    }
-
-    function expandNavbar() {
-        $('nav.navbar').removeClass('smaller');
-        rearrangeStickyBars(false);
-        isCollapsed = false;
-    }
-
-    function rearrangeStickyBars(up) {
-        var stickyBars = $('*[sticky]');
-
-        if (up) {
-            stickyBars.attr('offset', config.collapsedHeight);
-            stickyBars.css('top', config.collapsedHeight + 'px');
-        } else {
-            stickyBars.attr('offset', config.expandedHeight);
-            stickyBars.css('top', config.expandedHeight + 'px');
-        }
-
-        if (config.mindFloatThead) {
-            changefloatTheadTop(up);
-        }
-    }
-
-    function changefloatTheadTop(up) {
-        var tableSelector = '.table-responsive table, ' +
-            '.tableStandard-responsive table, ' +
-            '.tableCondensed-responsive table';
-
-        // reinitialize floating table headers
-        $(tableSelector).floatThead('destroy');
-
-        $(tableSelector).floatThead({
-            top: function($table) {
-                return up ? config.collapsedHeight : config.expandedHeight;
-            },
-            responsiveContainer: function($table) {
-                return $table.closest('.table-responsive, ' +
-                    '.tableStandard-responsive, ' +
-                    '.tableCondensed-responsive');
-            }
-        });
-    }
 })();
 
 (function(undefined) {
@@ -1502,7 +1509,9 @@
 				'popover-placement="bottom-right" ' +
 				'popover-class="notification-popover" ' +
 				'popover-append-to-body="false" ' +
-				'popover-trigger="outsideClick">' +
+				'popover-trigger="outsideClick" ' +
+				'popover-popup-delay="50"' +
+				'popover-is-open="popover.isOpen">' +
 				'	<notification-icon count="data.count" animation="\'bounce\'">' +
 				'		<i class="fa fa-bell-o fa-2x"></i>' +
 				'	</notification-icon>' +
@@ -1523,9 +1532,9 @@
 		return {
 			replace: true,
 			scope: {
-				title: '=notificationTitle',
 				template: '=notificationTemplate',
 				data: '=notificationData',
+				title: '=?notificationTitle',
 				loadMore: '&?notificationLoadMore',
 				markAllAsRead: '&?notificationMarkAllAsRead',
 				goToOverviewPage: '&?notificationGoToOverviewPage',
@@ -1544,6 +1553,9 @@
 				scope.highlightedNotificationsAvailable = false;
 				scope.notificationsAvailable = false;
 				scope.showLoading = true;
+				scope.popover = {
+					isOpen: false
+				};
 
 				var handleDataArray = function(diff) {
 					scope.dataArray = {};
@@ -1560,10 +1572,23 @@
 					}
 					if (!!scope.data.notifications && scope.data.notifications.length > 0) {
 						scope.notificationsAvailable = true;
-						scope.dataArray.notificationsTitle = !!scope.data.notificationsTitle ? scope.data.notificationsTitle : 'Notifications';
 						scope.dataArray.notifications = scope.data.notifications;
+						scope.dataArray.notificationsTitle = !!scope.data.notificationsTitle ? scope.data.notificationsTitle : 'Notifications';
 					}
 				};
+
+				scope.$on('navbar-collapsed', function() {
+					scope.popover.isOpen = false;
+					scope.$digest();
+				});
+
+				scope.$watch('data', function(newData, oldData) {
+					var diff = 0;
+					if (!!newData.notifications && !!oldData.notifications) {
+						diff = newData.notifications.legnth - oldData.notifications.length;
+					}
+					handleDataArray(diff);
+				}, true);
 
 				scope.loadMoreNotifications = function() {
 					scope.infiniteScrollDisabled = true;
@@ -1574,14 +1599,6 @@
 					}
 					scope.infiniteScrollDisabled = false;
 				};
-
-				scope.$watch('data', function(newData, oldData) {
-					var diff = 0;
-					if (!!newData.notifications && !!oldData.notifications) {
-						diff = newData.notifications.legnth - oldData.notifications.length;
-					}
-					handleDataArray(diff);
-				}, true);
 
 				scope.handleHighlightNotification = function(notification) {
 					if (!!scope.handleHighlighted) {
@@ -1595,7 +1612,6 @@
 
 				scope.handleNotification = function(notification) {
 					if (!!scope.handle) {
-						scope.handle({notification: notification});
 						if (typeof scope.handle === "function") {
 							scope.handle({notification: notification});
 						} else {
@@ -1605,13 +1621,15 @@
 				};
 
 				scope.handleMarkAllAsRead = function() {
+					var handledNotifications = [];
 					for (var i = 0; i < scope.data.notifications.length; i++) {
 						if (!scope.data.notifications[i].handled) {
 							scope.data.notifications[i].handled = true;
+							handledNotifications.push(scope.data.notifications[i]);
 						}
 					}
 					if (typeof scope.markAllAsRead === "function") {
-						scope.markAllAsRead();
+						scope.markAllAsRead({notifications: handledNotifications});
 					} else {
 						console.info('notification: no function is given for property \'markAllAsRead\'.')
 					}
@@ -1633,7 +1651,8 @@
 					if (!!scope.data.highlightedNotifications) {
 						scope.data.count = scope.data.highlightedNotifications.length;
 					}
-				}
+					scope.$emit('notification-open');
+				};
 			}
 		};
 	}

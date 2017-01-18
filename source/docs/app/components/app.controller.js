@@ -116,8 +116,8 @@
 			}
 		};
 
-		this.markAllAsRead = function() {
-			console.info('mark all notifications as read');
+		this.markAllAsRead = function(data) {
+			console.info('mark all notifications as read', data);
 		};
 
 		this.goToOverviewPage = function() {

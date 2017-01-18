@@ -25,6 +25,7 @@
       background-color: $bmg-white !important;
       font-weight: 600;
       color: $bmg-text;
+      font-size: 20px;
     }
 
     .popover-content {
@@ -35,12 +36,19 @@
       margin: 0;
 
       table {
-        margin-bottom: 15px;
+        margin: 0 0 24px 0;
+        display: block;
 
         tbody {
+          width: 100%;
           border: none;
+          display: inline-table;
 
-          td:last-of-type {
+          td{
+            vertical-align: unset;
+          }
+
+          tr:last-of-type {
             border-bottom: none;
           }
         }
@@ -53,10 +61,8 @@
         right: 0;
         line-height: 24px;
         height: 24px;
-        align-content: center;
         text-align: center;
         background-color: $bmg-white;
-        border-top: 1px solid $bmg-border-light;
 
         a {
           color: $bmg-malibu;
@@ -73,9 +79,7 @@
         background-color: transparentize($bmg-gray-dark, .85);
       }
 
-      .details {
-        padding: 2px 50px 2px 20px;
-      }
+      .details {}
 
       .title {
         float: left;

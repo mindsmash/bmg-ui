@@ -2,7 +2,11 @@
 
 ## Versions
 
-### 2017-01-06 - V0.9.0
+### 2017-01-17 - v0.9.1
+
+ - notifications directive and layout fixes
+
+### 2017-01-06 - v0.9.0
 
  - select on focus for inline edit text input
  - notifications (icon) for navbar
