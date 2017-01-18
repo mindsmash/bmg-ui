@@ -387,25 +387,25 @@ table.uib-yearpicker > tbody > tr > td > button.btn.active > span { color: #ffff
 
 .notification-popover.popover .arrow { right: 24px !important; }
 
-.notification-popover.popover .popover-title { background-color: #ffffff !important; font-weight: 600; color: #4d4d4d; }
+.notification-popover.popover .popover-title { background-color: #ffffff !important; font-weight: 600; color: #4d4d4d; font-size: 20px; }
 
 .notification-popover.popover .popover-content { max-height: 390px; overflow-y: scroll; overflow-x: hidden; padding: 0 0 0 1px; margin: 0; }
 
-.notification-popover.popover .popover-content table { margin-bottom: 15px; }
+.notification-popover.popover .popover-content table { margin: 0 0 24px 0; display: block; }
 
-.notification-popover.popover .popover-content table tbody { border: none; }
+.notification-popover.popover .popover-content table tbody { width: 100%; border: none; display: inline-table; }
 
-.notification-popover.popover .popover-content table tbody td:last-of-type { border-bottom: none; }
+.notification-popover.popover .popover-content table tbody td { vertical-align: unset; }
 
-.notification-popover.popover .popover-content .footer { position: absolute; bottom: 0; left: 0; right: 0; line-height: 24px; height: 24px; align-content: center; text-align: center; background-color: #ffffff; border-top: 1px solid rgba(77, 77, 77, 0.05); }
+.notification-popover.popover .popover-content table tbody tr:last-of-type { border-bottom: none; }
+
+.notification-popover.popover .popover-content .footer { position: absolute; bottom: 0; left: 0; right: 0; line-height: 24px; height: 24px; text-align: center; background-color: #ffffff; }
 
 .notification-popover.popover .popover-content .footer a { color: #51d0ff; }
 
 .notification-popover.popover .popover-content .unread { border-left: 4px solid #999; background-color: rgba(153, 153, 153, 0.15); }
 
 .notification-popover.popover .popover-content .highlight { border-left: 4px solid #c80031; background-color: rgba(153, 153, 153, 0.15); }
-
-.notification-popover.popover .popover-content .details { padding: 2px 50px 2px 20px; }
 
 .notification-popover.popover .popover-content .title { float: left; text-align: left; }
 
