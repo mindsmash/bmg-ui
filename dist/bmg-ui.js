@@ -1526,7 +1526,7 @@
 		.module('infinite-scroll')
 		.value('THROTTLE_MILLISECONDS', 500);
 
-	notification.$inject = ['$timeout'];
+	notification.$inject = [];
 
 	function notification() {
 		return {
@@ -1651,6 +1651,7 @@
 					if (!!scope.data.highlightedNotifications) {
 						scope.data.count = scope.data.highlightedNotifications.length;
 					}
+					scope.$emit('notification-open');
 				};
 			}
 		};

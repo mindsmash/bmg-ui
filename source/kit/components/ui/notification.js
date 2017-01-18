@@ -152,6 +152,7 @@
 					if (!!scope.data.highlightedNotifications) {
 						scope.data.count = scope.data.highlightedNotifications.length;
 					}
+					scope.$emit('notification-open');
 				};
 			}
 		};
