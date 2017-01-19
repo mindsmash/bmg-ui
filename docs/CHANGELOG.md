@@ -2,9 +2,13 @@
 
 ## Versions
 
+### 2017-01-19 - v0.9.2
+
+ - notifications directive improvement
+
 ### 2017-01-17 - v0.9.1
 
- - notifications directive and layout fixes
+ - notifications directive improvements and layout fixes
 
 ### 2017-01-06 - v0.9.0
 

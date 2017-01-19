@@ -1,6 +1,6 @@
 {
   "name": "bmg-ui",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "A bmg ui kit by mindsmash",
   "main": [
     "dist/bmg-ui.js",
