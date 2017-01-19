@@ -1612,6 +1612,10 @@
 
 				scope.handleNotification = function(notification) {
 					if (!!scope.handle) {
+						var index = _.findIndex(scope.data.notifications, notification);
+						if (index >= 0) {
+							scope.data.notifications[index].handled = true;
+						}
 						if (typeof scope.handle === "function") {
 							scope.handle({notification: notification});
 						} else {

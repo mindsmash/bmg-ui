@@ -108,12 +108,7 @@
 		};
 
 		this.handle = function(data) {
-			for (var i = 0; i < this.notifications.data.notifications.length; i++) {
-				if (this.notifications.data.notifications[i].id === data.notification.id && !this.notifications.data.notifications[i].handled) {
-					this.notifications.data.notifications[i].handled = true;
-				}
-				$state.go('index.' + data.notification.url);
-			}
+			$state.go('index.' + data.notification.url);
 		};
 
 		this.markAllAsRead = function(data) {
