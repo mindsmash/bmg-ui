@@ -156,7 +156,7 @@
 					if (!!scope.data.highlightedNotifications) {
 						scope.data.count = scope.data.highlightedNotifications.length;
 					}
-					scope.$emit('notification-open');
+					scope.$emit('notification-open', {newCount: scope.data.count});
 				};
 			}
 		};

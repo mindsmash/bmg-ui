@@ -4,9 +4,10 @@
     angular.module('bmg-ui.docs')
         .controller('AppController', AppController);
 
-    AppController.$inject = ['$aside', '$timeout', '$state'];
+    AppController.$inject = ['$scope', '$aside', '$timeout', '$state'];
 
-    function AppController($aside, $timeout, $state) {
+    function AppController($scope, $aside, $timeout, $state) {
+    	var self = this;
 
 		Array.prototype.randomElement = function () {
 			return this[Math.floor(Math.random() * this.length)];
@@ -21,11 +22,18 @@
 			['fa-trash', 'color-secondary'],
 			['fa-times', 'color-error']
 		];
-		var notificationsCount = 0;
 		var offsetTime = 60;
 
-		var createNotificationsData = function(oldData, dataCount, handled, highlight, push) {
-			notificationsCount = 0;
+		self.isCollapsed = true;
+
+		self.notifications = {
+			title: 'Notifications',
+			template: 'app/templates/components/notification-popover.html',
+			data: createNotificationsData(null, 10, true)
+		};
+
+		function createNotificationsData(oldData, dataCount, handled, highlight, push) {
+			var notificationsCount = 0;
 			if (!!oldData) {
 				var notificationData = oldData;
 			} else {
@@ -65,67 +73,58 @@
 					} else {
 						notificationData.highlightedNotifications.unshift(data);
 					}
+					notificationsCount++;
 				} else {
-					if (handled === undefined || handled) {
-						notificationsCount++;
-					}
 					if (!!push) {
 						notificationData.notifications.push(data);
 					} else {
 						notificationData.notifications.unshift(data);
 					}
-				}
-				if (handled || highlight || handled === undefined || highlight === undefined) {
-					notificationData.count = notificationData.highlightedNotifications.length + notificationsCount;
+					if (handled === undefined || handled) {
+						notificationsCount++;
+					}
 				}
 			}
+			notificationData.count += notificationsCount;
 			return notificationData;
+		}
+
+		self.addNotification = function() {
+			self.notifications.data = createNotificationsData(self.notifications.data, 1, false, false);
 		};
 
-        this.isCollapsed = true;
-
-        this.notifications = {
-			title: 'Notifications',
-			template: 'app/templates/components/notification-popover.html',
-			data: createNotificationsData(null, 10, true)
+		self.addNewNotification = function() {
+			self.notifications.data = createNotificationsData(self.notifications.data, 1, true, false);
 		};
 
-		this.addNotification = function() {
-			this.notifications.data = createNotificationsData(this.notifications.data, 1, false, false);
+		self.addHighlightedNotification = function() {
+			self.notifications.data = createNotificationsData(self.notifications.data, 1, true, true);
 		};
 
-		this.addNewNotification = function() {
-			this.notifications.data = createNotificationsData(this.notifications.data, 1, true, false);
-		};
-
-		this.addHighlightedNotification = function() {
-			this.notifications.data = createNotificationsData(this.notifications.data, 1, true, true);
-		};
-
-		this.loadMoreNotifications = function() {
-			this.notifications.data = createNotificationsData(this.notifications.data, 10, false, false, true);
+		self.loadMoreNotifications = function() {
+			self.notifications.data = createNotificationsData(self.notifications.data, 10, false, false, true);
 			offsetTime += 60;
 		};
 
-		this.handle = function(data) {
+		self.handle = function(data) {
 			$state.go('index.' + data.notification.url);
 		};
 
-		this.markAllAsRead = function(data) {
+		self.markAllAsRead = function(data) {
 			console.info('mark all notifications as read', data);
 		};
 
-		this.goToOverviewPage = function() {
+		self.goToOverviewPage = function() {
 			$state.go('release-detailpage');
 		};
 
-        this.navbarConfig = {
+        self.navbarConfig = {
             collapsedHeight: 20,
             expandedHeight: 75,
             mindFloatThead: true
         };
 
-        this.openAside = function(position, backdrop) {
+        self.openAside = function(position, backdrop) {
             var asideInstance = $aside.open({
                 templateUrl: 'app/templates/aside/apps.html',
                 placement: position,
@@ -171,6 +170,11 @@
                 });
             }
         };
+
+		$scope.$on('notification-open', function(event, data) {
+			self.notifications.data.count = data.newCount;
+		});
+
     }
 
 })(angular);
