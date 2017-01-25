@@ -407,6 +407,8 @@ table.uib-yearpicker > tbody > tr > td > button.btn.active > span { color: #ffff
 
 .notification-popover.popover .popover-content .highlight { border-left: 4px solid #c80031; background-color: rgba(153, 153, 153, 0.15); }
 
+.notification-popover.popover .popover-content .details { border-left: 1px solid #999; padding-left: 4px; }
+
 .notification-popover.popover .popover-content .title { float: left; text-align: left; }
 
 .notification-popover.popover .popover-content .go-to-overview { display: block; cursor: pointer; float: right; }

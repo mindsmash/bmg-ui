@@ -79,7 +79,10 @@
         background-color: transparentize($bmg-gray-dark, .85);
       }
 
-      .details {}
+      .details {
+        border-left: 1px solid $bmg-gray-dark;
+        padding-left: 4px;
+      }
 
       .title {
         float: left;
