@@ -389,7 +389,7 @@ table.uib-yearpicker > tbody > tr > td > button.btn.active > span { color: #ffff
 
 .notification-popover.popover .popover-title { background-color: #ffffff !important; font-weight: 600; color: #4d4d4d; font-size: 20px; }
 
-.notification-popover.popover .popover-content { max-height: 390px; overflow-y: scroll; overflow-x: hidden; padding: 0 0 0 1px; margin: 0; }
+.notification-popover.popover .popover-content { max-height: 390px; min-height: 390px; overflow-y: scroll; overflow-x: hidden; padding: 0 0 0 1px; margin: 0; }
 
 .notification-popover.popover .popover-content table { margin: 0 0 24px 0; display: block; }
 
