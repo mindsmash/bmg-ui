@@ -104,7 +104,6 @@
                     deferred.resolve();
                 }
             }, 1000);
-
             return deferred.promise;
         };
     }

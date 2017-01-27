@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 2017-01-27 - v0.9.3
+
+ - add step attribute to inline edit input field
+ - fix notification example functionality
+
 ### 2017-01-19 - v0.9.2
 
  - notifications directive improvement

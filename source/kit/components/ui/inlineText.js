@@ -17,7 +17,8 @@
                 tabindex: '@?',
                 disabled: '=?',
 	            inputType : '@?',
-	            selectOnFocus : '=?'
+				step: '@?',
+	            selectOnFocus: '=?'
             },
             templateUrl: 'bmg/template/inline/text.html',
             require: 'ngModel',
@@ -34,6 +35,10 @@
                     if (scope.inputType) {
                         inputElem.attr('type', scope.inputType);
                     }
+
+                    if (scope.step && scope.inputType === 'number') {
+						inputElem.attr('step', scope.step);
+					}
 
                     inputElem.focus(function() {
                         // update initial value on new focus

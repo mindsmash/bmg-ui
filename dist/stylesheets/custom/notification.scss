@@ -30,6 +30,7 @@
 
     .popover-content {
       max-height: 390px;
+      min-height: 390px;
       overflow-y: scroll;
       overflow-x: hidden;
       padding: 0 0 0 1px;
