@@ -14,7 +14,6 @@
         'ngAnimate',
 		'angularMoment',
         'sticky',
-        'bmg/template/inlineEdits',
 		'hc.marked',
 		'angular-notification-icons',
 		'infinite-scroll'

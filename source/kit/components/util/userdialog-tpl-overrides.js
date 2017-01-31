@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('user/dialogs/templates', [])
+        .module('templates.user-dialog', [])
         .run(['$templateCache', function($templateCache) {
             $templateCache.put('user/dialogs/confirm.html', [
                 '<div class="modal-close">',

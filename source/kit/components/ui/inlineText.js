@@ -18,6 +18,8 @@
                 disabled: '=?',
 	            inputType : '@?',
 				step: '@?',
+				min: '@?',
+				max: '@?',
 	            selectOnFocus: '=?'
             },
             templateUrl: 'bmg/template/inline/text.html',
@@ -36,8 +38,15 @@
                         inputElem.attr('type', scope.inputType);
                     }
 
+					// only for number input
                     if (scope.step && scope.inputType === 'number') {
 						inputElem.attr('step', scope.step);
+					}
+					if (scope.min && scope.inputType === 'number') {
+						inputElem.attr('min', scope.min);
+					}
+					if (scope.max && scope.inputType === 'number') {
+						inputElem.attr('max', scope.max);
 					}
 
                     inputElem.focus(function() {

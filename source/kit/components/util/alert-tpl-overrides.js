@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('bmg/template/alert', [])
+        .module('templates.alert', [])
         .run(['$templateCache', function($templateCache) {
             $templateCache.put('bmg/template/alert.html', [
                 '<div',

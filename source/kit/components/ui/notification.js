@@ -23,10 +23,6 @@
 		.module('bmg.components.ui')
 		.directive('notification', notification);
 
-	angular
-		.module('infinite-scroll')
-		.value('THROTTLE_MILLISECONDS', 500);
-
 	notification.$inject = [];
 
 	function notification() {
