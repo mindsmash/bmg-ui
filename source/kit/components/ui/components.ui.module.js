@@ -6,9 +6,9 @@
             'monospaced.elastic',
             'ui.select',
             'ngSanitize',
-            'bmg/template/inlineEdits',
-            'bmg/template/alert',
-            'user/dialogs/templates'
+            'templates.inline-edit',
+            'templates.alert',
+            'templates.user-dialog'
         ])
         .config(decorateUISelectWithOpenEvent);
 

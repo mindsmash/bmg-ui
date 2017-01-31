@@ -2,9 +2,13 @@
 
 ## Versions
 
+### 2017-01-31 - v0.9.4
+
+ - add min and max attribute to inline edit number input field
+
 ### 2017-01-27 - v0.9.3
 
- - add step attribute to inline edit input field
+ - add step attribute to inline edit number input field
  - fix notification example functionality
 
 ### 2017-01-19 - v0.9.2

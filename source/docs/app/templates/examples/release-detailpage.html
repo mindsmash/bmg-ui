@@ -146,7 +146,6 @@
                                 data-ng-model="editableCtrl.data.barcode"
                                 placeholder="Barcode"
                                 disabled="false"
-								step="any"
                                 oncommit="editableCtrl.promiseValue($data)"></data-inline-text>
                         </div>
                         <div class="clearfix visible-xs"></div>
@@ -496,6 +495,59 @@
                         <div class="col-xs-8 col-sm-4 col-md-3">Don Draper</div>
                         <div class="clearfix visible-xs"></div>
                     </div>
+
+					<div class="form-group">
+						<div class="col-xs-4 col-sm-2 col-md-2 label-container">Step (0.001)</div>
+						<div class="col-xs-8 col-sm-4 col-md-3">
+							<data-inline-text
+								id="numberFieldWithStep"
+								tabindex="12"
+								input-type="number"
+								data-ng-model="editableCtrl.data.numberField.step"
+								placeholder="number"
+								disabled="false"
+								step="0.001"></data-inline-text>
+						</div>
+						<div class="clearfix visible-xs"></div>
+						<div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+						<div class="col-xs-4 col-sm-2 col-md-2 label-container">Min (-10) and Max (+10)</div>
+						<div class="col-xs-8 col-sm-4 col-md-3">
+							<data-inline-text
+									id="numberFieldWithMinAndMax"
+									tabindex="13"
+									input-type="number"
+									data-ng-model="editableCtrl.data.numberField.minMax"
+									placeholder="number"
+									disabled="false"
+									min="-10"
+									max="10"></data-inline-text>
+						</div>
+						<div class="clearfix visible-xs"></div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-xs-4 col-sm-2 col-md-2 label-container">Step (any), Min (-10) and Max (+10)</div>
+						<div class="col-xs-8 col-sm-4 col-md-3">
+							<data-inline-text
+									id="numberFieldWithStep"
+									tabindex="12"
+									input-type="number"
+									data-ng-model="editableCtrl.data.numberField.step"
+									placeholder="number"
+									disabled="false"
+									step="any" min="-10" max="10"></data-inline-text>
+						</div>
+						<div class="clearfix visible-xs"></div>
+						<div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+						<div class="col-xs-4 col-sm-2 col-md-2 label-container">Info</div>
+						<div class="col-xs-8 col-sm-4 col-md-3">
+							Inline edit number test fields to show step, min and max attributes.
+						</div>
+						<div class="clearfix visible-xs"></div>
+					</div>
+
                 </div>
             </div>
         </div>

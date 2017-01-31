@@ -6,9 +6,9 @@
             'monospaced.elastic',
             'ui.select',
             'ngSanitize',
-            'bmg/template/inlineEdits',
-            'bmg/template/alert',
-            'user/dialogs/templates'
+            'templates.inline-edit',
+            'templates.alert',
+            'templates.user-dialog'
         ])
         .config(decorateUISelectWithOpenEvent);
 
@@ -1128,6 +1128,8 @@
                 disabled: '=?',
 	            inputType : '@?',
 				step: '@?',
+				min: '@?',
+				max: '@?',
 	            selectOnFocus: '=?'
             },
             templateUrl: 'bmg/template/inline/text.html',
@@ -1146,8 +1148,15 @@
                         inputElem.attr('type', scope.inputType);
                     }
 
+					// only for number input
                     if (scope.step && scope.inputType === 'number') {
 						inputElem.attr('step', scope.step);
+					}
+					if (scope.min && scope.inputType === 'number') {
+						inputElem.attr('min', scope.min);
+					}
+					if (scope.max && scope.inputType === 'number') {
+						inputElem.attr('max', scope.max);
 					}
 
                     inputElem.focus(function() {
@@ -1526,10 +1535,6 @@
 	angular
 		.module('bmg.components.ui')
 		.directive('notification', notification);
-
-	angular
-		.module('infinite-scroll')
-		.value('THROTTLE_MILLISECONDS', 500);
 
 	notification.$inject = [];
 
@@ -1936,7 +1941,7 @@
     'use strict';
 
     angular
-        .module('bmg/template/alert', [])
+        .module('templates.alert', [])
         .run(['$templateCache', function($templateCache) {
             $templateCache.put('bmg/template/alert.html', [
                 '<div',
@@ -2207,10 +2212,10 @@
 	'use strict';
 
 	angular
-		.module('bmg/template/inlineEdits', []);
+		.module('templates.inline-edit', []);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/error-tooltip.html',
 				'<i' +
@@ -2223,7 +2228,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/text.html',
 				'<div class="inline-edit-container">' +
@@ -2245,7 +2250,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/textarea.html',
 				'<div class="inline-edit-container textarea-container">' +
@@ -2272,7 +2277,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/checkbox.html',
 				'<div class="inline-edit-container">' +
@@ -2295,7 +2300,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/typeahead.html',
 				'<div class="inline-edit-container">' +
@@ -2324,7 +2329,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/select.html',
 				'<div class="inline-edit-container">' +
@@ -2355,7 +2360,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/datepicker.html',
 				'<div class="inline-edit-container">' +
@@ -2452,7 +2457,7 @@ angular.module('bmg.components.ui')
     'use strict';
 
     angular
-        .module('user/dialogs/templates', [])
+        .module('templates.user-dialog', [])
         .run(['$templateCache', function($templateCache) {
             $templateCache.put('user/dialogs/confirm.html', [
                 '<div class="modal-close">',

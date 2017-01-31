@@ -2,10 +2,10 @@
 	'use strict';
 
 	angular
-		.module('bmg/template/inlineEdits', []);
+		.module('templates.inline-edit', []);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/error-tooltip.html',
 				'<i' +
@@ -18,7 +18,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/text.html',
 				'<div class="inline-edit-container">' +
@@ -40,7 +40,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/textarea.html',
 				'<div class="inline-edit-container textarea-container">' +
@@ -67,7 +67,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/checkbox.html',
 				'<div class="inline-edit-container">' +
@@ -90,7 +90,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/typeahead.html',
 				'<div class="inline-edit-container">' +
@@ -119,7 +119,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/select.html',
 				'<div class="inline-edit-container">' +
@@ -150,7 +150,7 @@
 		}]);
 
 	angular
-		.module('bmg/template/inlineEdits')
+		.module('templates.inline-edit')
 		.run(['$templateCache', function($templateCache) {
 			$templateCache.put('bmg/template/inline/datepicker.html',
 				'<div class="inline-edit-container">' +
