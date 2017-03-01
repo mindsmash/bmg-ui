@@ -190,6 +190,33 @@
 					<div class="clearfix visible-xs"></div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="form-group">
+					<div class="col-xs-4 col-sm-2 col-md-2 label-container">
+						<label for="async-address-search">Asynchronous address search</label>
+					</div>
+					<div class="col-xs-8 col-sm-4 col-md-3">
+						<data-inline-typeahead
+								async="true"
+								id="async-address-search"
+								data-ng-model="inlineCtrl.asyncSelected"
+								data-ng-model-options="inlineCtrl.modelOptions"
+								placeholder="Search address…"
+								oncommit="inlineCtrl.saveImmediately($data)"
+								items="inlineCtrl.refreshAddresses"></data-inline-typeahead>
+					</div>
+					<div class="clearfix visible-xs"></div>
+					<div class="narrow col-md-2 hidden-xs hidden-sm"></div>
+
+					<div class="col-xs-4 col-sm-2 col-md-2 label-container">
+
+					</div>
+					<div class="col-xs-8 col-sm-4 col-md-3">
+
+					</div>
+					<div class="clearfix visible-xs"></div>
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">

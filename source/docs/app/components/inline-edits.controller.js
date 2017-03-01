@@ -1,11 +1,13 @@
-(function(undefined) {
+(function(angular) {
     'use strict';
 
     angular
         .module('bmg-ui.docs')
         .controller('InlineEditController', InlineEditController);
 
-    function InlineEditController($q, $timeout) {
+	InlineEditController.$inject = ['$q', '$timeout', '$http'];
+
+    function InlineEditController($q, $timeout, $http) {
         var vm = this;
 
         vm.data = {
@@ -60,7 +62,18 @@
             age: 43
         }];
 
-        function sendToServer(value) {
+		vm.modelOptions = {
+			debounce: {
+				default: 500,
+				blur: 250
+			},
+			getterSetter: true
+		};
+		vm.sendToServer = sendToServer;
+		vm.saveImmediately = saveImmediately;
+		vm.refreshAddresses = refreshAddresses;
+
+		function sendToServer(value) {
             var deferred = $q.defer();
 
             $timeout(function() {
@@ -73,13 +86,25 @@
 
             return deferred.promise;
         }
-		vm.sendToServer = sendToServer;
 
         function saveImmediately(value) {
             // Do sth with the value
         }
-		vm.saveImmediately = saveImmediately;
+
+		function refreshAddresses(address) {
+			if (!address) {
+				return;
+			}
+			var params = {address: address, sensor: false};
+			return $http.get(
+				'https://maps.googleapis.com/maps/api/geocode/json',
+				{params: params}
+			).then(function(response) {
+				return response.data.results.map(function(item) {
+					return item.formatted_address;
+				});
+			});
+		}
     }
 
-    InlineEditController.$inject = ['$q', '$timeout'];
-})();
+})(angular);

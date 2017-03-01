@@ -7,14 +7,16 @@
 	EditableController.$inject = ['$filter', '$rootScope', '$q', '$timeout'];
 
 	function EditableController($filter, $rootScope, $q, $timeout) {
-		this.site = {
+		var self = this;
+
+		self.site = {
 			value: 2,
 			text: 'BMG Rights Management GE'
 		};
 
-		this.badgeStatus = 'Success';
+		self.badgeStatus = 'Success';
 
-		this.data = {
+		self.data = {
 			numberField: {},
 			sites: [
 				{
@@ -45,33 +47,33 @@
 			notesComments: 'This is an auto-resizing textarea that will grow and shrink as you type text into it. What an amazing advance in technology.'
 		};
 
-		this.errors = {
+		self.errors = {
 			barcode: 'Number must be prime.'
 		};
 
-		this.loadAsync = function(query) {
+		self.loadAsync = function(query) {
 			// reload list items based on query
 		};
 
-		this.showSites = function() {
-			var selected = $filter('filter')(this.data.sites, {value: this.site.value});
+		self.showSites = function() {
+			var selected = $filter('filter')(self.data.sites, {value: self.site.value});
 			return (this.site.value && selected.length) ? selected[0].text : 'Not set';
 		};
 
-		this.opened = {};
+		self.opened = {};
 
-		this.open = function($event, elementOpened) {
+		self.open = function($event, elementOpened) {
 			$event.preventDefault();
 			$event.stopPropagation();
 
-			this.opened[elementOpened] = !this.opened[elementOpened];
+			self.opened[elementOpened] = !self.opened[elementOpened];
 		};
 
-		this.updateDate = function(newDate) {
-			this.data.date = newDate;
+		self.updateDate = function(newDate) {
+			self.data.date = newDate;
 		};
 
-		this.datepickerOptions = {
+		self.datepickerOptions = {
 			maxDate: new Date(),
 			minMode: 'day',
 			datepickerMode: 'month',
@@ -79,23 +81,23 @@
 			startingDay: 1
 		};
 
-		this.datepickerModelOptions = {
+		self.datepickerModelOptions = {
 			//timezone: '+0000'
 		};
 
-		this.updateBadge = function(newStatus) {
+		self.updateBadge = function(newStatus) {
 			var eventName = 'sidebarBadge.generalStatus.';
 
 			$rootScope.$broadcast(eventName + newStatus.toLowerCase());
 		};
 
-		this.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+		self.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 
-		this.saveValue = function(value) {
+		self.saveValue = function(value) {
 			// Do something with the value
 		};
 
-		this.promiseValue = function(value) {
+		self.promiseValue = function(value) {
 			var deferred = $q.defer();
 
 			$timeout(function() {
