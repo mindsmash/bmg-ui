@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 2017-03-01 - v0.9.5
+
+ - inline typeahead works now with an array and a function
+
 ### 2017-01-31 - v0.9.4
 
  - add min and max attribute to inline edit number input field
