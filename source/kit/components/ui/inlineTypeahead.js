@@ -5,6 +5,8 @@
         .module('bmg.components.ui')
         .directive('inlineTypeahead', inlineTypeahead);
 
+	inlineTypeahead.$inject = ['$timeout', 'utilService', 'keyConstants'];
+
     function inlineTypeahead($timeout, utilService, keyConstants) {
         return {
             replace: true,
@@ -16,7 +18,9 @@
                 disabled: '=?',
                 tabindex: '@?'
             },
-            templateUrl: 'bmg/template/inline/typeahead.html',
+			templateUrl: function(element, attrs) {
+				return 'bmg/template/inline/' + (!!attrs.async ? 'async-' : '') + 'typeahead.html';
+			},
             require: 'ngModel',
             link: function(scope, elem, attrs, ngModel) {
                 $timeout(function() {
@@ -25,6 +29,9 @@
                     var undoBtn = $(elem).find('.revert-button');
                     var inputElem = $(elem).find('.inline-typeahead');
                     var container = $(elem).closest('.inline-edit-container');
+
+					scope.loading = false;
+					scope.noResults = false;
 
                     scope.handleUndoBtnVisibility = function() {
                         $timeout(function() {

@@ -94,6 +94,7 @@
 .inline-edit-container .inline-text,
 .inline-edit-container .inline-textarea,
 .inline-edit-container .inline-typeahead,
+.inline-edit-container .inline-async-typeahead,
 .inline-edit-container .inline-datepicker,
 .inline-edit-container .ui-select-match,
 .inline-select input {
@@ -167,6 +168,7 @@
     color: $bmg-error;
   }
 
+  .inline-async-typeahead,
   .inline-typeahead {
     padding-right: 40px;
 
@@ -312,7 +314,6 @@
   .revert-button {
     position: relative;
     top: -2px;
-    margin-left: 0;
     width: 20px;
     height: 24px;
     margin-left: -40px;
@@ -335,12 +336,11 @@
   .dropdown-hint {
     position: relative;
     top: -2px;
-    margin-left: 0;
     text-align: right;
     padding-right: 5px;
     width: 20px;
     height: 20px;
-    margin-left: 0px;
+    margin-left: 0;
     cursor: pointer;
   }
 

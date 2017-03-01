@@ -1,4 +1,4 @@
-(function(undefined) {
+(function(angular) {
 	'use strict';
 
 	angular
@@ -97,8 +97,8 @@
 				'   <input' +
 				'       type="text"' +
 				'       data-ng-model="ngModel"' +
-				'       data-ng-model-options="{}"' +
-				'       uib-typeahead="item for item in items | filter:$viewValue"' +
+				'		data-ng-model-options="ngModelOptions" ' +
+				'       uib-typeahead="item for item in items | filter: $viewValue"' +
 				'       typeahead-on-select="handleUndoBtnVisibility()"' +
 				'       data-ng-change="handleUndoBtnVisibility()"' +
 				'       data-ng-blur="blurHandler()"' +
@@ -110,6 +110,38 @@
 				'       type="button"' +
 				'       class="revert-button">' +
 				'       <i class="fa fa-undo"></i>' +
+				'   </button><span' +
+				'       class="fa fa-search typeahead-hint"></span>' +
+				'   <div' +
+				'      class="inline-error"' +
+				'      data-ng-bind="errorMessage"></div>' +
+				'</div>');
+		}]);
+
+	angular
+		.module('templates.inline-edit')
+		.run(['$templateCache', function($templateCache) {
+			$templateCache.put('bmg/template/inline/async-typeahead.html',
+				'<div class="inline-edit-container">' +
+				'   <input' +
+				'       type="text"' +
+				'       data-ng-model="ngModel"' +
+				'		data-ng-model-options="ngModelOptions" ' +
+				'       uib-typeahead="item for item in items($viewValue)"' +
+				'		typeahead-loading="loading"' +
+				'		typeahead-no-results="noResults"' +
+				'       typeahead-on-select="handleUndoBtnVisibility()"' +
+				'       data-ng-change="handleUndoBtnVisibility()"' +
+				'       data-ng-blur="blurHandler()"' +
+				'       data-ng-focus="focusHandler()"' +
+				'       data-ng-disabled="disabled"' +
+				'       data-ng-class="{ \'inline-edit-disabled\': disabled }"' +
+				'       placeholder="{{placeholder}}"' +
+				'       class="inline-async-typeahead" /><button' + // sic! no whitespace between elements
+				'       type="button"' +
+				'       class="revert-button">' +
+				'       <i class="fa" data-ng-class="{\'fa-undo\': !loading, ' +
+				'\'fa-spinner fa-pulse\': loading, \'fa-ban\': noResults && !loading}"></i>' +
 				'   </button><span' +
 				'       class="fa fa-search typeahead-hint"></span>' +
 				'   <div' +
@@ -184,4 +216,4 @@
 				'        data-ng-bind="errorMessage"></div>' +
 				'</div>');
 		}]);
-})();
+})(angular);
