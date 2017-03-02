@@ -98,8 +98,8 @@
 				'       type="text"' +
 				'       data-ng-model="ngModel"' +
 				'		data-ng-model-options="ngModelOptions" ' +
-				'       uib-typeahead="item for item in items | filter: $viewValue"' +
-				'       typeahead-on-select="handleUndoBtnVisibility()"' +
+				'       uib-typeahead="item as formatItem({item}) for item in items | filter: $viewValue"' +
+				'       typeahead-on-select="handleOnSelect()"' +
 				'       data-ng-change="handleUndoBtnVisibility()"' +
 				'       data-ng-blur="blurHandler()"' +
 				'       data-ng-focus="focusHandler()"' +
@@ -127,17 +127,17 @@
 				'       type="text"' +
 				'       data-ng-model="ngModel"' +
 				'		data-ng-model-options="ngModelOptions" ' +
-				'       uib-typeahead="item for item in items($viewValue)"' +
+				'       uib-typeahead="item as formatItem({item}) for item in items($viewValue)"' +
 				'		typeahead-loading="loading"' +
 				'		typeahead-no-results="noResults"' +
-				'       typeahead-on-select="handleUndoBtnVisibility()"' +
+				'       typeahead-on-select="handleOnSelect()"' +
 				'       data-ng-change="handleUndoBtnVisibility()"' +
 				'       data-ng-blur="blurHandler()"' +
 				'       data-ng-focus="focusHandler()"' +
 				'       data-ng-disabled="disabled"' +
 				'       data-ng-class="{ \'inline-edit-disabled\': disabled }"' +
 				'       placeholder="{{placeholder}}"' +
-				'       class="inline-async-typeahead" /><button' + // sic! no whitespace between elements
+				'       class="inline-typeahead inline-async-typeahead" /><button' + // sic! no whitespace between elements
 				'       type="button"' +
 				'       class="revert-button">' +
 				'       <i class="fa" data-ng-class="{\'fa-undo\': !loading, ' +
