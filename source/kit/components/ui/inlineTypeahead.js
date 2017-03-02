@@ -12,6 +12,8 @@
             replace: true,
             scope: {
                 ngModel: '=',
+				ngModelOptions: '=',
+				displayProperty: '=',
                 placeholder: '@',
                 oncommit: '&',
                 items: '=',
@@ -32,6 +34,22 @@
 
 					scope.loading = false;
 					scope.noResults = false;
+
+					scope.formatItem = function(data) {
+						if (!!data.item) {
+							var displayProperty = scope.displayProperty;
+							//second check of 'data.item' is required...
+							if (!!displayProperty && !!data.item && _.has(data.item, displayProperty)) {
+								return data.item[displayProperty];
+							}
+							return data.item;
+						}
+						return data;
+					};
+
+					scope.handleOnSelect = function() {
+						scope.handleUndoBtnVisibility();
+					};
 
                     scope.handleUndoBtnVisibility = function() {
                         $timeout(function() {
@@ -68,23 +86,19 @@
 
                             if (newNgModel !== oldInitialValue) {
                                 // call the callback function with the new input value
-                                var commitPromise = angular.isDefined(scope.oncommit) ?
-                                    scope.oncommit({
-                                        $data: newNgModel
-                                    }) : undefined;
+                                var commitPromise = angular.isDefined(scope.oncommit) ? scope.oncommit({$data: newNgModel}) : undefined;
 
                                 if (utilService.isPromise(commitPromise)) {
-                                    utilService.animateSuccessIndicator(
-                                        commitPromise, undoBtn, container, function(message) {
+                                    utilService.animateSuccessIndicator(commitPromise, undoBtn, container, function(message) {
                                             scope.errorMessage = message;
                                         }
                                     );
                                 } else {
-                                    utilService.animateSuccessIndicator(
-                                        undefined, undoBtn, container, function(message) {
+                                    utilService.animateSuccessIndicator(undefined, undoBtn, container, function(message) {
                                             scope.errorMessage = message;
                                         }
                                     );
+
                                 }
                             }
                         }, 100); // to make sure this happens after undo button click
