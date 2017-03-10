@@ -59,8 +59,6 @@ table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px 
 
 .ui-select-bootstrap .ui-select-choices-row.active { background-color: rgba(218, 218, 218, 0.25); }
 
-.ui-select-bootstrap .ui-select-choices-row.active > a { color: #51d0ff; }
-
 .inline-select .ui-select-container .ui-select-match:not(.ui-select-multiple) { width: auto; }
 
 .ui-select-container .ui-select-match { outline: none; box-shadow: none; }
@@ -3861,8 +3859,6 @@ form .form-control::-webkit-input-placeholder, .form-group .form-control::-webki
 textarea { resize: vertical; }
 
 [uib-typeahead-popup].dropdown-menu { max-height: 146px; overflow-y: auto; }
-
-[uib-typeahead-popup].dropdown-menu li.active a { color: #51d0ff; }
 
 .with-page-number-input.pagination > li:last-child > a, .with-page-number-input.pagination > li:last-child > span { -moz-border-radius-bottomright: 0; -moz-border-radius-topright: 0; border-bottom-right-radius: 0; border-top-right-radius: 0; }
 

@@ -180,9 +180,6 @@ textarea {
 [uib-typeahead-popup].dropdown-menu {
   max-height: 146px;
   overflow-y: auto;
-  li.active a {
-    color: $bmg-primary;
-  }
 }
 
 .with-page-number-input.pagination > li:last-child > a,
