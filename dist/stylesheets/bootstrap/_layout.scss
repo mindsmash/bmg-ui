@@ -62,28 +62,68 @@ body {
   color: $bmg-gray-dark;
 }
 
+.color-malibu,
 .color-primary {
   color: $bmg-primary;
 }
 
+.color-tundora,
 .color-secondary {
   color: $bmg-secondary;
 }
 
+.color-rio-grande,
 .color-success {
   color: $bmg-success;
 }
 
+.color-turquoise,
 .color-info {
   color: $bmg-info;
 }
 
+.color-supernova,
 .color-warning {
   color: $bmg-warning;
 }
 
+.color-carrot,
+.color-status {
+  color: $bmg-status
+}
+
+.color-monza,
 .color-error {
   color: $bmg-error;
+}
+
+.color-black,
+.color-text {
+  color: $bmg-black;
+}
+
+.color-stack {
+  color: $bmg-stack;
+}
+
+.color-celeste {
+  color: $bmg-celeste;
+}
+
+.color-white {
+  color: $bmg-white;
+}
+
+.color-spice {
+  color: $bmg-spice;
+}
+
+.color-pine-green {
+  color: $bmg-pine-green;
+}
+
+.color-jazzberry {
+  color: $bmg-jazzberry;
 }
 
 .has-success {

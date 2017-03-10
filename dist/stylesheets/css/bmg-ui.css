@@ -53,9 +53,13 @@ tr.activity:hover + tr.activity-info { background-color: rgba(218, 218, 218, 0.2
 
 table.table-activities > tbody tr.activity-info.collapse > td { border-top: 1px solid transparent; padding: 2px 4px 32px 4px; }
 
-.ui-select-bootstrap .ui-select-choices-row > a { font-weight: 300; }
+.ui-select-bootstrap .ui-select-choices-row > a { font-weight: 300; color: #4d4d4d; }
 
-.ui-select-bootstrap .ui-select-choices-row.active > a { color: #4d4d4d; background-color: rgba(218, 218, 218, 0.25); }
+.ui-select-bootstrap .ui-select-choices-row > a > small, .ui-select-bootstrap .ui-select-choices-row > a > div { padding: 4px 14px; }
+
+.ui-select-bootstrap .ui-select-choices-row.active { background-color: rgba(218, 218, 218, 0.25); }
+
+.ui-select-bootstrap .ui-select-choices-row.active > a { color: #51d0ff; }
 
 .inline-select .ui-select-container .ui-select-match:not(.ui-select-multiple) { width: auto; }
 
@@ -3317,17 +3321,33 @@ body { padding-top: 100px; background-color: #f3f3f3; min-width: 768px; }
 
 .color-default { color: #999; }
 
-.color-primary { color: #51d0ff; }
+.color-malibu, .color-primary { color: #51d0ff; }
 
-.color-secondary { color: #4d4d4d; }
+.color-tundora, .color-secondary { color: #4d4d4d; }
 
-.color-success { color: #afce06; }
+.color-rio-grande, .color-success { color: #afce06; }
 
-.color-info { color: #18ccae; }
+.color-turquoise, .color-info { color: #18ccae; }
 
-.color-warning { color: #ffcc00; }
+.color-supernova, .color-warning { color: #ffcc00; }
 
-.color-error { color: #c80031; }
+.color-carrot, .color-status { color: #f59422; }
+
+.color-monza, .color-error { color: #c80031; }
+
+.color-black, .color-text { color: #4d4d4d; }
+
+.color-stack { color: #999; }
+
+.color-celeste { color: #ededed; }
+
+.color-white { color: #ffffff; }
+
+.color-spice { color: #a7572c; }
+
+.color-pine-green { color: #319990; }
+
+.color-jazzberry { color: #a11762; }
 
 .has-success > .help-block { color: #afce06; }
 
@@ -3841,6 +3861,8 @@ form .form-control::-webkit-input-placeholder, .form-group .form-control::-webki
 textarea { resize: vertical; }
 
 [uib-typeahead-popup].dropdown-menu { max-height: 146px; overflow-y: auto; }
+
+[uib-typeahead-popup].dropdown-menu li.active a { color: #51d0ff; }
 
 .with-page-number-input.pagination > li:last-child > a, .with-page-number-input.pagination > li:last-child > span { -moz-border-radius-bottomright: 0; -moz-border-radius-topright: 0; border-bottom-right-radius: 0; border-top-right-radius: 0; }
 

@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 2017-03-10 - v0.9.6
+
+ - ui select dependency update and improvement
+ - extend color css classes
+
 ### 2017-03-01 - v0.9.5
 
  - inline typeahead works now with an array and a function
