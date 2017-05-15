@@ -117,6 +117,10 @@
                             return true;
                         }
 
+                        if(typeof ngModel.$viewValue.getTime === 'undefined') {
+                            return true;
+                        }
+
                         return initialValue.getTime() !== ngModel.$viewValue.getTime();
                     }
 
