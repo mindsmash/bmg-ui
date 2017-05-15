@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 2017-05-15 - v0.9.7
+
+ - inline datepicker improvement
+
 ### 2017-03-10 - v0.9.6
 
  - ui select dependency update and improvement

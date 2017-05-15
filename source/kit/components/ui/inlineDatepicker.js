@@ -117,7 +117,7 @@
                             return true;
                         }
 
-                        if(typeof initialValue.getTime === 'undefined' || typeof ngModel.$viewValue.getTime === 'undefined') {
+                        if (typeof initialValue.getTime === 'undefined' || typeof ngModel.$viewValue.getTime === 'undefined') {
                             return true;
                         }
 
