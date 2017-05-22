@@ -1399,6 +1399,7 @@
                 ngModel: '=',
 				ngModelOptions: '=',
 				displayProperty: '=',
+                format: '&',
                 placeholder: '@',
                 oncommit: '&',
                 items: '=',
@@ -1421,8 +1422,11 @@
 					scope.noResults = false;
 
 					scope.formatItem = function(data) {
-						if (!!data.item) {
-							var displayProperty = scope.displayProperty;
+                        if (!!data.item) {
+                            if (!!scope.format && typeof scope.format === 'function') {
+                                return scope.format({data: data.item});
+                            }
+                            var displayProperty = scope.displayProperty;
 							//second check of 'data.item' is required...
 							if (!!displayProperty && !!data.item && _.has(data.item, displayProperty)) {
 								return data.item[displayProperty];

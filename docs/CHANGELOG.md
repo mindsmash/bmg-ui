@@ -2,9 +2,13 @@
 
 ## Versions
 
+### 2017-05-22 - v0.9.8
+
+ - inline typeahead can use a function to format the output
+
 ### 2017-05-15 - v0.9.7
 
- - inline datepicker improvement
+ - inline datepicker allow updates for string-based date values
 
 ### 2017-03-10 - v0.9.6
 
