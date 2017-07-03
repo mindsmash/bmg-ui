@@ -51,6 +51,13 @@ Clone the project, then follow the instructions below.
 
 `$ gulp dev` Start development mode: a demo page is started. Edit html or scss and see updates in realtime
 
+#### Local development and testing
+To test UI-Kit changes with an existing project that has an dependency to the BMG UI-Kit you can use the bower link functionality.
+- `bower link` within the UI-Kit root to create a global link
+- `bower link bmg-ui` within the package that requires the UI-Kit (a link overrides an installed UI-Kit version)
+
+Please read the documentation for the [bower link](https://bower.io/docs/api/#link "bower link") functionality.
+
 ### Publish a new version
 `$ gulp build` Create new release files in `dist/`.
 
