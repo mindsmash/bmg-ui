@@ -54,9 +54,9 @@ Clone the project, then follow the instructions below.
 #### Local development and testing
 To test UI-Kit changes with an existing project that has an dependency to the BMG UI-Kit you can use the bower link functionality.
 - `bower link` within the UI-Kit root to create a global link
-- `bower link bmg-ui` within the package that requires the UI-Kit (a link overrides an installed UI-Kit version)
+- `bower link bmg-ui` within the package that requires the UI-Kit (a link "overrides" an installed UI-Kit version)
 
-Please read the documentation for the [bower link](https://bower.io/docs/api/#link "bower link") functionality.
+Please also read the documentation for the [bower link](https://bower.io/docs/api/#link "bower link") functionality.
 
 ### Publish a new version
 `$ gulp build` Create new release files in `dist/`.
@@ -68,6 +68,12 @@ Please read the documentation for the [bower link](https://bower.io/docs/api/#li
 ### Contribute
 If you want to contribute to this project, simply fork it on Github, do your changes and create a pull request that
 describes your changes. If it's all nice and clean, it might get merged.
+
+Please keep always in mind that a BMG UI-Kit change/improvement can affect other BMG applications.
+
+If you want to add a new feature please consider/decide whether this improvement should be 
+- an improvement only for the own application -> implement it in your own application or
+- an improvement also needed by other applications -> implement it in the BMG UI-Kit
 
 ### Talk to
 
