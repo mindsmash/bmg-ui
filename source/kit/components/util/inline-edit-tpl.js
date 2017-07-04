@@ -99,7 +99,7 @@
 				'       data-ng-model="ngModel"' +
 				'		data-ng-model-options="ngModelOptions" ' +
 				'       uib-typeahead="item as formatItem({item}) for item in items | filter: $viewValue"' +
-				'       typeahead-on-select="handleOnSelect()"' +
+				'       typeahead-on-select="handleOnSelect($item, $model, $label, $event)"' +
 				'       data-ng-change="handleUndoBtnVisibility()"' +
 				'       data-ng-blur="blurHandler()"' +
 				'       data-ng-focus="focusHandler()"' +
@@ -130,7 +130,7 @@
 				'       uib-typeahead="item as formatItem({item}) for item in items($viewValue)"' +
 				'		typeahead-loading="loading"' +
 				'		typeahead-no-results="noResults"' +
-				'       typeahead-on-select="handleOnSelect()"' +
+				'       typeahead-on-select="handleOnSelect($item, $model, $label, $event)"' +
 				'       data-ng-change="handleUndoBtnVisibility()"' +
 				'       data-ng-blur="blurHandler()"' +
 				'       data-ng-focus="focusHandler()"' +
@@ -216,4 +216,5 @@
 				'        data-ng-bind="errorMessage"></div>' +
 				'</div>');
 		}]);
+
 })(angular);

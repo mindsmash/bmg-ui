@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 2017-06-19 - v0.9.9
+
+ - fix inline typeahead mouse select issue
+
 ### 2017-05-22 - v0.9.8
 
  - inline typeahead can use a function to format the output
