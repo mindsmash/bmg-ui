@@ -65,6 +65,8 @@ Please also read the documentation for the [bower link](https://bower.io/docs/ap
 
 `$ git push --follow-tags` Push the tagged version, this creates a new **bower** version.
 
+Please merge the *master*-branch for the GitHub preview into the *gh-pages*-branch.
+
 ### Contribute
 If you want to contribute to this project, simply fork it on Github, do your changes and create a pull request that
 describes your changes. If it's all nice and clean, it might get merged.
