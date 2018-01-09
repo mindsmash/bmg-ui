@@ -3179,6 +3179,10 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 
 .navbar .navbar-header .navbar-toggle { left: 30px; margin: 10px 0 0 0; }
 
+@media screen and (min-width: 768px) and (max-width: 991px) { .navbar .navbar-header > a:first-child { display: none; } }
+
+@media screen and (min-width: 768px) and (max-width: 1199px) { .navbar .navbar-header { padding-right: 0; } }
+
 .navbar .collapsing { display: none; }
 
 .navbar .navbar-collapse.collapse .navbar-nav li.active a { color: #ffffff; background-color: transparent; }
@@ -3220,6 +3224,11 @@ button.close { padding: 0; cursor: pointer; background: transparent; border: 0; 
 .navbar .navbar-collapse.collapse .navbar-nav.navbar-right .dropdown.open .dropdown-menu li a { color: #333; }
 
 .navbar .navbar-collapse.collapse .navbar-nav.navbar-right .dropdown.open .dropdown-menu li a:hover, .navbar .navbar-collapse.collapse .navbar-nav.navbar-right .dropdown.open .dropdown-menu li a:active, .navbar .navbar-collapse.collapse .navbar-nav.navbar-right .dropdown.open .dropdown-menu li a.active, .navbar .navbar-collapse.collapse .navbar-nav.navbar-right .dropdown.open .dropdown-menu li a:focus { color: #ffffff; background-color: #333; }
+
+@media screen and (min-width: 768px) and (max-width: 1199px) { .navbar .navbar-collapse.collapse .navbar-nav.navbar-right > li a .fa, .navbar .navbar-collapse.collapse .navbar-nav.navbar-left > li a .fa { font-size: 1em; }
+  .navbar .navbar-collapse.collapse .navbar-nav.navbar-left > li { width: 85px; } }
+
+@media screen and (min-width: 768px) and (max-width: 991px) { .navbar .navbar-collapse.collapse .navbar-nav.navbar-right > li:first-child, .navbar .navbar-collapse.collapse .navbar-nav.navbar-right > li:last-child { display: none; } }
 
 .navbar .navbar-collapse.in.collapse { padding: 12px 0 12px 0; }
 
