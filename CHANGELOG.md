@@ -2,6 +2,11 @@
 
 ## Versions
 
+### 2018-01-09 - v0.9.10
+
+  - Fixes a fix which causes the top navbar not to collapse at times
+  - Fixes a bug with breakpoints which causes the top navbar to break
+
 ### 2017-06-19 - v0.9.9
 
  - fix inline typeahead mouse select issue

@@ -41,7 +41,6 @@ $bmg-nav-collapse-height: 20px;
 .navbar {
   background-color: $bmg-navbar;
   padding: 0;
-
   border-bottom: 0;
 
   .navbar-header {
@@ -59,6 +58,16 @@ $bmg-nav-collapse-height: 20px;
     .navbar-toggle {
       left: 30px;
       margin: 10px 0 0 0;
+    }
+
+    @media #{screen} and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+      > a:first-child {
+        display: none;
+      }
+    }
+
+    @media #{screen} and (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+      padding-right: 0;
     }
   }
   .collapsing {
@@ -185,6 +194,30 @@ $bmg-nav-collapse-height: 20px;
                 }
               }
             }
+          }
+        }
+      }
+
+      @media #{screen} and (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+        &.navbar-right,
+        &.navbar-left {
+          > li {
+            a .fa {
+              font-size: 1em;
+            }
+          }
+        }
+
+        &.navbar-left > li {
+          width: 85px;
+        }
+      }
+
+      @media #{screen} and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        &.navbar-right {
+          > li:first-child,
+          > li:last-child {
+            display: none;
           }
         }
       }

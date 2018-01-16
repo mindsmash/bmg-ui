@@ -45,6 +45,15 @@
 						var earliestKnownScrollTop = lastKnownScrollPositions[0];
 						var previousScrollTop = lastKnownScrollPositions[lastKnownScrollPositions.length - 2];
 
+						if (isCollapsed) {
+							var stickyBars = $('*[sticky]');
+						
+							// check if the sticky bar still up
+							if (stickyBars.css('top') !== config.collapsedHeight) {
+								rearrangeStickyBars(true);
+							}
+						}
+
 						if (scrollTop !== previousScrollTop) {
 							// do not do anything if we're not scrolling anymore
 
